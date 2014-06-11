@@ -408,6 +408,12 @@ header .register-login li a:first-child{
 .home-main .left-main .listing .featured-listing-left .item .thumb{
 	position: relative;
 }
+.home-main .left-main .listing .featured-listing-left .item .thumb img{
+	opacity: 0.6;
+}
+.home-main .left-main .listing .featured-listing-left .item .thumb:hover img{
+	opacity: 1;
+}
 .home-main .left-main .listing .featured-listing-left .item .thumb .featured-listing-text{
 	position: absolute;
 	top: 160px;
@@ -425,6 +431,10 @@ header .register-login li a:first-child{
 	text-align: center;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+.home-main .left-main .listing .featured-listing-left .item .featured-listing-name a{
+	text-decoration: none;
+	color: inherit;
 }
 .home-main .left-main .listing .featured-listing-left .item .featured-listing-feature{
 	padding-top:8px;
@@ -525,6 +535,13 @@ header .register-login li a:first-child{
 .home-main .left-main .listing .featured-listing-center .item .thumb{
 	position: relative;
 }
+.home-main .left-main .listing .featured-listing-center .item .thumb img{
+	opacity: 0.6;
+}
+.home-main .left-main .listing .featured-listing-center .item .thumb:hover img{
+	opacity: 1;
+}
+
 .home-main .left-main .listing .featured-listing-center .item .thumb .featured-listing-text{
 	position: absolute;
 	top: 360px;
@@ -542,6 +559,10 @@ header .register-login li a:first-child{
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+.home-main .left-main .listing .featured-listing-center .item .featured-listing-name a{
+	text-decoration: none;
+	color: inherit;
 }
 .home-main .left-main .listing .featured-listing-center .item .featured-listing-feature{
 	padding-top:8px;
@@ -693,6 +714,12 @@ header .register-login li a:first-child{
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb{
 	position: relative;
 }
+.home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb img{
+	opacity: 0.6;
+}
+.home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb:hover img{
+	opacity: 1;
+}
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb .featured-listing-text{
 	position: absolute;
 	top: 160px;
@@ -710,6 +737,10 @@ header .register-login li a:first-child{
 	text-align: center;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+.home-main .left-main .listing .featured-project-area .featured-project-list .item .featured-listing-name a{
+	color:inherit;
+	text-decoration: none;
 }
 .home-main .left-main .listing .featured-furniture-area{
 	padding-right: 15px;
@@ -752,6 +783,12 @@ header .register-login li a:first-child{
 }
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb{
 	position: relative;
+}
+.home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb img{
+	opacity: 0.6;
+}
+.home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb:hover img{
+	opacity: 1;
 }
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb .featured-listing-text{
 	position: absolute;
