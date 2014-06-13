@@ -1077,6 +1077,124 @@ header .register-login li a:first-child{
 .login-page-main .social-login-area .social-login .google:hover{
 	background: url(../images/login-and-share.png) -362px -118px no-repeat;
 }
+
+.register-type{
+	width:100%;
+	height:136px;
+	position:relative;
+}
+.register-type h1{
+	font-family: 'nexa_boldregular';
+	font-size:56px;
+	color:#000;
+	line-height:1;
+	padding-top:50px;
+}
+.register-type h1 span{
+	font-size:23px;
+	color:#000;
+	margin-left:10px;
+}
+.register-type .info{
+	position:absolute;
+	width:500px;
+	right:0px;
+	top:100px;
+}
+.register-type .info .mand{
+	font-size: 13px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	float:left;
+}
+.register-type .info .toggle{
+	font-size: 13px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	float:right;	
+}
+.register-type .info .toggle a{
+	font-size: 13px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	text-decoration:none;
+	color:inherit;
+}
+.register-type .info .toggle a.active{
+	color:#ffa800;
+}
+.register-area-left{
+	width:500px;
+	height:auto;
+	float:left;
+	margin-right:140px;
+}
+.register-area-right{
+	width:500px;
+	height:auto;
+	float:left;
+}
+.register-area-left input,.register-area-right input{
+	width: 96%;
+	height: 50px;
+	outline: none;
+	border: none;
+	border-top: 1px solid #c2c2c2;
+	border-bottom: 1px solid #c2c2c2;
+	display: inline-block;
+	background: transparent;
+	padding: 0px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+}
+
+
+.register-area-left textarea,.register-area-right textarea{
+	width: 96%;
+	height: 100px;
+	outline: none;
+	border: none;
+	border-top: 1px solid #c2c2c2;
+	border-bottom: 1px solid #c2c2c2;
+	display: inline-block;
+	background: transparent;
+	padding: 20px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+	resize:none;
+}
+.register-area-left input:nth-child(2n),.register-area-right input:nth-child(2n){
+	border-top: 0px solid #c2c2c2;
+	border-bottom: 0px solid #c2c2c2;
+}
+.register-area-left input:last-child,.register-area-right input:last-child{
+	border-bottom: 1px solid #c2c2c2;
+}
+.register-area-left input:focus,.register-area-right input:focus{
+	background: rgba(30,176,169,0.16);
+}
+
+.register-area-left .forgot,.register-area-right .forgot{
+	font-size: 11px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	position: relative;
+	top: -18px;
+	left: 120px;
+	text-decoration: none;
+	color: inherit;
+}
+.register-area-left .forgot:hover,.register-area-right .forgot:hover{
+	color: #1eb0a9;
+}
+.register-area-left input[type="submit"],.register-area-right input[type="submit"]{
+	color: inherit;
+	border: 1px solid #1eb0a9;
+	outline: none;
+	position: relative;
+	top: -18px;
+	left: 310px;
+	background: transparent;
+	font-size: 11px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	cursor: pointer;
+}
 /* SQUARED THREE */
 .squaredThree {
 	width: 100px;
