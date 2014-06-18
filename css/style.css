@@ -1399,6 +1399,9 @@ html[xmlns] .clearfix {
 	margin-top: 0px;
 	margin-bottom: 15px;
 }
+.product-detail .right .featured-listing-name.furniture{
+	border-bottom: 1px solid #c2c2c2;
+}
 .product-detail .right .featured-listing-name a{
 	text-decoration: none;
 	color: inherit;
@@ -1452,6 +1455,13 @@ html[xmlns] .clearfix {
 .product-detail .right .price-desc{
 	text-align: left;
 	font-family: 'nexa_lightregular';
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.product-detail .right .desc{
+	text-align: left;
+	font-family: 'nexa_lightregular';
+	font-size: 15px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -1539,14 +1549,7 @@ html[xmlns] .clearfix {
 .product-detail .right .group .item p.day{
 	font-size: 13px;
 }
-.product-detail .right:last-child .desc{
-	font-family: 'nexa_lightregular';
-	font-size: 12px;
-	color: #161616;
-	text-align: left;
-	margin-top: 5px;
-	margin-bottom: 0px;
-}
+
 
 .product-detail .right .social-share{
 	width: 100%;
@@ -2065,12 +2068,129 @@ height: 276px;
 	color: #ffa800;
 }
 
+.product-detail-full{
+	width: 100%;
+	height: auto;
+	border-top:1px solid #c2c2c2; 
+	float: left;
+}
+.product-detail-full .title{
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+}
+.product-detail-full .title .see-text{
+	font-family: 'nexa_boldregular';
+	font-size: 28px;
+	color: #000;
+	text-align: left;
+	float: left;
+}
+.product-detail-full .title .see-all{
+	text-align: left;
+	float: right;
+	padding-top: 5px;
+}
+.product-detail-full .title .see-all a{
+	background: #1eb0a9;
+	color: #fff;
+	padding: 2px 8px;
+	text-decoration: none;
+	font-size: 12px;
+}
 
-
-
-
-
-
+.product-detail-full .list{
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+		padding-bottom: 30px;
+}
+.product-detail-full .list .item{
+	width: 270px;
+	height: auto;
+	float: left;
+	margin-bottom: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #c2c2c2;
+}
+.product-detail-full .list .item:nth-child(4n+1){
+	padding-right: 7px;
+	padding-left: 0px;
+}
+.product-detail-full .list .item:nth-child(4n+2){
+	padding-right: 7px;
+	padding-left: 7px;
+	border-left: 1px solid #c2c2c2;
+	border-right: 1px solid #c2c2c2;
+}
+.product-detail-full .list .item:nth-child(4n+3){
+	padding-right: 7px;
+	padding-left: 7px;
+	border-right: 1px solid #c2c2c2;
+}
+.product-detail-full .list .item:nth-child(4n+4){
+	padding-right: 0px;
+	padding-left: 7px;
+}
+.product-detail-full .list .item .thumb{
+	position: relative;
+}
+.product-detail-full .list .item .thumb img{
+	opacity: 0.6;
+}
+.product-detail-full .list .item .thumb:hover img{
+	opacity: 1;
+}
+.product-detail-full .list .item .thumb .featured-listing-text{
+	position: absolute;
+	top: 160px;
+	right: 0px;
+	font-family: 'nexa_lightregular';
+	font-size: 12px;
+	color: #ffb80f;
+	background: #000;
+	padding: 4px 8px;
+}
+.product-detail-full .list .item .featured-listing-name{
+	font-family: 'nexa_boldregular';
+	font-size: 16px;
+	color:#191919;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.product-detail-full .list .item .featured-listing-date{
+	font-family: 'nexa_lightregular';
+	font-size: 14px;
+	color:#191919;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.product-detail-full .list .item .featured-listing-price{
+	font-family: 'nexa_lightregular';
+	font-size: 13px;
+	color:#191919;
+	text-align: center;
+	border-top:1px solid #c2c2c2;
+	border-bottom: 1px solid #c2c2c2; 
+	width: 200px;
+	margin: 5px auto;
+	padding: 2px 0px;
+}
+.product-detail-full .list .item a.featured-listing-view{
+	font-family: 'nexa_lightregular';
+	font-size: 13px;
+	color:#191919;
+	text-align: center;
+	border:2px solid #ffb80f;
+	width: 130px;
+	margin: 0 auto;
+	padding: 4px 6px;
+	text-decoration: none;
+	margin: 0 auto;
+	display: block;
+}
 
 
 
