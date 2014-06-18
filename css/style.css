@@ -1584,6 +1584,10 @@ html[xmlns] .clearfix {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #c2c2c2;
 }
+.product-detail .right .settings.no-border{
+	border-bottom: 0px solid #c2c2c2;
+}
+
 .product-detail .right .settings div{
 	border: 1px solid #ffa800;
 	padding: 4px 8px;
@@ -2191,6 +2195,222 @@ height: 276px;
 	margin: 0 auto;
 	display: block;
 }
+
+
+
+.product-detail .left .big-edu-image{
+	width: 307px;
+	height: auto;
+	float: left;
+}
+.product-detail .left .info{
+	width: 300px;
+	height: auto;
+	float: left;
+	margin-left: 30px;
+}
+.product-detail .left .info .item-title{
+	color: #000;
+	font-family: 'nexa_boldregular';
+	font-size: 22px;
+	padding: 4px 0px 4px 5px;
+}
+.product-detail .left .info .item{
+	background: #f2f2f2;
+	color: #000;
+	font-family: 'nexa_lightregular';
+	font-size: 12px;
+	padding: 4px 0px 4px 5px;
+	height: 16px;
+}
+.product-detail .left .info .item:nth-child(2n+1){
+	background: #ebebeb;
+	color: #000;
+}
+.product-detail .left .info .item div{
+	float: left;
+}
+
+
+.edu-detail-full{
+	width: 100%;
+	height: auto;
+	border-top:1px solid #c2c2c2; 
+	float: left;
+	margin-top: 20px;
+}
+.edu-detail-full .title{
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+}
+.edu-detail-full .title .see-text{
+	font-family: 'nexa_boldregular';
+	font-size: 28px;
+	color: #000;
+	text-align: left;
+	float: left;
+}
+.edu-detail-full .title .see-all{
+	text-align: left;
+	float: right;
+	padding-top: 5px;
+}
+.edu-detail-full .title .see-all a{
+	background: #1eb0a9;
+	color: #fff;
+	padding: 2px 8px;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.edu-detail-full .list{
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+		padding-bottom: 30px;
+}
+.edu-detail-full .list .item{
+	width: 284px;
+	height: auto;
+	float: left;
+	margin-bottom: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #c2c2c2;
+}
+.edu-detail-full .list .item:nth-child(4n+1){
+}
+.edu-detail-full .list .item:nth-child(4n+2){
+	
+	border-left: 1px solid #c2c2c2;
+	border-right: 1px solid #c2c2c2;
+}
+.edu-detail-full .list .item:nth-child(4n+3){
+	
+	border-right: 1px solid #c2c2c2;
+}
+.edu-detail-full .list .item:nth-child(4n+4){
+
+}
+.edu-detail-full .list .item .thumb{
+	position: relative;
+	margin: 0 auto;
+	width: 180px;
+}
+.edu-detail-full .list .item .thumb img{
+	opacity: 0.6;
+}
+.edu-detail-full .list .item .thumb:hover img{
+	opacity: 1;
+}
+.edu-detail-full .list .item .thumb .featured-listing-text{
+	position: absolute;
+	top: 160px;
+	right: 0px;
+	font-family: 'nexa_lightregular';
+	font-size: 12px;
+	color: #ffb80f;
+	background: #000;
+	padding: 4px 8px;
+}
+.edu-detail-full .list .item .featured-listing-name{
+	font-family: 'nexa_boldregular';
+	font-size: 16px;
+	color:#191919;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.edu-detail-full .list .item .featured-listing-date{
+	font-family: 'nexa_lightregular';
+	font-size: 14px;
+	color:#191919;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.edu-detail-full .list .item .featured-listing-price{
+	font-family: 'nexa_lightregular';
+	font-size: 13px;
+	color:#191919;
+	text-align: center;
+	border-top:1px solid #c2c2c2;
+	border-bottom: 1px solid #c2c2c2; 
+	width: 200px;
+	margin: 5px auto;
+	padding: 2px 0px;
+}
+.edu-detail-full .list .item a.featured-listing-view{
+	font-family: 'nexa_lightregular';
+	font-size: 13px;
+	color:#191919;
+	text-align: center;
+	border:2px solid #ffb80f;
+	width: 130px;
+	margin: 0 auto;
+	padding: 4px 6px;
+	text-decoration: none;
+	margin: 0 auto;
+	display: block;
+}
+
+
+
+.edu-detail-full .list .item .info .item-title{
+	color: #000;
+	font-family: 'nexa_boldregular';
+	font-size: 22px;
+	padding: 4px 0px 4px 5px;
+}
+.edu-detail-full .list .item .info .detail{
+	background: #f2f2f2;
+	color: #000;
+	font-family: 'nexa_lightregular';
+	font-size: 12px;
+	padding: 4px 0px 4px 5px;
+	height: 16px;
+}
+.edu-detail-full .list .item .info .detail:nth-child(2n+1){
+	background: #ebebeb;
+	color: #000;
+}
+.edu-detail-full .list .item .info .detail div{
+	float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
