@@ -22,6 +22,18 @@ $(document).ready(function() {
 	  })
 	  .addClass( "active");
  });
+ $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [ 75, 300 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      },
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    
 });
 
 function mp_initialize_map (mp_position, mp_marker_url, mp_marker_w, mp_marker_h, mp_marker_title) {
@@ -86,9 +98,10 @@ function mp_initialize_map (mp_position, mp_marker_url, mp_marker_w, mp_marker_h
       var marker_w     = 34;
       var marker_h     = 47;
       var marker_title = "Mapped WordPress Theme Demo";
-
       window.onload = mp_initialize_map(position, marker_url,marker_w,marker_h,marker_title);
 
     }); 
 
-    
+
+
+ 
