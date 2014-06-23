@@ -2786,40 +2786,223 @@ html[xmlns] .clearfix {
 	width: 100px;
 }
 
+.education-drop-down-settings{
+	padding-top: 20px;
+	border-bottom: 1px solid #c2c2c2;
+	padding-bottom: 20px;
+}
+.education-drop-down-settings .title{
+	width: 50%;
+	float: left;
+	font-family: 'nexa_boldregular';
+	font-size: 34px;
+	color: #000;
+}
+.education-drop-down-settings .settings-edu{
+	width: 50%;
+	float: right;
+}
+
+.education-drop-down-settings .settings-edu .sort{
+	font-family: 'nexa_lightregular';
+	font-size: 11px;
+	float: right;
+	margin-top: 14px;
+	margin-left: 20px;
+}
+.education-drop-down-settings .settings-edu .sort span.text{
+	float: left;
+	line-height: 22px;
+	margin-right: 10px;
+}
+.education-drop-down-settings .settings-edu .sort .drop{
+	border:1px solid #ffa800;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 20px;
+	width: 125px;
+}
+.education-drop-down-settings .settings-edu .sort .drop .text{
+	padding-right:10px;
+}
+.education-drop-down-settings .settings-edu .sort .drop .arrow{
+	background: url(../images/filter-down.png) 0px 0px no-repeat;
+	width: 6px;
+	height: 6px;
+	display: block;
+	float: right;
+	position: relative;
+	top: 8px;
+	left: -2px;
+}
+
+.education-drop-down-settings .settings-edu .search-edu{
+	border:1px solid #ffa800;
+	float: right;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 20px;
+	width: 125px;
+	margin-top: 14px;
+	margin-left: 20px;
+		position: relative;
+}
+.education-drop-down-settings .settings-edu .search-edu input{
+	outline: none;
+	border: none;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100px;
+	background: transparent;
+}
+.education-drop-down-settings .settings-edu .search-edu .search-icon{
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background: url(../images/search-icon.png) 0 0 no-repeat;
+	width: 18px;
+	height: 18px;
+	display: block;
+	cursor: pointer;
+}
+.education-listing-settings .filter-settings{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #c2c2c2;
+}
+.education-listing-settings .filter-settings .sort{
+	font-family: 'nexa_lightregular';
+	font-size: 11px;
+	float: right;
+	margin-top: 14px;
+	margin-left: 20px;
+}
+.education-listing-settings .filter-settings .sort span.text{
+	float: left;
+	line-height: 22px;
+	margin-right: 10px;
+}
+.education-listing-settings .filter-settings .sort .drop{
+	border:1px solid #ffa800;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 20px;
+}
+.education-listing-settings .filter-settings .sort .drop .text{
+	border-right: 1px solid #c2c2c2;
+	padding-right:10px;
+
+}
+.education-listing-settings .filter-settings .sort .drop .arrow{
+	background: url(../images/filter-down.png) 0px 0px no-repeat;
+	width: 6px;
+	height: 6px;
+	display: block;
+	float: right;
+	position: relative;
+	top: 8px;
+	left: -2px;
+}
+
+
+.education-listing-settings .edu-listing{
+	width: 100%;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.education-listing-settings .edu-listing .edu-item-list{
+	width: 100%;
+	height: auto;
+	border-bottom:1px solid #c2c2c2;
+	height: 164px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.education-listing-settings .edu-listing .edu-item-list:last-child{
+	padding-bottom: 0px;
+	border-bottom:0px solid #c2c2c2;
+}
+.education-listing-settings .edu-listing .edu-item-list .left{
+	float: left;
+	width: 180px;
+	height: 164px;
+}
+.education-listing-settings .edu-listing .edu-item-list .mid{
+	float: left;
+	width: 560px;
+	height: 164px;
+	margin-left: 55px;
+}
+
+.education-listing-settings .edu-listing .edu-item-list .mid a{
+	font-family: 'nexa_lightregular';
+	font-size: 32px;
+	color: #1eb0a9;
+	text-decoration: none;
+}
+
+.education-listing-settings .edu-listing .edu-item-list .mid a h1{
+	color: inherit;
+	font-size: inherit;
+}
+
+.education-listing-settings .edu-listing .edu-item-list .mid p{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+}
 
 
 
+.education-listing-settings .edu-listing .edu-item-list .right{
+	float: left;
+	width: 290px;
+	height: 164px;
+	margin-left: 55px;
+}
+.education-listing-settings .edu-listing .edu-item-list .right .item-title{
+	color: #000;
+	font-family: 'nexa_boldregular';
+	font-size: 22px;
+	padding: 4px 0px 4px 5px;
+}
+.education-listing-settings .edu-listing .edu-item-list .right .item{
+	background: #f2f2f2;
+	color: #000;
+	font-family: 'nexa_lightregular';
+	font-size: 12px;
+	padding: 4px 0px 4px 5px;
+	height: 16px;
+}
+.education-listing-settings .edu-listing .edu-item-list .right .item:nth-child(2n+1){
+	background: #ebebeb;
+	color: #000;
+}
+.education-listing-settings .edu-listing .edu-item-list .right .item div{
+	float: left;
+}
+.education-listing-settings .edu-listing .edu-item-list .right a.see-more{
+	border: 1px solid #ffa800;
+	padding: 4px 109.5px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	color: #000;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.education-listing-settings .filter-settings .no-of-item{
+	font-family: 'nexa_lightregular';
+	font-size: 11px;
+	color: #000;
+	float: left;
+	margin-top: 20px;
+}
+.education-listing-settings .filter-settings .no-of-item span{
+	color: #1eb0a9;
+}
 
 
 
