@@ -33,7 +33,11 @@ $(document).ready(function() {
     });
     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
       " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-    
+  $('#Container').mixItUp({
+    load: {
+      filter: '.cat1'
+    }
+  });
 });
 
 function mp_initialize_map (mp_position, mp_marker_url, mp_marker_w, mp_marker_h, mp_marker_title) {
