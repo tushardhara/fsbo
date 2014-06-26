@@ -1,5 +1,16 @@
 $(document).ready(function() {
- 
+ $('.edit-filed').on('click',function(){
+    if($(this).hasClass('active')){
+       $(this).parent().children('input').prop('disabled', true);
+       $(this).parent().children('textarea').prop('disabled', true);
+       $(this).removeClass('active');
+    }else{
+      $(this).parent().children('input').prop('disabled', false);
+      $(this).parent().children('textarea').prop('disabled', false);
+      $(this).addClass('active');
+    }
+    //console.log('t');
+  });
   $("#home-slider").owlCarousel({
      navigation : true, // Show next and prev buttons
       slideSpeed : 300,
@@ -48,6 +59,7 @@ $(document).ready(function() {
       filter: '.cat1'
     }
   });
+
 });
 
 function mp_initialize_map (mp_position, mp_marker_url, mp_marker_w, mp_marker_h, mp_marker_title) {
