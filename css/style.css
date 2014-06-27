@@ -4863,57 +4863,326 @@ top: -12px;
 	background: url(../images/check-box.png) 0px 0px no-repeat;
 }
 
+.message-settings{
+	width: 100%;
+	height: auto;
+	border-top: 1px solid #c2c2c2;
+	border-bottom: 1px solid #c2c2c2;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+.message-settings.no{
+	border-bottom: 0px solid #c2c2c2;
+	margin-bottom: 0px;
+}
+.message-settings .search-edu{
+	border:1px solid #ffa800;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 20px;
+	width: 125px;
+	position: relative;
+}
+.message-settings .search-edu input{
+	outline: none;
+	border: none;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100px;
+	background: transparent;
+}
+.message-settings .search-edu .search-icon{
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background: url(../images/search-icon.png) 0 0 no-repeat;
+	width: 18px;
+	height: 18px;
+	display: block;
+	cursor: pointer;
+}
+.message-settings .compare-area{
+	width: auto;
+	float: right;
+	margin-left: 10px;
+}
+.message-settings .compare-area span{
+	float: left;
+	font-family: 'nexa_lightregular';
+	color: #000;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-top: 6px;
+}
+.message-settings .compare{
+	background: url(../images/check-box.png) -18px 0px no-repeat;
+	height: 18px;
+	width: 18px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin-top: 3px;
+}
+.message-settings .compare.active{
+	background: url(../images/check-box.png) 0px 0px no-repeat;
+}
+
+.message-settings .delete-area{
+	width: auto;
+	float: left;
+	margin-right: 10px;
+}
+.message-settings .delete-area span.text{
+	float: left;
+	font-family: 'nexa_lightregular';
+	color: #000;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-top: 6px;
+}
+.message-settings .icon-delete{
+	background: url(../images/icon-delete.png) 0px 0px no-repeat;
+	height: 21px;
+	width: 18px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin-top: 2px;
+	margin-left: 10px;
+}
+.message-settings .reply-area{
+	width: auto;
+	float: left;
+	border-left: 1px solid #000;
+	margin-top: 2px;
+}
+.message-settings .reply-area span.text{
+	float: left;
+	font-family: 'nexa_lightregular';
+	color: #000;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-top: 4px;
+}
+.message-settings .icon-reply{
+	background: url(../images/icon-reply.png) 0px 0px no-repeat;
+	height: 15px;
+	width: 36px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin-top: 3px;
+	margin-left: 10px;
+}
+.message-list{
+	width: 100%;
+	height: auto;
+	padding-bottom: 40px;
+}
+
+.message-list .item{
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #c2c2c2;
+}
+.message-list .item:nth-child(n+1){
+	margin-top: 10px;
+}
+.message-list .item .left{
+	float: left;
+	margin-right: 10px;
+	width: 20px;
+}
+.message-list .item .left .compare-area{
+	width: auto;
+	float: left;
+	margin-right: 10px;
+}
+.message-list .item .left .compare-area span{
+	float: left;
+	font-family: 'nexa_lightregular';
+	color: #000;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-top: 6px;
+}
+.message-list .item .left .compare{
+	background: url(../images/check-box.png) -18px 0px no-repeat;
+	height: 18px;
+	width: 18px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin-top: 3px;
+}
+.message-list .item .left .compare.active{
+	background: url(../images/check-box.png) 0px 0px no-repeat;
+}
+
+.message-list .item .mid{
+	float: left;
+	margin-right: 60px;
+	width: 175px;
+}
+.message-list .item .mid h1{
+	font-family: 'nexa_boldregular';
+	font-size: 19px;
+	color: #000;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.message-list .item .mid p{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.message-list .item .right{
+	width: 875px;
+	float: left;
+}
+.message-list .item .right h1{
+	font-family: 'nexa_boldregular';
+	font-size: 15px;
+	color: #000;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.message-list .item .right p{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+	color: #000;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.message-list input[type="text"]{
+	width: 96%;
+	height: 50px;
+	outline: none;
+	border: none;
+	border-top: 1px solid #c2c2c2;
+	display: inline-block;
+	background: transparent;
+	padding: 0px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+}
 
 
+.cke_inner{
+	background: transparent !important;
+}
+.cke_top{
+	background: transparent !important;
+	border:none !important;
+	border-top:1px solid #c2c2c2 !important; 
+	border-bottom:1px solid #c2c2c2 !important; 
+	box-shadow: none !important;
+}
+.cke_chrome{
+	border: none !important;
+	box-shadow: none !important;
+}
+.cke_wysiwyg_frame, .cke_wysiwyg_div{
+	background: transparent !important;
+}
+
+.cke_editable{
+	background: transparent !important;
+}
+.cke_contents{
+	border-bottom: 1px solid #c2c2c2 !important;
+}
 
 
+.message-list input[type="submit"]{
+	outline: none;
+	border: none;
+	border: 1px solid #1eb0a9;
+	display: inline-block;
+	background: transparent;
+	padding: 0px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+	color: #1eb0a9;
+	padding: 8px 16px;
+	float: right;
+	cursor: pointer;
+}
+
+.email-info{
+	width: 100%;
+	height: auto;
+	border-top: 1px solid #c2c2c2;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.email-info h1{
+	font-family: 'nexa_boldregular';
+	color: #000;
+	font-size: 15px;
+	margin-bottom: 4px;
+}
+
+.email-info h1 span{
+	font-family: 'nexa_lightregular';
+	color: #000;
+	font-size: 15px;
+}
+.email-info p{
+	font-family: 'nexa_boldregular';
+	color: #000;
+	font-size: 12px;
+}
+.email-info p span{
+	font-family: 'nexa_lightregular';
+	color: #000;
+	font-size: 12px;
+}
 
 
+.email-text{
+	width: 100%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top:1px solid #c2c2c2;
+}
 
+.advance-settings h1{
+	font-family: 'nexa_boldregular';
+	font-size: 42px;
+	color: #000;
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
 
+.advance-settings .adv-search-filed{
+	display: block;
+	border: 1px solid #ffa800;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.advance-settings .adv-search-filed input[type="text"]{
+	width: 96%;
+	height: 40px;
+	outline: none;
+	border: none;
+	display: inline-block;
+	background: transparent;
+	padding: 0px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+}
 
 
 
