@@ -39,11 +39,31 @@
 */
 
 $route['default_controller'] = "main";
-$route["property/(.*)"] = "main/property/$1";
-$route["education/(.*)"] = "main/education/$1";
-$route["furniture/(.*)"] = "main/furniture/$1";
+$route["register/user"] = "main/register/user";
+$route["register/agent"] = "main/register/agent";
+$route["profile/user"] = "main/profile/user";
+$route["profile/agent"] = "main/profile/agent";
+$route["profile/user/(:any)"] = "main/profile/user/$1";
+$route["profile/agent/(:any)"] = "main/profile/agent/$1";
+$route["property"] = "main/property";
+$route["furniture"] = "main/furniture";
+$route["education"] = "main/education";
+$route["property/(:any)"] = "main/property/$1";
+$route["furniture/(:any)"] = "main/furniture/$1";
+$route["education/(:any)"] = "main/education/$1";
 $route["(.*)"] = "main/page/$1";
-
+/*
+$route["profile/user/message"] = "main/profile/user/message";
+$route["profile/agent/message"] = "main/profile/agent/message";
+$route["profile/user/mylist"] = "main/profile/user/mylist";
+$route["profile/agent/mylist"] = "main/profile/agent/mylist";
+$route["profile/user/wishlist"] = "main/profile/user/wishlist";
+$route["profile/agent/wishlist"] = "main/profile/agent/wishlist";
+$route["profile/user/message/view"] = "main/profile/user/message/view";
+$route["profile/agent/message/view"] = "main/profile/agent/message/view";
+$route["profile/user/message/compose"] = "main/profile/user/message/compose";
+$route["profile/agent/message/compose"] = "main/profile/agent/message/compose";
+*/
 $route['404_override'] = '';
 
 

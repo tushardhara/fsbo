@@ -1,7 +1,14 @@
 	<footer>
 		<div class="container">
 			<div class="big-footer-image">
-				<img src="images/abc.jpg">
+				<?php 
+					$footer_image = array(
+				          'src' => 'images/abc.jpg',
+				          'alt' => 'fsbo',
+				          'title' => 'fsbo',
+					);
+				?>
+				<?php echo img($footer_image);?>
 			</div>
 			<div class="footer-area">
 				<div class="footer-col">

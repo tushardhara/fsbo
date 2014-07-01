@@ -5281,3 +5281,24 @@ top: -12px;
 	width: 750px;
 	margin: 0 auto;
 }
+
+.error-page-main{
+	width: 100%;
+	height: 300px;
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: cover;
+}
+
+.error-page-main h1.error-title{
+	font-family: 'nexa_boldregular';
+	font-size: 76px;
+	text-align: center;
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+.error-page-main p.error-desc{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: #242424;
+}

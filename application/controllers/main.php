@@ -32,7 +32,82 @@ class Main extends CI_Controller {
 		if(!empty($data)){
 			$content = 'content/content-'.$data;
 		}else{
-			$content = 'content/content';
+			$content = 'content/content-404';
+		}
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
+	public function register($data){
+		if(!empty($data)){
+			$content = 'content/content-'.$data.'-register';
+		}else{
+			$content = 'content/content-404';
+		}
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
+	public function profile($data,$type = '',$view = ''){
+		if(!empty($data)){
+			if(!empty($type)){
+				if($type == 'message'){
+					if(!empty($view)){
+						if($view == 'view'){
+							$content = 'content/content-view-message';
+						}else if($view == 'compose'){
+							$content = 'content/content-compose';
+						}else{
+							$content = 'content/content-404';
+						}	
+					}else{
+						$content = 'content/content-message';
+					}	
+				}else if($type == 'wishlist'){
+					$content = 'content/content-wishlist';
+				}else if($type == 'mylist'){
+					$content = 'content/content-my-listing';
+				}else{
+					$content = 'content/content-404';
+				}
+			}else{
+				$content = 'content/content-'.$data.'-profile';
+			}
+		}else{
+			$content = 'content/content-404';
+		}
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
+	public function education($data = '')
+	{
+		if(!empty($data)){
+			$content = 'content/content-education-detail';
+		}else{
+			$content = 'content/content-education-listing';
+		}
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
+	public function property($data = '')
+	{
+		if(!empty($data)){
+			$content = 'content/content-property-detail';
+		}else{
+			$content = 'content/content-property-listing';
+		}
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
+	public function furniture($data = '')
+	{
+		if(!empty($data)){
+			$content = 'content/content-furniture(-detail';
+		}else{
+			$content = 'content/content-furniture(-listing';
 		}
 		$this->load->view('header');
 		$this->load->view($content);
