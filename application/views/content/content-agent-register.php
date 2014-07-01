@@ -5,7 +5,7 @@
 				<div class="info">
 					<div class="mand">* Mandatory fields</div>
 					<div class="toggle">
-						<a href="<?php echo site_url('user-register') ?>">User</a> / <a href="<?php echo site_url('agent-register') ?>" class="active">Agent</a> 
+						<a href="<?php echo site_url('register/user') ?>">User</a> / <a href="<?php echo site_url('register/agent') ?>" class="active">Agent</a> 
 					</div>
 				</div>
 			</div>

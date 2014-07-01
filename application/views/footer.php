@@ -45,6 +45,7 @@
 		</div>
 	</footer>
 	<script type="text/javascript" src="<?php echo base_url('js/owl.carousel.min.js');?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('js/jquery.mixitup.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('js/main.js');?>"></script>
 </body>
 </html>

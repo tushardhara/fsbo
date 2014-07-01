@@ -3,15 +3,16 @@
 			<h1 class="login-title">WELCOME TO FSBO</h1>
 			<p class="login-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lorem arcu, placerat nec luctus vel, gravida eu nisi. Integer eget porta lacus.</p>
 			<div class="login-area">
-				<form>
-					<input type="text" placeholder="Username">
-					<input type="password" placeholder="Password">
+				<?php echo form_error(); ?>
+				<form method="post" action="<?php echo site_url('login_check'); ?>">
+					<input type="text" name="user_email" placeholder="Email">
+					<input type="password" name="user_pass" placeholder="Password">
 					<div class="squaredThree">
 						<input type="checkbox" value="None" id="squaredThree" name="check" />Remember Me
 						<label for="squaredThree"></label>
 					</div>
 					<a href="#" class="forgot">Forgot Password</a>
-					<input type="submit" value="Login to my FSBO">
+					<input id="login-submit" type="submit" value="Login to my FSBO">
 				</form>
 			</div>
 		</div>
@@ -24,7 +25,7 @@
 					<a href="#" class="twitter"></a>
 					<a href="#" class="google"></a>
 				</div>
-				<a href="<?php echo site_url('user-register') ?>"><div class="register">Register</div></a>
+				<a href="<?php echo site_url('register/user') ?>"><div class="register">Register</div></a>
 			</div>
 		</div>
 	</div>

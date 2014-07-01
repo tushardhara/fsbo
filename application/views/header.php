@@ -31,14 +31,21 @@
 			?>
 			<div class="logo"><a href="<?php echo site_url();?>"><?php echo img($logo);?></a></div>
 			<div class="register-login">
-				<li><a href="<?php echo site_url('user-register');?>">Register</a></li>
-				<li><a href="<?php echo site_url('login');?>">Login</a></li>
+				
+				
+				<?php if($this->session->userdata('logged_in')){ ?>
+					<li><a href="<?php echo site_url('register/user');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+					<li><a href="<?php echo site_url('logout');?>">Logout</a></li>
+				<?php }else{ ?>
+					<li><a href="<?php echo site_url('register/user');?>">Register</a></li>
+					<li><a href="<?php echo site_url('login');?>">Login</a></li>
+				<?php } ?>
 			</div>
 			<div class="header-nav">
-				<li><a href="<?php echo site_url('property-listing') ?>">Buy Property</a></li>
-				<li><a href="<?php echo site_url('property-listing') ?>">Rent Property</a></li>
-				<li><a href="<?php echo site_url('education-listing') ?>">Buy Furniture</a></li>
-				<li><a href="<?php echo site_url('agent-listing') ?>">Find Agents</a></li>
+				<li><a href="<?php echo site_url('property') ?>">Buy Property</a></li>
+				<li><a href="<?php echo site_url('property') ?>">Rent Property</a></li>
+				<li><a href="<?php echo site_url('education') ?>">Buy Furniture</a></li>
+				<li><a href="<?php echo site_url('agent') ?>">Find Agents</a></li>
 			</div>
 		</div>
 	</header>

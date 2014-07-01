@@ -38,6 +38,17 @@ class Main extends CI_Controller {
 		$this->load->view($content);
 		$this->load->view('footer');
 	}
+	public function agent($data = '')
+	{
+		if(!empty($data)){
+			$content = 'content/content-agent-detail';
+		}else{
+			$content = 'content/content-agent-listing';
+		}
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
 	public function register($data){
 		if(!empty($data)){
 			$content = 'content/content-'.$data.'-register';
@@ -48,37 +59,47 @@ class Main extends CI_Controller {
 		$this->load->view($content);
 		$this->load->view('footer');
 	}
-	public function profile($data,$type = '',$view = ''){
-		if(!empty($data)){
-			if(!empty($type)){
-				if($type == 'message'){
-					if(!empty($view)){
-						if($view == 'view'){
-							$content = 'content/content-view-message';
-						}else if($view == 'compose'){
-							$content = 'content/content-compose';
+	public function profile($data = '',$type = '',$view = ''){
+		if($this->session->userdata('logged_in')){
+			if(!empty($data)){
+				if(!empty($type)){
+					if($type == 'message'){
+						if(!empty($view)){
+							if($view == 'view'){
+								$content = 'content/content-view-message';
+							}else if($view == 'compose'){
+								$content = 'content/content-compose';
+							}else{
+								$content = 'content/content-404';
+							}	
 						}else{
-							$content = 'content/content-404';
+							$content = 'content/content-message';
 						}	
+					}else if($type == 'wishlist'){
+						$content = 'content/content-wishlist';
+					}else if($type == 'mylist'){
+						$content = 'content/content-my-listing';
 					}else{
-						$content = 'content/content-message';
-					}	
-				}else if($type == 'wishlist'){
-					$content = 'content/content-wishlist';
-				}else if($type == 'mylist'){
-					$content = 'content/content-my-listing';
+						$content = 'content/content-404';
+					}
 				}else{
-					$content = 'content/content-404';
+					if($data == 'user'){
+						$content = 'content/content-'.$data.'-profile';
+					}else if($data == 'agent'){
+						$content = 'content/content-'.$data.'-profile';
+					}else{
+						$content = 'content/content-404';
+					}	
 				}
 			}else{
-				$content = 'content/content-'.$data.'-profile';
+				$content = 'content/content-404';
 			}
+			$this->load->view('header');
+			$this->load->view($content);
+			$this->load->view('footer');
 		}else{
-			$content = 'content/content-404';
+			redirect('login');
 		}
-		$this->load->view('header');
-		$this->load->view($content);
-		$this->load->view('footer');
 	}
 	public function education($data = '')
 	{
