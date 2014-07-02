@@ -63,6 +63,80 @@ class Login extends CI_Controller {
 	    	return false;
 	   	}
 	}
+	public function register_check() {
+		$this->form_validation->set_rules('user_login', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('user_pass', 'Password', 'trim|required|matches[user_passc]|xss_clean');
+		$this->form_validation->set_rules('user_passc', 'Retype Password','trim|required|xss_clean');
+		$this->form_validation->set_rules('user_email', 'Email', 'trim|required|xss_clean|valid_email|callback_check_email');
+		$this->form_validation->set_rules('user_fname', 'First Name', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_lname', 'Last Name', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_phone', 'Phone', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_country', 'Country', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_city', 'City', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_language', 'Language', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_url', 'Url', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_title', 'Title', 'trim|xss_clean');
+		$this->form_validation->set_rules('user_detail', 'Detail', 'trim|xss_clean');
+		if($this->form_validation->run()) {
+			if($row->user_type == 'user'){
+	     		redirect('profile/user');
+	     	}else if($row->user_type == 'agent'){
+	     		redirect('profile/agent');
+	     	}else if($row->user_type == 'moderator') {
+	     		redirect('profile/moderator');
+	     	}else{
+	     		redirect('profile/user');
+	     	}
+		} else {
+			//$redirect = 'register/'.$this->input->post('user_type') == '0' ? 'user' :'agent'; 
+			//redirect($redirect);
+		}
+	}
+	function check_email($user_email)
+	{
+	   	$this->load->model('user');
+		$result = $this->user->check_email($user_email);
+	   	if(!$result)
+	   	{
+	   		$register = $this->user->register(
+	   			$this->input->post('user_login'),
+	   			$this->input->post('user_pass'),
+	   			$this->input->post('user_email'),
+	   			$this->input->post('user_fname'),
+	   			$this->input->post('user_lname'),
+	   			$this->input->post('user_phone'),
+	   			$this->input->post('user_country'),
+	   			$this->input->post('user_city'),
+	   			$this->input->post('user_language'),
+	   			$this->input->post('user_url'),
+	   			$this->input->post('user_title'),
+	   			$this->input->post('user_detail'),
+	   			$this->input->post('user_type')
+	   		);
+	   		if($register){
+	   			$user_data = $this->user->check_id($register);
+	   			$sess_array = array();
+		    	foreach($user_data as $row)
+		   	  	{
+		       		$sess_array = array(
+		         		'ID' => $row->ID,
+		         		'user_login' => $row->user_login,
+		         		'user_email' => $row->user_email,
+		         		'user_type' => $row->user_type,
+		       		);
+		       		$this->session->set_userdata('logged_in', $sess_array);
+		     	}
+		     	return TRUE;
+	   		}else{
+	   			return false;
+	   		}
+	   	}
+	   	else
+	   	{
+	    	$this->form_validation->set_message('check_email', 'Email Present');
+	    	return false;
+	   	}
+	}
 	public function logout()
 	{
 	   $this->session->unset_userdata('logged_in');

@@ -9,26 +9,28 @@
 					</div>
 				</div>
 			</div>
+			<form method="post" action="<?php echo site_url('register_check'); ?>">
 			<div class="register-area-left">
-				<input type="text" placeholder="User Name">
-				<input type="password" placeholder="Password">
-				<input type="password" placeholder="Retype Password">
-				<input type="text" placeholder="Email Address">
-				<input type="text" placeholder="Retype Email Address">
-				<input type="text" placeholder="Language">
+				<input type="text" name="user_login" placeholder="User Name">
+				<input type="password" name="user_pass" placeholder="Password">
+				<input type="password" name="user_passc" placeholder="Retype Password">
+				<input type="text" name="user_email" placeholder="Email Address">
+				<input type="text" name="user_language" placeholder="Language">
 			</div>
 			<div class="register-area-right">
-				<input type="text" placeholder="First Name">
-				<input type="text" placeholder="Last Name">
-				<input type="text" placeholder="Phone">
-				<input type="text" placeholder="Country">
-				<input type="text" placeholder="City">	
+				<input type="text" name="user_fname" placeholder="First Name">
+				<input type="text" name="user_lname" placeholder="Last Name">
+				<input type="text" name="user_phone" placeholder="Phone">
+				<input type="text" name="user_country" placeholder="Country">
+				<input type="text" name="user_city" placeholder="City">
+				<input type="hidden" name="user_type" value="1">	
 				<div class="squaredThree first">
 					<input type="checkbox" value="None" id="squaredThree" name="check" />agree with <a href="#">Terms & Conditions</a>
 					<label for="squaredThree"></label>
 				</div>
 				<input type="submit" value="Register">		
 			</div>
+			</form>
 			<div class="register-box">
 				<h1>Benefits of a my fsbo account</h1>
 				<p>Signup today and get exclusive access to thousands of properties for sale and rent, listed by local agents and private owners.</p>
