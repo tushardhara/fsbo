@@ -57,7 +57,9 @@ $route["agent/(:any)"] = "main/agent/$1";
 $route["login_check"] = "login/login_check";
 $route["logout"] = "login/logout";
 $route["register_check"] = "login/register_check";
-$route["(.*)"] = "main/page/$1";
+$route["login"] = "main/login";
+$route["forgot"] = "main/forgot";
+$route["forgot_check"] = "login/forgot_check";
 $route['404_override'] = '';
 
 

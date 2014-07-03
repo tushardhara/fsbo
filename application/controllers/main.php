@@ -27,13 +27,16 @@ class Main extends CI_Controller {
 		$this->load->view('content/content');
 		$this->load->view('footer');
 	}
-	public function page($data)
+	public function login()
 	{
-		if(!empty($data)){
-			$content = 'content/content-'.$data;
-		}else{
-			$content = 'content/content-404';
-		}
+		$content = 'content/content-login';
+		$this->load->view('header');
+		$this->load->view($content);
+		$this->load->view('footer');
+	}
+	public function forgot()
+	{
+		$content = 'content/content-forgot';
 		$this->load->view('header');
 		$this->load->view($content);
 		$this->load->view('footer');

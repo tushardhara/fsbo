@@ -23,7 +23,8 @@
 				<input type="text" name="user_phone" placeholder="Phone">
 				<input type="text" name="user_country" placeholder="Country">
 				<input type="text" name="user_city" placeholder="City">
-				<input type="hidden" name="user_type" value="1">	
+				<input type="hidden" name="user_type" value="1">
+				<input type="hidden" name="user_provider" value="Fsbo">	
 				<div class="squaredThree first">
 					<input type="checkbox" value="None" id="squaredThree" name="check" />agree with <a href="#">Terms & Conditions</a>
 					<label for="squaredThree"></label>

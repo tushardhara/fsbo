@@ -11,7 +11,7 @@
 						<input type="checkbox" value="None" id="squaredThree" name="check" />Remember Me
 						<label for="squaredThree"></label>
 					</div>
-					<a href="#" class="forgot">Forgot Password</a>
+					<a href="<?php echo site_url('forgot')?>" class="forgot">Forgot Password</a>
 					<input id="login-submit" type="submit" value="Login to my FSBO">
 				</form>
 			</div>
@@ -21,9 +21,9 @@
 			<div class="social-login-area">
 				<div class="or-login">login using the folowing</div>
 				<div class="social-login">
-					<a href="#" class="facebook"></a>
-					<a href="#" class="twitter"></a>
-					<a href="#" class="google"></a>
+					<a href="<?php echo site_url('hauth/login/Facebook')?>" class="facebook"></a>
+					<a href="<?php echo site_url('hauth/login/Twitter')?>" class="twitter"></a>
+					<a href="<?php echo site_url('hauth/login/Google')?>" class="google"></a>
 				</div>
 				<a href="<?php echo site_url('register/user') ?>"><div class="register">Register</div></a>
 			</div>

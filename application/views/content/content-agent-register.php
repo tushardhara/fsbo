@@ -30,7 +30,8 @@
 				<input type="text" name='user_city' placeholder="City">
 				<input type="text" name='user_url' placeholder="Website">
 				<textarea name='user_detail' placeholder="Type a paragraph about Agency"></textarea>
-				<input type="hidden" name="user_type" value="2">				
+				<input type="hidden" name="user_type" value="2">
+				<input type="hidden" name="user_provider" value="Fsbo">					
 			</div>
 			</form>
 			<div class="register-box">

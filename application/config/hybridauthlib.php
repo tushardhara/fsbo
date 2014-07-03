@@ -31,17 +31,18 @@ $config =
 
 			"Google" => array (
 				"enabled" => true,
-				"keys"    => array ( "id" => "", "secret" => "" ),
+				"keys"    => array ( "id" => "521737117283-9l5v4jjb82jkq7b8bl8k8t2kg4m4mig7.apps.googleusercontent.com", "secret" => "Nw0le5rzebwPyvZjgDEzL28U" ),
 			),
 
 			"Facebook" => array (
 				"enabled" => true,
-				"keys"    => array ( "id" => "", "secret" => "" ),
+				"keys"    => array ( "id" => "641035262659975", "secret" => "44a74594104cf266a006642ed0102be2" ),
+				"scope"   => "email",
 			),
 
 			"Twitter" => array (
 				"enabled" => true,
-				"keys"    => array ( "key" => "", "secret" => "" )
+				"keys"    => array ( "key" => "B0jlqFZzsLoBPHIbIeo9zd7dG", "secret" => "MEDizEO41SosWsFr21lWhFk4av1NyQFPGqRieN9Zdx6EI49abW" )
 			),
 
 			// windows live

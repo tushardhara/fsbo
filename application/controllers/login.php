@@ -88,8 +88,8 @@ class Login extends CI_Controller {
 	     		redirect('profile/user');
 	     	}
 		} else {
-			//$redirect = 'register/'.$this->input->post('user_type') == '0' ? 'user' :'agent'; 
-			//redirect($redirect);
+			$redirect = 'register/'.$this->input->post('user_type') == 0 ? 'user' :'agent'; 
+			redirect($redirect);
 		}
 	}
 	function check_email($user_email)
@@ -111,7 +111,8 @@ class Login extends CI_Controller {
 	   			$this->input->post('user_url'),
 	   			$this->input->post('user_title'),
 	   			$this->input->post('user_detail'),
-	   			$this->input->post('user_type')
+	   			$this->input->post('user_type'),
+	   			$this->input->post('user_provider')
 	   		);
 	   		if($register){
 	   			$user_data = $this->user->check_id($register);
@@ -142,6 +143,27 @@ class Login extends CI_Controller {
 	   $this->session->unset_userdata('logged_in');
 	   session_destroy();
 	   redirect('login');
+	}
+	public function forgot_check(){
+		$this->form_validation->set_rules('user_email', 'Email', 'trim|required|xss_clean|valid_email');
+		if($this->form_validation->run()) {
+			$this->load->model('user');
+			$result = $this->user->check_email($this->input->post('user_email'));
+			if($result){
+				foreach($result as $row)
+		   	  	{
+		       		if($row->user_provider){
+		       			$data['user_provider'] = $row->user_provider;
+		  			}
+		     	}
+				$content = 'content/content-forgot-result';
+				$this->load->view('header');
+				$this->load->view($content,$data);
+				$this->load->view('footer');
+			}
+		}else{
+
+		}
 	}
 }
 
