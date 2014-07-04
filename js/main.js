@@ -1,12 +1,12 @@
 $(document).ready(function() {
  $('.edit-filed').on('click',function(){
     if($(this).hasClass('active')){
-       $(this).parent().children('input').prop('disabled', true);
-       $(this).parent().children('textarea').prop('disabled', true);
+       $(this).parent().children('input').prop('readonly', true);
+       $(this).parent().children('textarea').prop('readonly', true);
        $(this).removeClass('active');
     }else{
-      $(this).parent().children('input').prop('disabled', false);
-      $(this).parent().children('textarea').prop('disabled', false);
+      $(this).parent().children('input').prop('readonly', false);
+      $(this).parent().children('textarea').prop('readonly', false);
       $(this).addClass('active');
     }
     //console.log('t');

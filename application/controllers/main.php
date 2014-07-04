@@ -20,6 +20,7 @@ class Main extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+        $this->load->model('user');
     }
 	public function index()
 	{
@@ -87,8 +88,10 @@ class Main extends CI_Controller {
 					}
 				}else{
 					if($data == 'user'){
+						$view['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
 						$content = 'content/content-'.$data.'-profile';
 					}else if($data == 'agent'){
+						$view['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
 						$content = 'content/content-'.$data.'-profile';
 					}else{
 						$content = 'content/content-404';
@@ -98,7 +101,7 @@ class Main extends CI_Controller {
 				$content = 'content/content-404';
 			}
 			$this->load->view('header');
-			$this->load->view($content);
+			$this->load->view($content,$view);
 			$this->load->view('footer');
 		}else{
 			redirect('login');
@@ -129,9 +132,9 @@ class Main extends CI_Controller {
 	public function furniture($data = '')
 	{
 		if(!empty($data)){
-			$content = 'content/content-furniture(-detail';
+			$content = 'content/content-furniture-detail';
 		}else{
-			$content = 'content/content-furniture(-listing';
+			$content = 'content/content-furniture-listing';
 		}
 		$this->load->view('header');
 		$this->load->view($content);

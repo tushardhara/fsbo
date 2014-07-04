@@ -25,7 +25,7 @@ Class User extends CI_Model{
     
     $data = array(
      'user_login' => $user_login,
-     'user_pass' => $this->encrypt->sha1(MD5($this->salt.$user_pass)),
+     'user_pass' => $this->encrypt->sha1($this->salt.$user_pass),
      'user_email' => $user_email,
      'user_fname' => $user_fname,
      'user_lname' => $user_lname,
@@ -83,6 +83,36 @@ Class User extends CI_Model{
      }else{
        return false;
      }
+  }
+  function modify($user_pass = '',$user_email = '',$user_fname = '',$user_lname = '',$user_phone = '',$user_country = '',$user_city = '',$user_language = '',$user_url = '',$user_title = '',$user_detail =''){
+    if($user_pass == ''){
+      $data = array(
+         'user_email' => $user_email,
+         'user_fname' => $user_fname,
+         'user_lname' => $user_lname,
+         'user_phone' => $user_phone,
+         'user_country' => $user_country,
+         'user_city'  => $user_city,
+         'user_language' => $user_language,
+         'user_title' => $user_title,
+         'user_detail' => $user_detail
+      );
+    }else{
+       $data = array(
+         'user_pass' => $this->encrypt->sha1($this->salt.$user_pass),
+         'user_email' => $user_email,
+         'user_fname' => $user_fname,
+         'user_lname' => $user_lname,
+         'user_phone' => $user_phone,
+         'user_country' => $user_country,
+         'user_city'  => $user_city,
+         'user_language' => $user_language,
+         'user_title' => $user_title,
+         'user_detail' => $user_detail
+      );
+    }
+    $this->db->where('id', $this->session->userdata('logged_in')['ID']);
+    $this->db->update('fsbo_users', $data);
   }
 }
 ?>

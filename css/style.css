@@ -983,7 +983,7 @@ header .register-login li a:first-child{
 	outline: none;
 	position: relative;
 	top: 0px;
-	left: 399px;
+	left: 454px;
 	background: transparent;
 	font-size: 11px;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -4305,7 +4305,7 @@ top: -12px;
 	border-bottom:1px solid #c2c2c2;
 }
 
-.edit-area .left .filed input[type="text"],.edit-area .left .filed input[type="password"]{
+.edit-area .left .filed input[type="text"][readonly],.edit-area .left .filed input[type="password"][readonly]{
 	width: 96%;
 	height: 50px;
 	outline: none;
@@ -4316,7 +4316,7 @@ top: -12px;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
 }
-.edit-area .left .filed textarea{
+.edit-area .left .filed textarea[readonly]{
 	width: 96%;
 	height: 140px;
 	outline: none;
@@ -4328,11 +4328,29 @@ top: -12px;
 	font-size: 15px;
 	resize:none;
 }
-.edit-area .left .filed input[type="text"]:enabled,.edit-area .left .filed input[type="password"]:enabled{
+.edit-area .left .filed input[type="text"],.edit-area .left .filed input[type="password"]{
+	width: 96%;
+	height: 50px;
+	outline: none;
+	border: none;
+	display: inline-block;
 	background: rgba(30,176,169,0.16);
+	padding: 0px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
 }
-.edit-area .left .filed textarea:enabled{
+.edit-area .left .filed textarea{
+	
+	width: 96%;
+	height: 140px;
+	outline: none;
+	border: none;
+	display: inline-block;
 	background: rgba(30,176,169,0.16);
+	padding: 10px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+	resize:none;
 }
 .edit-area .left .filed .edit-filed{
 	position: absolute;
@@ -4349,6 +4367,9 @@ top: -12px;
 	text-align: center;
 	margin-top: 10px;
 	cursor: pointer;
+	border: none;
+	display: block;
+	width: 100%;
 }
 .edit-area .right .filed{
 	border-top:1px solid #c2c2c2;
@@ -4360,7 +4381,7 @@ top: -12px;
 .edit-area .right .filed:nth-last-child(1){
 	border-bottom:1px solid #c2c2c2;
 }
-.edit-area .right .filed input[type="text"],.edit-area .right .filed input[type="password"]{
+.edit-area .right .filed input[type="text"][readonly],.edit-area .right .filed input[type="password"][readonly]{
 	width: 96%;
 	height: 50px;
 	outline: none;
@@ -4371,8 +4392,17 @@ top: -12px;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
 }
-.edit-area .right .filed input[type="text"]:enabled,.edit-area .right .filed input[type="password"]:enabled{
+.edit-area .right .filed input[type="text"],.edit-area .right .filed input[type="password"]{
+	
+	width: 96%;
+	height: 50px;
+	outline: none;
+	border: none;
+	display: inline-block;
 	background: rgba(30,176,169,0.16);
+	padding: 0px 2%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
 }
 .edit-area .right .filed .edit-filed{
 	position: absolute;

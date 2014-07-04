@@ -25,11 +25,11 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('user_email', 'Email', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('user_pass', 'Password', 'trim|required|xss_clean|callback_check_database');
 		if($this->form_validation->run()) {
-			if($row->user_type == 'user'){
+			if($this->session->userdata('logged_in')['user_type'] == 'user'){
 	     		redirect('profile/user');
-	     	}else if($row->user_type == 'agent'){
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
 	     		redirect('profile/agent');
-	     	}else if($row->user_type == 'moderator') {
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
 	     		redirect('profile/moderator');
 	     	}else{
 	     		redirect('profile/user');
@@ -78,18 +78,18 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('user_title', 'Title', 'trim|xss_clean');
 		$this->form_validation->set_rules('user_detail', 'Detail', 'trim|xss_clean');
 		if($this->form_validation->run()) {
-			if($row->user_type == 'user'){
+			if($this->session->userdata('logged_in')['user_type'] == 'user'){
 	     		redirect('profile/user');
-	     	}else if($row->user_type == 'agent'){
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
 	     		redirect('profile/agent');
-	     	}else if($row->user_type == 'moderator') {
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
 	     		redirect('profile/moderator');
 	     	}else{
 	     		redirect('profile/user');
 	     	}
 		} else {
-			$redirect = 'register/'.$this->input->post('user_type') == 0 ? 'user' :'agent'; 
-			redirect($redirect);
+			//$redirect = 'register/'.$this->input->post('user_type') == 0 ? 'user' :'agent'; 
+			redirect('register/user');
 		}
 	}
 	function check_email($user_email)
