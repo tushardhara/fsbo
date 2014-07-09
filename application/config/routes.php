@@ -61,6 +61,8 @@ $route["login"] = "main/login";
 $route["forgot"] = "main/forgot";
 $route["forgot_check"] = "login/forgot_check";
 $route["modify_check"] = "modify/modify_check";
+$route["add_property"] = "add/add_property";
+$route["add_furniture"] = "add/add_furniture";
 $route['404_override'] = '';
 
 

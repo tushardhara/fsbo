@@ -1,13 +1,6 @@
 	<div class="home-main clearfix">
 		<div class="container">
-			<div class="tab-area clearfix">
-				<div class="title">Account Settings</div>
-				<a href="#"><div class="tab"><span class="icon-tab p"></span><span class="text p">My Profile</span></div></a>
-				<a href="#"><div class="tab"><span class="icon-tab l"></span><span class="text l">My Listing</span></div></a>
-				<a href="#"><div class="tab"><span class="icon-tab m"></span><span class="text m">Messages</span></div></a>
-				<a href="#"><div class="tab"><span class="icon-tab w"></span><span class="text w">Wish List</span></div></a>
-				<a href="#"><div class="tab"><span class="icon-tab u"></span><span class="text u">Upload</span></div></a>
-			</div>
+			<?php include('tab/tab-area.php');?>
 			<div class="my-property-list">
 					<div class="item">
 						<div class="left-side">

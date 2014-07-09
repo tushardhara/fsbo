@@ -83,6 +83,10 @@ class Main extends CI_Controller {
 						$content = 'content/content-wishlist';
 					}else if($type == 'mylist'){
 						$content = 'content/content-my-listing';
+					}else if($type == 'property'){
+						$content = 'content/content-upload-property';
+					}else if($type == 'furniture'){
+						$content = 'content/content-upload-furniture';
 					}else{
 						$content = 'content/content-404';
 					}

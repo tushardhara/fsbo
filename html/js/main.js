@@ -11,6 +11,23 @@ $(document).ready(function() {
     }
     //console.log('t');
   });
+  $('.drop').on('click',function(){
+    $(this).parent().children('.drop-category').toggleClass('active').toggle();
+  });
+  $(document).mouseup(function (e)
+  {
+      var container = $(".drop");
+      if (!container.is(e.target) // if the target of the click isn't the container...
+          && container.has(e.target).length === 0 ) // ... nor a descendant of the container
+      {
+        //if($('.drop').has(e.target).length !=1 && $('.drop').css('display')=='block'){
+           $('.drop-category.active').toggleClass('active').toggle();
+       // }
+      }
+  });
+  $('.drop-item').on('click',function(){
+    $(this).parent().parent().children('.drop').val($(this).attr('item-value'));
+  });
   $("#home-slider").owlCarousel({
      navigation : true, // Show next and prev buttons
       slideSpeed : 300,
