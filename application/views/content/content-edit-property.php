@@ -1,36 +1,15 @@
 	<div class="home-main clearfix">
 		<div class="container">
-			<div class="upload_type clearfix">
-				<?php if($this->session->userdata('logged_in')['user_type'] == 'admin') { ?>
-					<a href="<?php echo site_url('profile/admin/property')?>" class="active">Property</a>
-					<a href="<?php echo site_url('profile/admin/furniture')?>" class="">Furniture</a>
-					<a href="<?php echo site_url('profile/admin/education')?>" class="">Education</a>
-				<?php } else if($this->session->userdata('logged_in')['user_type'] == 'moderator') { ?>
-					<a href="<?php echo site_url('profile/moderator/property')?>" class="active">Property</a>
-					<a href="<?php echo site_url('profile/moderator/furniture')?>" class="">Furniture</a>
-					<a href="<?php echo site_url('profile/moderator/education')?>" class="">Education</a>
-				<?php }else if($this->session->userdata('logged_in')['user_type'] == 'user') { ?>
-					<a href="<?php echo site_url('profile/user/property')?>" class="active">Property</a>
-					<a href="<?php echo site_url('profile/user/furniture')?>" class="">Furniture</a>
-				<?php }else if($this->session->userdata('logged_in')['user_type'] == 'agent') { ?>
-					<a href="<?php echo site_url('profile/agent/property')?>" class="active">Property</a>
-					<a href="<?php echo site_url('profile/agent/furniture')?>" class="">Furniture</a>
-				<?php } ?>
-			</div>
 			<div class="tab-area clearfix">
-				<div class="title">Specify Your Listing</div>
+				<div class="title">Edit Your Listing</div>
 				<?php if($this->session->userdata('logged_in')['user_type'] == 'admin') { ?>
 					<a href="<?php echo site_url('profile/user')?>"><div class="tab"><span class="icon-tab p"></span><span class="text p">My Profile</span></div></a>
-					<a href="<?php echo site_url('profile/user/property')?>"><div class="tab active"><span class="icon-tab l"></span><span class="text l">Rent / Sell</span></div></a>
 				<?php } else if($this->session->userdata('logged_in')['user_type'] == 'moderator') { ?>
 					<a href="<?php echo site_url('profile/user')?>"><div class="tab"><span class="icon-tab p"></span><span class="text p">My Profile</span></div></a>
-					<a href="<?php echo site_url('profile/user/property')?>"><div class="tab active"><span class="icon-tab l"></span><span class="text l">Rent / Sell</span></div></a>
 				<?php }else if($this->session->userdata('logged_in')['user_type'] == 'user') { ?>
 					<a href="<?php echo site_url('profile/user')?>"><div class="tab"><span class="icon-tab p"></span><span class="text p">My Profile</span></div></a>
-					<a href="<?php echo site_url('profile/user/property')?>"><div class="tab active"><span class="icon-tab l"></span><span class="text l">Rent / Sell</span></div></a>
 				<?php }else if($this->session->userdata('logged_in')['user_type'] == 'agent') { ?>
 					<a href="<?php echo site_url('profile/agent')?>"><div class="tab"><span class="icon-tab p"></span><span class="text p">My Profile</span></div></a>
-					<a href="<?php echo site_url('profile/agent/property')?>"><div class="tab active"><span class="icon-tab l"></span><span class="text l">Rent / Sell</span></div></a>
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">

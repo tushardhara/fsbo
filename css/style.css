@@ -4480,7 +4480,7 @@ top: -12px;
 	list-style: none;
 	height: 18px;
 	border-right:1px solid #c2c2c2;
-	padding: 0px 17px;
+	padding: 0px 12px;
 }
 .my-property-list .item .mid-side .featured-listing-feature li:last-child{
 	border-right: 0px solid #c2c2c2;

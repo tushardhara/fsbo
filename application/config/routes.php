@@ -43,8 +43,12 @@ $route["register/user"] = "main/register/user";
 $route["register/agent"] = "main/register/agent";
 $route["profile/user"] = "main/profile/user";
 $route["profile/agent"] = "main/profile/agent";
+$route["profile/admin"] = "main/profile/admin";
+$route["profile/moderator"] = "main/profile/moderator";
 $route["profile/user/(:any)"] = "main/profile/user/$1";
 $route["profile/agent/(:any)"] = "main/profile/agent/$1";
+$route["profile/admin/(:any)"] = "main/profile/admin/$1";
+$route["profile/moderator/(:any)"] = "main/profile/moderator/$1";
 $route["profile/(:any)"] = "main/profile/$1";
 $route["property"] = "main/property";
 $route["furniture"] = "main/furniture";
@@ -63,6 +67,7 @@ $route["forgot_check"] = "login/forgot_check";
 $route["modify_check"] = "modify/modify_check";
 $route["add_property"] = "add/add_property";
 $route["add_furniture"] = "add/add_furniture";
+$route["add_education"] = "add/add_education";
 $route['404_override'] = '';
 
 

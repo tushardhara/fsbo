@@ -31,8 +31,8 @@ class Login extends CI_Controller {
 	     		redirect('profile/agent');
 	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
 	     		redirect('profile/moderator');
-	     	}else{
-	     		redirect('profile/user');
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'admin') {
+	     		redirect('profile/admin');
 	     	}
 		} else {
 			redirect('login');
@@ -84,8 +84,8 @@ class Login extends CI_Controller {
 	     		redirect('profile/agent');
 	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
 	     		redirect('profile/moderator');
-	     	}else{
-	     		redirect('profile/user');
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'admin') {
+	     		redirect('profile/admin');
 	     	}
 		} else {
 			//$redirect = 'register/'.$this->input->post('user_type') == 0 ? 'user' :'agent'; 

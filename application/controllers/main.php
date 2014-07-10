@@ -21,6 +21,7 @@ class Main extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('user');
+        $this->load->model('post');
     }
 	public function index()
 	{
@@ -82,13 +83,49 @@ class Main extends CI_Controller {
 					}else if($type == 'wishlist'){
 						$content = 'content/content-wishlist';
 					}else if($type == 'mylist'){
-						$content = 'content/content-my-listing';
+						if($data == 'admin'){
+							$view['user_mylist'] = $this->post->show_admin_all();
+							$content = 'content/content-my-listing';
+						}else if($data == 'moderator'){
+							$view['user_mylist'] = $this->post->show_admin_all();
+							$content = 'content/content-my-listing';
+						}else if($data == 'user'){
+							$view['user_mylist'] = $this->post->show_user_all($this->session->userdata('logged_in')['ID']);
+							$content = 'content/content-my-listing';
+						}else if($data == 'agent'){
+							$view['user_mylist'] = $this->post->show_user_all($this->session->userdata('logged_in')['ID']);
+							$content = 'content/content-my-listing';
+						}else{
+							$content = 'content/content-404';
+						}	
 					}else if($type == 'property'){
 						$content = 'content/content-upload-property';
 					}else if($type == 'furniture'){
 						$content = 'content/content-upload-furniture';
-					}else{
-						$content = 'content/content-404';
+					}else if($type == 'education'){
+						$content = 'content/content-upload-education';
+					}else if($type == 'edit'){
+						if(!empty($view)){
+							$temp = $this->post->get_post_type($view);
+							if(!empty($temp)){
+								foreach ($temp as $key) {
+									$post_type = $key->post_type;
+								}
+								if($post_type == 'property'){
+									$content = 'content/content-edit-property';
+								}else if($post_type == 'furniture') {
+									$content = 'content/content-edit-furniture';
+								}else if($post_type == 'education') {
+									$content = 'content/content-edit-education';
+								}else{
+									$content = 'content/content-404';
+								}
+							}else{
+								$content = 'content/content-404';
+							}
+						}else{
+							$content = 'content/content-404';
+						}
 					}
 				}else{
 					if($data == 'user'){
@@ -97,6 +134,12 @@ class Main extends CI_Controller {
 					}else if($data == 'agent'){
 						$view['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
 						$content = 'content/content-'.$data.'-profile';
+					}else if($data == 'admin'){
+						$view['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
+						$content = 'content/content-user-profile';
+					}else if($data == 'moderator'){
+						$view['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
+						$content = 'content/content-user-profile';
 					}else{
 						$content = 'content/content-404';
 					}	

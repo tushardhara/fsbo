@@ -56,8 +56,8 @@ class HAuth extends CI_Controller {
 					     		redirect('profile/agent');
 					     	}else if($row->user_type == 'moderator') {
 					     		redirect('profile/moderator');
-					     	}else{
-					     		redirect('profile/user');
+					     	}else if($row->user_type == 'admin') {
+					     		redirect('profile/admin');
 					     	}
 					   	}else{
 					   		$register = $this->user->register(
@@ -95,8 +95,8 @@ class HAuth extends CI_Controller {
 						     		redirect('profile/agent');
 						     	}else if($row->user_type == 'moderator') {
 						     		redirect('profile/moderator');
-						     	}else{
-						     		redirect('profile/user');
+						     	}else if($row->user_type == 'admin'){
+						     		redirect('profile/admin');
 						     	}
 					   		}else{
 					   			redirect('login');
@@ -120,8 +120,8 @@ class HAuth extends CI_Controller {
 					     		redirect('profile/agent');
 					     	}else if($row->user_type == 'moderator') {
 					     		redirect('profile/moderator');
-					     	}else{
-					     		redirect('profile/user');
+					     	}else if($row->user_type == 'admin'){
+					     		redirect('profile/admin');
 					     	}
 					   	}else{
 					   		$register = $this->user->register(
@@ -159,8 +159,8 @@ class HAuth extends CI_Controller {
 						     		redirect('profile/agent');
 						     	}else if($row->user_type == 'moderator') {
 						     		redirect('profile/moderator');
-						     	}else{
-						     		redirect('profile/user');
+						     	}else if($row->user_type == 'moderator'){
+						     		redirect('profile/admin');
 						     	}
 					   		}else{
 					   			redirect('login');

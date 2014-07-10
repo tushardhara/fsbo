@@ -51,6 +51,16 @@ class Add extends CI_Controller {
 		     	$this->input->post('post_seo_keywords'),
 		     	$this->input->post('post_seo_description'),
 		     	$this->create_slug($this->input->post('post_title')),
+		     	'',
+		     	$this->input->post('post_featured'),
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
 		     	''
     		);
     	} catch (Exception $e) {
@@ -86,7 +96,62 @@ class Add extends CI_Controller {
 		     	$this->input->post('post_seo_keywords'),
 		     	$this->input->post('post_seo_description'),
 		     	$this->create_slug($this->input->post('post_title')),
-		     	$this->input->post('post_furniture_type')
+		     	$this->input->post('post_furniture_type'),
+		     	$this->input->post('post_featured'),
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	''
+    		);
+    	} catch (Exception $e) {
+    		echo $e->getMessage();
+    	}
+    	
+    }
+    public function add_education(){	
+    	try {
+	     	$this->post->add(
+    			'education',
+    			$this->session->userdata('logged_in')['ID'],
+    			$this->session->userdata('logged_in')['user_type'],
+    			'',
+		     	'',
+		     	$this->input->post('post_price'),
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	'',
+		     	$this->input->post('post_title'),
+		     	$this->input->post('post_description'),
+		     	$this->input->post('post_seo_title'),
+		     	$this->input->post('post_seo_keywords'),
+		     	$this->input->post('post_seo_description'),
+		     	$this->create_slug($this->input->post('post_title')),
+		     	'',
+		     	$this->input->post('post_featured'),
+		     	$this->input->post('post_education_type'),
+			    $this->input->post('post_education_age'),
+			    $this->input->post('post_education_gender'),
+			    $this->input->post('post_education_community'),
+			    $this->input->post('post_education_principle'),
+			    $this->input->post('post_education_phone'),
+			    $this->input->post('post_education_fax'),
+			    $this->input->post('post_education_email'),
+			    $this->input->post('post_education_website')
     		);
     	} catch (Exception $e) {
     		echo $e->getMessage();

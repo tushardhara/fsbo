@@ -31,7 +31,17 @@ Class Post extends CI_Model{
     $post_seo_keywords = '',
     $post_seo_description = '',
     $post_slug = '',
-    $post_furniture_type = ''
+    $post_furniture_type = '',
+    $post_featured = '',
+    $post_education_type = '',
+    $post_education_age = '',
+    $post_education_gender = '',
+    $post_education_community = '',
+    $post_education_principle = '',
+    $post_education_phone = '',
+    $post_education_fax = '',
+    $post_education_email = '',
+    $post_education_website = ''
   ){
     $data = array(
       'post_type' => $post_type,
@@ -61,7 +71,17 @@ Class Post extends CI_Model{
       'post_slug' => $post_slug,
       'post_furniture_type' => $post_furniture_type,
       'post_date' => date("Y-m-d H:i:s"),
-      'post_status' => '0'
+      'post_status' => '0',
+      'post_featured' => $post_featured == 'no' ? '0' : '1',
+      'post_education_type' => $post_education_type,
+      'post_education_age' => $post_education_age,
+      'post_education_gender' => $post_education_gender,
+      'post_education_community' => $post_education_community,
+      'post_education_principle' => $post_education_principle,
+      'post_education_phone' => $post_education_phone,
+      'post_education_fax' => $post_education_fax,
+      'post_education_email' => $post_education_email,
+      'post_education_website' => $post_education_website,
     );
     $check=$this->db->insert('fsbo_post', $data);
     if($check){
@@ -69,6 +89,46 @@ Class Post extends CI_Model{
     }else{
       return false;
     }
+  }
+  function show_admin_all(){
+     $this->db->select('*');
+     $this->db->from('fsbo_post');
+     $this->db->where_in('post_type', $names = array('property', 'furniture', 'education'));
+     $query = $this->db->get();
+     if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     }
+  }
+  function show_user_all($ID){
+     $this->db->select('*');
+     $this->db->from('fsbo_post');
+     $this->db->where_in('post_type', $names = array('property', 'furniture'));
+     $this->db->where('post_user_id', $ID);
+     $query = $this->db->get();
+     if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     }
+  }
+  function get_post_type($ID){
+     $this->db->select('post_type');
+     $this->db->from('fsbo_post');
+     $this->db->where_in('post_type', $names = array('property', 'furniture', 'education'));
+     $this->db->where('ID', $ID);
+     if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator'){
+
+     }else{
+        $this->db->where('post_user_id', $this->session->userdata('logged_in')['ID']);
+     }
+     $query = $this->db->get();
+     if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     }
   }
 }
 ?>

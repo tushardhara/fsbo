@@ -21,49 +21,49 @@
 			<div class="edit-area clearfix">
 				<div class="left">
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_login; ?>" disabled placeholder="Brokerage">
+						<input	type="text" value="<?php echo $user_login; ?>" readonly placeholder="Brokerage">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="password" value="" disabled placeholder="Password">
+						<input	type="password" value="" readonly placeholder="Password">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_email; ?>" disabled placeholder="eamil">
+						<input	type="text" value="<?php echo $user_email; ?>" readonly placeholder="eamil">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_language; ?>" disabled placeholder="Language : English">
+						<input	type="text" value="<?php echo $user_language; ?>" readonly placeholder="Language : English">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<textarea disabled placeholder="About"><?php echo $user_detail; ?></textarea>
+						<textarea readonly placeholder="About"><?php echo $user_detail; ?></textarea>
 						<span class="edit-filed">Edit</span>
 					</div>
 				</div>
 				<div class="right">
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_fname; ?>" disabled placeholder="First Name">
+						<input	type="text" value="<?php echo $user_fname; ?>" readonly placeholder="First Name">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_lname; ?>" disabled placeholder="Last Name">
+						<input	type="text" value="<?php echo $user_lname; ?>" readonly placeholder="Last Name">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_phone; ?>" disabled placeholder="Phone No.">
+						<input	type="text" value="<?php echo $user_phone; ?>" readonly placeholder="Phone No.">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_city; ?>" disabled placeholder="City">
+						<input	type="text" value="<?php echo $user_city; ?>" readonly placeholder="City">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_country; ?>" disabled placeholder="Country">
+						<input	type="text" value="<?php echo $user_country; ?>" readonly placeholder="Country">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed ex">
-						<input	type="text" value="<?php echo $user_url; ?>" disabled placeholder="Website">
+						<input	type="text" value="<?php echo $user_url; ?>" readonly placeholder="Website">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="submit">Save</div>

@@ -34,7 +34,15 @@
 				
 				
 				<?php if($this->session->userdata('logged_in')){ ?>
-					<li><a href="<?php echo site_url('profile/user');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+					<?php if($this->session->userdata('logged_in')['user_type'] == 'user'){ ?>
+	     				<li><a href="<?php echo site_url('profile/user');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     	<?php } else if($this->session->userdata('logged_in')['user_type'] == 'agent'){ ?>
+			     		<li><a href="<?php echo site_url('profile/agent');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'moderator') { ?>
+			     		<li><a href="<?php echo site_url('profile/moderator');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'admin') { ?>
+			     		<li><a href="<?php echo site_url('profile/admin');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     	<?php } ?>
 					<li><a href="<?php echo site_url('logout');?>">Logout</a></li>
 				<?php }else{ ?>
 					<li><a href="<?php echo site_url('register/user');?>">Register</a></li>
