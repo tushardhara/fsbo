@@ -448,7 +448,7 @@ header .register-login li a:first-child{
 	list-style: none;
 	height: 18px;
 	border-right:1px solid #c2c2c2;
-	padding: 0px 13px;
+	padding: 0px 11px;
 }
 .home-main .left-main .listing .featured-listing-left .item .featured-listing-feature li:last-child{
 	border-right: 0px solid #c2c2c2;
@@ -576,7 +576,7 @@ header .register-login li a:first-child{
 	list-style: none;
 	height: 18px;
 	border-right:1px solid #c2c2c2;
-	padding: 0px 42px;
+	padding: 0px 40px;
 }
 .home-main .left-main .listing .featured-listing-center .item .featured-listing-feature li:last-child{
 	border-right: 0px solid #c2c2c2;
@@ -1417,6 +1417,7 @@ html[xmlns] .clearfix {
 .product-detail .right .featured-listing-name a{
 	text-decoration: none;
 	color: inherit;
+	line-height: 1.5;
 }
 .product-detail .right .featured-listing-feature{
 	padding-top:8px;
@@ -1618,7 +1619,10 @@ html[xmlns] .clearfix {
 .product-detail .right .settings div.contact{
 	float: right;
 }
-
+.product-detail .right .settings div a{
+	color: inherit;
+	text-decoration: none;
+}
 #product-slider .item{
   margin: 3px;
 }
@@ -3207,9 +3211,6 @@ html[xmlns] .clearfix {
 	display: block;
 }
 
-#Container .mix{
-	display: none;
-}
 .furniture-listing-settings .filter-settings .filter-list{
 	width: 790px;
 	float: left;

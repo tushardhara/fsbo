@@ -52,7 +52,7 @@
 			<div class="header-nav">
 				<li><a href="<?php echo site_url('property') ?>">Buy Property</a></li>
 				<li><a href="<?php echo site_url('property') ?>">Rent Property</a></li>
-				<li><a href="<?php echo site_url('education') ?>">Buy Furniture</a></li>
+				<li><a href="<?php echo site_url('furniture/bedroom') ?>">Buy Furniture</a></li>
 				<li><a href="<?php echo site_url('agent') ?>">Find Agents</a></li>
 			</div>
 		</div>

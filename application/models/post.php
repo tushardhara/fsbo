@@ -323,11 +323,9 @@ Class Post extends CI_Model{
      }
   }
   function show_two_property_feature($ID_1,$ID_2){
-    $this->db->select('*');
-    $this->db->from('fsbo_post');
-    $this->db->where_in('ID', $ID = array($ID_1,$ID_2));
-    $this->db->where('post_status','0');
-    $query = $this->db->get();
+     $query = $this->db->query("SELECT * FROM fsbo_post WHERE ID=$ID_1 AND post_status='0'
+UNION ALL
+SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0'");
     if($query->num_rows()){
       return $query->result();
     }else{
@@ -347,11 +345,11 @@ Class Post extends CI_Model{
     }
   }
   function show_three_feature($ID_1,$ID_2,$ID_3){
-    $this->db->select('*');
-    $this->db->from('fsbo_post');
-    $this->db->where_in('ID', $ID = array($ID_1,$ID_2,$ID_3));
-    $this->db->where('post_status','0');
-    $query = $this->db->get();
+     $query = $this->db->query("SELECT * FROM fsbo_post WHERE ID=$ID_1 AND post_status='0'
+UNION ALL
+SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0'
+UNION ALL
+SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     if($query->num_rows()){
       return $query->result();
     }else{

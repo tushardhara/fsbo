@@ -56,60 +56,69 @@
 				<div class="listing">
 					<div class="featured-listing clearfix">
 						<div class="featured-listing-left">
+							<?php foreach ($data_two_property_feature as $key) { ?>
 							<div class="item">
-								<a href="#">
+								<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
+										<?php 
+											$attached_image = array(
+										          'src' => 'images/dummy-feature-small.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+										?>
+										<?php echo img($attached_image);?>
+										<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
 									</div>
 								</a>
-								<div class="featured-listing-name"><a href="#">403 Almana Tower</a></div>
+								<div class="featured-listing-name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
 								<div class="featured-listing-feature">
-									<li><span class="floor">2nd</span><span class="text">Floor</span></li>
-									<li><span class="floor">2</span><span class="img-bed"></span></li>
-									<li><span class="floor">3</span><span class="img-bath"></span></li>
-									<li><span class="floor">132</span><span class="text">m<sup>2</sup></span></li>
+									<li><span class="floor"><?php echo ordinalize($key->post_property_floor) ?></span><span class="text">Floor</span></li>
+									<li><span class="floor"><?php echo $key->post_property_bedrooms;?></span><span class="img-bed"></span></li>
+									<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
+									<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 								</div>
-								<div class="price-desc"><p><span class="blue bold big">1,2500,000</span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small">7000</span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
-								<div class="location">Property in Westbay, Doha</div>
+								<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
+								<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo ($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+								<?php } else { ?>
+								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo $key->post_price;?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
+								<?php } ?>
+								<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
 							</div>
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-name"><a href="#">403 Almana Tower</a></div>
-								<div class="featured-listing-feature">
-									<li><span class="floor">2nd</span><span class="text">Floor</span></li>
-									<li><span class="floor">2</span><span class="img-bed"></span></li>
-									<li><span class="floor">3</span><span class="img-bath"></span></li>
-									<li><span class="floor">132</span><span class="text">m<sup>2</sup></span></li>
-								</div>
-								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small">7000</span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
-								<div class="location">Property in Westbay, Doha</div>
-							</div>
+							<?php } ?>
 						</div>
 						<div class="featured-listing-center">
+							<?php foreach ($data_center_property_feature as $key) { ?>
 							<div class="item">
-								<a href="#">
+								<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 									<div class="thumb">
-										<img src="images/dummy-feature-big.png">
-										<div class="featured-listing-text">Featured Listing</div>
+										<?php 
+											$attached_image = array(
+										          'src' => 'images/dummy-feature-big.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+										?>
+										<?php echo img($attached_image);?>
+										<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
 									</div>
 								</a>
-								<div class="featured-listing-name"><a href="#">403 Almana Tower</a></div>
+								<div class="featured-listing-name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
 								<div class="featured-listing-feature">
-									<li><span class="floor">2nd</span><span class="text">Floor</span></li>
-									<li><span class="floor">2</span><span class="img-bed"></span></li>
-									<li><span class="floor">3</span><span class="img-bath"></span></li>
-									<li><span class="floor">132</span><span class="text">m<sup>2</sup></span></li>
+									<li><span class="floor"><?php echo ordinalize($key->post_property_floor) ?></span><span class="text">Floor</span></li>
+									<li><span class="floor"><?php echo $key->post_property_bedrooms;?></span><span class="img-bed"></span></li>
+									<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
+									<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 								</div>
-								<div class="price-desc"><p><span class="blue bold big">1,2500,000</span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small">7000</span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
-								<div class="location">Property in Westbay, Doha</div>
-								<div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ornare lectus in vehicula euismod. Proin risus justo, dignissim eu malesuada eu, tincidunt a orci. Aenean consectetur consequat felis, sit amet adipiscing mi molestie ac. Phasellus pretium odio eget arcu mollis, et ornare risus imperdiet. Aliquam nec congue nulla. Vivamus ornare tempor enim, et tristique dui dignissim vel. Integer sed gravida neque. Quisque et posuere odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+								<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
+								<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo ($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+								<?php } else { ?>
+								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo $key->post_price;?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
+								<?php } ?>
+								<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
+								<div class="desc"><?php echo $key->post_description;?></div>
 							</div>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="big-ads-area">
@@ -121,33 +130,24 @@
 							<a href="#">View all</a>
 						</div>
 						<div class="featured-project-list clearfix">
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-name"><a href="#">403 Almana Tower</a></div>
-							</div>
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-name"><a href="#">403 Almana Tower</a></div>
-							</div>
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-name"><a href="#">403 Almana Tower</a></div>
-							</div>
+							<?php foreach ($data_three_property_feature as $key) { ?>
+								<div class="item">
+									<a href="<?php echo site_url('property/'.$key->post_slug);?>">
+										<div class="thumb">
+											<?php 
+											$attached_image = array(
+										          'src' => 'images/dummy-feature-small.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+											?>
+											<?php echo img($attached_image);?>
+											<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
+										</div>
+									</a>
+									<div class="featured-listing-name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
+								</div>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="big-ads-area">
@@ -156,45 +156,31 @@
 					<div class="featured-furniture-area">
 						<div class="title">
 							<h6>Furniture</h6>
-							<a href="#">View all</a>
+							<a href="<?php echo site_url('furniture/bedroom') ?>">View all</a>
 						</div>
 						<div class="featured-furniture-list clearfix">
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-date">April 13, 2014</div>
-								<div class="featured-listing-name">Single Bed</div>
-								<div class="featured-listing-price">2000 QR</div>
-								<a class="featured-listing-view" href="#">View Details</a>
-							</div>
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-date">April 13, 2014</div>
-								<div class="featured-listing-name">Single Bed</div>
-								<div class="featured-listing-price">2000 QR</div>
-								<a class="featured-listing-view" href="#">View Details</a>
-							</div>
-							<div class="item">
-								<a href="#">
-									<div class="thumb">
-										<img src="images/dummy-feature-small.png">
-										<div class="featured-listing-text">Featured Listing</div>
-									</div>
-								</a>
-								<div class="featured-listing-date">April 13, 2014</div>
-								<div class="featured-listing-name">Single Bed</div>
-								<div class="featured-listing-price">2000 QR</div>
-								<a class="featured-listing-view" href="#">View Details</a>
-							</div>
+							<?php foreach ($data_three_furniture_feature as $key) { ?>
+								<div class="item">
+									<a href="<?php echo site_url('furniture/'.$key->post_slug);?>">
+										<div class="thumb">
+											<?php 
+											$attached_image = array(
+										          'src' => 'images/dummy-feature-small.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+											?>
+											<?php echo img($attached_image);?>
+											<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
+										</div>
+									</a>
+									<?php $date = date_create($key->post_date); ?>
+									<div class="featured-listing-date"><?php echo date_format($date, 'F j, Y');?></div>
+									<div class="featured-listing-name"><?php echo $key->post_furniture_type;?></div>
+									<div class="featured-listing-price"><?php echo $key->post_price;?> QR</div>
+									<a class="featured-listing-view" href="<?php echo site_url('furniture/'.$key->post_slug);?>">View Details</a>
+								</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -206,135 +192,106 @@
 				</div>
 				<div class="side-container">
 					<div class="education-list">
-						<a href="#">
-							<div class="education-list-item no-padd-top clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
+						<?php $i=1;?>
+						<?php foreach ($data_three_education_feature_1 as $key) { ?>
+							<a href="<?php echo site_url('education/'.$key->post_slug);?>">
+								<div class="education-list-item <?php echo $i==1 ? 'no-padd-top':'';?> clearfix">
+									<div class="thumb-area">
+										<?php 
+											$attached_image = array(
+										          'src' => 'images/edu-logo.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+										?>
+										<?php echo img($attached_image);?>
+									</div>
+									<div class="text-area">
+										<div class="institute">Name Of Institute</div>
+										<div class="name-institute"><?php echo $key->post_title; ?></div>
+										<div class="distict">Type:</div>
+										<div class="name-distict"><?php echo $key->post_education_type;?></div>
+										<div class="address">Community:</div>
+										<div class="name-address"><?php echo $key->post_education_community;?></div>
+									</div>
 								</div>
-							</div>
-						</a>
-						<a href="#">
-							<div class="education-list-item clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
-								</div>
-							</div>
-						</a>
-						<a href="#">
-							<div class="education-list-item clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
-								</div>
-							</div>
-						</a>
+							</a>
+						<?php $i++;} ?>
 					</div>
 					<div class="side-ads-area">
 						<div class="test"></div>
 					</div>
 					<div class="education-list">
-						<a href="#">
-							<div class="education-list-item border-top clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
+						<?php $i=1;?>
+						<?php foreach ($data_three_education_feature_2 as $key) { ?>
+							<a href="<?php echo site_url('education/'.$key->post_slug);?>">
+								<div class="education-list-item <?php echo $i==1 ? 'border-top':'';?> clearfix">
+									<div class="thumb-area">
+										<?php 
+											$attached_image = array(
+										          'src' => 'images/edu-logo.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+										?>
+										<?php echo img($attached_image);?>
+									</div>
+									<div class="text-area">
+										<div class="institute">Name Of Institute</div>
+										<div class="name-institute"><?php echo $key->post_title; ?></div>
+										<div class="distict">Type:</div>
+										<div class="name-distict"><?php echo $key->post_education_type;?></div>
+										<div class="address">Community:</div>
+										<div class="name-address"><?php echo $key->post_education_community;?></div>
+									</div>
 								</div>
-							</div>
-						</a>
-						<a href="#">
-							<div class="education-list-item clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
-								</div>
-							</div>
-						</a>
-						<a href="#">
-							<div class="education-list-item clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
-								</div>
-							</div>
-						</a>
+							</a>
+						<?php $i++;} ?>
 					</div>
 					<div class="side-ads-area">
 						<div class="test"></div>
 					</div>
 					<div class="education-list">
-						<a href="#">
-							<div class="education-list-item border-top clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
+						<?php $i=1;?>
+						<?php foreach ($data_three_education_feature_3 as $key) { ?>
+							<a href="<?php echo site_url('education/'.$key->post_slug);?>">
+								<div class="education-list-item <?php echo $i==1 ? 'border-top':'';?> <?php echo $i==3 ? 'no-border-bottom':'';?> clearfix">
+									<div class="thumb-area">
+										<?php 
+											$attached_image = array(
+										          'src' => 'images/edu-logo.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+										?>
+										<?php echo img($attached_image);?>
+									</div>
+									<div class="text-area">
+										<div class="institute">Name Of Institute</div>
+										<div class="name-institute"><?php echo $key->post_title; ?></div>
+										<div class="distict">Type:</div>
+										<div class="name-distict"><?php echo $key->post_education_type;?></div>
+										<div class="address">Community:</div>
+										<div class="name-address"><?php echo $key->post_education_community;?></div>
+									</div>
 								</div>
-							</div>
-						</a>
-						<a href="#">
-							<div class="education-list-item clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
-								</div>
-							</div>
-						</a>
-						<a href="#">
-							<div class="education-list-item no-border-bottom clearfix">
-								<div class="thumb-area"><img src="images/edu-logo.png"></div>
-								<div class="text-area">
-									<div class="institute">Name Of Institute</div>
-									<div class="name-institute">High School</div>
-									<div class="distict">District:</div>
-									<div class="name-distict">West Bay</div>
-									<div class="address">Address:</div>
-									<div class="name-address">Lorem Ipsum , Doha, Qatar</div>
-								</div>
-							</div>
-						</a>
+							</a>
+						<?php $i++;} ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<?php function ordinalize($num) {
+        $suff = 'th';
+        if ( ! in_array(($num % 100), array(11,12,13))){
+            switch ($num % 10) {
+                case 1:  $suff = 'st'; break;
+                case 2:  $suff = 'nd'; break;
+                case 3:  $suff = 'rd'; break;
+            }
+            return "{$num}{$suff}";
+        }
+        return "{$num}{$suff}";
+    }
+    ?>

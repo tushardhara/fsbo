@@ -23,10 +23,10 @@
 						<div class="featured-listing-name"><a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>"><?php echo $key->post_title;?></a></div>
 						<?php if($key->post_type == 'property') { ?>
 						<div class="featured-listing-feature">
-							<li><span class="floor">2nd</span><span class="text">Floor</span></li>
+							<li><span class="floor"><?php echo ordinalize($key->post_property_floor) ?></span><span class="text">Floor</span></li>
 							<li><span class="floor"><?php echo $key->post_property_bedrooms;?></span><span class="img-bed"></span></li>
 							<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
-							<li><span class="floor"><?php echo $key->post_property_size;?></span><span class="text">m<sup>2</sup></span></li>
+							<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 						</div>
 						<?php } ?>
 						<?php if($key->post_type == 'property') { ?>
@@ -67,3 +67,16 @@
 			</div>
 		</div>
 	</div>
+	<?php function ordinalize($num) {
+        $suff = 'th';
+        if ( ! in_array(($num % 100), array(11,12,13))){
+            switch ($num % 10) {
+                case 1:  $suff = 'st'; break;
+                case 2:  $suff = 'nd'; break;
+                case 3:  $suff = 'rd'; break;
+            }
+            return "{$num}{$suff}";
+        }
+        return "{$num}{$suff}";
+    }
+    ?>

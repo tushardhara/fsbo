@@ -4,427 +4,79 @@
 				<div class="filter-settings">
 					<div class="sort"><span class="text">Short By</span><div class="drop"><span class="text">Most Expensive</span><span class="arrow"></span></div></div>
 					<div class="filter-list">
-						<div class="filter bed" data-filter=".cat1">Category 1</div>
-						<div class="filter liv" data-filter=".cat2">Category 2</div>
-						<div class="filter bath" data-filter=".cat3">Category 2</div>
-						<div class="filter kit" data-filter=".cat4">Category 2</div>
-						<div class="filter din" data-filter=".cat5">Category 2</div>
-						<div class="filter mis" data-filter=".cat6">Category 2</div>
+						<?php if($this->uri->segment(2) == 'bedroom'){ ?>
+							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed active">Bedroom</a>
+							<a href='<?php echo site_url('furniture/living-room')?>' class="filter liv">Living room</a>
+							<a href='<?php echo site_url('furniture/bathroom')?>' class="filter bath">Bathroom</a>
+							<a href='<?php echo site_url('furniture/dining-room')?>' class="filter din">Dining room</a>
+							<a href='<?php echo site_url('furniture/kitchen')?>' class="filter kit">Kitchen</a>
+							<a href='<?php echo site_url('furniture/miscellaneous')?>' class="filter mis">Miscellaneous</a>
+						<?php }else if($this->uri->segment(2) == 'living-room'){ ?>
+							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed">Bedroom</a>
+							<a href='<?php echo site_url('furniture/living-room')?>' class="filter liv active">Living room</a>
+							<a href='<?php echo site_url('furniture/bathroom')?>' class="filter bath">Bathroom</a>
+							<a href='<?php echo site_url('furniture/dining-room')?>' class="filter din">Dining room</a>
+							<a href='<?php echo site_url('furniture/kitchen')?>' class="filter kit">Kitchen</a>
+							<a href='<?php echo site_url('furniture/miscellaneous')?>' class="filter mis">Miscellaneous</a>
+						<?php }else if($this->uri->segment(2) == 'bathroom'){ ?>
+							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed">Bedroom</a>
+							<a href='<?php echo site_url('furniture/living-room')?>' class="filter liv">Living room</a>
+							<a href='<?php echo site_url('furniture/bathroom')?>' class="filter bath active">Bathroom</a>
+							<a href='<?php echo site_url('furniture/dining-room')?>' class="filter din">Dining room</a>
+							<a href='<?php echo site_url('furniture/kitchen')?>' class="filter kit">Kitchen</a>
+							<a href='<?php echo site_url('furniture/miscellaneous')?>' class="filter mis">Miscellaneous</a>
+						<?php }else if($this->uri->segment(2) == 'dining-room'){ ?>
+							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed">Bedroom</a>
+							<a href='<?php echo site_url('furniture/living-room')?>' class="filter liv">Living room</a>
+							<a href='<?php echo site_url('furniture/bathroom')?>' class="filter bath">Bathroom</a>
+							<a href='<?php echo site_url('furniture/dining-room')?>' class="filter din active">Dining room</a>
+							<a href='<?php echo site_url('furniture/kitchen')?>' class="filter kit">Kitchen</a>
+							<a href='<?php echo site_url('furniture/miscellaneous')?>' class="filter mis">Miscellaneous</a>
+						<?php }else if($this->uri->segment(2) == 'kitchen'){ ?>
+							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed">Bedroom</a>
+							<a href='<?php echo site_url('furniture/living-room')?>' class="filter liv">Living room</a>
+							<a href='<?php echo site_url('furniture/bathroom')?>' class="filter bath">Bathroom</a>
+							<a href='<?php echo site_url('furniture/dining-room')?>' class="filter din">Dining room</a>
+							<a href='<?php echo site_url('furniture/kitchen')?>' class="filter kit active">Kitchen</a>
+							<a href='<?php echo site_url('furniture/miscellaneous')?>' class="filter mis">Miscellaneous</a>
+						<?php }else if($this->uri->segment(2) == 'miscellaneous'){ ?>
+							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed">Bedroom</a>
+							<a href='<?php echo site_url('furniture/living-room')?>' class="filter liv">Living room</a>
+							<a href='<?php echo site_url('furniture/bathroom')?>' class="filter bath">Bathroom</a>
+							<a href='<?php echo site_url('furniture/dining-room')?>' class="filter din">Dining room</a>
+							<a href='<?php echo site_url('furniture/kitchen')?>' class="filter kit">Kitchen</a>
+							<a href='<?php echo site_url('furniture/miscellaneous')?>' class="filter mis active">Miscellaneous</a>
+						<?php } ?>
 					</div>
 					<div class="search-edu"><input	type="text" placeholder="Search Location"><div class="search-icon"></div></div>
 				</div>
 				<div class="furniture-listing clearfix">
-					<div id="Container" class="furniture-item-list">
-						<div class="mix cat1 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat3 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat1 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat3 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat4 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat5 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat1 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat5 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat6 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat4 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat5 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat6 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat3 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat1 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat4 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat5 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat6 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat6 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat5 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat4 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat6 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat3 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat2 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat1 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat1 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat5 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat6 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
-						<div class="mix cat4 furniture-item-list">
-							<a href="#">
-								<div class="thumb">
-									<img src="images/dummy-feature-small.png">
-									<div class="featured-listing-text">Featured Listing</div>
-								</div>
-							</a>
-							<div class="featured-listing-date">April 13, 2014</div>
-							<div class="featured-listing-name">Single Bed</div>
-							<div class="featured-listing-price">2000 QR</div>
-							<a class="featured-listing-view" href="#">View Details</a>
-						</div>
+					<div class="furniture-item-list">
+						<?php foreach($records as $key) { ?>
+							<div class="furniture-item-list">
+								<a href="<?php echo site_url('furniture/'.$key->post_slug);?>">
+									<div class="thumb">
+										<?php 
+											$attached_image = array(
+										          'src' => 'images/dummy-feature-small.png',
+										          'alt' => 'fsbo',
+										          'title' => 'fsbo',
+											);
+										?>
+										<?php echo img($attached_image);?>
+										<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
+									</div>
+								</a>
+								<?php $date = date_create($key->post_date); ?>
+								<div class="featured-listing-date"><?php echo date_format($date, 'F j, Y');?></div>
+								<div class="featured-listing-name"><?php echo $key->post_furniture_type;?></div>
+								<div class="featured-listing-price"><?php echo $key->post_price;?> QR</div>
+								<a class="featured-listing-view" href="<?php echo site_url('furniture/'.$key->post_slug);?>">View Details</a>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
+				<?php echo $this->pagination->create_links();?>
 			</div>
 		</div>
 	</div>
