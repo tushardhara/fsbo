@@ -1,4 +1,3 @@
-	<?php print_r($user_mylist); ?>
 	<div class="home-main clearfix">
 		<div class="container">
 			<?php include('tab/tab-area.php');?>
@@ -37,13 +36,30 @@
 						<?php } else if($key->post_type == 'furniture') {?>
 						<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span></p></div>
 						<div class="address"><?php echo $key->post_description;?></div>
+						<?php } else if($key->post_type == 'education') { ?>
+						<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span></p></div>
+						<div class="location"><?php echo $key->post_education_type;?></div>
+						<div class="address"><?php echo $key->post_description;?></div>
 						<?php } ?>
-						
 					</div>
 					<div class="right-side">
-						<a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
-						<a href="#" class="contact">Preview</a>
-						<a href="#" class="contact ex">Remove</a>
+						<?php if($this->session->userdata('logged_in')['user_type'] == 'user'){ ?>
+				     		<a href="<?php echo site_url('profile/user/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
+				     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'agent'){ ?>
+				     		<a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
+				     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'moderator') { ?>
+				     		<a href="<?php echo site_url('profile/moderator/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
+				     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'admin') { ?>
+				     		<a href="<?php echo site_url('profile/admin/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
+				     	<?php } ?>
+						<?php if($key->post_type == 'property') { ?>
+							<a href="<?php echo site_url('property/'.$key->post_slug);?>" class="contact">Preview</a>
+						<?php } else if($key->post_type == 'furniture') {?>
+							<a href="<?php echo site_url('furniture/'.$key->post_slug);?>" class="contact">Preview</a>
+						<?php } else if($key->post_type == 'education') { ?>
+							<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="contact">Preview</a>
+						<?php } ?>
+						<a href="<?php echo site_url('delete_post/'.$key->ID);?>" class="contact ex">Remove</a>
 						<div class="compare-area"><div class="compare"></div><span>Compare</span></div>
 					</div>
 				</div>

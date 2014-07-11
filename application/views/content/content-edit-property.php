@@ -1,3 +1,31 @@
+	<?php if(isset($post_detail)){
+			foreach ($post_detail as $key ) {
+				$ID = $key->ID;
+				$post_property_catergory = $key->post_property_catergory;
+				$post_property_type = $key->post_property_type;
+				$post_price = $key->post_price;
+				$post_property_size = $key->post_property_size;
+				$post_property_floor = $key->post_property_floor;
+				$post_property_bedrooms = $key->post_property_bedrooms;
+				$post_property_bathroom = $key->post_property_bathroom;
+				$post_property_area_reference = $key->post_property_area_reference;
+				$post_property_area_city = $key->post_property_area_city;
+				$post_property_area_community = $key->post_property_area_community;
+				$post_property_area_address = $key->post_property_area_address;
+				$post_property_area_lat = $key->post_property_area_lat;
+				$post_property_area_log = $key->post_property_area_log;
+				$post_property_build_floor = $key->post_property_build_floor;
+				$post_property_build_apartment_per_floor = $key->post_property_build_apartment_per_floor;
+				$post_property_build_elevators = $key->post_property_build_elevators;
+				$post_title = $key->post_title;
+				$post_description = $key->post_description;
+				$post_featured = $key->post_featured;
+				$post_seo_title = $key->post_seo_title;
+				$post_seo_keywords = $key->post_seo_keywords;
+				$post_seo_description = $key->post_seo_description;
+			}
+		}
+	?>
 	<div class="home-main clearfix">
 		<div class="container">
 			<div class="tab-area clearfix">
@@ -13,11 +41,11 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('add_property'); ?>">
+				<form method="post" action="<?php echo site_url('modify_property/'.$ID); ?>">
 				<div class="left">
 					<h1>Property</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Category" name='post_property_catergory' readonly class="drop">
+						<input	type="text" placeholder="Category" name='post_property_catergory' readonly class="drop" value="<?php echo $post_property_catergory; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="Residential property for Sale">Residential property for Sale</div>
@@ -27,7 +55,7 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Type" name='post_property_type' readonly class="drop">
+						<input	type="text" placeholder="Type" name='post_property_type' readonly class="drop" value="<?php echo $post_property_type; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="Apartment">Apartment</div>
@@ -45,17 +73,17 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Price" name="post_price" >
+						<input	type="text" placeholder="Price" name="post_price" value="<?php echo $post_price; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Size" name="post_property_size">
+						<input	type="text" placeholder="Size" name="post_property_size" value="<?php echo $post_property_size; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Floor" name="post_property_floor">
+						<input	type="text" placeholder="Floor" name="post_property_floor" value="<?php echo $post_property_floor; ?>">
 						
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Bedrooms" name="post_property_bedrooms" readonly class="drop">
+						<input	type="text" placeholder="Bedrooms" name="post_property_bedrooms" readonly class="drop" value="<?php echo $post_property_bedrooms; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="1">1</div>
@@ -66,7 +94,7 @@
 						</div>
 					</div>
 					<div class="filed ex">
-						<input	type="text" placeholder="Bathrooms" name="post_property_bathroom" readonly class="drop">
+						<input	type="text" placeholder="Bathrooms" name="post_property_bathroom" readonly class="drop" value="<?php echo $post_property_bathroom; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="1">1</div>
@@ -78,10 +106,10 @@
 					</div>
 					<h1>Area</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Reference" name="post_property_area_reference">
+						<input	type="text" placeholder="Reference" name="post_property_area_reference" value="<?php echo $post_title; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="City" readonly class="drop" name="post_property_area_city">
+						<input	type="text" placeholder="City" readonly class="drop" name="post_property_area_city" value="<?php echo $post_property_area_city; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="Doha">Doha</div>
@@ -127,22 +155,22 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Community" name='post_property_area_community'>
+						<input	type="text" placeholder="Community" name='post_property_area_community' value="<?php echo $post_property_area_community; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Address" name='post_property_area_address'>
+						<input	type="text" placeholder="Address" name='post_property_area_address' value="<?php echo $post_property_area_address; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Latitude" name='post_property_area_lat'>
+						<input	type="text" placeholder="Latitude" name='post_property_area_lat' value="<?php echo $post_property_area_lat; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Longitude" name='post_property_area_log'>
+						<input	type="text" placeholder="Longitude" name='post_property_area_log' value="<?php echo $post_property_area_log; ?>">
 					</div>
 				</div>
 				<div class="right">
 					<h1>Building</h1>
 					<div class="filed">
-						<input	type="text" placeholder="# of Floors" readonly class="drop" name="post_property_build_floor">
+						<input	type="text" placeholder="# of Floors" readonly class="drop" name="post_property_build_floor" value="<?php echo $post_property_build_floor; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="1">1</div>
@@ -153,7 +181,7 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Apartment per Floor" readonly class="drop" name="post_property_build_apartment_per_floor">
+						<input	type="text" placeholder="Apartment per Floor" readonly class="drop" name="post_property_build_apartment_per_floor" value="<?php echo $post_property_build_apartment_per_floor; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="1">1</div>
@@ -164,7 +192,7 @@
 						</div>
 					</div>
 					<div class="filed ex">
-						<input	type="text" placeholder="# of Elevators" readonly class="drop" name="post_property_build_elevators">
+						<input	type="text" placeholder="# of Elevators" readonly class="drop" name="post_property_build_elevators" value="<?php echo $post_property_build_elevators; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="1">1</div>
@@ -176,14 +204,14 @@
 					</div>
 					<h1>General</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Title" name="post_title">
+						<input	type="text" placeholder="Title" name="post_title" value="<?php echo $post_title; ?>">
 					</div>
 					<div class="filed ex">
-						<textarea placeholder="Description" name="post_description"></textarea>
+						<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>
 					</div>
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 						<div class="filed ex">
-							<input	type="text" placeholder="Featured" readonly class="drop" name="post_featured">
+							<input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 							<span class="arrow"></span>
 							<div class="drop-category">
 								<div class="drop-item" item-value="no">no</div>
@@ -192,19 +220,19 @@
 						</div>
 						<h1>SEO</h1>
 						<div class="filed">
-							<input	type="text" placeholder="Google Meta Title" name="post_seo_title">
+							<input	type="text" placeholder="Google Meta Title" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
 						</div>
 						<div class="filed">
-							<input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords">
+							<input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
 						</div>
 						<div class="filed ex">
-							<textarea placeholder="Google Meta Description" name="post_seo_description"></textarea>
+							<textarea placeholder="Google Meta Description" name="post_seo_description"><?php echo $post_seo_description; ?></textarea>
 						</div>
 					<?php } else { ?>
-						<input	type="hidden" name="post_seo_title">
-						<input	type="hidden" name="post_seo_keywords">
-						<input type="hidden" name="post_seo_description">
-						<input type="hidden" name="post_featured" value="no">
+						<input	type="hidden" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
+						<input	type="hidden" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
+						<input type="hidden" name="post_seo_description" value="<?php echo $post_seo_description; ?>">
+						<input type="hidden" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 					<?php } ?>
 					<input type="submit" class="submit" value="Submit">
 				</div>

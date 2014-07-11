@@ -95,7 +95,7 @@ Class User extends CI_Model{
          'user_city'  => $user_city,
          'user_language' => $user_language,
          'user_title' => $user_title,
-         'user_detail' => $user_detail
+         'user_detail' => $user_detail,
       );
     }else{
        $data = array(

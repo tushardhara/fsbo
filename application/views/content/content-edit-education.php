@@ -1,3 +1,25 @@
+	<?php if(isset($post_detail)){
+			foreach ($post_detail as $key ) {
+				$ID = $key->ID;
+				$post_education_type = $key->post_education_type;
+				$post_education_age = $key->post_education_age;
+				$post_education_gender = $key->post_education_gender;
+				$post_price = $key->post_price;
+				$post_education_community = $key->post_education_community;
+				$post_education_principle = $key->post_education_principle;
+				$post_education_phone = $key->post_education_phone;
+				$post_education_fax = $key->post_education_fax;
+				$post_education_email = $key->post_education_email;
+				$post_education_website = $key->post_education_website;
+				$post_title = $key->post_title;
+				$post_description = $key->post_description;
+				$post_featured = $key->post_featured;
+				$post_seo_title = $key->post_seo_title;
+				$post_seo_keywords = $key->post_seo_keywords;
+				$post_seo_description = $key->post_seo_description;
+			}
+		}
+	?>
 	<div class="home-main clearfix">
 		<div class="container">
 			<div class="tab-area clearfix">
@@ -13,17 +35,17 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('add_education'); ?>">
+				<form method="post" action="<?php echo site_url('modify_education/'.$ID); ?>">
 				<div class="left">
 					<h1>Education</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Type"  name="post_education_type">
+						<input	type="text" placeholder="Type"  name="post_education_type" value="<?php echo $post_education_type; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Admission Age" name="post_education_age">
+						<input	type="text" placeholder="Admission Age" name="post_education_age" value="<?php echo $post_education_age; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Gender" readonly class="drop" name="post_education_gender">
+						<input	type="text" placeholder="Gender" readonly class="drop" name="post_education_gender" value="<?php echo $post_education_gender; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="Male">Male</div>
@@ -31,37 +53,37 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input type="text" placeholder="Registration Fees" name="post_price">
+						<input type="text" placeholder="Registration Fees" name="post_price" value="<?php echo $post_price; ?>">
 					</div>
 					<div class="filed">
-						<input type="text" placeholder="Community" name="post_education_community">
+						<input type="text" placeholder="Community" name="post_education_community" value="<?php echo $post_education_community; ?>">
 					</div>
 					<div class="filed ex">
-						<input type="text" placeholder="Principle" name="post_education_principle">
+						<input type="text" placeholder="Principle" name="post_education_principle" value="<?php echo $post_education_principle; ?>">
 					</div>
 				</div>
 				<div class="right">
 					<div class="filed">
-						<input	type="text" placeholder="Phone"  name="post_education_phone">
+						<input	type="text" placeholder="Phone"  name="post_education_phone" value="<?php echo $post_education_phone; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Fax"  name="post_education_fax">
+						<input	type="text" placeholder="Fax"  name="post_education_fax" value="<?php echo $post_education_fax; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Email"  name="post_education_email">
+						<input	type="text" placeholder="Email"  name="post_education_email" value="<?php echo $post_education_email; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Website"  name="post_education_website">
+						<input	type="text" placeholder="Website"  name="post_education_website" value="<?php echo $post_education_website; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Title"  name="post_title">
+						<input	type="text" placeholder="Title"  name="post_title" value="<?php echo $post_title; ?>">
 					</div>
 					<div class="filed ex">
-						<textarea placeholder="Description" name="post_description"></textarea>
+						<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>
 					</div>
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 					<div class="filed ex">
-						<input	type="text" placeholder="Featured" readonly class="drop" name="post_featured">
+						<input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="no">no</div>
@@ -70,19 +92,19 @@
 					</div>
 					<h1>SEO</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Google Meta Title" name="post_seo_title">
+						<input	type="text" placeholder="Google Meta Title" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords">
+						<input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
 					</div>
 					<div class="filed ex">
-						<textarea placeholder="Google Meta Description" name="post_seo_description"></textarea>
+						<textarea placeholder="Google Meta Description" name="post_seo_description"><?php echo $post_seo_description; ?></textarea>
 					</div>
 					<?php } else{ ?>
-						<input	type="hidden" name="post_seo_title">
-						<input	type="hidden" name="post_seo_keywords">
-						<input type="hidden" name="post_seo_description">
-						<input type="hidden" name="post_featured" value="no">
+						<input	type="hidden" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
+						<input	type="hidden" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
+						<input type="hidden" name="post_seo_description" value="<?php echo $post_seo_description; ?>">
+						<input type="hidden" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 					<?php } ?>
 					<input type="submit" class="submit" value="Submit">
 				</div>
