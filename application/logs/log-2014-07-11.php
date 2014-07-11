@@ -70,3 +70,7 @@ ERROR - 2014-07-11 13:36:42 --> Severity: Notice  --> Undefined variable: key C:
 ERROR - 2014-07-11 13:36:42 --> Severity: Notice  --> Trying to get property of non-object C:\Users\Administrator\Documents\GitHub\fsbo\application\views\content\content-furniture-detail.php 74
 ERROR - 2014-07-11 13:37:44 --> Severity: Notice  --> Undefined offset: 0 C:\Users\Administrator\Documents\GitHub\fsbo\application\controllers\main.php 279
 ERROR - 2014-07-11 13:37:44 --> Severity: Notice  --> Trying to get property of non-object C:\Users\Administrator\Documents\GitHub\fsbo\application\controllers\main.php 279
+ERROR - 2014-07-11 16:11:22 --> 404 Page Not Found --> favicon.ico
+ERROR - 2014-07-11 16:39:53 --> Severity: Notice  --> Undefined variable: records C:\Users\Administrator\Documents\GitHub\fsbo\application\views\content\content-education-listing.php 16
+ERROR - 2014-07-11 16:39:53 --> Severity: Warning  --> Invalid argument supplied for foreach() C:\Users\Administrator\Documents\GitHub\fsbo\application\views\content\content-education-listing.php 16
+ERROR - 2014-07-11 16:40:24 --> Severity: Notice  --> Undefined property: stdClass::$description C:\Users\Administrator\Documents\GitHub\fsbo\application\views\content\content-education-listing.php 32

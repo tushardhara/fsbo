@@ -3000,6 +3000,10 @@ html[xmlns] .clearfix {
 .education-listing-settings .edu-listing .edu-item-list .right .item div{
 	float: left;
 }
+.education-listing-settings .edu-listing .edu-item-list .right .item div.ans{
+	float: right;
+	padding-right: 5px;
+}
 .education-listing-settings .edu-listing .edu-item-list .right a.see-more{
 	border: 1px solid #ffa800;
 	padding: 4px 109.5px;
