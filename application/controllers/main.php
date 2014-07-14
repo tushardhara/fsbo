@@ -205,28 +205,49 @@ class Main extends CI_Controller {
 		if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){
 			$config['base_url'] = site_url('/education/');
 			$config['total_rows'] =  $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'))->num_rows();
-			$config['per_page'] = 1;
+			$config['per_page'] = 8;
 			$config['num_links'] = 20; 
 			$config['uri_segment'] = 2;
 			$this->pagination->initialize($config);
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(2))->result(); 	
 			$content = 'content/content-education-listing';
 		}else{
-			$content = 'content/content-education-detail';
+			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_slug' => $this->uri->segment(2)))->result();
+			if(count ($data_set['records']) == 1){
+				$data_set['related'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education'),8)->result();
+				$content = 'content/content-education-detail';
+			}else{
+				$content = 'content/content-404';
+			}
 		}
 		$this->load->view('header');
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
-	public function property($slug = '')
+	public function property()
 	{
-		if(!empty($slug)){
-			$content = 'content/content-property-detail';
-		}else{
+		$data_set='';
+		if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){
+			$config['base_url'] = site_url('/property/');
+			$config['total_rows'] =  $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0'))->num_rows();
+			$config['per_page'] = 8;
+			$config['num_links'] = 20; 
+			$config['uri_segment'] = 2;
+			$this->pagination->initialize($config);
+			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(2))->result();
 			$content = 'content/content-property-listing';
+		}else{
+			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_slug' => $this->uri->segment(2)))->result();
+			if(count ($data_set['records']) == 1){
+				$data_set['related_area'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_property_area_community' => $data_set['records'][0]->post_property_area_community),3)->result();
+				$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_price' => $data_set['records'][0]->post_price),8)->result();
+				$content = 'content/content-property-detail';
+			}else{
+				$content = 'content/content-404';
+			}
 		}
 		$this->load->view('header');
-		$this->load->view($content);
+		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
 	public function furniture()
