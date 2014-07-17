@@ -25,6 +25,34 @@ $(document).ready(function() {
        // }
       }
   });
+  $('.furniture-listing-settings .filter-settings .sort .drop').on('click',function(){
+    $(this).parent().children('.filter-drop').toggleClass('active').toggle();
+  });
+  $(document).mouseup(function (e)
+  {
+      var container = $(".furniture-listing-settings .filter-settings .sort .drop");
+      if (!container.is(e.target) // if the target of the click isn't the container...
+          && container.has(e.target).length === 0 ) // ... nor a descendant of the container
+      {
+        //if($('.drop').has(e.target).length !=1 && $('.drop').css('display')=='block'){
+           $('.filter-drop.active').toggleClass('active').toggle();
+       // }
+      }
+  });
+  $('.education-listing-settings .filter-settings .sort .drop').on('click',function(){
+    $(this).parent().children('.filter-drop').toggleClass('active').toggle();
+  });
+  $(document).mouseup(function (e)
+  {
+      var container = $(".education-listing-settings .filter-settings .sort .drop");
+      if (!container.is(e.target) // if the target of the click isn't the container...
+          && container.has(e.target).length === 0 ) // ... nor a descendant of the container
+      {
+        //if($('.drop').has(e.target).length !=1 && $('.drop').css('display')=='block'){
+           $('.filter-drop.active').toggleClass('active').toggle();
+       // }
+      }
+  });
   $('.drop-item').on('click',function(){
     $(this).parent().parent().children('.drop').val($(this).attr('item-value'));
   });

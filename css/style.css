@@ -1417,7 +1417,7 @@ html[xmlns] .clearfix {
 .product-detail .right .featured-listing-name a{
 	text-decoration: none;
 	color: inherit;
-	line-height: 1.5;
+	line-height: 1;
 }
 .product-detail .right .featured-listing-feature{
 	padding-top:8px;
@@ -2622,6 +2622,9 @@ html[xmlns] .clearfix {
 	padding: 20px 0px;
 	border-bottom: 1px solid #c2c2c2;
 }
+.property-listing-area .right .actual-list .item:last-child{
+	border-bottom: 0px solid #c2c2c2;
+}
 .property-listing-area .right .actual-list .item .left-side{
 	width: 270px;
 	float: left;
@@ -2899,6 +2902,7 @@ html[xmlns] .clearfix {
 	float: right;
 	margin-top: 14px;
 	margin-left: 20px;
+	position: relative;
 }
 .education-listing-settings .filter-settings .sort span.text{
 	float: left;
@@ -2911,6 +2915,31 @@ html[xmlns] .clearfix {
 	padding-left: 5px;
 	padding-right: 5px;
 	line-height: 20px;
+}
+.education-listing-settings .filter-settings .sort .filter-drop{
+	width: 117px;
+	height: auto;
+	border: 1px solid #ffa800;
+	position: absolute;
+	top:24px;
+	left: 54px;
+	z-index: 10;
+	background: #fff;
+	display: none;
+}
+.education-listing-settings .filter-settings .sort .filter-drop .items{
+	width: 100%;
+	border-bottom: 1px solid #c2c2c2;
+	padding: 10px 0px;
+}
+.education-listing-settings .filter-settings .sort .filter-drop .items:last-child{
+	border-bottom: 0px solid #c2c2c2;
+}
+.education-listing-settings .filter-settings .sort .filter-drop .items a{
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
 }
 .education-listing-settings .filter-settings .sort .drop .text{
 	border-right: 1px solid #c2c2c2;
@@ -3043,6 +3072,7 @@ html[xmlns] .clearfix {
 	float: left;
 	margin-top: 14px;
 	margin-left: 20px;
+	position: relative;
 }
 .furniture-listing-settings .filter-settings .sort span.text{
 	float: left;
@@ -3060,6 +3090,31 @@ html[xmlns] .clearfix {
 	border-right: 1px solid #c2c2c2;
 	padding-right:10px;
 
+}
+.furniture-listing-settings .filter-settings .sort .filter-drop{
+	width: 117px;
+	height: auto;
+	border: 1px solid #ffa800;
+	position: absolute;
+	top:24px;
+	left: 54px;
+	z-index: 10;
+	background: #fff;
+	display: none;
+}
+.furniture-listing-settings .filter-settings .sort .filter-drop .items{
+	width: 100%;
+	border-bottom: 1px solid #c2c2c2;
+	padding: 10px 0px;
+}
+.furniture-listing-settings .filter-settings .sort .filter-drop .items:last-child{
+	border-bottom: 0px solid #c2c2c2;
+}
+.furniture-listing-settings .filter-settings .sort .filter-drop .items a{
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
 }
 .furniture-listing-settings .filter-settings .sort .drop .arrow{
 	background: url(../images/filter-down.png) 0px 0px no-repeat;

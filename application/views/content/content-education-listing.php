@@ -5,12 +5,31 @@
 					<div class='title'>Education Guid</div>
 					<div class='settings-edu'>
 						<div class="search-edu"><input	type="text" placeholder="Search Location"><div class="search-icon"></div></div>
-						<div class="sort"><div class="drop"><span class="text">Type</span><span class="arrow"></span></div></div>
+						<!--div class="sort"><div class="drop"><span class="text">Type</span><span class="arrow"></span></div></div-->
 					</div>
 				</div>
 				<div class="filter-settings">
 					<div class="no-of-item"><span>1-15</span> of 509</div>
-					<div class="sort"><span class="text">Short By</span><div class="drop"><span class="text">Most Expensive</span><span class="arrow"></span></div></div>
+					<div class="sort">
+						<span class="text">Short By</span>
+						<div class="drop">
+							<?php if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){ ?>
+							<span class="text">Relevance</span><span class="arrow"></span>
+							<?php }else if($this->uri->segment(2) == 'low'){ ?>
+							<span class="text">Price : Low to High</span><span class="arrow"></span>
+							<?php }else if($this->uri->segment(2) == 'high'){ ?>
+							<span class="text">Price : High to Low</span><span class="arrow"></span>
+							<?php } else if($this->uri->segment(2) == 'new') { ?>
+							<span class="text">Date : Latest First</span><span class="arrow"></span>
+							<?php } ?>
+						</div>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('education/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('education/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('education/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('education/new/')?>">Date : Latest First</a></div>
+						</div>
+					</div>
 				</div>
 				<div class="edu-listing clearfix">
 					<?php foreach ($records as $key){ ?>

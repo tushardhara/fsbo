@@ -2,7 +2,63 @@
 		<div class="container">
 			<div class="furniture-listing-settings">
 				<div class="filter-settings">
-					<div class="sort"><span class="text">Short By</span><div class="drop"><span class="text">Most Expensive</span><span class="arrow"></span></div></div>
+					<div class="sort">
+						<span class="text">Short By</span>
+						<div class="drop">
+							<?php if($this->uri->segment(3) == '' || is_numeric($this->uri->segment(3))){ ?>
+							<span class="text">Relevance</span><span class="arrow"></span>
+							<?php }else if($this->uri->segment(3) == 'low'){ ?>
+							<span class="text">Price : Low to High</span><span class="arrow"></span>
+							<?php }else if($this->uri->segment(3) == 'high'){ ?>
+							<span class="text">Price : High to Low</span><span class="arrow"></span>
+							<?php } else if($this->uri->segment(3) == 'new') { ?>
+							<span class="text">Date : Latest First</span><span class="arrow"></span>
+							<?php } ?>
+						</div>
+						<?php if($this->uri->segment(2) == 'bedroom'){ ?>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('furniture/bedroom/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/bedroom/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/bedroom/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/bedroom/new/')?>">Date : Latest First</a></div>
+						</div>
+						<?php }else if($this->uri->segment(2) == 'living-room'){ ?>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('furniture/living-room/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/living-room/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/living-room/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/living-room/new/')?>">Date : Latest First</a></div>
+						</div>
+						<?php }else if($this->uri->segment(2) == 'bathroom'){ ?>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('furniture/bathroom/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/bathroom/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/bathroom/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/bathroom/new/')?>">Date : Latest First</a></div>
+						</div>
+						<?php }else if($this->uri->segment(2) == 'dining-room'){ ?>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('furniture/dining-room/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/dining-room/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/dining-room/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/dining-room/new/')?>">Date : Latest First</a></div>
+						</div>
+						<?php }else if($this->uri->segment(2) == 'kitchen'){ ?>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('furniture/kitchen/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/kitchen/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/kitchen/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/kitchen/new/')?>">Date : Latest First</a></div>
+						</div>
+						<?php }else if($this->uri->segment(2) == 'miscellaneous'){ ?>
+						<div class="filter-drop">
+							<div class="items"><a href="<?php echo site_url('furniture/miscellaneous/')?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/miscellaneous/low/')?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/miscellaneous/high/')?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url('furniture/miscellaneous/new/')?>">Date : Latest First</a></div>
+						</div>
+						<?php } ?>
+					</div>
 					<div class="filter-list">
 						<?php if($this->uri->segment(2) == 'bedroom'){ ?>
 							<a href='<?php echo site_url('furniture/bedroom')?>' class="filter bed active">Bedroom</a>

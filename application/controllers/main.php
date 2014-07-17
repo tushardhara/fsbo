@@ -211,6 +211,33 @@ class Main extends CI_Controller {
 			$this->pagination->initialize($config);
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(2))->result(); 	
 			$content = 'content/content-education-listing';
+		}else if($this->uri->segment(2)=='low') {
+			$config['base_url'] = site_url('/education/');
+			$config['total_rows'] =  $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'))->num_rows();
+			$config['per_page'] = 8;
+			$config['num_links'] = 20; 
+			$config['uri_segment'] = 3;
+			$this->pagination->initialize($config);
+			$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+			$content = 'content/content-education-listing';
+		}else if($this->uri->segment(2)=='high') {
+			$config['base_url'] = site_url('/education/');
+			$config['total_rows'] =  $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'))->num_rows();
+			$config['per_page'] = 8;
+			$config['num_links'] = 20; 
+			$config['uri_segment'] = 3;
+			$this->pagination->initialize($config);
+			$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+			$content = 'content/content-education-listing';
+		}else if($this->uri->segment(2)=='new') {
+			$config['base_url'] = site_url('/education/');
+			$config['total_rows'] =  $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'))->num_rows();
+			$config['per_page'] = 8;
+			$config['num_links'] = 20; 
+			$config['uri_segment'] = 3;
+			$this->pagination->initialize($config);
+			$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+			$content = 'content/content-education-listing';
 		}else{
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_slug' => $this->uri->segment(2)))->result();
 			if(count ($data_set['records']) == 1){
@@ -240,7 +267,7 @@ class Main extends CI_Controller {
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_slug' => $this->uri->segment(2)))->result();
 			if(count ($data_set['records']) == 1){
 				$data_set['related_area'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_property_area_community' => $data_set['records'][0]->post_property_area_community),3)->result();
-				$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_price' => $data_set['records'][0]->post_price),8)->result();
+				$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_price' => $data_set['records'][0]->post_price),3)->result();
 				$content = 'content/content-property-detail';
 			}else{
 				$content = 'content/content-404';
@@ -256,59 +283,245 @@ class Main extends CI_Controller {
 		if($this->uri->segment(2) == ''){
 			$content = 'content/content-404';
 		}else if($this->uri->segment(2) == 'bedroom'){
-			$config['base_url'] = site_url('/furniture/bedroom');
-			$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bedroom'))->num_rows();
-			$config['per_page'] = 12;
-			$config['num_links'] = 20; 
-			$config['uri_segment'] = 3;
-			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bedroom'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
-			$content = 'content/content-furniture-listing';
+			if($this->uri->segment(3)=='' || is_numeric($this->uri->segment(3))){
+				$config['base_url'] = site_url('/furniture/bedroom');
+				$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 3;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='low') {
+				$config['base_url'] = site_url('/furniture/bedroom/low');
+				$config['total_rows'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='high'){
+				$config['base_url'] = site_url('/furniture/bedroom/high');
+				$config['total_rows'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='new'){
+				$config['base_url'] = site_url('/furniture/bedroom/new');
+				$config['total_rows'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bedroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else{
+				$content = 'content/content-404';
+			}
 		}else if($this->uri->segment(2) == 'living-room'){
-			$config['base_url'] = site_url('/furniture/living-room');
-			$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Living room'))->num_rows();
-			$config['per_page'] = 12;
-			$config['num_links'] = 20;
-			$config['uri_segment'] = 3; 
-			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Living room'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
-			$content = 'content/content-furniture-listing';
+			if($this->uri->segment(3)=='' || is_numeric($this->uri->segment(3))){
+				$config['base_url'] = site_url('/furniture/living-room');
+				$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20;
+				$config['uri_segment'] = 3; 
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='low') {
+				$config['base_url'] = site_url('/furniture/living-room/low');
+				$config['total_rows'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='high'){
+				$config['base_url'] = site_url('/furniture/living-room/high');
+				$config['total_rows'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='new'){
+				$config['base_url'] = site_url('/furniture/living-room/new');
+				$config['total_rows'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Living room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else{
+				$content = 'content/content-404';
+			}
 		}else if($this->uri->segment(2) == 'bathroom'){
-			$config['base_url'] = site_url('/furniture/bathroom');
-			$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bathroom'))->num_rows();
-			$config['per_page'] = 12;
-			$config['num_links'] = 20; 
-			$config['uri_segment'] = 3;
-			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bathroom'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
-			$content = 'content/content-furniture-listing';
+			if($this->uri->segment(3)=='' || is_numeric($this->uri->segment(3))){
+				$config['base_url'] = site_url('/furniture/bathroom');
+				$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 3;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='low') {
+				$config['base_url'] = site_url('/furniture/bathroom/low');
+				$config['total_rows'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='high'){
+				$config['base_url'] = site_url('/furniture/bathroom/high');
+				$config['total_rows'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='new'){
+				$config['base_url'] = site_url('/furniture/bathroom/new');
+				$config['total_rows'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'bathroom','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else{
+				$content = 'content/content-404';
+			}
 		}else if($this->uri->segment(2) == 'dining-room'){
-			$config['base_url'] = site_url('/furniture/dining-room');
-			$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Dining room'))->num_rows();
-			$config['per_page'] = 12;
-			$config['num_links'] = 20; 
-			$config['uri_segment'] = 3;
-			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Dining room'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
-			$content = 'content/content-furniture-listing';
+			if($this->uri->segment(3)=='' || is_numeric($this->uri->segment(3))){
+				$config['base_url'] = site_url('/furniture/dining-room');
+				$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 3;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='low') {
+				$config['base_url'] = site_url('/furniture/dining-room/low');
+				$config['total_rows'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='high'){
+				$config['base_url'] = site_url('/furniture/dining-room/high');
+				$config['total_rows'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='new'){
+				$config['base_url'] = site_url('/furniture/dining-room/new');
+				$config['total_rows'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Dining room','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else{
+				$content = 'content/content-404';
+			}
 		}else if($this->uri->segment(2) == 'kitchen'){
-			$config['base_url'] = site_url('/furniture/kitchen');
-			$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Kitchen'))->num_rows();
-			$config['per_page'] = 12;
-			$config['num_links'] = 20; 
-			$config['uri_segment'] = 3;
-			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Kitchen'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
-			$content = 'content/content-furniture-listing';
+			if($this->uri->segment(3)=='' || is_numeric($this->uri->segment(3))){
+				$config['base_url'] = site_url('/furniture/kitchen');
+				$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 3;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='low') {
+				$config['base_url'] = site_url('/furniture/kitchen/low');
+				$config['total_rows'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='high'){
+				$config['base_url'] = site_url('/furniture/kitchen/high');
+				$config['total_rows'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='new'){
+				$config['base_url'] = site_url('/furniture/kitchen/new');
+				$config['total_rows'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Kitchen','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else{
+				$content = 'content/content-404';
+			}
 		}else if($this->uri->segment(2) == 'miscellaneous'){
-			$config['base_url'] = site_url('/furniture/miscellaneous');
-			$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous'))->num_rows();
-			$config['per_page'] = 12;
-			$config['num_links'] = 20; 
-			$config['uri_segment'] = 3;
-			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
-			$content = 'content/content-furniture-listing';
+			if($this->uri->segment(3)=='' || is_numeric($this->uri->segment(3))){
+				$config['base_url'] = site_url('/furniture/miscellaneous');
+				$config['total_rows'] = $this->db->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 3;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(3))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='low') {
+				$config['base_url'] = site_url('/furniture/miscellaneous/low');
+				$config['total_rows'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'ASC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='high'){
+				$config['base_url'] = site_url('/furniture/miscellaneous/high');
+				$config['total_rows'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_price', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else if($this->uri->segment(3)=='new'){
+				$config['base_url'] = site_url('/furniture/miscellaneous/new');
+				$config['total_rows'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post',array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'))->num_rows();
+				$config['per_page'] = 12;
+				$config['num_links'] = 20; 
+				$config['uri_segment'] = 4;
+				$this->pagination->initialize($config);
+				$data_set['records'] = $this->db->order_by('post_date', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => 'Miscellaneous','post_status'=>'0'), $config['per_page'] ,$this->uri->segment(4))->result(); 	
+				$content = 'content/content-furniture-listing';
+			}else{
+				$content = 'content/content-404';
+			}
 		}else{
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_slug' => $this->uri->segment(2)))->result();
 			if(count ($data_set['records']) == 1){
