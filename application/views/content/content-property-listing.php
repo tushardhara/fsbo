@@ -74,10 +74,10 @@
 									<?php } ?>
 									<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
 									<div class="address"><?php echo $key->post_property_area_address;?></div>
-									<div class="listedby">
+									<!--div class="listedby">
 										<div class="top clearfix"><div class="name"><p>Listed by <span>Adam Smith</span></p></div><div class="compare active"></div></div>
 										<div class="bottom"><a href="#">See all Adam Smith Listing</a></div>
-									</div>
+									</div-->
 								</div>
 							</div>
 							<?php $location =$location."['$key->post_title',$key->post_property_area_lat,$key->post_property_area_log,$i]," ?>

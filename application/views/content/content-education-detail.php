@@ -10,6 +10,14 @@
 		<div class="container">
 			<div class="product-detail">
 				<?php foreach ($records as $key) { ?>
+				<?php foreach ($this->post->get_user_data($key->ID) as $user_key) {
+						$email = $user_key->user_email;
+						$user_login = $user_key->user_login;
+						$user_title = $user_key->user_title;
+						$user_type = $user_key->user_type;
+						$user_slug = $user_key->user_slug;
+					}
+				?>
 				<div class="left">
 					<div class="big-edu-image">
 						<?php if(isset($user_image_detail)){ 
@@ -65,10 +73,12 @@
 						<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo site_url('education/'.$key->post_slug);?>" class="popup facebook-share"></a>
 						<a href="http://twitter.com/home?status=<?php echo shortDescription($key->post_description)?><?php echo site_url('education/'.$key->post_slug);?>" class="popup twitter-share"></a>
 					</div>
-					<div class="settings no-border">
+					<div class="rrssb-buttons settings no-border">
 						<div class="wishlist"><a href="<?php echo site_url('add_wishlist?ID='.$key->ID)?>" target="_blank">Wish List</a></div>
 						<div class="print"><a href="javascript:window.print()">Print</a></div>
-						<div class="contact">Contact Agents</div>
+						<?php if($this->session->userdata('logged_in')){ ?>
+						<div class="contact"><a href="mailto:<?php echo $email;?>?subject=&amp;body=" class="popup contact" target="_blank">Contact Agents</a></div>
+						<?php } ?>
 					</div>
 				</div>
 				<?php } ?>

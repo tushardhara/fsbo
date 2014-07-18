@@ -120,12 +120,8 @@ Class User extends CI_Model{
     $this->db->from('fsbo_users');
     return $this->db->count_all_results();
   }
-  function user_list(){
-     $this->db->select('*');
-     $this->db->from('fsbo_users');
-     $this->db->where('user_status','0');
-     $this->db->order_by("ID", "desc"); 
-     $query = $this->db->get();
+  function user_list(){ 
+     $query = $this->db->query("SELECT * FROM fsbo_users WHERE ID IN (SELECT post_user_id FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_status='0' GROUP BY post_user_id) AND user_status='0'");
      if($query->num_rows()){
         return $query->result();
      }else{

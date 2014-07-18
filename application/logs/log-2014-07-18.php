@@ -87,3 +87,10 @@ ERROR - 2014-07-18 07:02:24 --> Severity: Warning  --> session_destroy(): Trying
 ERROR - 2014-07-18 09:29:01 --> Query error: Unknown column 'f' in 'where clause'
 ERROR - 2014-07-18 11:47:05 --> Severity: Notice  --> Undefined property: stdClass::$post_seo_descpription C:\Users\Administrator\Documents\GitHub\fsbo\application\views\header.php 215
 ERROR - 2014-07-18 11:47:05 --> Severity: Notice  --> Undefined property: stdClass::$post_seo_descpription C:\Users\Administrator\Documents\GitHub\fsbo\application\views\header.php 249
+ERROR - 2014-07-18 15:02:42 --> Severity: Notice  --> Array to string conversion C:\Users\Administrator\Documents\GitHub\fsbo\application\views\content\content-property-detail.php 103
+ERROR - 2014-07-18 15:23:25 --> Query error: Table 'fsbo.fsbo_user' doesn't exist
+ERROR - 2014-07-18 15:23:44 --> Query error: Unknown column 'post_slug' in 'where clause'
+ERROR - 2014-07-18 15:25:03 --> Query error: Unknown column 'post_slug' in 'where clause'
+ERROR - 2014-07-18 16:20:21 --> Query error: Unknown column 'tushar' in 'where clause'
+ERROR - 2014-07-18 16:22:34 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\''tushar'\') AND post_type IN('property','furniture','education')  AND post_sta' at line 1
+ERROR - 2014-07-18 16:58:21 --> Severity: Warning  --> session_destroy(): Trying to destroy uninitialized session C:\Users\Administrator\Documents\GitHub\fsbo\application\controllers\login.php 146

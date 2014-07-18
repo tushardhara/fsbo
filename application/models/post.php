@@ -450,5 +450,21 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     $this->db->where('ID', $ID);
     $this->db->update('fsbo_post', $data);
   }
+  function get_user_data($ID){
+    $query = $this->db->query("SELECT * FROM fsbo_users WHERE ID IN (SELECT post_user_id FROM fsbo_post WHERE ID=$ID)");
+    if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     }
+  }
+  function show_user_slug_all($slug){
+    $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+    if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     } 
+  }
 }
 ?>

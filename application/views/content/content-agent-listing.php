@@ -9,7 +9,16 @@
 				<?php foreach ($user_list as $key) { ?>
 				<div class="item">
 					<div class="left">
-						<div class="thumb"><img src="images/agent.png"></div>
+						<div class="thumb">
+							<?php 
+								$attached_image = array(
+						          'src' => 'images/agent.png' ,
+						          'alt' => 'fsbo',
+						          'title' => 'fsbo',
+								);
+								echo img($attached_image);
+							?>
+						</div>
 					</div>
 					<div class="mid">
 						<?php if($key->user_type == 'user') {?>
@@ -27,11 +36,15 @@
 						<?php } ?>
 						<p><?php echo $key->user_detail?></p>
 					</div>
-					<div class="right">
+					<div class="rrssb-buttons right">
+						<?php if($this->session->userdata('logged_in')){ ?>
 						<div class="detail">Phone: <span><?php echo $key->user_phone;?></span></div>
 						<div class="detail">Email: <span><?php echo $key->user_email;?></span></div>
-						<a href="#" class="contact">View All Listing</a>
-						<a href="#" class="contact">Contact Agent</a>
+						<?php } ?>
+						<a href="<?php echo site_url('agent/'.$key->user_slug)?>" class="contact">View All Listing</a>
+						<?php if($this->session->userdata('logged_in')){ ?>
+						<a href="mailto:<?php echo $key->user_email;?>?subject=&amp;body=" class="popup contact" target="_blank">Contact Agent</a>
+						<?php } ?>
 					</div>
 				</div>
 				<?php } ?>
