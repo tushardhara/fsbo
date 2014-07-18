@@ -1,3 +1,11 @@
+	<?php if(isset($user_image_mylist)){ 
+			if(!empty($user_image_mylist)){
+				foreach ($user_image_mylist as $key) {
+					$image[$key->post_image_id] = $key->post_image_url;
+				}
+			}
+		} 
+	?>
 	<div class="home-page-slider">
 		<div id="home-slider" class="owl-carousel owl-theme"> 
 		  	<div class="item"><img src="images/fullimage1.jpg" alt="The Last of us"></div>
@@ -60,9 +68,16 @@
 							<div class="item">
 								<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 									<div class="thumb">
-										<?php 
+										<?php if(!empty($image[$key->ID])) {
+												$image_url=$image[$key->ID]; 
+												$info = pathinfo($image_url);
+												$file_name =  basename($image_url,'.'.$info['extension']);
+												$file_url = 'upload/'.$file_name."_270.".$info['extension'];
+											}else{
+												$file_url = 'images/dummy-feature-small.png';
+											}
 											$attached_image = array(
-										          'src' => 'images/dummy-feature-small.png',
+										          'src' => $file_url ,
 										          'alt' => 'fsbo',
 										          'title' => 'fsbo',
 											);
@@ -79,9 +94,9 @@
 									<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 								</div>
 								<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
-								<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo ($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+								<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo ($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
 								<?php } else { ?>
-								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo $key->post_price;?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
+								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
 								<?php } ?>
 								<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
 							</div>
@@ -92,9 +107,16 @@
 							<div class="item">
 								<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 									<div class="thumb">
-										<?php 
+										<?php if(!empty($image[$key->ID])) {
+												$image_url=$image[$key->ID]; 
+												$info = pathinfo($image_url);
+												$file_name =  basename($image_url,'.'.$info['extension']);
+												$file_url = 'upload/'.$file_name."_538.".$info['extension'];
+											}else{
+												$file_url = 'images/images/dummy-feature-big.png';
+											}
 											$attached_image = array(
-										          'src' => 'images/dummy-feature-big.png',
+										          'src' => $file_url ,
 										          'alt' => 'fsbo',
 										          'title' => 'fsbo',
 											);
@@ -111,9 +133,9 @@
 									<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 								</div>
 								<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
-								<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo ($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+								<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
 								<?php } else { ?>
-								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo $key->post_price;?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
+								<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
 								<?php } ?>
 								<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
 								<div class="desc"><?php echo $key->post_description;?></div>
@@ -134,12 +156,19 @@
 								<div class="item">
 									<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 										<div class="thumb">
-											<?php 
-											$attached_image = array(
-										          'src' => 'images/dummy-feature-small.png',
-										          'alt' => 'fsbo',
-										          'title' => 'fsbo',
-											);
+											<?php if(!empty($image[$key->ID])) {
+													$image_url=$image[$key->ID]; 
+													$info = pathinfo($image_url);
+													$file_name =  basename($image_url,'.'.$info['extension']);
+													$file_url = 'upload/'.$file_name."_270.".$info['extension'];
+												}else{
+													$file_url = 'images/dummy-feature-small.png';
+												}
+												$attached_image = array(
+											          'src' => $file_url ,
+											          'alt' => 'fsbo',
+											          'title' => 'fsbo',
+												);
 											?>
 											<?php echo img($attached_image);?>
 											<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
@@ -163,12 +192,19 @@
 								<div class="item">
 									<a href="<?php echo site_url('furniture/'.$key->post_slug);?>">
 										<div class="thumb">
-											<?php 
-											$attached_image = array(
-										          'src' => 'images/dummy-feature-small.png',
-										          'alt' => 'fsbo',
-										          'title' => 'fsbo',
-											);
+											<?php if(!empty($image[$key->ID])) {
+													$image_url=$image[$key->ID]; 
+													$info = pathinfo($image_url);
+													$file_name =  basename($image_url,'.'.$info['extension']);
+													$file_url = 'upload/'.$file_name."_270.".$info['extension'];
+												}else{
+													$file_url = 'images/dummy-feature-small.png';
+												}
+												$attached_image = array(
+											          'src' => $file_url ,
+											          'alt' => 'fsbo',
+											          'title' => 'fsbo',
+												);
 											?>
 											<?php echo img($attached_image);?>
 											<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
@@ -177,7 +213,7 @@
 									<?php $date = date_create($key->post_date); ?>
 									<div class="featured-listing-date"><?php echo date_format($date, 'F j, Y');?></div>
 									<div class="featured-listing-name"><?php echo $key->post_furniture_type;?></div>
-									<div class="featured-listing-price"><?php echo $key->post_price;?> QR</div>
+									<div class="featured-listing-price"><?php echo round($key->post_price);?> QR</div>
 									<a class="featured-listing-view" href="<?php echo site_url('furniture/'.$key->post_slug);?>">View Details</a>
 								</div>
 							<?php } ?>
@@ -197,9 +233,16 @@
 							<a href="<?php echo site_url('education/'.$key->post_slug);?>">
 								<div class="education-list-item <?php echo $i==1 ? 'no-padd-top':'';?> clearfix">
 									<div class="thumb-area">
-										<?php 
+										<?php if(!empty($image[$key->ID])) {
+												$image_url=$image[$key->ID]; 
+												$info = pathinfo($image_url);
+												$file_name =  basename($image_url,'.'.$info['extension']);
+												$file_url = 'upload/'.$file_name."_100.".$info['extension'];
+											}else{
+												$file_url = 'images/edu-logo.png';
+											}
 											$attached_image = array(
-										          'src' => 'images/edu-logo.png',
+										          'src' => $file_url ,
 										          'alt' => 'fsbo',
 										          'title' => 'fsbo',
 											);
@@ -227,9 +270,16 @@
 							<a href="<?php echo site_url('education/'.$key->post_slug);?>">
 								<div class="education-list-item <?php echo $i==1 ? 'border-top':'';?> clearfix">
 									<div class="thumb-area">
-										<?php 
+										<?php if(!empty($image[$key->ID])) {
+												$image_url=$image[$key->ID]; 
+												$info = pathinfo($image_url);
+												$file_name =  basename($image_url,'.'.$info['extension']);
+												$file_url = 'upload/'.$file_name."_100.".$info['extension'];
+											}else{
+												$file_url = 'images/edu-logo.png';
+											}
 											$attached_image = array(
-										          'src' => 'images/edu-logo.png',
+										          'src' => $file_url ,
 										          'alt' => 'fsbo',
 										          'title' => 'fsbo',
 											);
@@ -257,9 +307,16 @@
 							<a href="<?php echo site_url('education/'.$key->post_slug);?>">
 								<div class="education-list-item <?php echo $i==1 ? 'border-top':'';?> <?php echo $i==3 ? 'no-border-bottom':'';?> clearfix">
 									<div class="thumb-area">
-										<?php 
+										<?php if(!empty($image[$key->ID])) {
+												$image_url=$image[$key->ID]; 
+												$info = pathinfo($image_url);
+												$file_name =  basename($image_url,'.'.$info['extension']);
+												$file_url = 'upload/'.$file_name."_100.".$info['extension'];
+											}else{
+												$file_url = 'images/edu-logo.png';
+											}
 											$attached_image = array(
-										          'src' => 'images/edu-logo.png',
+										          'src' => $file_url ,
 										          'alt' => 'fsbo',
 										          'title' => 'fsbo',
 											);

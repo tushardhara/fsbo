@@ -1,3 +1,11 @@
+	<?php if(isset($user_image_mylist)){ 
+			if(!empty($user_image_mylist)){
+				foreach ($user_image_mylist as $key) {
+					$image[$key->post_image_id] = $key->post_image_url;
+				}
+			}
+		} 
+	?>
 	<div class="home-main clearfix">
 		<div class="container">
 			<div class="education-listing-settings">
@@ -36,9 +44,16 @@
 						<div class="edu-item-list">
 							<div class="left">
 								<a href="<?php echo site_url('education/'.$key->post_slug);?>">
-									<?php 
+									<?php if(!empty($image[$key->ID])) {
+													$image_url=$image[$key->ID]; 
+													$info = pathinfo($image_url);
+													$file_name =  basename($image_url,'.'.$info['extension']);
+													$file_url = 'upload/'.$file_name."_180.".$info['extension'];
+										}else{
+											$file_url = 'images/edu-small-image.png';
+										}
 										$attached_image = array(
-									          'src' => 'images/edu-small-image.png',
+									          'src' => $file_url ,
 									          'alt' => 'fsbo',
 									          'title' => 'fsbo',
 										);
@@ -54,7 +69,7 @@
 								<div class="item"><div>Type: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_type;?></div></div>
 								<div class="item"><div>Admission Age: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_age;?></div></div>
 								<div class="item"><div>Gender: </div><div class="no"></div><div class="ans"><?php echo $key->post_education_gender;?></div></div>
-								<div class="item"><div>Registration Fee: </div><div class="yes"></div><div class="ans"><?php echo $key->post_price;?></div></div>
+								<div class="item"><div>Registration Fee: </div><div class="yes"></div><div class="ans"><?php echo round($key->post_price);?></div></div>
 								<div class="item"><div>Community: </div><div class="no"></div><div class="ans"><?php echo $key->post_education_community;?></div></div>
 								<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="see-more">See More</a>
 							</div>

@@ -6,70 +6,35 @@
 				</div>
 			</div>
 			<div class="agent-list">
+				<?php foreach ($user_list as $key) { ?>
 				<div class="item">
 					<div class="left">
 						<div class="thumb"><img src="images/agent.png"></div>
 					</div>
 					<div class="mid">
-						<h1>APEX  Real Estate</h1>
-						<p>Apex Qatar was founded in 2009 to be one of the leading companies in real estate brokerage and real estate marketing, and operating the company through professional team and trainer to meet all the needs of customers with the best options available in the real estate market, the company provides the best means of marketing and most widespread of through free marketing services obtained by the client when the contract with the company</p>
+						<?php if($key->user_type == 'user') {?>
+						<h1><?php echo $key->user_login?></h1>
+						<?php }else if($key->user_type == 'agent'){ ?>
+							<?php if(!empty($key->user_title)) { ?>
+								<h1><?php echo $key->user_title;?></h1>
+							<?php } else { ?>
+								<h1><?php echo $key->user_login?></h1>
+							<?php } ?>
+						<?php }else if($key->user_type == 'admin'){ ?>
+						<h1><?php echo $key->user_login?></h1>
+						<?php }else if($key->user_type == 'moderator'){ ?>
+						<h1><?php echo $key->user_login?></h1>
+						<?php } ?>
+						<p><?php echo $key->user_detail?></p>
 					</div>
 					<div class="right">
-						<div class="detail">Phone: <span>8374571458</span></div>
-						<div class="detail">Email: <span>aaa@gmail.com</span></div>
-						<div class="detail">P.O. Box 32337, Doha, Qatar</div>
+						<div class="detail">Phone: <span><?php echo $key->user_phone;?></span></div>
+						<div class="detail">Email: <span><?php echo $key->user_email;?></span></div>
 						<a href="#" class="contact">View All Listing</a>
 						<a href="#" class="contact">Contact Agent</a>
 					</div>
 				</div>
-				<div class="item">
-					<div class="left">
-						<div class="thumb"><img src="images/agent.png"></div>
-					</div>
-					<div class="mid">
-						<h1>APEX  Real Estate</h1>
-						<p>Apex Qatar was founded in 2009 to be one of the leading companies in real estate brokerage and real estate marketing, and operating the company through professional team and trainer to meet all the needs of customers with the best options available in the real estate market, the company provides the best means of marketing and most widespread of through free marketing services obtained by the client when the contract with the company</p>
-					</div>
-					<div class="right">
-						<div class="detail">Phone: <span>8374571458</span></div>
-						<div class="detail">Email: <span>aaa@gmail.com</span></div>
-						<div class="detail">P.O. Box 32337, Doha, Qatar</div>
-						<a href="#" class="contact">View All Listing</a>
-						<a href="#" class="contact">Contact Agent</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="left">
-						<div class="thumb"><img src="images/agent.png"></div>
-					</div>
-					<div class="mid">
-						<h1>APEX  Real Estate</h1>
-						<p>Apex Qatar was founded in 2009 to be one of the leading companies in real estate brokerage and real estate marketing, and operating the company through professional team and trainer to meet all the needs of customers with the best options available in the real estate market, the company provides the best means of marketing and most widespread of through free marketing services obtained by the client when the contract with the company</p>
-					</div>
-					<div class="right">
-						<div class="detail">Phone: <span>8374571458</span></div>
-						<div class="detail">Email: <span>aaa@gmail.com</span></div>
-						<div class="detail">P.O. Box 32337, Doha, Qatar</div>
-						<a href="#" class="contact">View All Listing</a>
-						<a href="#" class="contact">Contact Agent</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="left">
-						<div class="thumb"><img src="images/agent.png"></div>
-					</div>
-					<div class="mid">
-						<h1>APEX  Real Estate</h1>
-						<p>Apex Qatar was founded in 2009 to be one of the leading companies in real estate brokerage and real estate marketing, and operating the company through professional team and trainer to meet all the needs of customers with the best options available in the real estate market, the company provides the best means of marketing and most widespread of through free marketing services obtained by the client when the contract with the company</p>
-					</div>
-					<div class="right">
-						<div class="detail">Phone: <span>8374571458</span></div>
-						<div class="detail">Email: <span>aaa@gmail.com</span></div>
-						<div class="detail">P.O. Box 32337, Doha, Qatar</div>
-						<a href="#" class="contact">View All Listing</a>
-						<a href="#" class="contact">Contact Agent</a>
-					</div>
-				</div>
+				<?php } ?>
 			</div> 
 		</div>
 	</div>

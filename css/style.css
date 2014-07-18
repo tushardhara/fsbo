@@ -410,6 +410,8 @@ header .register-login li a:first-child{
 }
 .home-main .left-main .listing .featured-listing-left .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .home-main .left-main .listing .featured-listing-left .item .thumb:hover img{
 	opacity: 1;
@@ -537,6 +539,8 @@ header .register-login li a:first-child{
 }
 .home-main .left-main .listing .featured-listing-center .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 417px;
 }
 .home-main .left-main .listing .featured-listing-center .item .thumb:hover img{
 	opacity: 1;
@@ -708,6 +712,8 @@ header .register-login li a:first-child{
 }
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb:hover img{
 	opacity: 1;
@@ -778,6 +784,8 @@ header .register-login li a:first-child{
 }
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb:hover img{
 	opacity: 1;
@@ -877,6 +885,10 @@ header .register-login li a:first-child{
 	width: 95px;
 	height: 95px;
 	border: 1px solid #a1a1a1;
+}
+.home-main .right-main .side-container .education-list .education-list-item .thumb-area img{
+	width: 100%;
+	height: 95px;
 }
 .home-main .right-main .side-container .education-list .education-list-item .text-area{
 	float: left;
@@ -1838,6 +1850,8 @@ html[xmlns] .clearfix {
 }
 .product-detail-left .similar-area .list .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .product-detail-left .similar-area .list .item .thumb:hover img{
 	opacity: 1;
@@ -1972,6 +1986,8 @@ html[xmlns] .clearfix {
 }
 .product-detail-right .similar-area .list .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .product-detail-right .similar-area .list .item .thumb:hover img{
 	opacity: 1;
@@ -2157,6 +2173,8 @@ html[xmlns] .clearfix {
 }
 .product-detail-full .list .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .product-detail-full .list .item .thumb:hover img{
 	opacity: 1;
@@ -2218,6 +2236,14 @@ html[xmlns] .clearfix {
 	width: 307px;
 	height: auto;
 	float: left;
+}
+.product-detail .left .big-edu-image img{
+	width: 307px;
+	height: 270px;
+	opacity: 0.6;
+}
+.product-detail .left .big-edu-image img:hover{
+	opacity: 1;
 }
 .product-detail .left .info{
 	width: 300px;
@@ -2318,6 +2344,8 @@ html[xmlns] .clearfix {
 }
 .edu-detail-full .list .item .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height:164px;
 }
 .edu-detail-full .list .item .thumb:hover img{
 	opacity: 1;
@@ -2982,6 +3010,14 @@ html[xmlns] .clearfix {
 	width: 180px;
 	height: 164px;
 }
+.education-listing-settings .edu-listing .edu-item-list .left a img{
+	width: 180px;
+	height: 164px;
+	opacity: 0.6;
+}
+.education-listing-settings .edu-listing .edu-item-list .left a img:hover{
+	opacity: 1;
+}
 .education-listing-settings .edu-listing .edu-item-list .mid{
 	float: left;
 	width: 560px;
@@ -3221,6 +3257,8 @@ html[xmlns] .clearfix {
 }
 .furniture-listing-settings .furniture-listing .furniture-item-list .furniture-item-list .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .furniture-listing-settings .furniture-listing .furniture-item-list .furniture-item-list .thumb:hover img{
 	opacity: 1;
@@ -3804,7 +3842,7 @@ html[xmlns] .clearfix {
 	font-family: 'nexa_lightregular';
 	font-size: 11px;
 	color: #000;
-	float: left;
+	display: block;
 }
 .agent-list .item .right .detail span{
 	font-family: 'nexa_lightregular';
@@ -4508,6 +4546,8 @@ top: -12px;
 }
 .my-property-list .item .left-side .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .my-property-list .item .left-side .thumb:hover img{
 	opacity: 1;
@@ -4755,6 +4795,8 @@ top: -12px;
 }
 .wish-property-list .item .left-side .thumb img{
 	opacity: 0.6;
+	width: 100%;
+	height: 200px;
 }
 .wish-property-list .item .left-side .thumb:hover img{
 	opacity: 1;
@@ -4793,7 +4835,7 @@ top: -12px;
 	list-style: none;
 	height: 18px;
 	border-right:1px solid #c2c2c2;
-	padding: 0px 17px;
+	padding: 0px 15px;
 }
 .wish-property-list .item .mid-side .featured-listing-feature li:last-child{
 	border-right: 0px solid #c2c2c2;
@@ -5355,7 +5397,24 @@ top: -12px;
 .upload-area .left .filed:nth-last-child(1){
 	border-bottom:1px solid #c2c2c2;
 }
-
+.upload-area .left .filed .image_thumb{
+	float: left;
+	position: relative;
+	width: 100px;
+	height: 100px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 10px;
+}
+.upload-area .left .filed .image_thumb .delete-image{
+	position: absolute;
+	top:11px;
+	right: 0px;
+	background: url(../images/icon-delete.png);
+	width: 18px;
+	height: 21px;
+	cursor: pointer;
+}
 .upload-area .left .filed input[type="text"],.upload-area .left .filed input[type="password"]{
 	width: 96%;
 	height: 50px;

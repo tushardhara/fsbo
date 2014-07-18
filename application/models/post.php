@@ -103,6 +103,14 @@ Class Post extends CI_Model{
        return false;
      }
   }
+  function show_admin_all_image(){
+    $query=$this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN(SELECT ID FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_status='0' ORDER BY ID DESC) AND post_status='0' GROUP BY post_image_id ORDER BY post_image_id DESC");
+     if($query->num_rows()){
+      return $query->result();
+    }else{
+     return false;
+    }
+  }
   function show_user_all($ID){
      $this->db->select('*');
      $this->db->from('fsbo_post');
@@ -116,6 +124,14 @@ Class Post extends CI_Model{
      }else{
        return false;
      }
+  }
+   function show_user_all_image($ID){
+    $query=$this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN(SELECT ID FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_user_id=$ID AND post_status='0' ORDER BY ID DESC) AND post_status='0' GROUP BY post_image_id ORDER BY post_image_id DESC");
+     if($query->num_rows()){
+      return $query->result();
+    }else{
+     return false;
+    }
   }
   function get_post_type($ID){
      $this->db->select('post_type');
@@ -355,6 +371,84 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     }else{
      return false;
     }
+  }
+  function show_home_image($ID_1,$ID_2,$ID_3,$ID_4,$ID_5,$ID_6,$ID_7,$ID_8,$ID_9,$ID_10,$ID_11,$ID_12,$ID_13,$ID_14,$ID_15,$ID_16,$ID_17,$ID_18){
+     $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN($ID_1,$ID_2,$ID_3,$ID_4,$ID_5,$ID_6,$ID_7,$ID_8,$ID_9,$ID_10,$ID_11,$ID_12,$ID_13,$ID_14,$ID_15,$ID_16,$ID_17,$ID_18) AND post_status='0' GROUP BY post_image_id ORDER BY post_image_id DESC");
+    if($query->num_rows()){
+      return $query->result();
+    }else{
+     return false;
+    }
+  }
+  function add_wishlist(
+    $post_type,
+    $post_user_id,
+    $post_user_type,
+    $wishlist_ID
+  ){
+    $data = array(
+      'post_type' => $post_type,
+      'post_user_id' =>$post_user_id,
+      'post_user_type' =>$post_user_type,
+      'wishlist_ID' =>$wishlist_ID,
+      'post_date' => date("Y-m-d H:i:s"),
+      'post_status' => '0',
+    );
+    $check=$this->db->insert('fsbo_post', $data);
+    if($check){
+      return $this->db->insert_id();
+    }else{
+      return false;
+    }
+  }
+  function show_all_wishlist($ID){
+    $query = $this->db->query("SELECT * FROM fsbo_post WHERE ID IN (SELECT wishlist_ID FROM fsbo_post WHERE post_user_id=$ID and post_type = 'wishlist' and post_status = '0')");
+     if($query->num_rows()){
+      return $query->result();
+    }else{
+     return false;
+    }
+  }
+  function show_all_image_wishlist($ID){
+    $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN(SELECT ID FROM fsbo_post WHERE ID IN (SELECT wishlist_ID FROM fsbo_post WHERE post_user_id=$ID and post_type = 'wishlist' and post_status = '0')) AND post_status='0' GROUP BY post_image_id ORDER BY post_image_id DESC");
+     if($query->num_rows()){
+      return $query->result();
+    }else{
+     return false;
+    }
+  }
+  function show_image($slug){
+     $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN (SELECT ID FROM fsbo_post WHERE post_slug='$slug') AND post_status='0' ORDER BY post_image_id DESC");
+     if($query->num_rows()){
+        return $query->result();
+      }else{
+       return false;
+      }
+  }
+  function add_batch_image($data){
+    $this->db->insert_batch('fsbo_post', $data); 
+  }
+  function show_post_images($ID){
+     $this->db->select('*');
+     $this->db->from('fsbo_post');
+     $this->db->where_in('post_type', $names = array('attachment'));
+     $this->db->where("post_image_id", $ID);
+     $this->db->where('post_status','0'); 
+     $query = $this->db->get();
+     if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     }
+  }
+  function delete_image($ID,$post_image_id){
+    $data = array(
+        'post_status' => '1',
+        'post_modified' => date("Y-m-d H:i:s"),
+      );
+    $this->db->where('post_image_id', $post_image_id);
+    $this->db->where('ID', $ID);
+    $this->db->update('fsbo_post', $data);
   }
 }
 ?>

@@ -69,10 +69,13 @@ $route["modify_option"] = "modify/modify_option";
 $route["modify_property/(:any)"] = "modify/modify_property/$1";
 $route["modify_education/(:any)"] = "modify/modify_education/$1";
 $route["modify_furniture/(:any)"] = "modify/modify_furniture/$1";
-$route["delete_post/(:any)"] = "modify/delete_post/$1";
+$route["delete_image/(:any)"] = "modify/delete_image/$1";
+$route["delete_image"] = "modify/delete_image";
 $route["add_property"] = "add/add_property";
 $route["add_furniture"] = "add/add_furniture";
 $route["add_education"] = "add/add_education";
+$route["add_wishlist"] = "add/add_wishlist";
+$route["test"] = "test";
 $route['404_override'] = '';
 
 

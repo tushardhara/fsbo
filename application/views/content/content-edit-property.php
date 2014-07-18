@@ -41,7 +41,7 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('modify_property/'.$ID); ?>">
+				<form method="post" action="<?php echo site_url('modify_property/'.$ID); ?>" enctype="multipart/form-data">
 				<div class="left">
 					<h1>Property</h1>
 					<div class="filed">
@@ -165,6 +165,26 @@
 					</div>
 					<div class="filed">
 						<input	type="text" placeholder="Longitude" name='post_property_area_log' value="<?php echo $post_property_area_log; ?>">
+					</div>
+					<div class="filed">
+						<input type="file" name="files[]" multiple />
+					</div>
+					<div class="filed clearfix">
+					<?php if(isset($image_list)){ 	
+							if(!empty($image_list)) {
+								foreach ($image_list as $key ) {	
+									$image_url=$key->post_image_url; 
+									$info = pathinfo($image_url);
+									$file_name =  basename($image_url,'.'.$info['extension']);
+					?>
+						<div class="image_thumb">
+							<img src="<?php echo site_url('upload/'.$file_name."_100.".$info['extension'])?>">
+							<a href="<?php echo site_url('delete_image?ID='.$key->ID."&post_image_id=".$ID)?>"><div class="delete-image"></div></a>
+						</div>
+					<?php 		} 
+							} 
+						}	
+					?>
 					</div>
 				</div>
 				<div class="right">

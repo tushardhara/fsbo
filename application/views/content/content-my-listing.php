@@ -1,3 +1,11 @@
+	<?php if(isset($user_image_mylist)){ 
+			if(!empty($user_image_mylist)){
+				foreach ($user_image_mylist as $key) {
+					$image[$key->post_image_id] = $key->post_image_url;
+				}
+			}
+		} 
+	?>
 	<div class="home-main clearfix">
 		<div class="container">
 			<?php include('tab/tab-area.php');?>
@@ -7,9 +15,16 @@
 					<div class="left-side">
 						<a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>">
 							<div class="thumb">
-								<?php 
+								<?php if(!empty($image[$key->ID])) {
+										$image_url=$image[$key->ID]; 
+										$info = pathinfo($image_url);
+										$file_name =  basename($image_url,'.'.$info['extension']);
+										$file_url = 'upload/'.$file_name."_270.".$info['extension'];
+									}else{
+										$file_url = 'images/dummy-feature-small.png';
+									}
 									$attached_image = array(
-								          'src' => 'images/dummy-feature-small.png',
+								          'src' => $file_url ,
 								          'alt' => 'fsbo',
 								          'title' => 'fsbo',
 									);
@@ -30,16 +45,16 @@
 						</div>
 						<?php } ?>
 						<?php if($key->post_type == 'property') { ?>
-						<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span> <span class="for"><?php echo $key->post_property_catergory == 'Residential property for Rent' || $key->post_property_catergory == 'Commercial property for Rent' ? 'For Rent' : 'For Sell'; ?></span> <span class="blue small"><?php echo ($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+						<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for"><?php echo $key->post_property_catergory == 'Residential property for Rent' || $key->post_property_catergory == 'Commercial property for Rent' ? 'For Rent' : 'For Sell'; ?></span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
 						<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
 						<div class="address"><?php echo $key->post_property_area_address;?></div>
 						<?php } else if($key->post_type == 'furniture') {?>
-						<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span></p></div>
-						<div class="address"><?php echo $key->post_description;?></div>
+						<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span></p></div>
+						<div class="address"><?php echo shortDescription($key->post_description);?></div>
 						<?php } else if($key->post_type == 'education') { ?>
-						<div class="price-desc"><p><span class="blue bold big"><?php echo $key->post_price;?></span> <span class="black bold big">QR</span></p></div>
+						<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span></p></div>
 						<div class="location"><?php echo $key->post_education_type;?></div>
-						<div class="address"><?php echo $key->post_description;?></div>
+						<div class="address"><?php echo shortDescription($key->post_description);?></div>
 						<?php } ?>
 					</div>
 					<div class="right-side">
@@ -79,4 +94,23 @@
         }
         return "{$num}{$suff}";
     }
+    ?>
+    <?php
+    	function shortDescription($fullDescription) {
+			$shortDescription = "";
+
+			$fullDescription = trim(strip_tags($fullDescription));
+
+			if ($fullDescription) {
+				$initialCount = 325;
+				if (strlen($fullDescription) > $initialCount) {
+					//$shortDescription = substr(strip_tags($fullDescription),0,$initialCount).”…”;
+					$shortDescription = substr($fullDescription,0,$initialCount)."…";
+				}
+				else {
+					return $fullDescription;
+				}
+			}
+			return $shortDescription;
+		}
     ?>

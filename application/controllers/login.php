@@ -20,6 +20,7 @@ class Login extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+        $this->load->model('user');
     }
 	public function login_check() {
 		$this->form_validation->set_rules('user_email', 'Email', 'trim|required|xss_clean');
@@ -40,7 +41,7 @@ class Login extends CI_Controller {
 	}
 	function check_database($user_pass)
 	{
-	   	$this->load->model('user');
+	   	
 		$result = $this->user->login($this->input->post('user_email'),$user_pass);
 	   	if($result)
 	   	{
@@ -94,7 +95,7 @@ class Login extends CI_Controller {
 	}
 	function check_email($user_email)
 	{
-	   	$this->load->model('user');
+	   	
 		$result = $this->user->check_email($user_email);
 	   	if(!$result)
 	   	{
@@ -109,6 +110,7 @@ class Login extends CI_Controller {
 	   			$this->input->post('user_city'),
 	   			$this->input->post('user_language'),
 	   			$this->input->post('user_url'),
+	   			$this->sanitize($this->input->post('user_login')),
 	   			$this->input->post('user_title'),
 	   			$this->input->post('user_detail'),
 	   			$this->input->post('user_type'),
@@ -147,7 +149,7 @@ class Login extends CI_Controller {
 	public function forgot_check(){
 		$this->form_validation->set_rules('user_email', 'Email', 'trim|required|xss_clean|valid_email');
 		if($this->form_validation->run()) {
-			$this->load->model('user');
+			
 			$result = $this->user->check_email($this->input->post('user_email'));
 			if($result){
 				foreach($result as $row)
@@ -164,6 +166,93 @@ class Login extends CI_Controller {
 		}else{
 
 		}
+	}
+	//taken from wordpress
+	function utf8_uri_encode( $utf8_string, $length = 0 ) {
+	    $unicode = '';
+	    $values = array();
+	    $num_octets = 1;
+	    $unicode_length = 0;
+
+	    $string_length = strlen( $utf8_string );
+	    for ($i = 0; $i < $string_length; $i++ ) {
+
+	        $value = ord( $utf8_string[ $i ] );
+
+	        if ( $value < 128 ) {
+	            if ( $length && ( $unicode_length >= $length ) )
+	                break;
+	            $unicode .= chr($value);
+	            $unicode_length++;
+	        } else {
+	            if ( count( $values ) == 0 ) $num_octets = ( $value < 224 ) ? 2 : 3;
+
+	            $values[] = $value;
+
+	            if ( $length && ( $unicode_length + ($num_octets * 3) ) > $length )
+	                break;
+	            if ( count( $values ) == $num_octets ) {
+	                if ($num_octets == 3) {
+	                    $unicode .= '%' . dechex($values[0]) . '%' . dechex($values[1]) . '%' . dechex($values[2]);
+	                    $unicode_length += 9;
+	                } else {
+	                    $unicode .= '%' . dechex($values[0]) . '%' . dechex($values[1]);
+	                    $unicode_length += 6;
+	                }
+
+	                $values = array();
+	                $num_octets = 1;
+	            }
+	        }
+	    }
+
+	    return $unicode;
+	}
+
+	//taken from wordpress
+	function seems_utf8($str) {
+	    $length = strlen($str);
+	    for ($i=0; $i < $length; $i++) {
+	        $c = ord($str[$i]);
+	        if ($c < 0x80) $n = 0; # 0bbbbbbb
+	        elseif (($c & 0xE0) == 0xC0) $n=1; # 110bbbbb
+	        elseif (($c & 0xF0) == 0xE0) $n=2; # 1110bbbb
+	        elseif (($c & 0xF8) == 0xF0) $n=3; # 11110bbb
+	        elseif (($c & 0xFC) == 0xF8) $n=4; # 111110bb
+	        elseif (($c & 0xFE) == 0xFC) $n=5; # 1111110b
+	        else return false; # Does not match any model
+	        for ($j=0; $j<$n; $j++) { # n bytes matching 10bbbbbb follow ?
+	            if ((++$i == $length) || ((ord($str[$i]) & 0xC0) != 0x80))
+	                return false;
+	        }
+	    }
+	    return true;
+	}
+
+	//function sanitize_title_with_dashes taken from wordpress
+	function sanitize($title) {
+	    $title = strip_tags($title);
+	    // Preserve escaped octets.
+	    $title = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $title);
+	    // Remove percent signs that are not part of an octet.
+	    $title = str_replace('%', '', $title);
+	    // Restore octets.
+	    $title = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $title);
+
+	    $title = strtolower($title);
+	    $title = preg_replace('/&.+?;/', '', $title); // kill entities
+	    $title = str_replace('.', '-', $title);
+	    $title = preg_replace('/[^%a-z0-9 _-]/', '', $title);
+	    $title = preg_replace('/\s+/', '-', $title);
+	    $title = preg_replace('|-+|', '-', $title);
+	    $title = trim($title, '-');
+
+	    $count = $this->user->find_slug($title);
+	    if($count == 0){
+	    	return $title;
+	    }else if($count >= 1){
+	    	return $title = $title.'-'.$count;
+	    }
 	}
 }
 

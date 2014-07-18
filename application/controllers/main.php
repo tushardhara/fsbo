@@ -44,6 +44,7 @@ class Main extends CI_Controller {
 		$data_set['data_three_education_feature_1'] = $this->post->show_three_feature($option[10],$option[11],$option[12]);
 		$data_set['data_three_education_feature_2'] = $this->post->show_three_feature($option[13],$option[14],$option[15]);
 		$data_set['data_three_education_feature_3'] = $this->post->show_three_feature($option[16],$option[17],$option[18]);
+		$data_set['user_image_mylist'] = $this->post->show_home_image($option[1],$option[2],$option[3],$option[4],$option[5],$option[6],$option[7],$option[8],$option[9],$option[10],$option[11],$option[12],$option[13],$option[14],$option[15],$option[16],$option[17],$option[18]);
 		$this->load->view('header');
 		$this->load->view('content/content',$data_set);
 		$this->load->view('footer');
@@ -64,13 +65,15 @@ class Main extends CI_Controller {
 	}
 	public function agent($data = '')
 	{
+		$data_set='';
 		if(!empty($data)){
 			$content = 'content/content-agent-detail';
 		}else{
+			$data_set['user_list']=$this->user->user_list();
 			$content = 'content/content-agent-listing';
 		}
 		$this->load->view('header');
-		$this->load->view($content);
+		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
 	public function register($data){
@@ -101,19 +104,25 @@ class Main extends CI_Controller {
 							$content = 'content/content-message';
 						}	
 					}else if($type == 'wishlist'){
+						$data_set['user_mylist'] = $this->post->show_all_wishlist($this->session->userdata('logged_in')['ID']);
+						$data_set['user_image_mylist'] = $this->post->show_all_image_wishlist($this->session->userdata('logged_in')['ID']);
 						$content = 'content/content-wishlist';
 					}else if($type == 'mylist'){
 						if($data == 'admin'){
 							$data_set['user_mylist'] = $this->post->show_admin_all();
+							$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 							$content = 'content/content-my-listing';
 						}else if($data == 'moderator'){
 							$data_set['user_mylist'] = $this->post->show_admin_all();
+							$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 							$content = 'content/content-my-listing';
 						}else if($data == 'user'){
 							$data_set['user_mylist'] = $this->post->show_user_all($this->session->userdata('logged_in')['ID']);
+							$data_set['user_image_mylist'] = $this->post->show_user_all_image($this->session->userdata('logged_in')['ID']);
 							$content = 'content/content-my-listing';
 						}else if($data == 'agent'){
 							$data_set['user_mylist'] = $this->post->show_user_all($this->session->userdata('logged_in')['ID']);
+							$data_set['user_image_mylist'] = $this->post->show_user_all_image($this->session->userdata('logged_in')['ID']);
 							$content = 'content/content-my-listing';
 						}else{
 							$content = 'content/content-404';
@@ -133,12 +142,15 @@ class Main extends CI_Controller {
 								}
 								if($post_type == 'property'){
 								 	$data_set['post_detail'] = $this->post->show_post_by_ID($view);
+								 	$data_set['image_list'] = $this->post->show_post_images($view);
 									$content = 'content/content-edit-property';
 								}else if($post_type == 'furniture') {
 									$data_set['post_detail'] = $this->post->show_post_by_ID($view);
+									$data_set['image_list'] = $this->post->show_post_images($view);
 									$content = 'content/content-edit-furniture';
 								}else if($post_type == 'education') {
 									$data_set['post_detail'] = $this->post->show_post_by_ID($view);
+									$data_set['image_list'] = $this->post->show_post_images($view);
 									$content = 'content/content-edit-education';
 								}else{
 									$content = 'content/content-404';
@@ -202,6 +214,7 @@ class Main extends CI_Controller {
 	public function education()
 	{
 		$data_set='';
+		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){
 			$config['base_url'] = site_url('/education/');
 			$config['total_rows'] =  $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_status' =>'0'))->num_rows();
@@ -240,6 +253,7 @@ class Main extends CI_Controller {
 			$content = 'content/content-education-listing';
 		}else{
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education','post_slug' => $this->uri->segment(2)))->result();
+			$data_set['user_image_detail'] = $this->post->show_image($this->uri->segment(2));
 			if(count ($data_set['records']) == 1){
 				$data_set['related'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'education'),8)->result();
 				$content = 'content/content-education-detail';
@@ -247,13 +261,14 @@ class Main extends CI_Controller {
 				$content = 'content/content-404';
 			}
 		}
-		$this->load->view('header');
+		$this->load->view('header',$data_set);
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
 	public function property()
 	{
 		$data_set='';
+		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){
 			$config['base_url'] = site_url('/property/');
 			$config['total_rows'] =  $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0'))->num_rows();
@@ -265,21 +280,24 @@ class Main extends CI_Controller {
 			$content = 'content/content-property-listing';
 		}else{
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_slug' => $this->uri->segment(2)))->result();
+			$data_set['user_image_detail'] = $this->post->show_image($this->uri->segment(2));
 			if(count ($data_set['records']) == 1){
 				$data_set['related_area'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_property_area_community' => $data_set['records'][0]->post_property_area_community),3)->result();
 				$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_price' => $data_set['records'][0]->post_price),3)->result();
+				
 				$content = 'content/content-property-detail';
 			}else{
 				$content = 'content/content-404';
 			}
 		}
-		$this->load->view('header');
+		$this->load->view('header',$data_set);
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
 	public function furniture()
 	{	
 		$data_set='';
+		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if($this->uri->segment(2) == ''){
 			$content = 'content/content-404';
 		}else if($this->uri->segment(2) == 'bedroom'){
@@ -524,6 +542,7 @@ class Main extends CI_Controller {
 			}
 		}else{
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_slug' => $this->uri->segment(2)))->result();
+			$data_set['user_image_detail'] = $this->post->show_image($this->uri->segment(2));
 			if(count ($data_set['records']) == 1){
 				$data_set['related'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => $data_set['records'][0]->post_furniture_type),8)->result();
 				$content = 'content/content-furniture-detail';
@@ -531,7 +550,7 @@ class Main extends CI_Controller {
 				$content = 'content/content-404';
 			}
 		}
-		$this->load->view('header');
+		$this->load->view('header',$data_set);
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}

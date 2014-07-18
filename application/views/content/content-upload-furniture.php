@@ -30,7 +30,7 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('add_furniture'); ?>">
+				<form method="post" action="<?php echo site_url('add_furniture'); ?>" enctype="multipart/form-data">
 				<div class="left">
 					<h1>Furniture</h1>
 					<div class="filed">
@@ -50,6 +50,9 @@
 					</div>
 					<div class="filed">
 						<input	type="text" placeholder="Price" name="post_price">
+					</div>
+					<div class="filed">
+						<input type="file" name="files[]" multiple />
 					</div>
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 					<div class="filed ex">

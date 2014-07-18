@@ -34,7 +34,7 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('add_property'); ?>">
+				<form method="post" action="<?php echo site_url('add_property'); ?>" enctype="multipart/form-data">
 				<div class="left">
 					<h1>Property</h1>
 					<div class="filed">
@@ -158,6 +158,9 @@
 					</div>
 					<div class="filed">
 						<input	type="text" placeholder="Longitude" name='post_property_area_log'>
+					</div>
+					<div class="filed">
+						<input type="file" name="files[]" multiple />
 					</div>
 				</div>
 				<div class="right">

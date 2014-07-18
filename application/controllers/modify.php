@@ -20,11 +20,15 @@ class Modify extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+        $this->load->model('user');
+        $this->load->model('post');
+        $this->load->model('option');
+        $this->load->library('MY_Upload');
     }
     public function modify_check(){
     	
     	try {
-    		$this->load->model('user');
+    		
     		$this->user->modify(
 	    		$this->input->post('user_pass'),
 	    		$this->input->post('user_email'),
@@ -55,7 +59,7 @@ class Modify extends CI_Controller {
     }
     public function modify_education($ID){
     	try {
-    		$this->load->model('post');
+    		
     		$this->post->modify_education(
     			$ID,
 	    		$this->input->post('post_education_type'),
@@ -75,6 +79,80 @@ class Modify extends CI_Controller {
 	    		$this->input->post('post_seo_keywords'),
 	    		$this->input->post('post_seo_description')
     		);
+    		$this->upload->initialize(array(
+		            "upload_path"   => "upload/",
+		            "allowed_types" => "gif|jpg|png",
+		            "max_size" => "10240"
+		        ));
+	        //Perform upload.
+	        if($this->upload->do_multi_upload("files")){
+	        	$this->load->library('image_lib');
+	        	$config['image_library'] = 'gd2';
+	        	$config['quality'] = '100%';
+	        	$config['create_thumb'] = TRUE;
+	        	$config['maintain_ratio'] = TRUE;
+	        	$image_data=array();
+	            foreach ($this->upload->get_multi_upload_data() as $key) {
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_100';
+				    $config['width']     = 100;
+				    $config['height']   = 100;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_270';
+				    $config['width']     = 270;
+				    $config['height']   = 200;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_538';
+				    $config['width']     = 538;
+				    $config['height']   = 417;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_638';
+				    $config['width']     = 638;
+				    $config['height']   = 490;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_180';
+				    $config['width']     = 180;
+				    $config['height']   = 164;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_307';
+				    $config['width']     = 307;
+				    $config['height']   = 270;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+				    $temp_image_data['post_type'] = 'attachment';
+				    $temp_image_data['post_user_id'] = $this->session->userdata('logged_in')['ID'];
+				    $temp_image_data['post_user_type'] = $this->session->userdata('logged_in')['user_type'];
+				    $temp_image_data['post_image_id'] = $ID;
+				    $temp_image_data['post_image_url'] = $key['file_name'];
+				    $temp_image_data['post_status'] = '0';
+				    $temp_image_data['post_date'] = date("Y-m-d H:i:s");
+				    array_push($image_data,$temp_image_data);
+	            } 
+	          	$this->post->add_batch_image($image_data);
+	        }else{
+	        	echo $this->upload->display_errors();
+	        }
     		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
 	     		redirect("profile/admin/edit/$ID");
 	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
@@ -90,7 +168,7 @@ class Modify extends CI_Controller {
     }
     public function modify_furniture($ID){
     	try {
-    		$this->load->model('post');
+    		
     		$this->post->modify_furniture(
     			$ID,
 	    		$this->input->post('post_furniture_type'),
@@ -102,6 +180,80 @@ class Modify extends CI_Controller {
 	    		$this->input->post('post_seo_keywords'),
 	    		$this->input->post('post_seo_description')
     		);
+    		$this->upload->initialize(array(
+		            "upload_path"   => "upload/",
+		            "allowed_types" => "gif|jpg|png",
+		            "max_size" => "10240"
+		        ));
+	        //Perform upload.
+	        if($this->upload->do_multi_upload("files")){
+	        	$this->load->library('image_lib');
+	        	$config['image_library'] = 'gd2';
+	        	$config['quality'] = '100%';
+	        	$config['create_thumb'] = TRUE;
+	        	$config['maintain_ratio'] = TRUE;
+	        	$image_data=array();
+	            foreach ($this->upload->get_multi_upload_data() as $key) {
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_100';
+				    $config['width']     = 100;
+				    $config['height']   = 100;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_270';
+				    $config['width']     = 270;
+				    $config['height']   = 200;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_538';
+				    $config['width']     = 538;
+				    $config['height']   = 417;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_638';
+				    $config['width']     = 638;
+				    $config['height']   = 490;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_180';
+				    $config['width']     = 180;
+				    $config['height']   = 164;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_307';
+				    $config['width']     = 307;
+				    $config['height']   = 270;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+				    $temp_image_data['post_type'] = 'attachment';
+				    $temp_image_data['post_user_id'] = $this->session->userdata('logged_in')['ID'];
+				    $temp_image_data['post_user_type'] = $this->session->userdata('logged_in')['user_type'];
+				    $temp_image_data['post_image_id'] = $ID;
+				    $temp_image_data['post_image_url'] = $key['file_name'];
+				    $temp_image_data['post_status'] = '0';
+				    $temp_image_data['post_date'] = date("Y-m-d H:i:s");
+				    array_push($image_data,$temp_image_data);
+	            } 
+	          	$this->post->add_batch_image($image_data);
+	        }else{
+	        	echo $this->upload->display_errors();
+	        }
     		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
 	     		redirect("profile/admin/edit/$ID");
 	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
@@ -117,8 +269,8 @@ class Modify extends CI_Controller {
     }
     public function modify_property($ID){
     	try {
-    		$this->load->model('post');
-    		$this->post->modify_furniture(
+    		
+    		$this->post->modify_property(
     			$ID,
 	    		$this->input->post('post_property_catergory'),
 	    		$this->input->post('post_property_type'),
@@ -143,6 +295,80 @@ class Modify extends CI_Controller {
 	    		$this->input->post('post_seo_keywords'),
 	    		$this->input->post('post_seo_description')
     		);
+			$this->upload->initialize(array(
+		            "upload_path"   => "upload/",
+		            "allowed_types" => "gif|jpg|png",
+		            "max_size" => "10240"
+		        ));
+	        //Perform upload.
+	        if($this->upload->do_multi_upload("files")){
+	        	$this->load->library('image_lib');
+	        	$config['image_library'] = 'gd2';
+	        	$config['quality'] = '100%';
+	        	$config['create_thumb'] = TRUE;
+	        	$config['maintain_ratio'] = TRUE;
+	        	$image_data=array();
+	            foreach ($this->upload->get_multi_upload_data() as $key) {
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_100';
+				    $config['width']     = 100;
+				    $config['height']   = 100;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_270';
+				    $config['width']     = 270;
+				    $config['height']   = 200;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_538';
+				    $config['width']     = 538;
+				    $config['height']   = 417;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_638';
+				    $config['width']     = 638;
+				    $config['height']   = 490;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_180';
+				    $config['width']     = 180;
+				    $config['height']   = 164;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+				    $config['source_image'] = $key['full_path'];
+				    $config['thumb_marker'] ='_307';
+				    $config['width']     = 307;
+				    $config['height']   = 270;
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+				    $temp_image_data['post_type'] = 'attachment';
+				    $temp_image_data['post_user_id'] = $this->session->userdata('logged_in')['ID'];
+				    $temp_image_data['post_user_type'] = $this->session->userdata('logged_in')['user_type'];
+				    $temp_image_data['post_image_id'] = $ID;
+				    $temp_image_data['post_image_url'] = $key['file_name'];
+				    $temp_image_data['post_status'] = '0';
+				    $temp_image_data['post_date'] = date("Y-m-d H:i:s");
+				    array_push($image_data,$temp_image_data);
+	            } 
+	          	$this->post->add_batch_image($image_data);
+	        }else{
+	        	echo $this->upload->display_errors();
+	        }
     		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
 	     		redirect("profile/admin/edit/$ID");
 	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
@@ -158,7 +384,7 @@ class Modify extends CI_Controller {
     }
     public function delete_post($ID){
     	try {
-    		$this->load->model('post');
+    		
     		$this->post->delete_post($ID);
     		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
 	     		redirect("profile/admin/mylist");
@@ -173,9 +399,25 @@ class Modify extends CI_Controller {
     		echo $e->getMessage();
     	}
     }
+    public function delete_image(){
+    	try {
+    		$ID=$this->input->get('post_image_id');
+    		$this->post->delete_image($this->input->get('ID'),$this->input->get('post_image_id'));
+    		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
+	     		redirect("profile/admin/edit/$ID");
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
+	     		redirect("profile/agent/edit/$ID");
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
+	     		redirect("profile/moderator/edit/$ID");
+	     	}else{
+	     		redirect("profile/user/edit/$ID");
+	     	}
+    	} catch (Exception $e) {
+    		echo $e->getMessage();
+    	}
+    }
     public function modify_option(){
     	try {
-    		$this->load->model('option');
     		$option_data = array(
     			'option_1' => $this->input->post('option_1'), 
     			'option_2' => $this->input->post('option_2'), 

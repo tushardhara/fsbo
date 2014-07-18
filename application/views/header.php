@@ -1,24 +1,271 @@
 <?php echo doctype('html5') ?>
 <html lang="en">
 <head>
-	<title></title>
+	<?php if($this->uri->segment(1)=='') { ?>
+	<title>Real Estate Qatar - Apartments, Villas, Flats for Rent In Doha - fsboqatar.com</title>
 	<?php
 		$meta = array(
-	        array('name' => 'robots', 'content' => 'no-cache'),
 	        array('name' => 'description', 'content' => 'My Great Site'),
 	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
-	        array('name' => 'robots', 'content' => 'no-cache'),
 	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
 	    );
 		echo meta($meta);
+	?> 
+	<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='property' && $this->uri->segment(2)==''){ ?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='furniture' && $this->uri->segment(2)=='bedroom') {?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='furniture' && $this->uri->segment(2)=='living-room') {?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='furniture' && $this->uri->segment(2)=='bathroom') {?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='furniture' && $this->uri->segment(2)=='dining-room') {?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='furniture' && $this->uri->segment(2)=='kitchen') {?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='furniture' && $this->uri->segment(2)=='miscellaneous') {?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+	?>
+	<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='education' && $this->uri->segment(2)==''){ ?>
+		<title>Real Estate and Property for Rent/Buy in Qatar - Find Rental Apartments, Villas and Houses in Doha, Qatar with fsboqatar.com</title>
+		<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+		?>
+		<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='login') {?>
+		<title>Real Estate Qatar - Apartments, Villas, Flats for Rent In Doha - fsboqatar.com</title>
+	<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+	?> 
+	<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='register') {?>
+		<title>Real Estate Qatar - Apartments, Villas, Flats for Rent In Doha - fsboqatar.com</title>
+	<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+	?> 
+	<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if($this->uri->segment(1)=='contact') {?>
+		<title>Real Estate Qatar - Apartments, Villas, Flats for Rent In Doha - fsboqatar.com</title>
+	<?php
+		$meta = array(
+	        array('name' => 'description', 'content' => 'My Great Site'),
+	        array('name' => 'keywords', 'content' => 'love, passion, intrigue, deception'),
+	        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+	    );
+		echo meta($meta);
+	?> 
+	<!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://kurtnoble.com/labs/rrssb/index.html" />
+    <meta property="og:image" content="http://kurtnoble.com/labs/rrssb/media/facebook-share.jpg" />
+    <meta property="og:description" content="" />
+	<?php }else if(isset($records)) {?>
+		<?php if(!empty($records)) { ?>
+			<?php if(isset($user_image_mylist)){ 
+					if(!empty($user_image_mylist)){
+						foreach ($user_image_mylist as $key) {
+							$image[$key->post_image_id] = $key->post_image_url;
+						}
+					}
+				} 
+			?>
+			<?php foreach ($records as $key) { ?>
+				<?php if(empty($key->post_seo_title)) {?>
+					<title><?php echo $key->post_title?> - fsboqatar.com</title>
+				<?php }else{ ?>
+					<title><?php echo $key->post_seo_title?></title>
+				<?php } ?>
+				<?php if(empty($key->post_seo_description)) {?>
+					<meta name="description" content="<?php echo $key->post_description?>" />
+				<?php }else{ ?>
+					<meta name="description" content="<?php echo $key->post_seo_description?>" />
+				<?php } ?>
+				<?php if(empty($key->post_seo_keywords)){ ?> 
+					<meta name="keywords" content="fsbo" />
+				<?php }else{ ?>
+					<meta name="keywords" content="<?php echo $key->post_seo_keywords;?>" />
+				<?php } ?>
+				<?php
+					$meta = array(
+				        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+				    );
+					echo meta($meta);
+				?> 
+				<!-- Facebook Open Graph Meta Tags -->
+			    <?php if(empty($key->post_seo_title)) {?>
+			    <meta property="og:title" content="<?php echo $key->post_title?> - fsboqatar.com" />
+			    <?php }else{ ?>
+			    <meta property="og:title" content="<?php echo $key->post_seo_title?>" />
+			    <?php } ?>
+			    <meta property="og:type" content="website" />
+			    <meta property="og:url" content="<?php echo current_url() ?>" />
+			    <?php if(!empty($image[$key->ID])) {
+					$image_url=$image[$key->ID]; 
+					$info = pathinfo($image_url);
+					$file_name =  basename($image_url,'.'.$info['extension']);
+					$file_url = 'upload/'.$file_name."_270.".$info['extension'];
+				}else{
+					$file_url = 'images/dummy-feature-small.png';
+				}
+				?>
+			    <meta property="og:image" content="<?php echo base_url($file_url)?>" />
+			    <?php if(empty($key->post_seo_description)) {?>
+			    <meta property="og:description" content="<?php echo $key->post_description?>" />
+			    <?php }else{ ?>
+			    <meta property="og:description" content="<?php echo $key->post_seo_description?>" />
+			    <?php } ?>
+			<?php } ?>
+		<?php } ?>
+	<?php } ?>
+
+
+
+
+
+	<?php 
 		echo link_tag('favicon.ico', 'shortcut icon', 'image/ico');
 		echo link_tag('css/owl.carousel.css');
 		echo link_tag('css/owl.theme.css');
 		echo link_tag('css/style.css');
-	?> 
+	?>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
 </head>
 <body>
 	<header>

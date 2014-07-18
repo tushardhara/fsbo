@@ -1,24 +1,54 @@
+	<?php if(isset($user_image_mylist)){ 
+			if(!empty($user_image_mylist)){
+				foreach ($user_image_mylist as $key) {
+					$image[$key->post_image_id] = $key->post_image_url;
+				}
+			}
+		} 
+	?>
 	<div class="home-main clearfix">
 		<div class="container">
 			<div class="product-detail">
 				<?php foreach ($records as $key) { ?>
 				<div class="left">
 					<div class="big-edu-image">
-						<?php 
-							$attached_image = array(
-						          'src' => 'images/edu-big-image.png',
-						          'alt' => 'fsbo',
-						          'title' => 'fsbo',
-							);
+						<?php if(isset($user_image_detail)){ 
+								if(!empty($user_image_detail)){
+									foreach ($user_image_detail as $key1) {
+										$user_image[$key1->post_image_id] = $key1->post_image_url;
+										if(!empty($user_image[$key->ID])) {
+												$image_url=$user_image[$key->ID]; 
+												$info = pathinfo($image_url);
+												$file_name =  basename($image_url,'.'.$info['extension']);
+												$file_url = 'upload/'.$file_name."_307.".$info['extension'];
+										}else{
+											$file_url = 'images/edu-big-image.png';
+										}
+										$attached_image = array(
+									          'src' => $file_url ,
+									          'alt' => 'fsbo',
+									          'title' => 'fsbo',
+										);
+										echo img($attached_image);
+										break;
+									}
+								}else{
+									$attached_image = array(
+									          'src' => 'images/edu-big-image.png' ,
+									          'alt' => 'fsbo',
+									          'title' => 'fsbo',
+										);
+										echo img($attached_image);
+								}
+							} 
 						?>
-						<?php echo img($attached_image);?>
 					</div>
 					<div class="info">
 						<div class="item-title">Info</div>
 						<div class="item"><div>Type: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_type;?></div></div>
 						<div class="item"><div>Admission Age: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_age;?></div></div>
 						<div class="item"><div>Gender: </div><div class="no"></div><div class="ans"><?php echo $key->post_education_gender;?></div></div>
-						<div class="item"><div>Registration Fee: </div><div class="yes"></div><div class="ans"><?php echo $key->post_price;?></div></div>
+						<div class="item"><div>Registration Fee: </div><div class="yes"></div><div class="ans"><?php echo round($key->post_price);?></div></div>
 						<div class="item"><div>Community: </div><div class="no"></div><div class="ans"><?php echo $key->post_education_community;?></div></div>
 						<div class="item"><div>Tel: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_phone;?></div></div>
 						<div class="item"><div>Fax: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_fax;?></div></div>
@@ -31,12 +61,12 @@
 					<div class="featured-listing-name furniture"><a href="<?php echo site_url('education/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
 					<div class="desc"><p><?php echo $key->post_description?></p>
 					</div>
-					<div class="social-share">
-						<a href="#" class="facebook-share"></a>
-						<a href="#" class="twitter-share"></a>
+					<div class="rrssb-buttons social-share">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo site_url('education/'.$key->post_slug);?>" class="popup facebook-share"></a>
+						<a href="http://twitter.com/home?status=<?php echo shortDescription($key->post_description)?><?php echo site_url('education/'.$key->post_slug);?>" class="popup twitter-share"></a>
 					</div>
 					<div class="settings no-border">
-						<div class="wishlist">Wish List</div>
+						<div class="wishlist"><a href="<?php echo site_url('add_wishlist?ID='.$key->ID)?>" target="_blank">Wish List</a></div>
 						<div class="print"><a href="javascript:window.print()">Print</a></div>
 						<div class="contact">Contact Agents</div>
 					</div>
@@ -53,22 +83,29 @@
 					<div class="item">
 						<a href="<?php echo site_url('education/'.$key->post_slug);?>">
 							<div class="thumb">
-								<?php 
+
+								<?php if(!empty($image[$key->ID])) {
+										$image_url=$image[$key->ID]; 
+										$info = pathinfo($image_url);
+										$file_name =  basename($image_url,'.'.$info['extension']);
+										$file_url = 'upload/'.$file_name."_180.".$info['extension'];
+									}else{
+										$file_url = 'images/edu-small-image.png';
+									}
 									$attached_image = array(
-								          'src' => 'images/edu-small-image.png',
+								          'src' => $file_url ,
 								          'alt' => 'fsbo',
 								          'title' => 'fsbo',
 									);
 								?>
 								<?php echo img($attached_image);?>
-								
 							</div>
 						</a>
 						<div class="info">
 							<div class="detail"><div>Type: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_type;?></div></div>
 							<div class="detail"><div>Admission Age: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_age;?></div></div>
 							<div class="detail"><div>Gender: </div><div class="no"></div><div class="ans"><?php echo $key->post_education_gender;?></div></div>
-							<div class="detail"><div>Registration Fee: </div><div class="yes"></div><div class="ans"><?php echo $key->post_price;?></div></div>
+							<div class="detail"><div>Registration Fee: </div><div class="yes"></div><div class="ans"><?php echo round($key->post_price);?></div></div>
 							<div class="detail"><div>Community: </div><div class="no"></div><div class="ans"><?php echo $key->post_education_community;?></div></div>
 							<div class="detail"><div>Tel: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_phone;?></div></div>
 							<div class="detail"><div>Fax: </div><div class="yes"></div><div class="ans"><?php echo $key->post_education_fax;?></div></div>
@@ -83,3 +120,22 @@
 			</div>
 		</div>
 	</div>
+	<?php
+    	function shortDescription($fullDescription) {
+			$shortDescription = "";
+
+			$fullDescription = trim(strip_tags($fullDescription));
+
+			if ($fullDescription) {
+				$initialCount = 75;
+				if (strlen($fullDescription) > $initialCount) {
+					//$shortDescription = substr(strip_tags($fullDescription),0,$initialCount).”…”;
+					$shortDescription = substr($fullDescription,0,$initialCount)."…";
+				}
+				else {
+					return $fullDescription;
+				}
+			}
+			return $shortDescription;
+		}
+    ?>

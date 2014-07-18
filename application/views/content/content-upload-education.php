@@ -30,7 +30,7 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('add_education'); ?>">
+				<form method="post" action="<?php echo site_url('add_education'); ?>" enctype="multipart/form-data">
 				<div class="left">
 					<h1>Education</h1>
 					<div class="filed">
@@ -52,6 +52,9 @@
 					</div>
 					<div class="filed">
 						<input type="text" placeholder="Community" name="post_education_community">
+					</div>
+					<div class="filed">
+						<input type="file" name="files[]" multiple />
 					</div>
 					<div class="filed ex">
 						<input type="text" placeholder="Principle" name="post_education_principle">

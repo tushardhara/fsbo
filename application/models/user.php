@@ -21,7 +21,7 @@ Class User extends CI_Model{
        return false;
      }
   }
-  function register($user_login,$user_pass,$user_email,$user_fname = '',$user_lname = '',$user_phone = '',$user_country = '',$user_city = '',$user_language = '',$user_url = '',$user_title = '',$user_detail ='',$user_type,$user_provider){
+  function register($user_login,$user_pass,$user_email,$user_fname = '',$user_lname = '',$user_phone = '',$user_country = '',$user_city = '',$user_language = '',$user_url = '',$user_slug = '',$user_title = '',$user_detail ='',$user_type,$user_provider){
     
     $data = array(
      'user_login' => $user_login,
@@ -34,6 +34,7 @@ Class User extends CI_Model{
      'user_city' => $user_city,
      'user_language' => $user_language,
      'user_url' => $user_url,
+     'user_slug' => $user_slug,
      'user_title' => $user_title,
      'user_detail' => $user_detail,
      'user_type' => $user_type == 1 ? 'user' : 'agent',
@@ -113,6 +114,23 @@ Class User extends CI_Model{
     }
     $this->db->where('id', $this->session->userdata('logged_in')['ID']);
     $this->db->update('fsbo_users', $data);
+  }
+  function find_slug($user_slug){
+    $this->db->like('user_slug',$post_slug, 'after'); 
+    $this->db->from('fsbo_users');
+    return $this->db->count_all_results();
+  }
+  function user_list(){
+     $this->db->select('*');
+     $this->db->from('fsbo_users');
+     $this->db->where('user_status','0');
+     $this->db->order_by("ID", "desc"); 
+     $query = $this->db->get();
+     if($query->num_rows()){
+        return $query->result();
+     }else{
+       return false;
+     }
   }
 }
 ?>
