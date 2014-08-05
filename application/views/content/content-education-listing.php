@@ -23,24 +23,65 @@
 					<div class="sort">
 						<span class="text">Short By</span>
 						<div class="drop">
-							<?php if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))) {?>
+							<?php if($this->uri->segment(2)=='') {?>
 								<span class="text">Relevance</span><span class="arrow"></span>
-							<?php }else if($this->uri->segment(3) == 'ID' && $this->uri->segment(4) == 'desc' && is_numeric($this->uri->segment(2))){ ?>
-							<span class="text">Relevance</span><span class="arrow"></span>
-							<?php }else if($this->uri->segment(3) == 'post_price' && $this->uri->segment(4) == 'asc' && is_numeric($this->uri->segment(2))){ ?>
-							<span class="text">Price : Low to High</span><span class="arrow"></span>
-							<?php }else if($this->uri->segment(3) == 'post_price' && $this->uri->segment(4) == 'desc' && is_numeric($this->uri->segment(2))){ ?>
-							<span class="text">Price : High to Low</span><span class="arrow"></span>
-							<?php } else if($this->uri->segment(3) == 'post_date' && $this->uri->segment(4) == 'asc' && is_numeric($this->uri->segment(2))) { ?>
-							<span class="text">Date : Latest First</span><span class="arrow"></span>
+							<?php } else if($this->uri->segment(2)=='0') {?>
+								<?php if($this->uri->segment(3)=='ID') { ?>
+									<span class="text">Relevance</span><span class="arrow"></span>
+								<?php } else if($this->uri->segment(3)=='post_price'){ ?>
+									<?php if($this->uri->segment(4)=='') {?>
+									<span class="text">Price : Low to High</span><span class="arrow"></span>
+									<?php } else if($this->uri->segment(4)=='asc') {?>
+									<span class="text">Price : Low to High</span><span class="arrow"></span>
+									<?php } else if($this->uri->segment(4)=='desc') {?>
+									<span class="text">Price : High to Low</span><span class="arrow"></span>
+									<?php } ?>
+								<?php }else if($this->uri->segment(3)=='post_date'){ ?>
+									<span class="text">Date : Latest First</span><span class="arrow"></span>
+								<?php } ?>
+							<?php } else { ?>
+								<span class="text">Relevance</span><span class="arrow"></span>
 							<?php } ?>
 						</div>
+						<?php if($this->uri->segment(2)=='') {?>
 						<div class="filter-drop">
 							<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
 							<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
 							<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
 							<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
 						</div>
+						<?php } else if($this->uri->segment(2)=='0') {?>
+							<?php if($this->uri->segment(3)=='ID') { ?>
+							<div class="filter-drop">
+								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+							</div>
+							<?php }else if($this->uri->segment(3)=='post_price'){ ?>
+							<div class="filter-drop">
+								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+							</div>
+							<?php }else if($this->uri->segment(3)=='post_date'){ ?>
+							<div class="filter-drop">
+								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+							</div>
+							<?php } ?>
+						<?php }else{ ?>
+							<div class="filter-drop">
+								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+							</div>
+						<?php } ?>
+					</div>
 					</div>
 				</div>
 				<div class="edu-listing clearfix">

@@ -287,9 +287,12 @@ class Main extends CI_Controller {
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_slug' => $this->uri->segment(2)))->result();
 			$data_set['user_image_detail'] = $this->post->show_image($this->uri->segment(2));
 			if(count ($data_set['records']) == 1){
-				$data_set['related_area'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_property_area_community' => $data_set['records'][0]->post_property_area_community),3)->result();
-				$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_price' => $data_set['records'][0]->post_price),3)->result();
-				
+				if($data_set['records'][0]->post_property_type=='Residential property for Sale' || $data_set['records'][0]->post_property_type=='Commercial property for Sale'){
+					$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0','post_price >' => $data_set['records'][0]->post_price-25000,'post_price <' => $data_set['records'][0]->post_price+25000),3)->result();
+				}else{
+					$data_set['related_price'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0','post_price >' => $data_set['records'][0]->post_price-1000,'post_price <' => $data_set['records'][0]->post_price+1000),3)->result();
+				}
+				$data_set['related_area'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0','post_property_area_community' => $data_set['records'][0]->post_property_area_community),3)->result();
 				$content = 'content/content-property-detail';
 			}else{
 				$content = 'content/content-404';
@@ -330,7 +333,7 @@ class Main extends CI_Controller {
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_slug' => $this->uri->segment(2)))->result();
 			$data_set['user_image_detail'] = $this->post->show_image($this->uri->segment(2));
 			if(count ($data_set['records']) == 1){
-				$data_set['related'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_furniture_type' => $data_set['records'][0]->post_furniture_type),8)->result();
+				$data_set['related'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'furniture','post_status' =>'0','post_furniture_type' => $data_set['records'][0]->post_furniture_type),8)->result();
 				$content = 'content/content-furniture-detail';
 			}else{
 				$content = 'content/content-404';

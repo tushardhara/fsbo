@@ -88,12 +88,21 @@
 						<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
 						<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 					</div>
-					<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
+					<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory == 'Commercial property for Sale') { ?>
 					<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
 					<?php } else { ?>
 					<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
 					<?php } ?>
-					<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
+					<div class="location">Property in 
+						<?php 
+							if(!empty($key->post_property_area_community)){ 
+								echo $key->post_property_area_community; 
+							} else { 
+								echo $key->post_property_area_reference;
+							} 
+							echo ' , '.$key->post_property_area_city;
+						?>
+					</div>
 					<div class="address"><?php echo $key->post_property_area_address;?></div>
 					<div class="group clearfix">
 						<?php if($user_type == 'user') {?>
@@ -197,7 +206,7 @@
 							<?php $date = date_create($key->post_date); ?>
 							<div class="date"><?php echo date_format($date, 'F j, Y');?></div>
 							<div class="name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title?></a></div>
-							<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
+							<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory == 'Commercial property for Sale') { ?>
 							<div class="price"><span><?php echo round($key->post_price);?> QR</span> For Sale</div>
 							<?php } else { ?>
 							<div class="price"><span><?php echo round($key->post_price);?> QR</span> Per Month</div>
@@ -244,7 +253,7 @@
 							<?php $date = date_create($key->post_date); ?>
 							<div class="date"><?php echo date_format($date, 'F j, Y');?></div>
 							<div class="name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title?></a></div>
-							<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
+							<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory == 'Commercial property for Sale') { ?>
 							<div class="price"><span><?php echo round($key->post_price);?> QR</span> For Sale</div>
 							<?php } else { ?>
 							<div class="price"><span><?php echo round($key->post_price);?> QR</span> Per Month</div>

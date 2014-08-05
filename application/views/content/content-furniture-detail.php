@@ -125,17 +125,17 @@
 				<div class="title clearfix ">
 					<div class="see-text">See Also</div>
 					<?php if($key->post_furniture_type == 'Bedroom') { ?>
-						<div class="see-all"><a href="<?php echo site_url('furniture/bedroom')?>">See All</a></div>
+						<div class="see-all"><a href="<?php echo site_url('furniture/0/bedroom/post_price/desc')?>">See All</a></div>
 					<?php } else if($key->post_furniture_type == 'Living room') { ?>
-						<div class="see-all"><a href="<?php echo site_url('furniture/living-room')?>">See All</a></div>
+						<div class="see-all"><a href="<?php echo site_url('furniture/0/living-room/post_price/desc')?>">See All</a></div>
 					<?php } else if($key->post_furniture_type == 'Bathroom') { ?>
-						<div class="see-all"><a href="<?php echo site_url('furniture/bathroom')?>">See All</a></div>
+						<div class="see-all"><a href="<?php echo site_url('furniture/0/bathroom/post_price/desc')?>">See All</a></div>
 					<?php } else if($key->post_furniture_type == 'Dining room') { ?>
-						<div class="see-all"><a href="<?php echo site_url('furniture/dining-room')?>">See All</a></div>
+						<div class="see-all"><a href="<?php echo site_url('furniture/0/dining-room/post_price/desc')?>">See All</a></div>
 					<?php } else if($key->post_furniture_type == 'Kitchen') { ?>
-						<div class="see-all"><a href="<?php echo site_url('furniture/kitchen')?>">See All</a></div>
+						<div class="see-all"><a href="<?php echo site_url('furniture/0/kitchen/post_price/desc')?>">See All</a></div>
 					<?php } else if($key->post_furniture_type == 'Miscellaneous') { ?>
-						<div class="see-all"><a href="<?php echo site_url('furniture/miscellaneous')?>">See All</a></div>
+						<div class="see-all"><a href="<?php echo site_url('furniture/0/miscellaneous/post_price/desc')?>">See All</a></div>
 					<?php } ?>
 				</div>
 				<div class="list clearfix">
@@ -162,9 +162,9 @@
 								</div>
 							</a>
 							<?php $date = date_create($key->post_date); ?>
-							<div class="featured-listing-date"><?php echo date_format($date, 'F j, Y');?></div>
-							<div class="featured-listing-name"><?php echo $key->post_furniture_type;?></div>
+							<div class="featured-listing-name"><?php echo $key->post_title;?></div>
 							<div class="featured-listing-price"><?php echo round($key->post_price);?> QR</div>
+							<div class="featured-listing-date"><?php echo date_format($date, 'F j, Y');?></div>
 							<a class="featured-listing-view" href="<?php echo site_url('furniture/'.$key->post_slug);?>">View Details</a>
 						</div>
 					<?php } ?>

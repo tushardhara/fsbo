@@ -20,8 +20,7 @@
 					<div class="right">
 						<div class="setting-choose-big no-bottom"><span>City</span><span class="arrow"></span></div>
 						<div class="setting-choose-big no-bottom"><span>Community</span><span class="arrow"></span></div>
-						<div class="setting-choose-big "><span>Sub Community</span><span class="arrow"></span></div>
-						<div class="setting-choose-small no-top extra-margin"><span>Min. Sq.M.</span><span class="arrow"></span></div> <div class="gap">-</div> <div class="setting-choose-small no-top extra-margin"><span>Max. Sq.M</span><span class="arrow"></span></div>
+						<div class="setting-choose-small extra-margin"><span>Min. Sq.M.</span><span class="arrow"></span></div> <div class="gap">-</div> <div class="setting-choose-small no-top extra-margin"><span>Max. Sq.M</span><span class="arrow"></span></div>
 					</div>
 				</div>
 				<div class="property-listing-area clearfix">
@@ -67,7 +66,7 @@
 										<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
 										<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 									</div>
-									<?php if($key->post_property_catergory == 'Residential property for Sell' || $key->post_property_catergory == 'Commercial property for Sell') { ?>
+									<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory =='Commercial property for Sale' ) { ?>
 									<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
 									<?php } else { ?>
 									<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>

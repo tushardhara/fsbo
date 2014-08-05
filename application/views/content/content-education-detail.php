@@ -69,11 +69,11 @@
 					<div class="featured-listing-name furniture"><a href="<?php echo site_url('education/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
 					<div class="desc"><p><?php echo $key->post_description?></p>
 					</div>
-					<div class="rrssb-buttons social-share">
+					<div class="rrssb-buttons social-share edu">
 						<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo site_url('education/'.$key->post_slug);?>" class="popup facebook-share"></a>
 						<a href="http://twitter.com/home?status=<?php echo shortDescription($key->post_description)?><?php echo site_url('education/'.$key->post_slug);?>" class="popup twitter-share"></a>
 					</div>
-					<div class="rrssb-buttons settings no-border">
+					<div class="rrssb-buttons settings no-border edu">
 						<div class="wishlist"><a href="<?php echo site_url('add_wishlist?ID='.$key->ID)?>" target="_blank">Wish List</a></div>
 						<div class="print"><a href="javascript:window.print()">Print</a></div>
 						<?php if($this->session->userdata('logged_in')){ ?>

@@ -39,7 +39,7 @@
 				<p>As the leading real estate marketing website of Qatar, we offer you a comprehensive array of property resources, designed to help you make "quick" and "informed" decisions.</p>
 				<h6>Signup and enjoy the benefits that include:</h6>
 				<p><span>Free Listings:</span> Post your properties and furiture free of charge...no catch</p>
-				<p><span>Find/Sell Furniture:</span> A comprahensive database of furniture to suite your decor</p>
+				<p><span>Find/Sale Furniture:</span> A comprahensive database of furniture to suite your decor</p>
 				<p><span>Saved Searches:</span> A bespoke tool that lets you save search queries online, right here on our website</p>
 				<p><span>Saved Properties:</span> Save and shortlist real estate for your convenience</p>
 				<p><span>Compare Properties:</span> compare prospects to find whats right for you</p>

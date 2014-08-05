@@ -298,8 +298,8 @@
 			</div>
 			<div class="header-nav">
 				<li><a href="<?php echo site_url('property') ?>">Buy/Rent Property</a></li>
+				<li><a href="<?php echo site_url('furniture') ?>">Buy Furniture</a></li>
 				<li><a href="<?php echo site_url('education') ?>">Education</a></li>
-				<li><a href="<?php echo site_url('furniture/bedroom') ?>">Buy Furniture</a></li>
 				<li><a href="<?php echo site_url('agent') ?>">Find Agents</a></li>
 			</div>
 		</div>
