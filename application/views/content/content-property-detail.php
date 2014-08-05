@@ -137,15 +137,16 @@
 					<div class="title">Amenities</div>
 					<div class="left">
 						<div class="item-title">Includes</div>
-						<div class="item"><div>Furnished</div><div class="yes"></div></div>
-						<div class="item"><div>Divool/Gym</div><div class="yes"></div></div>
-						<div class="item"><div>Semi Furnished</div><div class="no"></div></div>
-						<div class="item"><div>Storage Area</div><div class="yes"></div></div>
-						<div class="item"><div>divarking Garage</div><div class="no"></div></div>
-						<div class="item"><div>Security</div><div class="yes"></div></div>
-						<div class="item"><div>Sdivlit A/C</div><div class="yes"></div></div>
-						<div class="item"><div>Elictricity/Hydro </div><div class="no"></div></div>
-						<div class="item"><div>Washer/Dryer</div><div class="yes"></div></div>
+						<div class="item"><div>Not Furnished</div><div class="<?php echo $key->post_property_not_furnished == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Semi Furnished</div><div class="<?php echo $key->post_property_semi_furnished == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Furnished</div><div class="<?php echo $key->post_property_furnished == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Divool/Gym</div><div class="<?php echo $key->post_property_gym == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Storage Area</div><div class="<?php echo $key->post_property_storage == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Parking Garage</div><div class="<?php echo $key->post_property_parking == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Security</div><div class="<?php echo $key->post_property_security == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>A/C</div><div class="<?php echo $key->post_property_ac == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Washer/Dryer</div><div class="<?php echo $key->post_property_washer_dryer == '0' ? 'no' : 'yes'?>"></div></div>
+						<div class="item"><div>Elictricity/Hydro </div><div class="<?php echo $key->post_property_electricity == '0' ? 'no' : 'yes'?>"></div></div>
 					</div>
 					<div class="right">
 						<div id="map"></div>

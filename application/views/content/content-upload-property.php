@@ -86,7 +86,7 @@
                             <div class="drop-item" item-value="5">5</div>
 						</div>
 					</div>
-					<div class="filed ex">
+					<div class="filed">
 						<input	type="text" placeholder="Bathrooms" name="post_property_bathroom" readonly class="drop">
 						<span class="arrow"></span>
 						<div class="drop-category">
@@ -95,6 +95,86 @@
                             <div class="drop-item" item-value="3">3</div>
                             <div class="drop-item" item-value="4">4</div>
                             <div class="drop-item" item-value="5">5</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Not Furnished" name="post_property_not_furnished" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Semi Furnished" name="post_property_semi_furnished" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Furnished" name="post_property_furnished" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="GYM" name="post_property_gym" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Storage" name="post_property_storage" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Parking" name="post_property_parking" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Security" name="post_property_security" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="AC" name="post_property_ac" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Washer/Dryer" name="post_property_washer_dryer" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed ex">
+						<input	type="text" placeholder="Electricity/Hydro" name="post_property_electricity" readonly class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
 						</div>
 					</div>
 					<h1>Area</h1>

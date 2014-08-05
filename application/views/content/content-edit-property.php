@@ -8,6 +8,16 @@
 				$post_property_floor = $key->post_property_floor;
 				$post_property_bedrooms = $key->post_property_bedrooms;
 				$post_property_bathroom = $key->post_property_bathroom;
+				$post_property_not_furnished = $key->post_property_not_furnished  == '0' ? 'no' : 'yes';
+		        $post_property_semi_furnished = $key->post_property_semi_furnished  == '0' ? 'no' : 'yes';
+		        $post_property_furnished = $key->post_property_furnished == '0' ? 'no' : 'yes';
+		        $post_property_gym = $key->post_property_gym == '0' ? 'no' : 'yes';
+		        $post_property_storage = $key->post_property_storage == '0' ? 'no' : 'yes';
+		        $post_property_parking = $key->post_property_parking == '0' ? 'no' : 'yes';
+		        $post_property_security = $key->post_property_security == '0' ? 'no' : 'yes';
+		        $post_property_ac = $key->post_property_ac == '0' ? 'no' : 'yes';
+		        $post_property_washer_dryer = $key->post_property_washer_dryer == '0' ? 'no' : 'yes';
+		        $post_property_electricity = $key->post_property_electricity == '0' ? 'no' : 'yes';
 				$post_property_area_reference = $key->post_property_area_reference;
 				$post_property_area_city = $key->post_property_area_city;
 				$post_property_area_community = $key->post_property_area_community;
@@ -93,7 +103,7 @@
                             <div class="drop-item" item-value="5">5</div>
 						</div>
 					</div>
-					<div class="filed ex">
+					<div class="filed">
 						<input	type="text" placeholder="Bathrooms" name="post_property_bathroom" readonly class="drop" value="<?php echo $post_property_bathroom; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
@@ -102,6 +112,86 @@
                             <div class="drop-item" item-value="3">3</div>
                             <div class="drop-item" item-value="4">4</div>
                             <div class="drop-item" item-value="5">5</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Not Furnished" name="post_property_not_furnished" readonly class="drop" value="<?php echo $post_property_not_furnished; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Semi Furnished" name="post_property_semi_furnished" readonly class="drop" value="<?php echo $post_property_semi_furnished; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Furnished"  name="post_property_furnished" readonly class="drop" value="<?php echo $post_property_furnished; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="GYM" name="post_property_gym" readonly class="drop" value="<?php echo $post_property_gym; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Storage" name="post_property_storage" readonly class="drop" value="<?php echo $post_property_storage; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Parking" name="post_property_parking" readonly class="drop" value="<?php echo $post_property_parking; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Security" name="post_property_security" readonly class="drop" value="<?php echo $post_property_security; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="AC" name="post_property_ac" readonly class="drop" value="<?php echo $post_property_ac; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed">
+						<input	type="text" placeholder="Washer/Dryer" name="post_property_washer_dryer" readonly class="drop" value="<?php echo $post_property_washer_dryer; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
+						</div>
+					</div>
+					<div class="filed ex">
+						<input	type="text" placeholder="Electricity/Hydro" name="post_property_electricity" readonly class="drop" value="<?php echo $post_property_electricity; ?>">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<div class="drop-item" item-value="no">no</div>
+                            <div class="drop-item" item-value="yes">yes</div>
 						</div>
 					</div>
 					<h1>Area</h1>

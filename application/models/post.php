@@ -16,6 +16,16 @@ Class Post extends CI_Model{
     $post_property_floor = '',
     $post_property_bedrooms = '',
     $post_property_bathroom = '',
+    $post_property_not_furnished = '',
+    $post_property_semi_furnished = '',
+    $post_property_furnished = '',
+    $post_property_gym = '',
+    $post_property_storage = '',
+    $post_property_parking = '',
+    $post_property_security = '',
+    $post_property_ac = '',
+    $post_property_washer_dryer = '',
+    $post_property_electricity = '',
     $post_property_area_reference = '',
     $post_property_area_city = '',
     $post_property_area_community = '',
@@ -54,6 +64,16 @@ Class Post extends CI_Model{
       'post_property_floor' => $post_property_floor,
       'post_property_bedrooms' => $post_property_bedrooms,
       'post_property_bathroom' => $post_property_bathroom,
+      'post_property_not_furnished' => $post_property_not_furnished  == 'no' || $post_property_not_furnished  == ''  ? '0' : '1',
+      'post_property_semi_furnished' => $post_property_semi_furnished  == 'no' || $post_property_semi_furnished  == '' ? '0' : '1',
+      'post_property_furnished' => $post_property_furnished  == 'no' || $post_property_furnished  == '' ? '0' : '1',
+      'post_property_gym' => $post_property_gym  == 'no' || $post_property_gym  == ''? '0' : '1',
+      'post_property_storage' => $post_property_storage  == 'no' || $post_property_storage  == '' ? '0' : '1',
+      'post_property_parking' => $post_property_parking  == 'no' || $post_property_parking  == '' ? '0' : '1',
+      'post_property_security' => $post_property_security  == 'no' ? '0' : '1',
+      'post_property_ac' => $post_property_ac  == 'no' || $post_property_ac  == '' ? '0' : '1',
+      'post_property_washer_dryer' => $post_property_washer_dryer  == 'no' || $post_property_washer_dryer  == '' ? '0' : '1',
+      'post_property_electricity' => $post_property_electricity  == 'no' || $post_property_electricity  == '' ? '0' : '1',
       'post_property_area_reference' => $post_property_area_reference,
       'post_property_area_city' => $post_property_area_city,
       'post_property_area_community' => $post_property_area_community,
@@ -241,6 +261,16 @@ Class Post extends CI_Model{
   $post_property_floor = '',
   $post_property_bedrooms = '' ,
   $post_property_bathroom = '',
+  $post_property_not_furnished = '',
+  $post_property_semi_furnished = '',
+  $post_property_furnished = '',
+  $post_property_gym = '',
+  $post_property_storage = '',
+  $post_property_parking = '',
+  $post_property_security = '',
+  $post_property_ac = '',
+  $post_property_washer_dryer = '',
+  $post_property_electricity = '',
   $post_property_area_reference = '',
   $post_property_area_city = '',
   $post_property_area_community = '',
@@ -265,6 +295,16 @@ Class Post extends CI_Model{
         'post_property_floor' => $post_property_floor,
         'post_property_bedrooms' => $post_property_bedrooms,
         'post_property_bathroom' => $post_property_bathroom,
+        'post_property_not_furnished' => $post_property_not_furnished  == 'no' ? '0' : '1',
+        'post_property_semi_furnished' => $post_property_semi_furnished  == 'no' ? '0' : '1',
+        'post_property_furnished' => $post_property_furnished  == 'no' ? '0' : '1',
+        'post_property_gym' => $post_property_gym  == 'no' ? '0' : '1',
+        'post_property_storage' => $post_property_storage  == 'no' ? '0' : '1',
+        'post_property_parking' => $post_property_parking  == 'no' ? '0' : '1',
+        'post_property_security' => $post_property_security  == 'no' ? '0' : '1',
+        'post_property_ac' => $post_property_ac  == 'no' ? '0' : '1',
+        'post_property_washer_dryer' => $post_property_washer_dryer  == 'no' ? '0' : '1',
+        'post_property_electricity' => $post_property_electricity  == 'no' ? '0' : '1',
         'post_property_area_reference' => $post_property_area_reference,
         'post_property_area_city' => $post_property_area_city,
         'post_property_area_community' => $post_property_area_community,
@@ -465,6 +505,121 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
      }else{
        return false;
      } 
+  }
+
+
+  function search($query_array, $limit, $offset, $sort_by, $sort_order) {
+    $sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+    $sort_columns = array('ID', 'post_title','post_price');
+    $sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'post_title';
+    // results query
+    $q = $this->db->select('*')
+      ->from('fsbo_post')
+      ->where('post_status','0')
+      ->limit($limit, $offset)
+      ->order_by($sort_by, $sort_order); 
+    if (strlen($query_array['post_title'])) {
+      $q->like('post_title', $query_array['post_title']);
+    }
+    if (strlen($query_array['post_type'])) {
+      $q->where('post_type', $query_array['post_type']);
+    }
+    $ret['rows'] = $q->get()->result();
+    
+    // count query
+    $q = $this->db->select('COUNT(*) as count', FALSE)
+      ->from('fsbo_post')->where('post_status','0');
+    if (strlen($query_array['post_title'])) {
+      $q->like('post_title', $query_array['post_title']);
+    }
+    if (strlen($query_array['post_type'])) {
+      $q->where('post_type', $query_array['post_type']);
+    }
+    $tmp = $q->get()->result();
+    
+    $ret['num_rows'] = $tmp[0]->count;
+    
+    return $ret;
+  }
+  function search_e($query_array, $limit, $offset,$post_furniture_type, $sort_by, $sort_order) {
+    $sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+    $sort_columns = array('ID', 'post_title','post_price');
+    $sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'post_title';
+    // results query
+    $q = $this->db->select('*')
+      ->from('fsbo_post')
+      ->where('post_status','0')
+      ->limit($limit, $offset)
+      ->order_by($sort_by, $sort_order); 
+    if($post_furniture_type== 'bedroom'){   
+      $q->where('post_furniture_type', 'Bedroom');
+    }
+    if($post_furniture_type== 'living-room'){
+      
+      $q->where('post_furniture_type','Living room');
+    }
+    if($post_furniture_type== 'bathroom'){
+     
+      $q->where('post_furniture_type', 'Bathroom');
+    }
+    if($post_furniture_type== 'dining-room'){
+     
+      $q->where('post_furniture_type', 'Dining room');
+    }
+    if($post_furniture_type== 'kitchen'){
+     
+      $q->where('post_furniture_type', 'Kitchen');
+    }
+    if($post_furniture_type== 'miscellaneous'){
+     
+      $q->where('post_furniture_type', 'Miscellaneous');
+    }
+    if (strlen($query_array['post_title'])) {
+      $q->like('post_title', $query_array['post_title']);
+    }
+    if (strlen($query_array['post_type'])) {
+      $q->where('post_type', $query_array['post_type']);
+    }
+    $ret['rows'] = $q->get()->result();
+    
+    // count query
+    $q = $this->db->select('COUNT(*) as count', FALSE)
+      ->from('fsbo_post')->where('post_status','0');
+     if($post_furniture_type== 'bedroom'){
+      
+      $q->where('post_furniture_type', 'Bedroom');
+    }
+    if($post_furniture_type== 'living-room'){
+      
+      $q->where('post_furniture_type','Living room');
+    }
+    if($post_furniture_type== 'bathroom'){
+     
+      $q->where('post_furniture_type', 'Bathroom');
+    }
+    if($post_furniture_type== 'dining-room'){
+     
+      $q->where('post_furniture_type', 'Dining room');
+    }
+    if($post_furniture_type== 'kitchen'){
+     
+      $q->where('post_furniture_type', 'Kitchen');
+    }
+    if($post_furniture_type== 'miscellaneous'){
+     
+      $q->where('post_furniture_type', 'Miscellaneous');
+    }
+    if (strlen($query_array['post_title'])) {
+      $q->like('post_title', $query_array['post_title']);
+    }
+    if (strlen($query_array['post_type'])) {
+      $q->where('post_type', $query_array['post_type']);
+    }
+    $tmp = $q->get()->result();
+    
+    $ret['num_rows'] = $tmp[0]->count;
+    
+    return $ret;
   }
 }
 ?>

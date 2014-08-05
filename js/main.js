@@ -68,7 +68,6 @@ $(document).ready(function() {
       navigation : false, // Show next and prev buttons
       pagination : false,
   });
- $( "#search-draggable" ).draggable({ containment: "#dragable-search-area", scroll: false ,cursor: "move" });
  $(".search-items").on('click',function(){
  	var ID=$(this).attr("id");
  	$( ".search-field-box" )

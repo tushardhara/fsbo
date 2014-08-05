@@ -263,7 +263,6 @@
 		echo link_tag('css/style.css');
 	?>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 </head>
@@ -298,8 +297,8 @@
 				<?php } ?>
 			</div>
 			<div class="header-nav">
-				<li><a href="<?php echo site_url('property') ?>">Buy Property</a></li>
-				<li><a href="<?php echo site_url('property') ?>">Rent Property</a></li>
+				<li><a href="<?php echo site_url('property') ?>">Buy/Rent Property</a></li>
+				<li><a href="<?php echo site_url('education') ?>">Education</a></li>
 				<li><a href="<?php echo site_url('furniture/bedroom') ?>">Buy Furniture</a></li>
 				<li><a href="<?php echo site_url('agent') ?>">Find Agents</a></li>
 			</div>

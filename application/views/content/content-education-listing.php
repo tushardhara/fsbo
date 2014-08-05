@@ -12,30 +12,34 @@
 				<div class="education-drop-down-settings clearfix">
 					<div class='title'>Education Guid</div>
 					<div class='settings-edu'>
-						<div class="search-edu"><input	type="text" placeholder="Search Location"><div class="search-icon"></div></div>
+						<?php echo form_open('search'); ?>
+						<div class="search-edu"><?php echo form_input('post_title', set_value('post_title'), 'Placeholder="Search"'); ?><input type="hidden" name="post_type" value="education"><input type="submit" style="position: absolute; left: -9999px"/><div class="search-icon"></div></div>
+						<?php echo form_close(); ?>
 						<!--div class="sort"><div class="drop"><span class="text">Type</span><span class="arrow"></span></div></div-->
 					</div>
 				</div>
 				<div class="filter-settings">
-					<div class="no-of-item"><span>1-15</span> of 509</div>
+					<div class="no-of-item"><span><?php echo $per_page;?></span> of <?php echo $num_results; ?></div>
 					<div class="sort">
 						<span class="text">Short By</span>
 						<div class="drop">
-							<?php if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){ ?>
+							<?php if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))) {?>
+								<span class="text">Relevance</span><span class="arrow"></span>
+							<?php }else if($this->uri->segment(3) == 'ID' && $this->uri->segment(4) == 'desc' && is_numeric($this->uri->segment(2))){ ?>
 							<span class="text">Relevance</span><span class="arrow"></span>
-							<?php }else if($this->uri->segment(2) == 'low'){ ?>
+							<?php }else if($this->uri->segment(3) == 'post_price' && $this->uri->segment(4) == 'asc' && is_numeric($this->uri->segment(2))){ ?>
 							<span class="text">Price : Low to High</span><span class="arrow"></span>
-							<?php }else if($this->uri->segment(2) == 'high'){ ?>
+							<?php }else if($this->uri->segment(3) == 'post_price' && $this->uri->segment(4) == 'desc' && is_numeric($this->uri->segment(2))){ ?>
 							<span class="text">Price : High to Low</span><span class="arrow"></span>
-							<?php } else if($this->uri->segment(2) == 'new') { ?>
+							<?php } else if($this->uri->segment(3) == 'post_date' && $this->uri->segment(4) == 'asc' && is_numeric($this->uri->segment(2))) { ?>
 							<span class="text">Date : Latest First</span><span class="arrow"></span>
 							<?php } ?>
 						</div>
 						<div class="filter-drop">
-							<div class="items"><a href="<?php echo site_url('education/')?>">Relevance</a></div>
-							<div class="items"><a href="<?php echo site_url('education/low/')?>">Price : Low to High</a></div>
-							<div class="items"><a href="<?php echo site_url('education/high/')?>">Price : High to Low</a></div>
-							<div class="items"><a href="<?php echo site_url('education/new/')?>">Date : Latest First</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
 						</div>
 					</div>
 				</div>
@@ -76,7 +80,11 @@
 						</div>
 					<?php } ?>
 				</div>
-				<?php echo $this->pagination->create_links();?>
+				<?php if (strlen($pagination)): ?>
+				<div>
+					Pages: <?php echo $pagination; ?>
+				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

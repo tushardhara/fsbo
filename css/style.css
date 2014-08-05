@@ -387,7 +387,7 @@ header .register-login li a:first-child{
 .home-main .left-main .title h6{
 	font-family: 'nexa_boldregular';
 	font-size: 40px;
-	padding-top: 30px;
+	padding-top: 37px;
 } 
 .home-main .left-main .listing{
 	padding-top: 20px;
@@ -405,16 +405,20 @@ header .register-login li a:first-child{
 	border-right: 1px solid #c2c2c2;
 	float: left;
 }
+.home-main .left-main .listing .featured-listing-left .item{
+	width: 270px;
+	height: 100%;
+	border: 1px solid transparent;
+}
+.home-main .left-main .listing .featured-listing-left .item:hover{
+	border: 1px solid #1eb0a9;
+}
 .home-main .left-main .listing .featured-listing-left .item .thumb{
 	position: relative;
 }
 .home-main .left-main .listing .featured-listing-left .item .thumb img{
-	opacity: 0.6;
 	width: 100%;
 	height: 200px;
-}
-.home-main .left-main .listing .featured-listing-left .item .thumb:hover img{
-	opacity: 1;
 }
 .home-main .left-main .listing .featured-listing-left .item .thumb .featured-listing-text{
 	position: absolute;
@@ -520,19 +524,20 @@ header .register-login li a:first-child{
 	margin-top: 5px;
 	margin-bottom: 20px;
 }
-.home-main .left-main .listing .featured-listing-left .item:last-child .location{
-	font-family: 'nexa_lightregular';
-	font-size: 14px;
-	color: #161616;
-	text-align: center;
-	margin-top: 5px;
-	margin-bottom: 0px;
-}
+
 .home-main .left-main .listing .featured-listing-center{
 	width: 538px;
 	height: auto;
 	padding-left: 15px;
 	float: left;
+}
+.home-main .left-main .listing .featured-listing-center .item{
+	width: 538px;
+	min-height: 649px;
+	border: 1px solid transparent;
+}
+.home-main .left-main .listing .featured-listing-center .item:hover{
+	border: 1px solid #1eb0a9;
 }
 .home-main .left-main .listing .featured-listing-center .item .thumb{
 	position: relative;
@@ -676,7 +681,7 @@ header .register-login li a:first-child{
 	height: 65px;
 }
 .home-main .left-main .listing .featured-project-area .title h6{
-	padding-top: 6px;
+	padding-top: 14px;
 	float:left;
 }
 .home-main .left-main .listing .featured-project-area .title a{
@@ -702,8 +707,13 @@ header .register-login li a:first-child{
 	width: 270px;
 	height: auto;
 	float: left;
-	margin-right: 14px;
+	margin-right: 11px;
+	border: 1px solid transparent;
 }
+.home-main .left-main .listing .featured-project-area .featured-project-list .item:hover{
+	border: 1px solid #1eb0a9;
+}
+
 .home-main .left-main .listing .featured-project-area .featured-project-list .item:last-child{
 	margin-right: 0px;
 }
@@ -711,13 +721,10 @@ header .register-login li a:first-child{
 	position: relative;
 }
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb img{
-	opacity: 0.6;
 	width: 100%;
 	height: 200px;
 }
-.home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb:hover img{
-	opacity: 1;
-}
+
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .thumb .featured-listing-text{
 	position: absolute;
 	top: 160px;
@@ -748,10 +755,6 @@ header .register-login li a:first-child{
 	border-top: 1px solid #c2c2c2;
 	height: 65px;
 }
-.home-main .left-main .listing .featured-furniture-area .title h6{
-	padding-top: 6px;
-	float:left;
-}
 .home-main .left-main .listing .featured-furniture-area .title a{
 	padding-top: 6px;
 	float:right;
@@ -764,6 +767,22 @@ header .register-login li a:first-child{
 .home-main .left-main .listing .featured-furniture-area .title a:hover{
 	color: #1eb0a9;
 }
+.home-main .left-main .listing .featured-furniture-area .title h6{
+	padding-top: 14px;
+	float:left;
+	font-family: 'nexa_boldregular';
+	font-size: 40px;
+	color: #292a2a;
+}
+.home-main .left-main .listing .featured-furniture-area .title h6  a{
+	color: #292a2a;
+	font-family: 'nexa_boldregular';
+	text-decoration: none;
+	margin-top: 0px;
+	font-size: 40px;
+}
+
+
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list{
 	width: 100%;
 	height: auto;
@@ -774,8 +793,14 @@ header .register-login li a:first-child{
 	width: 270px;
 	height: auto;
 	float: left;
-	margin-right: 14px;
+	margin-right: 11px;
+	border: 1px solid transparent;
 }
+
+.home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item:hover{
+    border: 1px solid #1eb0a9;
+}
+
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item:last-child{
 	margin-right: 0px;
 }
@@ -783,12 +808,8 @@ header .register-login li a:first-child{
 	position: relative;
 }
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb img{
-	opacity: 0.6;
 	width: 100%;
 	height: 200px;
-}
-.home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb:hover img{
-	opacity: 1;
 }
 .home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item .thumb .featured-listing-text{
 	position: absolute;
@@ -839,6 +860,11 @@ header .register-login li a:first-child{
 	text-decoration: none;
 	margin: 0 auto;
 	display: block;
+	margin-bottom: 10px;
+}
+.home-main .left-main .listing .featured-furniture-area .featured-furniture-list .item a.featured-listing-view:hover{
+	background: #ffb80f;
+	color: #fff;
 }
 .home-main .right-main{
 	width: 286px;
@@ -856,6 +882,10 @@ header .register-login li a:first-child{
 	padding-top: 45px;
 	padding-left: 20px;
 } 
+.home-main .right-main .title h6 a{
+	color: inherit;
+	text-decoration: none;
+}
 .home-main .right-main .side-container{
 	background: #faf9f9;
 	padding-top: 20px;

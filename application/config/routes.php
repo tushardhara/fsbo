@@ -75,6 +75,7 @@ $route["add_property"] = "add/add_property";
 $route["add_furniture"] = "add/add_furniture";
 $route["add_education"] = "add/add_education";
 $route["add_wishlist"] = "add/add_wishlist";
+$route["search"] = "main/search";
 $route["test"] = "test";
 $route['404_override'] = '';
 

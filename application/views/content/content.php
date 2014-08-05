@@ -184,8 +184,8 @@
 					</div>
 					<div class="featured-furniture-area">
 						<div class="title">
-							<h6>Furniture</h6>
-							<a href="<?php echo site_url('furniture/bedroom') ?>">View all</a>
+							<h6><a href="<?php echo site_url('furniture')?>">Furniture</a></h6>
+							<a href="<?php echo site_url('furniture') ?>">View all</a>
 						</div>
 						<div class="featured-furniture-list clearfix">
 							<?php foreach ($data_three_furniture_feature as $key) { ?>
@@ -224,7 +224,7 @@
 			</div>
 			<div class="right-main">
 				<div class="title">
-					<h6>Education Guid</h6>
+					<h6><a href="<?php echo site_url('education') ?>">Education Guid</a></h6>
 				</div>
 				<div class="side-container">
 					<div class="education-list">
