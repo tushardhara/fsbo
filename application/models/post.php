@@ -498,16 +498,32 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
        return false;
      }
   }
-  function show_user_slug_all($slug){
-    $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+  function show_user_slug_all($slug,$offset,$limit){
+    $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC LIMIT $offset,$limit");
     if($query->num_rows()){
-        return $query->result();
+        $ret['rows']=$query->result();
+     }else{
+       return false;
+     } 
+
+    $query = $this->db->query("SELECT COUNT(*) as count FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+    if($query->num_rows()){
+         $tmp=$query->result();
+         $ret['num_rows'] = $tmp[0]->count;
+     }else{
+       return false;
+     } 
+     return $ret;
+  }
+
+  function get_all_eduction_type(){
+    $query = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type='education' AND post_status='0' GROUP BY post_education_type");
+    if($query->num_rows()){
+        return $tmp=$query->result();
      }else{
        return false;
      } 
   }
-
-
   function search($query_array, $limit, $offset, $sort_by, $sort_order) {
     $sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
     $sort_columns = array('ID', 'post_title','post_price');
@@ -614,6 +630,45 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     }
     if (strlen($query_array['post_type'])) {
       $q->where('post_type', $query_array['post_type']);
+    }
+    $tmp = $q->get()->result();
+    
+    $ret['num_rows'] = $tmp[0]->count;
+    
+    return $ret;
+  }
+  function search_edu($query_array, $limit, $offset, $sort_type,$sort_by, $sort_order) {
+    $sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+    $sort_columns = array('ID', 'post_title','post_price');
+    $sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'post_title';
+    // results query
+    $q = $this->db->select('*')
+      ->from('fsbo_post')
+      ->where('post_status','0')
+      ->limit($limit, $offset)
+      ->order_by($sort_by, $sort_order); 
+    if (strlen($query_array['post_title'])) {
+      $q->like('post_title', $query_array['post_title']);
+    }
+    if (strlen($query_array['post_type'])) {
+      $q->where('post_type', $query_array['post_type']);
+    }
+    if ($sort_type !='All') {
+      $q->where('post_education_type', $sort_type);
+    }
+    $ret['rows'] = $q->get()->result();
+    
+    // count query
+    $q = $this->db->select('COUNT(*) as count', FALSE)
+      ->from('fsbo_post')->where('post_status','0');
+    if (strlen($query_array['post_title'])) {
+      $q->like('post_title', $query_array['post_title']);
+    }
+    if (strlen($query_array['post_type'])) {
+      $q->where('post_type', $query_array['post_type']);
+    }
+    if ($sort_type !='All') {
+      $q->where('post_education_type', $sort_type);
     }
     $tmp = $q->get()->result();
     

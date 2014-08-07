@@ -15,7 +15,33 @@
 						<?php echo form_open('search'); ?>
 						<div class="search-edu"><?php echo form_input('post_title', set_value('post_title'), 'Placeholder="Search"'); ?><input type="hidden" name="post_type" value="education"><input type="submit" style="position: absolute; left: -9999px"/><div class="search-icon"></div></div>
 						<?php echo form_close(); ?>
-						<!--div class="sort"><div class="drop"><span class="text">Type</span><span class="arrow"></span></div></div-->
+						<div class="sort">
+							<span class="text">Type</span>
+							<div class="drop">
+								<?php if($this->uri->segment(2)=='') {?>
+									<span class="text">All</span><span class="arrow"></span>
+								<?php }else if($this->uri->segment(2)=='0'){ ?>
+									<?php if($this->uri->segment(3)=='All') { ?>
+										<span class="text">All</span><span class="arrow"></span>
+									<?php }else {?>
+										<span class="text"><?php echo $this->uri->segment(3) ?></span><span class="arrow"></span>
+									<?php } ?>
+								<?php } ?>
+								
+							</div>
+							<div class="filter-drop">
+								<div class="items"><a href="<?php echo site_url("education/$query_id/All/ID/desc")?>">All</a></div>
+								<?php if(isset($get_all_eduction_type)){ 
+										if(!empty($get_all_eduction_type)){
+											foreach ($get_all_eduction_type as $key) { ?>
+												<div class="items"><a href="<?php echo site_url("education/$query_id/$key->post_education_type/ID/desc")?>"><?php echo $key->post_education_type;?></a></div>
+												<?php $post_education_type[$key->post_education_type]=$key->post_education_type; ?>
+								<?php		}
+										}
+									} 
+								?>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="filter-settings">
@@ -26,17 +52,17 @@
 							<?php if($this->uri->segment(2)=='') {?>
 								<span class="text">Relevance</span><span class="arrow"></span>
 							<?php } else if($this->uri->segment(2)=='0') {?>
-								<?php if($this->uri->segment(3)=='ID') { ?>
+								<?php if($this->uri->segment(4)=='ID') { ?>
 									<span class="text">Relevance</span><span class="arrow"></span>
-								<?php } else if($this->uri->segment(3)=='post_price'){ ?>
+								<?php } else if($this->uri->segment(4)=='post_price'){ ?>
 									<?php if($this->uri->segment(4)=='') {?>
 									<span class="text">Price : Low to High</span><span class="arrow"></span>
-									<?php } else if($this->uri->segment(4)=='asc') {?>
+									<?php } else if($this->uri->segment(5)=='asc') {?>
 									<span class="text">Price : Low to High</span><span class="arrow"></span>
-									<?php } else if($this->uri->segment(4)=='desc') {?>
+									<?php } else if($this->uri->segment(5)=='desc') {?>
 									<span class="text">Price : High to Low</span><span class="arrow"></span>
 									<?php } ?>
-								<?php }else if($this->uri->segment(3)=='post_date'){ ?>
+								<?php }else if($this->uri->segment(4)=='post_date'){ ?>
 									<span class="text">Date : Latest First</span><span class="arrow"></span>
 								<?php } ?>
 							<?php } else { ?>
@@ -45,43 +71,53 @@
 						</div>
 						<?php if($this->uri->segment(2)=='') {?>
 						<div class="filter-drop">
-							<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
-							<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-							<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-							<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/All/ID/desc")?>">Relevance</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/asc")?>">Price : Low to High</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/desc")?>">Price : High to Low</a></div>
+							<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_date/asc")?>">Date : Latest First</a></div>
 						</div>
 						<?php } else if($this->uri->segment(2)=='0') {?>
-							<?php if($this->uri->segment(3)=='ID') { ?>
-							<div class="filter-drop">
-								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-							</div>
-							<?php }else if($this->uri->segment(3)=='post_price'){ ?>
-							<div class="filter-drop">
-								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-							</div>
-							<?php }else if($this->uri->segment(3)=='post_date'){ ?>
-							<div class="filter-drop">
-								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-							</div>
+							<?php if($this->uri->segment(3)=='All') { ?>
+								<?php if($this->uri->segment(4)=='ID') { ?>
+								<div class="filter-drop">
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/ID/desc")?>">Relevance</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/asc")?>">Price : Low to High</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/desc")?>">Price : High to Low</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_date/asc")?>">Date : Latest First</a></div>
+								</div>
+								<?php }else if($this->uri->segment(4)=='post_price'){ ?>
+								<div class="filter-drop">
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/ID/desc")?>">Relevance</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/asc")?>">Price : Low to High</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/desc")?>">Price : High to Low</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_date/asc")?>">Date : Latest First</a></div>
+								</div>
+								<?php }else if($this->uri->segment(4)=='post_date'){ ?>
+								<div class="filter-drop">
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/ID/desc")?>">Relevance</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/asc")?>">Price : Low to High</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/desc")?>">Price : High to Low</a></div>
+									<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_date/asc")?>">Date : Latest First</a></div>
+								</div>
+								<?php } ?>
+							<?php } else { ?>
+									<?php if(!empty($post_education_type[$this->uri->segment(3)])) {  $type=$this->uri->segment(3);?>
+									<div class="filter-drop">
+										<div class="items"><a href="<?php echo site_url("education/$query_id/$type/ID/desc")?>">Relevance</a></div>
+										<div class="items"><a href="<?php echo site_url("education/$query_id/$type/post_price/asc")?>">Price : Low to High</a></div>
+										<div class="items"><a href="<?php echo site_url("education/$query_id/$type/post_price/desc")?>">Price : High to Low</a></div>
+										<div class="items"><a href="<?php echo site_url("education/$query_id/$type/post_date/asc")?>">Date : Latest First</a></div>
+									</div>
+									<?php } ?>
 							<?php } ?>
 						<?php }else{ ?>
 							<div class="filter-drop">
-								<div class="items"><a href="<?php echo site_url("education/$query_id/ID/desc")?>">Relevance</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-								<div class="items"><a href="<?php echo site_url("education/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/All/ID/desc")?>">Relevance</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/asc")?>">Price : Low to High</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_price/desc")?>">Price : High to Low</a></div>
+								<div class="items"><a href="<?php echo site_url("education/$query_id/All/post_date/asc")?>">Date : Latest First</a></div>
 							</div>
 						<?php } ?>
-					</div>
 					</div>
 				</div>
 				<div class="edu-listing clearfix">

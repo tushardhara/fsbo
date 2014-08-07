@@ -52,12 +52,111 @@
 				</div>
 				<?php } ?>
 				<div class="agent-filter clearfix">
-					<div class="sort"><div class="drop"><span class="text">City</span><span class="arrow"></span></div></div>
-					<div class="sort"><div class="drop"><span class="text">Type</span><span class="arrow"></span></div></div>
-					<div class="sort"><div class="drop"><span class="text">Bedroom</span><span class="arrow"></span></div></div>
-					<div class="sort"><div class="drop"><span class="text">Bathroom</span><span class="arrow"></span></div></div>
-					<div class="price-range"><span class="text">Price Range</span><div id="agent-slider-range"></div></div>
-					<div class="sort"><div class="drop"><span class="text">Sort</span><span class="arrow"></span></div></div>
+					<div class="sort">
+						<span class="text">City</span>
+						<div class="drop">
+							<span class="text">All</span><span class="arrow"></span>
+						</div>
+						<div class="filter-drop city">
+							<div class="items" item-value="All"><a>All</a></div>
+							<div class="items" item-value="Doha"><a>Doha</a></div>
+                            <div class="items" item-value="AL wakair"><a>AL wakair</a></div>
+                            <div class="items" item-value="Abu az Zuluf"><a>Abu az Zuluf</a></div>
+                            <div class="items" item-value="Abu Thaylah"><a>Abu Thaylah</a></div>
+                            <div class="items" item-value="Ad Dawhah al Jadidah"><a>Ad Dawhah al Jadidah</a></div>
+                            <div class="items" item-value="Al `Arish"><a>Al `Arish</a></div>
+                            <div class="items" item-value="Al Bida` ash Sharqiyah"><a>Al Bida` ash Sharqiyah</a></div>
+                            <div class="items" item-value="Al Ghanim"><a>Al Ghanim</a></div>
+                            <div class="items" item-value="Al Ghuwariyah"><a>Al Ghuwariyah</a></div>
+                            <div class="items" item-value="Al Hilal al Gharbiyah"><a>Al Hilal al Gharbiyah</a></div>
+                            <div class="items" item-value="Al Hilal ash Sharqiyah"><a>Al Hilal ash Sharqiyah</a></div>
+                            <div class="items" item-value="Al Hitmi"><a>Al Hitmi</a></div>
+                            <div class="items" item-value="Al Jasrah"><a>Al Jasrah</a></div>
+                            <div class="items" item-value="Al Jumaliyah"><a>Al Jumaliyah</a></div>
+                            <div class="items" item-value="Al Ka`biyah"><a>Al Ka`biyah</a></div>
+                            <div class="items" item-value="Al Khalifat"><a>Al Khalifat</a></div>
+                            <div class="items" item-value="Al Khor"><a>Al Khor</a></div>
+                            <div class="items" item-value="Al Khuwayr"><a>Al Khuwayr</a></div>
+                            <div class="items" item-value="Al Luqta"><a>Al Luqta</a></div>
+                            <div class="items" item-value="Al Mafjar"><a>Al Mafjar</a></div>
+                            <div class="items" item-value="Al Qa`abiyah"><a>Al Qa`abiyah</a></div>
+                            <div class="items" item-value="Al Wakrah"><a>Al Wakrah</a></div>
+                            <div class="items" item-value="Al `Adhbah"><a>Al `Adhbah</a></div>
+                            <div class="items" item-value="An Najmah"><a>An Najmah</a></div>
+                            <div class="items" item-value="Ar Rakiyat"><a>Ar Rakiyat</a></div>
+                            <div class="items" item-value="Al Rayyan"><a>Al Rayyan</a></div>
+                            <div class="items" item-value="Ar Ru'ays"><a>Ar Ru'ays</a></div>
+                            <div class="items" item-value="As Salatah"><a>As Salatah</a></div>
+                            <div class="items" item-value="As Salatah al Jadidah"><a>As Salatah al Jadidah</a></div>
+                            <div class="items" item-value="As Sani`"><a>As Sani`</a></div>
+                            <div class="items" item-value="As Sawq"><a>As Sawq</a></div>
+                            <div class="items" item-value="Ath Thaqab"><a>Ath Thaqab</a></div>
+                            <div class="items" item-value="Dukhan"><a>Dukhan</a></div>
+                            <div class="items" item-value="Lusail"><a>Lusail</a></div>
+                            <div class="items" item-value="Ras Laffan Industrial City"><a>Ras Laffan Industrial City</a></div>
+                            <div class="items" item-value="Smaismah"><a>Smaismah</a></div>
+                            <div class="items" item-value="Umm Bab"><a>Umm Bab</a></div>
+                            <div class="items" item-value="Umm Sa'id"><a>Umm Sa'id</a></div>
+                            <div class="items" item-value="Umm Salal Ali"><a>Umm Salal Ali</a></div>
+                            <div class="items" item-value="Umm Salal Mohammed"><a>Umm Salal Mohammed</a></div>
+						</div>
+					</div>
+					<div class="sort">
+						<span class="text">Type</span>
+						<div class="drop">
+							<span class="text">All</span><span class="arrow"></span>
+						</div>
+						<div class="filter-drop type">
+							<div class="items" item-value="All"><a>All</a></div>
+							<div class="items" item-value="property"><a>property</a></div>
+							<div class="items" item-value="furniture"><a>furniture</a></div>
+							<div class="items" item-value="education"><a>education</a></div>
+						</div>
+					</div>
+					<div class="sort">
+						<span class="text">Bedroom</span>
+						<div class="drop small">
+							<span class="text">All</span><span class="arrow"></span>
+						</div>
+						<div class="filter-drop bedroom">
+							<div class="items" item-value="All"><a>All</a></div>
+							<div class="items" item-value="1"><a>1</a></div>
+							<div class="items" item-value="2"><a>2</a></div>
+							<div class="items" item-value="3"><a>3</a></div>
+							<div class="items" item-value="4"><a>4</a></div>
+							<div class="items" item-value="5"><a>5</a></div>
+						</div>
+					</div>
+					<div class="sort">
+						<span class="text">Bathroom</span>
+						<div class="drop small">
+							<span class="text">All</span><span class="arrow"></span>
+						</div>
+						<div class="filter-drop bathroom">
+							<div class="items" item-value="All"><a>All</a></div>
+							<div class="items" item-value="1"><a>1</a></div>
+							<div class="items" item-value="2"><a>2</a></div>
+							<div class="items" item-value="3"><a>3</a></div>
+							<div class="items" item-value="4"><a>4</a></div>
+							<div class="items" item-value="5"><a>5</a></div>
+						</div>
+					</div>
+					<div class="price-range">
+						<span class="text">Price Range</span>
+						<div id="agent-slider-range"></div>
+					</div>
+					<div class="sort">
+						<span class="text">Sort</span>
+						<div class="drop">
+							<span class="text">Relevance</span><span class="arrow"></span>
+						</div>
+						<div class="filter-drop re">
+							<div class="items" item-value="Relevance"><a>Relevance</a></div>
+							<div class="items" item-value="Price : Low to High"><a>Price : Low to High</a></div>
+							<div class="items" item-value="Price : Low to High"><a>Price : Low to High</a></div>
+							<div class="items" item-value="Date : Latest First"><a>Date : Latest First</a></div>
+						</div>
+					</div>
 					<div class="contact">Search</div>
 				</div>
 				<div class="agent-property-list">
@@ -77,7 +176,7 @@
 									$attached_image = array(
 								          'src' => $file_url ,
 								          'alt' => 'fsbo',
-								          'title' => 'fsbo',
+								          'title' => $key->post_title,
 									);
 								?>
 								<?php echo img($attached_image);?>
@@ -102,8 +201,12 @@
 							</div>
 							<?php } ?>
 							<?php if($key->post_type == 'property') { ?>
-							<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for"><?php echo $key->post_property_catergory == 'Residential property for Rent' || $key->post_property_catergory == 'Commercial property for Rent' ? 'For Rent' : 'For Sale'; ?></span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
-							<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
+							<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory =='Commercial property for Sale' ) { ?>
+							<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+							<?php } else { ?>
+							<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
+							<?php } ?>
+							<div class="location"><?php echo $key->post_property_area_community.' , '.$key->post_property_area_city;?></div>
 							<div class="address"><?php echo $key->post_property_area_address;?></div>
 							<?php } else if($key->post_type == 'furniture') {?>
 							<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span></p></div>
@@ -138,10 +241,28 @@
 							<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="contact ex">View Details</a>
 							<?php } ?>
 							<div class="compare-area"><div class="compare"></div><span>Compare</span></div>
+							<div class="clear"></div>
+							<?php if($key->post_type == 'property') { ?>
+							<div class="fb-like" data-href="<?php echo site_url('property/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+							<div class="fb-like" data-href="<?php echo site_url('property/'.$key->post_slug);?>" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+							<?php } else if($key->post_type == 'furniture') {?>
+							<div class="fb-like" data-href="<?php echo site_url('furniture/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+							<div class="fb-like" data-href="<?php echo site_url('furniture/'.$key->post_slug);?>" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+							<?php } else if($key->post_type == 'education') { ?>
+							<div class="fb-like" data-href="<?php echo site_url('education/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+							<div class="fb-like" data-href="<?php echo site_url('education/'.$key->post_slug);?>" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+							<?php } ?>
+
+							
 						</div>
 					</div>
 					<?php } ?>
 				</div>
+				<?php if (strlen($pagination)): ?>
+				<div>
+					Pages: <?php echo $pagination; ?>
+				</div>
+				<?php endif; ?>
 			</div> 
 		</div>
 	</div>

@@ -63,17 +63,29 @@ class Main extends CI_Controller {
 		$this->load->view($content);
 		$this->load->view('footer');
 	}
-	public function agent($data = '')
+	public function agent($query_id = 0, $sort_type='All',$offset=0)
 	{
 		$data_set='';
-		if(!empty($data)){
+		if(is_numeric($query_id) || $query_id==''){
+			$data_set['user_list']=$this->user->user_list($sort_type);
+			$content = 'content/content-agent-listing';
+		}else{
 			$data_set['user_list'] = $this->db->get_where('fsbo_users' ,array('user_slug' => $this->uri->segment(2)))->result();
 			$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
-			$data_set['user_mylist'] = $this->post->show_user_slug_all($this->uri->segment(2));
+	
+			$limit = 10;
+			$offset = $this->uri->segment(3) == '' ? 0:$this->uri->segment(3);
+			$results = $this->post->show_user_slug_all($this->uri->segment(2),$offset,$limit);
+			$data_set['user_mylist'] = $results['rows'];
+			$data_set['num_results'] = $results['num_rows'];
+			$slug=$this->uri->segment(2);
+			$config['base_url'] = site_url("agent/$slug");
+			$config['total_rows'] = $data_set['num_results'];
+			$config['per_page'] = $limit;
+			$config['num_links'] = 20; 
+			$this->pagination->initialize($config);
+			$data_set['pagination'] = $this->pagination->create_links();
 			$content = 'content/content-agent-detail';
-		}else{
-			$data_set['user_list']=$this->user->user_list();
-			$content = 'content/content-agent-listing';
 		}
 		$this->load->view('header');
 		$this->load->view($content,$data_set);
@@ -214,11 +226,12 @@ class Main extends CI_Controller {
 			redirect('login');
 		}
 	}
-	public function education($query_id = 0, $sort_by = 'post_title', $sort_order = 'asc', $offset = 0)
+	public function education($query_id = 0, $sort_type='All',$sort_by = 'post_title', $sort_order = 'asc', $offset = 0)
 	{
 		$data_set='';
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if(is_numeric($query_id) || $query_id==''){
+			$data_set['get_all_eduction_type'] = $this->post->get_all_eduction_type();
 			$limit = 100;
 			$this->input->load_query($query_id);
 			$query_array = array(
@@ -226,15 +239,15 @@ class Main extends CI_Controller {
 				'post_title' => $this->input->get('post_title'),
 			);
 			$data_set['query_id'] = $query_id;
-			$results = $this->post->search($query_array, $limit, $offset, $sort_by, $sort_order);
+			$results = $this->post->search_edu($query_array, $limit, $offset, $sort_type,$sort_by, $sort_order);
 			$data_set['num_results'] = $results['num_rows'];
 			$data_set['records'] =$results['rows'];
 			// pagination
-			$config['base_url'] = site_url("education/$query_id/$sort_by/$sort_order");
+			$config['base_url'] = site_url("education/$query_id/$sort_type/$sort_by/$sort_order");
 			$config['total_rows'] = $data_set['num_results'];
 			$config['per_page'] = $limit;
 			$config['num_links'] = 20; 
-			$config['uri_segment'] = 6;
+			$config['uri_segment'] = 7;
 			$this->pagination->initialize($config);
 			$data_set['pagination'] = $this->pagination->create_links();
 			$data_set['sort_by'] = $sort_by;
@@ -307,7 +320,7 @@ class Main extends CI_Controller {
 		$data_set='';
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if(is_numeric($query_id) || $query_id==''){
-			$limit = 100;
+			$limit = 8;
 			$this->input->load_query($query_id);
 			$query_array = array(
 				'post_type' => 'furniture',

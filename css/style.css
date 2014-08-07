@@ -87,6 +87,13 @@ sub { top: 0.4em; }
     font-style: normal;
 
 }
+.clear {
+    clear: both;
+}
+.fb-like{
+	margin-top: 10px;
+	display: block;
+}
 body {
   	background: #f2f2f2;
 	font-family: 'nexa_lightregular';
@@ -168,7 +175,7 @@ header .register-login li a:first-child{
 
 .home-page-slider{
 	min-width: 100%;
-	height: 492px;
+	height: 100%;
 	position: relative;
 }
 .home-page-slider .dragable-search-area{
@@ -2936,6 +2943,7 @@ height: 80px;
 	float: right;
 	margin-top: 14px;
 	margin-left: 20px;
+	position: relative;
 }
 .education-drop-down-settings .settings-edu .sort span.text{
 	float: left;
@@ -2962,6 +2970,32 @@ height: 80px;
 	position: relative;
 	top: 8px;
 	left: -2px;
+}
+.education-drop-down-settings .settings-edu .sort .filter-drop{
+	width: 135px;
+	height: auto;
+	border: 1px solid #ffa800;
+	position: absolute;
+	top:24px;
+	left: 37px;
+	z-index: 10;
+	background: #fff;
+	display: none;
+}
+.education-drop-down-settings .settings-edu .sort .filter-drop .items{
+	width: 100%;
+	border-bottom: 1px solid #c2c2c2;
+	padding: 10px 0px;
+}
+.education-drop-down-settings .settings-edu .sort .filter-drop .items:last-child{
+	border-bottom: 0px solid #c2c2c2;
+}
+.education-drop-down-settings .settings-edu .sort .filter-drop .items a{
+	display: block;
+	text-align: left;
+	text-decoration: none;
+	color: #000;
+	margin-left: 5px;
 }
 
 .education-drop-down-settings .settings-edu .search-edu{
@@ -3156,11 +3190,13 @@ height: 80px;
 }
 .education-listing-settings .edu-listing .edu-item-list .right a.see-more{
 	border: 1px solid #ffa800;
-	padding: 4px 109.5px;
-	text-decoration: none;
-	text-align: center;
-	float: left;
-	color: #000;
+padding: 4px 113.5px;
+text-decoration: none;
+text-align: center;
+float: left;
+color: #000;
+margin-top: 15px;
+font-size: 13px;
 }
 .education-listing-settings .edu-listing .edu-item-list .right a.see-more:hover{
 	background: #ffa800;
@@ -3516,12 +3552,17 @@ height: 80px;
 .agent-detail .top a.contact{
 	float: right;
 	border: 1px solid #ffa800;
-	padding: 8px 16px;
+	padding: 4px 29px;
 	font-family: 'nexa_lightregular';
 	color: #000;
 	font-size: 13px;
+	margin-top: 4px;
 	text-align: center;
 	text-decoration: none;
+}
+.agent-detail .top a.contact:hover{
+	background: #ffa800;
+	color: #fff;
 }
 .agent-detail .bottom .left{
 	width: 100px;
@@ -3569,6 +3610,7 @@ height: 80px;
 	float: left;
 	margin-top: 14px;
 	margin-left: 20px;
+	position: relative;
 }
 .agent-detail .agent-filter .sort:first-child{
 	margin-left: 0px;
@@ -3586,6 +3628,67 @@ height: 80px;
 	line-height: 20px;
 	width: 100px;
 }
+.agent-detail .agent-filter .sort .drop.small{
+	width: 50px;
+}
+
+.agent-detail .agent-filter .sort .filter-drop{
+	width: 110px;
+	height: auto;
+	border: 1px solid #ffa800;
+	position: absolute;
+	top:24px;
+	left: 0px;
+	z-index: 10;
+	background: #fff;
+	display: none;
+}
+.agent-detail .agent-filter .sort .filter-drop.city{
+	left: 29px;
+	width: 155px;
+	height: 400px;
+	overflow-y:auto;
+}
+.agent-detail .agent-filter .sort .filter-drop.type{
+	left: 37px;
+}
+.agent-detail .agent-filter .sort .filter-drop.bedroom{
+	left: 59px;
+	width: 60px;
+}
+.agent-detail .agent-filter .sort .filter-drop.bathroom{
+	left: 62px;
+	width: 60px;
+}
+.agent-detail .agent-filter .sort .filter-drop.re{
+	left: 32px;
+}
+.agent-detail .agent-filter .sort .filter-drop.city::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+.agent-detail .agent-filter .sort .filter-drop.city::-webkit-scrollbar-track {
+    background: #cdcdcd;
+}
+ 
+.agent-detail .agent-filter .sort .filter-drop.city::-webkit-scrollbar-thumb {
+    background: #1eb0a9;
+}
+.agent-detail .agent-filter .sort .filter-drop .items{
+	width: 100%;
+	border-bottom: 1px solid #c2c2c2;
+	padding: 10px 0px;
+}
+.agent-detail .agent-filter .sort .filter-drop .items:last-child{
+	border-bottom: 0px solid #c2c2c2;
+}
+.agent-detail .agent-filter .sort .filter-drop .items a{
+	display: block;
+	text-align: left;
+	text-decoration: none;
+	color: #000;
+	margin-left: 5px;
+}
 .agent-detail .agent-filter .sort .drop .text{
 	padding-right:10px;
 }
@@ -3600,7 +3703,7 @@ height: 80px;
 	left: -2px;
 }
 .agent-detail .agent-filter .price-range{
-	width: 375px;
+	width: 270px;
 	float: left;
 	font-family: 'nexa_lightregular';
 	font-size: 11px;
@@ -3612,7 +3715,7 @@ height: 80px;
 	margin-top: 20px;
 }
 .agent-detail .agent-filter .price-range #agent-slider-range{
-	width: 303px;
+	width: 198px;
 	height: 25px;
 	background: url(../images/slider-back.png) 0 0 repeat-x;
 	position: relative;
@@ -3671,7 +3774,7 @@ height: 80px;
 	float: left;
 }
 .agent-property-list .item .left-side .thumb img{
-	opacity: 0.6;
+	opacity: 1;
 	width: 100%;
 	height: 200px;
 }
@@ -3864,7 +3967,10 @@ height: 80px;
 	float: left;
 	margin-top: 10px;
 }
-
+.agent-property-list .item .right-side .contact:hover{
+	background: #ffa800;
+	color: #fff;
+}
 .agent-property-list .item .right-side .contact.ex{
 	padding: 4px 37px;
 }
@@ -3917,6 +4023,11 @@ height: 80px;
 	font-family: 'nexa_lightregular';
 	color: #1eb0a9;
 	font-size: 25px;
+	margin-bottom: 10px;
+}
+.agent-list .item .mid h1 a{
+	color: inherit;
+	text-decoration: none;
 }
 .agent-list .item .mid p{
 	font-family: 'nexa_lightregular';
@@ -3952,7 +4063,10 @@ height: 80px;
 	float: left;
 	margin-top: 10px;
 }
-
+.agent-list .item .right .contact:hover{
+	background: #ffa800;
+	color:#fff;
+}
 .compare-list{
 	width: 100%;
 	height: auto;

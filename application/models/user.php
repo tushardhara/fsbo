@@ -120,8 +120,14 @@ Class User extends CI_Model{
     $this->db->from('fsbo_users');
     return $this->db->count_all_results();
   }
-  function user_list(){ 
-     $query = $this->db->query("SELECT * FROM fsbo_users WHERE ID IN (SELECT post_user_id FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_status='0' GROUP BY post_user_id) AND user_status='0'");
+  function user_list($type='All'){
+     if($type=='All'){ 
+      $query = $this->db->query("SELECT * FROM fsbo_users WHERE ID IN (SELECT post_user_id FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_status='0' GROUP BY post_user_id) AND user_status='0'");
+     }else if($type=='User'){
+      $query = $this->db->query("SELECT * FROM fsbo_users WHERE ID IN (SELECT post_user_id FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_status='0' AND post_user_type IN ('admin','moderator','user') GROUP BY post_user_id) AND user_status='0'");
+    }else if($type=='Broker'){
+      $query = $this->db->query("SELECT * FROM fsbo_users WHERE ID IN (SELECT post_user_id FROM fsbo_post WHERE post_type IN ('property', 'furniture', 'education') AND post_status='0' AND post_user_type IN ('agent') GROUP BY post_user_id) AND user_status='0'");
+    }
      if($query->num_rows()){
         return $query->result();
      }else{
