@@ -28,6 +28,12 @@ $(document).ready(function() {
   $('.drop-item').on('click',function(){
     $(this).parent().parent().children('.drop').val($(this).attr('item-value'));
   });
+  $('.filter-drop .items').on('click',function(){
+    //event.preventDefault();
+    alert('asd');
+    console.log($(this).attr('item-value'));
+    //$(this).parent().parent().children('.text').html($(this).attr('item-value'));
+  });
   $("#home-slider").owlCarousel({
      navigation : true, // Show next and prev buttons
       slideSpeed : 300,

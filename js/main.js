@@ -84,6 +84,11 @@ $(document).ready(function() {
   $('.drop-item').on('click',function(){
     $(this).parent().parent().children('.drop').val($(this).attr('item-value'));
   });
+   $('.change .items').on('click',function(){
+    //console.log($(this).attr('item-value'));
+    $(this).parent().parent().children('.drop').children('.text').html($(this).attr('item-value'));
+    $(this).parent().parent().children('.drop').children('input').val($(this).attr('item-value'));
+  });
   $("#home-slider").owlCarousel({
      navigation : true, // Show next and prev buttons
       slideSpeed : 300,
@@ -105,27 +110,7 @@ $(document).ready(function() {
 	  })
 	  .addClass( "active");
  });
- $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 500,
-      values: [ 75, 300 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-      },
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-   
-    $( "#agent-slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 500,
-      values: [ 75, 300 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-      },
-    });
+ 
 });
 
  

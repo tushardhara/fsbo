@@ -498,21 +498,121 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
        return false;
      }
   }
-  function show_user_slug_all($slug,$offset,$limit){
-    $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC LIMIT $offset,$limit");
-    if($query->num_rows()){
-        $ret['rows']=$query->result();
-     }else{
-       return false;
-     } 
-
-    $query = $this->db->query("SELECT COUNT(*) as count FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
-    if($query->num_rows()){
-         $tmp=$query->result();
-         $ret['num_rows'] = $tmp[0]->count;
-     }else{
-       return false;
-     } 
+  function show_user_slug_all($slug,$offset,$limit,$query_array){
+      if($query_array['city'] == 'All' || $query_array['city']==''){
+        $city="post_property_area_city";
+      }else{
+        $city="'".$query_array['city']."'";
+      }
+      if($query_array['type'] == 'All' || $query_array['type'] == ''){
+        $type="'property','education','furniture'";
+      }else{
+         $type="'".$query_array['type']."'";
+      }
+      if($query_array['bedroom'] == 'All' || $query_array['bedroom'] == ''){
+        $bedroom="post_property_bedrooms";
+      }else{
+        $bedroom="'".$query_array['bedroom']."'";
+      }
+      if($query_array['bathroom'] == 'All' || $query_array['bathroom'] == ''){
+        $bathroom="post_property_bathroom";
+      }else{
+        $bathroom="'".$query_array['bathroom']."'";
+      }
+      if($query_array['input_min'] == ''){
+        $min='0';
+      }else{
+        $min="'".$query_array['input_min']."'";
+      }
+      if($query_array['input_max'] == ''){
+        $max='2000000000';
+      }else{
+        $max="'".$query_array['input_max']."'";
+      }
+      if($query_array['sort'] == 'Relevance' || $query_array['sort'] == ''){
+        $sort_type="ID";
+        $sort_order="DESC";
+      }else if($query_array['sort'] == 'Price : Low to High'){
+        $sort_type="post_price";
+        $sort_order="ASC";
+      }else if($query_array['sort'] == 'Price : High to Low'){
+        $sort_type="post_price";
+        $sort_order="DESC";
+      }else if($query_array['sort'] == 'Date : Latest First'){
+        $sort_type="post_date";
+        $sort_order="DESC";
+      }
+      $query = $this->db->query(
+        "SELECT * FROM fsbo_post WHERE 
+        post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND 
+        post_type IN($type) AND 
+        post_property_area_city = $city AND 
+        post_property_bedrooms = $bedroom AND 
+        post_property_bathroom = $bathroom  AND 
+        post_status='0' AND 
+        post_price >= $min AND 
+        post_price <= $max 
+        ORDER BY $sort_type $sort_order 
+        LIMIT $offset,$limit"
+      );
+      if($query->num_rows()){
+          $ret['rows']=$query->result();
+          //print_r($query->result());
+       }else{
+         $ret['rows']='';
+       } 
+        //echo $this->db->last_query();
+      //$query = $this->db->query("SELECT COUNT(*) as count FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+      $query = $this->db->query(
+        "SELECT COUNT(*) as count FROM fsbo_post WHERE 
+        post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND 
+        post_type IN($type) AND 
+        post_property_area_city = $city AND 
+        post_property_bedrooms = $bedroom AND 
+        post_property_bathroom = $bathroom  AND 
+        post_status='0' AND 
+        post_price >= $min AND 
+        post_price <= $max 
+        ORDER BY $sort_type $sort_order"
+      );
+      if($query->num_rows()){
+           $tmp=$query->result();
+           $ret['num_rows'] = $tmp[0]->count;
+       }else{
+         return false;
+       } 
+      //$query = $this->db->query("SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+      $query = $this->db->query(
+        "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
+        post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND 
+        post_type IN($type) AND 
+        post_property_area_city = $city AND 
+        post_property_bedrooms = $bedroom AND 
+        post_property_bathroom = $bathroom  AND 
+        post_status='0' AND 
+        post_price >= $min AND 
+        post_price <= $max 
+        ORDER BY $sort_type $sort_order"
+      );
+      if($query->num_rows()){
+           $tmp=$query->result();
+           $ret['max'] = $tmp[0]->max;
+           $ret['min'] = $tmp[0]->min;
+       }else{
+         return false;
+       } 
+       $query = $this->db->query(
+        "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
+          post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND 
+          post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC"
+      );
+      if($query->num_rows()){
+           $tmp=$query->result();
+           $ret['total_max'] = $tmp[0]->max;
+           $ret['total_min'] = $tmp[0]->min;
+       }else{
+         return false;
+       } 
      return $ret;
   }
 

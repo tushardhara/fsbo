@@ -71,20 +71,37 @@ class Main extends CI_Controller {
 			$content = 'content/content-agent-listing';
 		}else{
 			$data_set['user_list'] = $this->db->get_where('fsbo_users' ,array('user_slug' => $this->uri->segment(2)))->result();
+			$data_set['slug'] = $this->uri->segment(2);
 			$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
-	
+			$this->input->load_query($this->uri->segment(3));
+			$query_array = array(
+				'slug' => $this->input->get('slug'),
+				'city' => $this->input->get('city'),
+				'type' => $this->input->get('type'),
+				'bedroom' => $this->input->get('bedroom'),
+				'bathroom' => $this->input->get('bathroom'),
+				'input_min' => $this->input->get('input_min'),
+				'input_max' => $this->input->get('input_max'),
+				'sort' => $this->input->get('sort'),
+			);
+			$data_set['query_id'] = $query_id;
 			$limit = 10;
-			$offset = $this->uri->segment(3) == '' ? 0:$this->uri->segment(3);
-			$results = $this->post->show_user_slug_all($this->uri->segment(2),$offset,$limit);
+			$offset = $this->uri->segment(4) == '' ? 0:$this->uri->segment(4);
+			$results = $this->post->show_user_slug_all($this->uri->segment(2),$offset,$limit,$query_array);
 			$data_set['user_mylist'] = $results['rows'];
 			$data_set['num_results'] = $results['num_rows'];
+			$data_set['num_max'] = $results['max'];
+			$data_set['num_min'] = $results['min'];
+			$data_set['total_num_max'] = $results['total_max'];
+			$data_set['total_num_min'] = $results['total_min'];
 			$slug=$this->uri->segment(2);
-			$config['base_url'] = site_url("agent/$slug");
+			$config['base_url'] = site_url("agent/$slug/$query_id");
 			$config['total_rows'] = $data_set['num_results'];
 			$config['per_page'] = $limit;
 			$config['num_links'] = 20; 
 			$this->pagination->initialize($config);
 			$data_set['pagination'] = $this->pagination->create_links();
+			$data_set['query_array'] = $query_array;
 			$content = 'content/content-agent-detail';
 		}
 		$this->load->view('header');
@@ -282,6 +299,22 @@ class Main extends CI_Controller {
 		}else if($this->input->post('post_type')=='furniture'){
 			redirect("furniture/$query_id");
 		}
+	}
+	public function search_agent($slug) {
+		
+		$query_array = array(
+			'slug' => $slug,
+			'city' => $this->input->post('city'),
+			'type' => $this->input->post('type'),
+			'bedroom' => $this->input->post('bedroom'),
+			'bathroom' => $this->input->post('bathroom'),
+			'input_min' => $this->input->post('input_min'),
+			'input_max' => $this->input->post('input_max'),
+			'sort' => $this->input->post('sort'),
+		);
+		
+		$query_id = $this->input->save_query($query_array);
+		redirect("agent/$slug/$query_id");
 	}
 	public function property($query_id = 0, $sort_by = 'post_title', $sort_order = 'asc', $offset = 0)
 	{

@@ -3751,6 +3751,12 @@ font-size: 13px;
 	width: 100%;
 	height: auto;
 }
+.agent-property-list h1.error{
+	font-size: 48px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+}
 .agent-property-list .item{
 	height: 200px;
 	width: 100%;
