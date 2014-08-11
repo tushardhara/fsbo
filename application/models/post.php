@@ -616,6 +616,186 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
      return $ret;
   }
 
+    function show_property_result($query_array,$sort_by, $sort_order,$limit,$offset){
+      if($query_array['page'] == 'property' || $query_array['page'] == ''){
+        $post_type="'".'property'."'";
+      }else{
+        $post_type="'".$query_array['page']."'";
+      }
+      if($query_array['title'] == ''){
+        $title="'%%'";
+      }else{
+        $title="'%".$query_array['title']."%'";
+      }
+      if($query_array['city'] == 'All' || $query_array['city'] == ''){
+        $city="post_property_area_city";
+      }else{
+        $city="'".$query_array['city']."'";
+      }
+       if($query_array['community'] == 'All' || $query_array['community'] == ''){
+        $community="post_education_community";
+      }else{
+        $community="'".$query_array['community']."'";
+      }
+      if($query_array['property_category'] == 'All' || $query_array['property_category'] == ''){
+        $catergory="'Residential property for Sale','Residential property for Rent','Commercial property for Sale','Commercial property for Rent'";
+      }else{
+         $catergory="'".$query_array['property_category']."'";
+      }
+      if($query_array['property_type'] == 'All' || $query_array['property_type'] == ''){
+        $property_type="'Apartment','Villa','Townhouse','Bungalow','Duplex','Chalet','Compound','Penthouse','Land','Office','Warehouse','Whole Building'";
+      }else{
+        $property_type="'".$query_array['property_type']."'";
+      }
+      if($query_array['user_type'] == 'All' || $query_array['user_type'] == ''){
+        $post_user_type="'user','agent','admin','moderator'";
+      }else{
+        if($query_array['user_type'] == 'Broker'){  
+          $post_user_type="'agent'";
+        }else{
+          $post_user_type="'user','admin','moderator'";
+        }
+      }
+      if($query_array['bedroom_min'] == 'All' || $query_array['bedroom_min'] == ''){
+        $bedroom_min='0';
+      }else{
+        $bedroom_min="'".$query_array['bedroom_min']."'";
+      }
+      if($query_array['bedroom_max'] == 'All' || $query_array['bedroom_max'] == ''){
+        $bedroom_max='9';
+      }else{
+        $bedroom_max="'".$query_array['bathroom_max']."'";
+      }
+      if($query_array['bathroom_min'] == 'All' || $query_array['bathroom_min'] == ''){
+        $bathroom_min='0';
+      }else{
+        $bathroom_min="'".$query_array['bathroom_min']."'";
+      }
+      if($query_array['bathroom_max'] == 'All' || $query_array['bathroom_max'] == ''){
+        $bathroom_max='9';
+      }else{
+        $bathroom_max="'".$query_array['bathroom_max']."'";
+      }
+      if($query_array['min_sq'] == 'All' || $query_array['min_sq'] == ''){
+        $min_sq='0';
+      }else{
+        $min_sq="'".$query_array['min_sq']."'";
+      }
+      if($query_array['max_sq'] == 'All' || $query_array['max_sq'] == ''){
+        $max_sq='1000';
+      }else{
+        $max_sq="'".$query_array['max_sq']."'";
+      }
+      if($query_array['input_min'] == ''){
+        $min='0';
+      }else{
+        $min="'".$query_array['input_min']."'";
+      }
+      if($query_array['input_max'] == ''){
+        $max='2000000000';
+      }else{
+        $max="'".$query_array['input_max']."'";
+      }
+      $query = $this->db->query(
+        "SELECT * FROM fsbo_post WHERE 
+          post_user_type IN($post_user_type) AND 
+          post_type IN($post_type) AND
+          post_property_type IN ($property_type) AND
+          post_property_catergory IN ($catergory) AND
+          post_title LIKE $title AND
+          post_education_community = $community AND
+          post_property_area_city = $city AND 
+          post_property_bedrooms >= $bedroom_min AND
+          post_property_bedrooms <= $bedroom_max AND
+          post_property_bathroom >= $bathroom_min  AND
+          post_property_bathroom <= $bathroom_max AND
+          post_property_size >= $min_sq AND
+          post_property_size <= $max_sq AND
+          post_price >= $min AND 
+          post_price <= $max AND
+          post_status='0'
+          ORDER BY $sort_by $sort_order 
+          LIMIT $offset,$limit"
+      );
+      if($query->num_rows()){
+          $ret['rows']=$query->result();
+          //print_r($query->result());
+       }else{
+         $ret['rows']='';
+       } 
+      //echo $this->db->last_query();
+      //$query = $this->db->query("SELECT COUNT(*) as count FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+      $query = $this->db->query(
+        "SELECT COUNT(*) as count FROM fsbo_post WHERE 
+          post_user_type IN($post_user_type) AND 
+          post_type IN($post_type) AND
+          post_property_type IN ($property_type) AND
+          post_property_catergory IN ($catergory) AND
+          post_title LIKE $title AND
+          post_education_community = $community AND
+          post_property_area_city = $city AND 
+          post_property_bedrooms >= $bedroom_min AND
+          post_property_bedrooms <= $bedroom_max AND
+          post_property_bathroom >= $bathroom_min  AND
+          post_property_bathroom <= $bathroom_max AND
+          post_property_size >= $min_sq AND
+          post_property_size <= $max_sq AND
+          post_price >= $min AND 
+          post_price <= $max AND
+          post_status='0'
+          ORDER BY $sort_by $sort_order"
+      );
+      if($query->num_rows()){
+           $tmp=$query->result();
+           $ret['num_rows'] = $tmp[0]->count;
+       }else{
+         return false;
+       } 
+      //$query = $this->db->query("SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC");
+      $query = $this->db->query(
+        "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
+          post_user_type IN($post_user_type) AND 
+          post_type IN($post_type) AND
+          post_property_type IN ($property_type) AND
+          post_property_catergory IN ($catergory) AND
+          post_title LIKE $title AND
+          post_education_community = $community AND
+          post_property_area_city = $city AND 
+          post_property_bedrooms >= $bedroom_min AND
+          post_property_bedrooms <= $bedroom_max AND
+          post_property_bathroom >= $bathroom_min  AND
+          post_property_bathroom <= $bathroom_max AND
+          post_property_size >= $min_sq AND
+          post_property_size <= $max_sq AND
+          post_price >= $min AND 
+          post_price <= $max AND
+          post_status='0'
+          ORDER BY $sort_by $sort_order"
+      );
+      if($query->num_rows()){
+           $tmp=$query->result();
+           $ret['max'] = $tmp[0]->max;
+           $ret['min'] = $tmp[0]->min;
+       }else{
+         return false;
+       } 
+       $query = $this->db->query(
+        "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
+          post_type IN('property') AND
+          post_status='0'
+          ORDER BY $sort_by $sort_order"
+      );
+      if($query->num_rows()){
+           $tmp=$query->result();
+           $ret['total_max'] = $tmp[0]->max;
+           $ret['total_min'] = $tmp[0]->min;
+       }else{
+         return false;
+       } 
+     return $ret;
+     
+  }
+
   function get_all_eduction_type(){
     $query = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type='education' AND post_status='0' GROUP BY post_education_type");
     if($query->num_rows()){

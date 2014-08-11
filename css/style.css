@@ -2552,6 +2552,7 @@ height: 80px;
 	border-top:1px solid #c2c2c2;
 	border-bottom:1px solid #c2c2c2;  
 	cursor: pointer;
+	position: relative;
 }
 .drop-down-setting .left .setting-choose-big:hover{
 	background: #a8dcda;
@@ -2568,6 +2569,7 @@ height: 80px;
 	border-bottom:1px solid #c2c2c2;
 	display: inline-block;
 	cursor: pointer;  
+	position: relative;
 }
 .drop-down-setting .left .setting-choose-small.no-top{
 	border-top:0px solid #c2c2c2;
@@ -2586,6 +2588,7 @@ height: 80px;
 	border-top:1px solid #c2c2c2;
 	border-bottom:1px solid #c2c2c2;
 	cursor: pointer;  
+	position: relative;
 }
 .drop-down-setting .right .setting-choose-big.no-bottom{
 	border-bottom:0px solid #c2c2c2;  
@@ -2598,6 +2601,7 @@ height: 80px;
 	border-bottom:1px solid #c2c2c2;
 	display: inline-block; 
 	cursor: pointer; 
+	position: relative;
 }
 .drop-down-setting .right .setting-choose-small.no-top{
 	border-top:0px solid #c2c2c2;
@@ -2656,11 +2660,13 @@ height: 80px;
 	float: left;
 	margin-top: 14px;
 	margin-left: 20px;
+	position: relative;
 }
 .property-listing-area .right .filter-settings .sort span.text{
 	float: left;
 	line-height: 22px;
 	margin-right: 10px;
+	
 }
 .property-listing-area .right .filter-settings .sort .drop{
 	border:1px solid #ffa800;
@@ -2668,11 +2674,12 @@ height: 80px;
 	padding-left: 5px;
 	padding-right: 5px;
 	line-height: 20px;
+	position: relative;
 }
 .property-listing-area .right .filter-settings .sort .drop .text{
 	border-right: 1px solid #c2c2c2;
 	padding-right:10px;
-
+	width: 94px;
 }
 .property-listing-area .right .filter-settings .sort .drop .arrow{
 	background: url(../images/filter-down.png) 0px 0px no-repeat;
@@ -2685,7 +2692,32 @@ height: 80px;
 	left: -2px;
 }
 
-
+.property-listing-area .right .filter-settings .sort .filter-drop{
+	width: 131px;
+	height: auto;
+	border: 1px solid #ffa800;
+	position: absolute;
+	top:24px;
+	left: 54px;
+	z-index: 10;
+	background: #fff;
+	display: none;
+}
+.property-listing-area .right .filter-settings .sort .filter-drop .items{
+	width: 100%;
+	border-bottom: 1px solid #c2c2c2;
+	padding: 10px 0px;
+}
+.property-listing-area .right .filter-settings .sort .filter-drop .items:last-child{
+	border-bottom: 0px solid #c2c2c2;
+}
+.property-listing-area .right .filter-settings .sort .filter-drop .items a{
+	display: block;
+	text-align: left;
+	text-decoration: none;
+	color: #000;
+	margin-left: 5px;
+}
 .property-listing-area .right .filter-settings .save{
 	float: right;
 	padding: 5px 8px;
@@ -5783,16 +5815,110 @@ top: -12px;
 }
 
 
+.property-listing-settings .setting-choose-big .drop-category{
+	width: 100%;
+	height: auto;
+	background: #1eb0a9;
+	position: absolute;
+	top: 47px;
+	z-index: 1;
+	left: 0px;
+	display: none;
+	max-height: 144px;
+	overflow-y:auto;
+}
+.property-listing-settings .setting-choose-big .drop-category::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+.property-listing-settings .setting-choose-big .drop-category::-webkit-scrollbar-track {
+    background: #cdcdcd;
+}
+ 
+.property-listing-settings .setting-choose-big .drop-category::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+.property-listing-settings .setting-choose-big .drop-category .drop-item{
+	width: 98%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	cursor: pointer;
+	color: #fff;
+}
 
+.property-listing-settings .setting-choose-big .drop-category .drop-item:hover{
+	background: #fff;
+	color: #000;
+}
 
+.property-listing-settings .setting-choose-small .drop-category{
+	width: 100%;
+	height: auto;
+	background: #1eb0a9;
+	position: absolute;
+	top: 47px;
+	z-index: 1;
+	left: 0px;
+	display: none;
+	max-height: 144px;
+	overflow-y:auto;
+}
+.property-listing-settings .setting-choose-small .drop-category::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+.property-listing-settings .setting-choose-small .drop-category::-webkit-scrollbar-track {
+    background: #cdcdcd;
+}
+ 
+.property-listing-settings .setting-choose-small .drop-category::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+.property-listing-settings .setting-choose-small .drop-category .drop-item{
+	width: 98%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	cursor: pointer;
+	color: #fff;
+}
 
+.property-listing-settings .setting-choose-small .drop-category .drop-item:hover{
+	background: #fff;
+	color: #000;
+}
 
+.property-listing-settings .big-search{
+	display: block;
+	width: 100%;
+	border: 1px solid #ffa800;
+	height: 20px;
+	background: transparent;
+	margin-bottom: 20px;
+	padding: 5px;
+}
 
+.property-listing-settings .property_contact{
+	display: block;
+	width: 100%;
+	border: 1px solid #1eb0a9;
+	background: transparent;
+	margin-top: 3px;
+	margin-bottom: 0px;
+	padding: 10px;
+}
 
-
-
-
-
+.property-listing-settings .property_contact:hover{
+	background: #1eb0a9;
+	color: #fff;
+}
+.property-listing-settings h1.error {
+	font-size: 48px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+}
 
 
 

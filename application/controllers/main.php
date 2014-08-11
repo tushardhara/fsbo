@@ -285,49 +285,48 @@ class Main extends CI_Controller {
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
-	public function search() {
-		
-		$query_array = array(
-			'post_title' => $this->input->post('post_title'),
-			'post_type' => $this->input->post('post_type'),
-		);
-		
-		$query_id = $this->input->save_query($query_array);
-		
-		if($this->input->post('post_type')=='education'){
-			redirect("education/$query_id");
-		}else if($this->input->post('post_type')=='furniture'){
-			redirect("furniture/$query_id");
-		}
-	}
-	public function search_agent($slug) {
-		
-		$query_array = array(
-			'slug' => $slug,
-			'city' => $this->input->post('city'),
-			'type' => $this->input->post('type'),
-			'bedroom' => $this->input->post('bedroom'),
-			'bathroom' => $this->input->post('bathroom'),
-			'input_min' => $this->input->post('input_min'),
-			'input_max' => $this->input->post('input_max'),
-			'sort' => $this->input->post('sort'),
-		);
-		
-		$query_id = $this->input->save_query($query_array);
-		redirect("agent/$slug/$query_id");
-	}
-	public function property($query_id = 0, $sort_by = 'post_title', $sort_order = 'asc', $offset = 0)
+	
+	public function property($query_id = 0, $sort_by = 'ID', $sort_order = 'asc', $offset = 0)
 	{
 		$data_set='';
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
-		if($this->uri->segment(2) == '' || is_numeric($this->uri->segment(2))){
-			$config['base_url'] = site_url('/property/');
-			$config['total_rows'] =  $this->db->order_by('ID', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0'))->num_rows();
-			$config['per_page'] = 100;
+		if(is_numeric($query_id) || $query_id==''){
+			$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' GROUP BY post_property_area_community")->result();
+			$limit = 8;
+			$this->input->load_query($query_id);
+			$query_array = array(
+				'page' => 'property',
+				'title' => $this->input->get('title'),
+				'property_category' => $this->input->get('property_category'),
+				'property_type' => $this->input->get('property_type'),
+				'user_type' => $this->input->get('user_type'),
+				'bedroom_min' => $this->input->get('bedroom_min'),
+				'bedroom_max' => $this->input->get('bedroom_max'),
+				'bathroom_min' => $this->input->get('bathroom_min'),
+				'bathroom_max' => $this->input->get('bathroom_max'),
+				'input_min' => $this->input->get('input_min'),
+				'input_max' => $this->input->get('input_max'),
+				'city' => $this->input->get('city'),
+				'community' => $this->input->get('community'),
+				'min_sq' => $this->input->get('min_sq'),
+				'max_sq' => $this->input->get('max_sq'),
+			);
+			$data_set['query_id'] = $query_id;
+			$results = $this->post->show_property_result($query_array,$sort_by, $sort_order,$limit, $offset);
+			$data_set['num_results'] = $results['num_rows'];
+			$data_set['records'] =$results['rows'];
+			$data_set['num_max'] = $results['max'];
+			$data_set['num_min'] = $results['min'];
+			$data_set['total_num_max'] = $results['total_max'];
+			$data_set['total_num_min'] = $results['total_min'];
+			$config['base_url'] = site_url('/property/$query_id/$sort_by/$sort_order');
+			$config['total_rows'] = $results['num_rows'];
+			$config['per_page'] = $limit;
 			$config['num_links'] = 20; 
-			$config['uri_segment'] = 2;
+			$config['uri_segment'] = 6;
 			$this->pagination->initialize($config);
-			$data_set['records'] = $this->db->order_by('ID', 'DESC')->get_where('fsbo_post' ,array('post_type' => 'property','post_status' =>'0'), $config['per_page'] ,$this->uri->segment(2))->result();
+			$data_set['pagination'] = $this->pagination->create_links();
+			$data_set['query_array'] = $query_array;
 			$content = 'content/content-property-listing';
 		}else{
 			$data_set['records'] = $this->db->get_where('fsbo_post' ,array('post_type' => 'property','post_slug' => $this->uri->segment(2)))->result();
@@ -348,6 +347,7 @@ class Main extends CI_Controller {
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
+	
 	public function furniture($query_id = 0, $post_furniture_type = 'all' , $sort_by = 'post_title', $sort_order = 'asc', $offset = 0)
 	{	
 		$data_set='';
@@ -389,6 +389,112 @@ class Main extends CI_Controller {
 		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
+
+	public function adv_search($query_id = 0, $sort_by = 'ID', $sort_order = 'asc', $offset = 0)
+	{
+		$data_set='';
+		/*
+		
+		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
+		$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' GROUP BY post_property_area_community")->result();
+		$limit = 8;
+		$this->input->load_query($query_id);
+		$query_array = array(
+			'page' => 'property',
+			'title' => $this->input->get('title'),
+			'property_category' => $this->input->get('property_category'),
+			'property_type' => $this->input->get('property_type'),
+			'user_type' => $this->input->get('user_type'),
+			'bedroom_min' => $this->input->get('bedroom_min'),
+			'bedroom_max' => $this->input->get('bedroom_max'),
+			'bathroom_min' => $this->input->get('bathroom_min'),
+			'bathroom_max' => $this->input->get('bathroom_max'),
+			'input_min' => $this->input->get('input_min'),
+			'input_max' => $this->input->get('input_max'),
+			'city' => $this->input->get('city'),
+			'community' => $this->input->get('community'),
+			'min_sq' => $this->input->get('min_sq'),
+			'max_sq' => $this->input->get('max_sq'),
+		);
+		$data_set['query_id'] = $query_id;
+		$results = $this->post->show_property_result($query_array,$sort_by, $sort_order,$limit, $offset);
+		$data_set['num_results'] = $results['num_rows'];
+		$data_set['records'] =$results['rows'];
+		$data_set['num_max'] = $results['max'];
+		$data_set['num_min'] = $results['min'];
+		$data_set['total_num_max'] = $results['total_max'];
+		$data_set['total_num_min'] = $results['total_min'];
+		$config['base_url'] = site_url('/property/$query_id/$sort_by/$sort_order');
+		$config['total_rows'] = $results['num_rows'];
+		$config['per_page'] = $limit;
+		$config['num_links'] = 20; 
+		$config['uri_segment'] = 6;
+		$this->pagination->initialize($config);
+		$data_set['pagination'] = $this->pagination->create_links();
+		$data_set['query_array'] = $query_array;
+
+		*/
+		$content = 'content/content-adv-search';
+		$this->load->view('header',$data_set);
+		$this->load->view($content,$data_set);
+		$this->load->view('footer');
+	}
+	public function search() {
+		
+		$query_array = array(
+			'post_title' => $this->input->post('post_title'),
+			'post_type' => $this->input->post('post_type'),
+		);
+		
+		$query_id = $this->input->save_query($query_array);
+		
+		if($this->input->post('post_type')=='education'){
+			redirect("education/$query_id");
+		}else if($this->input->post('post_type')=='furniture'){
+			redirect("furniture/$query_id");
+		}
+	}
+	public function search_agent($slug) {
+		
+		$query_array = array(
+			'slug' => $slug,
+			'city' => $this->input->post('city'),
+			'type' => $this->input->post('type'),
+			'bedroom' => $this->input->post('bedroom'),
+			'bathroom' => $this->input->post('bathroom'),
+			'input_min' => $this->input->post('input_min'),
+			'input_max' => $this->input->post('input_max'),
+			'sort' => $this->input->post('sort'),
+		);
+		
+		$query_id = $this->input->save_query($query_array);
+		redirect("agent/$slug/$query_id");
+	}
+	
+	public function search_pro() {
+		
+		$query_array = array(
+			'page' => 'property',
+			'title' => $this->input->post('title'),
+			'property_category' => $this->input->post('property_category'),
+			'property_type' => $this->input->post('property_type'),
+			'user_type' => $this->input->post('user_type'),
+			'bedroom_min' => $this->input->post('bedroom_min'),
+			'bedroom_max' => $this->input->post('bedroom_max'),
+			'bathroom_min' => $this->input->post('bathroom_min'),
+			'bathroom_max' => $this->input->post('bathroom_max'),
+			'input_min' => $this->input->post('input_min'),
+			'input_max' => $this->input->post('input_max'),
+			'city' => $this->input->post('city'),
+			'community' => $this->input->post('community'),
+			'min_sq' => $this->input->post('min_sq'),
+			'max_sq' => $this->input->post('max_sq'),
+		);
+		//print_r($query_array);
+		$query_id = $this->input->save_query($query_array);
+		redirect("property/$query_id");
+	}
+	
 }
 
 /* End of file front_page.php */

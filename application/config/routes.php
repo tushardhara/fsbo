@@ -77,6 +77,10 @@ $route["add_education"] = "add/add_education";
 $route["add_wishlist"] = "add/add_wishlist";
 $route["search"] = "main/search";
 $route["search_agent/(:any)"] = "main/search_agent/$1";
+$route["search_pro"] = "main/search_pro";
+$route["adv_search"] = "main/adv_search";
+$route["adv_search/(:any)"] = "main/adv_search/$1";
+$route["adv_search_query"] = "main/adv_search_query";
 $route["test"] = "test";
 $route['404_override'] = '';
 

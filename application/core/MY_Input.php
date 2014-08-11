@@ -43,6 +43,27 @@ class MY_Input extends CI_Input {
 		if (isset($rows[8])) {
 			parse_str($rows[8]->query_string, $_GET);		
 		}
+		if (isset($rows[9])) {
+			parse_str($rows[9]->query_string, $_GET);		
+		}
+		if (isset($rows[10])) {
+			parse_str($rows[10]->query_string, $_GET);		
+		}
+		if (isset($rows[11])) {
+			parse_str($rows[11]->query_string, $_GET);		
+		}
+		if (isset($rows[12])) {
+			parse_str($rows[8]->query_string, $_GET);		
+		}
+		if (isset($rows[13])) {
+			parse_str($rows[13]->query_string, $_GET);		
+		}
+		if (isset($rows[14])) {
+			parse_str($rows[14]->query_string, $_GET);		
+		}
+		if (isset($rows[15])) {
+			parse_str($rows[15]->query_string, $_GET);		
+		}
 	}
 	
 }

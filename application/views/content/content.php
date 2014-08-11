@@ -22,13 +22,23 @@
 			    	<div class="drag-icon"></div>
 			    </div>
 			    <div class="search-field-box active" id="buy">
-			    	<div class="search-field-drop"><span class="text">City</span><span class="search-field-arrow"></span></div>
-			    	<div class="search-field-drop"><span class="text">Type</span><span class="search-field-arrow"></span></div>
-			    	<div class="search-field-drop"><span class="text">Price</span><span class="search-field-arrow"></span></div>
-			    	<div class="search-field-drop"><samp class="text">Bedrooms</samp><span class="search-field-arrow"></span></div>
-			    	<div class="search-field-drop"><span class="text">Bathrooms</span><span class="search-field-arrow"></span></div>
+			    	<div class="search-field-drop">
+			    		<span class="text">City</span><span class="search-field-arrow"></span>
+			    	</div>
+			    	<div class="search-field-drop">
+			    		<span class="text">Type</span><span class="search-field-arrow"></span>
+			    	</div>
+			    	<div class="search-field-drop">
+			    		<span class="text">Price</span><span class="search-field-arrow"></span>
+			    	</div>
+			    	<div class="search-field-drop">
+			    		<samp class="text">Bedrooms</samp><span class="search-field-arrow"></span>
+			    	</div>
+			    	<div class="search-field-drop">
+			    		<span class="text">Bathrooms</span><span class="search-field-arrow"></span>
+			    	</div>
 			    	<a class="search-button" href="#">Search</a>
-			    	<a class="adv-search-button" href="#">Advanced Search</a>
+			    	<a class="adv-search-button" href="<?php echo site_url('adv_search')?>">Advanced Search</a>
 			    </div>
 			    <div class="search-field-box" id="rent">
 			    	<div class="search-field-drop"><span class="text">City</span><span class="search-field-arrow"></span></div>
@@ -37,20 +47,20 @@
 			    	<div class="search-field-drop"><samp class="text">Bedrooms</samp><span class="search-field-arrow"></span></div>
 			    	<div class="search-field-drop"><span class="text">Bathrooms</span><span class="search-field-arrow"></span></div>
 			    	<a class="search-button" href="#">Search</a>
-			    	<a class="adv-search-button" href="#">Advanced Search</a>
+			    	<a class="adv-search-button" href="<?php echo site_url('adv_search')?>">Advanced Search</a>
 			    </div>
 			    <div class="search-field-box" id="furniture">
 			    	<div class="search-field-drop"><span class="text">Type</span><span class="search-field-arrow"></span></div>
 			    	<div class="search-field-drop"><span class="text">Price</span><span class="search-field-arrow"></span></div>
 			    	<a class="search-button" href="#">Search</a>
-			    	<a class="adv-search-button" href="#">Advanced Search</a>
+			    	<a class="adv-search-button" href="<?php echo site_url('adv_search')?>">Advanced Search</a>
 			    </div>
 			    <div class="search-field-box" id="education">
 			    	<div class="search-field-drop"><span class="text">Type</span><span class="search-field-arrow"></span></div>
 			    	<div class="search-field-drop"><span class="text">Comunity</span><span class="search-field-arrow"></span></div>
 			    	<div class="search-field-drop"><samp class="text">Gender</samp><span class="search-field-arrow"></span></div>
 			    	<a class="search-button" href="#">Search</a>
-			    	<a class="adv-search-button" href="#">Advanced Search</a>
+			    	<a class="adv-search-button" href="<?php echo site_url('adv_search')?>">Advanced Search</a>
 			    </div>
 			</div>
 		</div>

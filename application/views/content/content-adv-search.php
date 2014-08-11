@@ -219,140 +219,176 @@
 					</div>
 					<?php echo form_close(); ?>
 				</div>
-				<div class="property-listing-area clearfix">
-					<?php if(isset($records)){ ?>
-						<?php if(!empty($records)){ ?>
-							<div class="left">
-								<div id="map_canvas"></div>
-							</div>
-							<div class="right">
-								<div class="filter-settings">
-									<div class="sort">
-										<span class="text">Short By</span>
-										<div class="drop">
-											<?php if($this->uri->segment(2)=='') {?>
-												<span class="text">Relevance</span><span class="arrow"></span>
-											<?php } else if($this->uri->segment(2)=='0') {?>
-												<?php if($this->uri->segment(3)=='ID') { ?>
-													<span class="text">Relevance</span><span class="arrow"></span>
-												<?php } else if($this->uri->segment(3)=='post_price'){ ?>
-													<?php if($this->uri->segment(4)=='') {?>
-													<span class="text">Price : Low to High</span><span class="arrow"></span>
-													<?php } else if($this->uri->segment(4)=='asc') {?>
-													<span class="text">Price : Low to High</span><span class="arrow"></span>
-													<?php } else if($this->uri->segment(4)=='desc') {?>
-													<span class="text">Price : High to Low</span><span class="arrow"></span>
-													<?php } ?>
-												<?php }else if($this->uri->segment(3)=='post_date'){ ?>
-													<span class="text">Date : Latest First</span><span class="arrow"></span>
-												<?php } ?>
-											<?php } else { ?>
-												<span class="text">Relevance</span><span class="arrow"></span>
-											<?php } ?>
+			</div>
+			<div class="agent-detail">
+				<?php foreach ($user_list as $key) { ?>
+				<?php $email= $key->user_email; ?>
+				<div class="rrssb-buttons top">
+					<?php if($key->user_type == 'user') {?>
+					<h1><?php echo $key->user_login?></h1>
+					<?php }else if($key->user_type == 'agent'){ ?>
+						<?php if(!empty($key->user_title)) { ?>
+							<h1><?php echo $key->user_title;?></h1>
+						<?php } else { ?>
+							<h1><?php echo $key->user_login?></h1>
+						<?php } ?>
+					<?php }else if($key->user_type == 'admin'){ ?>
+					<h1><?php echo $key->user_login?></h1>
+					<?php }else if($key->user_type == 'moderator'){ ?>
+					<h1><?php echo $key->user_login?></h1>
+					<?php } ?>
+					<?php if($this->session->userdata('logged_in')){ ?>
+					<a href="mailto:<?php echo $key->user_email;?>?subject=&amp;body=" class="popup contact" target="_blank">Contact Agent</a>
+					<?php } ?>
+				</div>
+				<div class="bottom">
+					<div class="left">
+						<div class="thumb">
+							<?php 
+								$attached_image = array(
+						          'src' => 'images/agent.png' ,
+						          'alt' => 'fsbo',
+						          'title' => 'fsbo',
+								);
+								echo img($attached_image);
+							?>
+						</div>
+					</div>
+					<div class="mid"><p><?php echo $key->user_detail?></p></div>
+					<div class="right">
+						<?php if($this->session->userdata('logged_in')){ ?>
+						<div class="detail">Phone: <span><?php echo $key->user_phone;?></span></div>
+						<div class="detail">Email: <span><?php echo $key->user_email;?></span></div>
+						<?php } ?>
+					</div>
+				</div>
+				<?php } ?>
+				<div class="agent-filter clearfix">
+					<div class="sort">
+						<span class="text">Sort</span>
+						<div class="drop">
+							<span class="text"><?php echo empty($query_array['sort']) ? 'Relevance' : $query_array['sort'] ?></span><span class="arrow"></span>
+							<input type="hidden" name="sort" value="<?php echo empty($query_array['sort']) ? 'Relevance' : $query_array['sort'] ?>">
+						</div>
+						<div class="filter-drop re change">
+							<div class="items" item-value="Relevance"><a>Relevance</a></div>
+							<div class="items" item-value="Price : Low to High"><a>Price : Low to High</a></div>
+							<div class="items" item-value="Price : High to Low"><a>Price : High to Low</a></div>
+							<div class="items" item-value="Date : Latest First"><a>Date : Latest First</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="agent-property-list">
+					<?php if(isset($user_mylist)){ ?>
+						<?php if(!empty($user_mylist)){ ?>
+							<?php foreach ($user_mylist as $key) { ?>
+								<div class="item">
+									<div class="left-side">
+										<a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>">
+										<div class="thumb">
+											<?php if(!empty($image[$key->ID])) {
+													$image_url=$image[$key->ID]; 
+													$info = pathinfo($image_url);
+													$file_name =  basename($image_url,'.'.$info['extension']);
+													$file_url = 'upload/'.$file_name."_270.".$info['extension'];
+												}else{
+													$file_url = 'images/dummy-feature-small.png';
+												}
+												$attached_image = array(
+											          'src' => $file_url ,
+											          'alt' => 'fsbo',
+											          'title' => $key->post_title,
+												);
+											?>
+											<?php echo img($attached_image);?>
+											<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
 										</div>
-										<?php if($this->uri->segment(2)=='') {?>
-										<div class="filter-drop">
-											<div class="items"><a href="<?php echo site_url("property/$query_id/ID/desc")?>">Relevance</a></div>
-											<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-											<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-											<div class="items"><a href="<?php echo site_url("property/$query_id/post_date/asc")?>">Date : Latest First</a></div>
+									</a>
+									</div>
+									<div class="mid-side">
+										<?php if($key->post_type == 'property') { ?>
+										<div class="featured-listing-name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
+										<?php } else if($key->post_type == 'furniture') {?>
+										<div class="featured-listing-name"><a href="<?php echo site_url('furniture/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div> 
+										<?php } else if($key->post_type == 'education') { ?>
+										<div class="featured-listing-name"><a href="<?php echo site_url('education/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
+										<?php } ?>
+										<?php if($key->post_type == 'property') { ?>
+										<div class="featured-listing-feature">
+											<li><span class="floor"><?php echo ordinalize($key->post_property_floor) ?></span><span class="text">Floor</span></li>
+											<li><span class="floor"><?php echo $key->post_property_bedrooms;?></span><span class="img-bed"></span></li>
+											<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
+											<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
 										</div>
-										<?php } else if($this->uri->segment(2)=='0') {?>
-											<?php if($this->uri->segment(3)=='ID') { ?>
-											<div class="filter-drop">
-												<div class="items"><a href="<?php echo site_url("property/$query_id/ID/desc")?>">Relevance</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-											</div>
-											<?php }else if($this->uri->segment(3)=='post_price'){ ?>
-											<div class="filter-drop">
-												<div class="items"><a href="<?php echo site_url("property/$query_id/ID/desc")?>">Relevance</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-											</div>
-											<?php }else if($this->uri->segment(3)=='post_date'){ ?>
-											<div class="filter-drop">
-												<div class="items"><a href="<?php echo site_url("property/$query_id/ID/desc")?>">Relevance</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-											</div>
-											<?php } ?>
-										<?php }else{ ?>
-											<div class="filter-drop">
-												<div class="items"><a href="<?php echo site_url("property/$query_id/ID/desc")?>">Relevance</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/asc")?>">Price : Low to High</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_price/desc")?>">Price : High to Low</a></div>
-												<div class="items"><a href="<?php echo site_url("property/$query_id/post_date/asc")?>">Date : Latest First</a></div>
-											</div>
+										<?php } ?>
+										<?php if($key->post_type == 'property') { ?>
+										<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory =='Commercial property for Sale' ) { ?>
+										<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
+										<?php } else { ?>
+										<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
+										<?php } ?>
+										<div class="location"><?php echo $key->post_property_area_community.' , '.$key->post_property_area_city;?></div>
+										<div class="address"><?php echo $key->post_property_area_address;?></div>
+										<?php } else if($key->post_type == 'furniture') {?>
+										<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span></p></div>
+										<div class="address"><?php echo shortDescription($key->post_description);?></div>
+										<?php } else if($key->post_type == 'education') { ?>
+										<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span></p></div>
+										<div class="location"><?php echo $key->post_education_type;?></div>
+										<div class="address"><?php echo shortDescription($key->post_description);?></div>
 										<?php } ?>
 									</div>
-									<a class="save" href="#">Save Search</a>
-									<!--a href="#" class="export">Print Results</a -->
-								</div>
-								<div class="actual-list">
-									<?php $i=1;$location='';foreach ($records as $key) {?>
-									<div class="item clearfix">
-										<div class="left-side">
-											<a href="<?php echo site_url('property/'.$key->post_slug);?>">
-												<div class="thumb">
-													<?php if(!empty($image[$key->ID])) {
-															$image_url=$image[$key->ID]; 
-															$info = pathinfo($image_url);
-															$file_name =  basename($image_url,'.'.$info['extension']);
-															$file_url = 'upload/'.$file_name."_270.".$info['extension'];
-														}else{
-															$file_url = 'images/dummy-feature-small.png';
-														}
-														$attached_image = array(
-													          'src' => $file_url ,
-													          'alt' => $key->post_title,
-													          'title' => $key->post_title,
-														);
-													?>
-													<?php echo img($attached_image);?>
-													<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
-												</div>
-											</a>
-										</div>
-										<div class="right-side">
-											<div class="featured-listing-name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
-											<div class="featured-listing-feature">
-												<li><span class="floor"><?php echo ordinalize($key->post_property_floor) ?></span><span class="text">Floor</span></li>
-												<li><span class="floor"><?php echo $key->post_property_bedrooms;?></span><span class="img-bed"></span></li>
-												<li><span class="floor"><?php echo $key->post_property_bathroom;?></span><span class="img-bath"></span></li>
-												<li><span class="floor"><?php echo round($key->post_property_size);?></span><span class="text">m<sup>2</sup></span></li>
+									<div class="rrssb-buttons right-side">
+										<div class="top">
+											<div class="thumb">
+												<?php 
+													$attached_image = array(
+											          'src' => 'images/agent.png' ,
+											          'alt' => 'fsbo',
+											          'title' => 'fsbo',
+													);
+													echo img($attached_image);
+												?>
 											</div>
-											<?php if($key->post_property_catergory == 'Residential property for Sale' || $key->post_property_catergory =='Commercial property for Sale' ) { ?>
-											<div class="price-desc"><p><span class="blue bold big"><?php echo round($key->post_price);?></span> <span class="black bold big">QR</span> <span class="for">For Sale</span> <span class="blue small"><?php echo round($key->post_price/$key->post_property_size);?></span> <span class="bold small">Per</span> <span class="yellow bold small">m<sup>2</sup></span></p></div>
-											<?php } else { ?>
-											<div class="price-desc"><p><span class="for">For Rent</span> <span class="blue bold small"><?php echo round($key->post_price);?></span> <span class="blue bold small">QR</span> <span class="black bold small">Per</span> <span class="yellow  bold small">Month</span></p></div>
-											<?php } ?>
-											<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
-											<div class="address"><?php echo $key->post_property_area_address;?></div>
-											<!--div class="listedby">
-												<div class="top clearfix"><div class="name"><p>Listed by <span>Adam Smith</span></p></div><div class="compare active"></div></div>
-												<div class="bottom"><a href="#">See all Adam Smith Listing</a></div>
-											</div-->
 										</div>
+										<?php if($this->session->userdata('logged_in')){ ?>
+										<a href="mailto:<?php echo $email;?>?subject=&amp;body=" class="popup contact">Contact Agent</a>
+										<?php } ?>
+										<?php if($key->post_type == 'property') { ?>
+										<a href="<?php echo site_url('property/'.$key->post_slug);?>" class="contact ex">View Details</a>
+										<?php } else if($key->post_type == 'furniture') {?>
+										<a href="<?php echo site_url('furniture/'.$key->post_slug);?>" class="contact ex">View Details</a>
+										<?php } else if($key->post_type == 'education') { ?>
+										<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="contact ex">View Details</a>
+										<?php } ?>
+										<div class="compare-area"><div class="compare"></div><span>Compare</span></div>
+										<div class="clear"></div>
+										<?php if($key->post_type == 'property') { ?>
+										<div class="fb-like" data-href="<?php echo site_url('property/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+										<div class="fb-like" data-href="<?php echo site_url('property/'.$key->post_slug);?>" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+										<?php } else if($key->post_type == 'furniture') {?>
+										<div class="fb-like" data-href="<?php echo site_url('furniture/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+										<div class="fb-like" data-href="<?php echo site_url('furniture/'.$key->post_slug);?>" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+										<?php } else if($key->post_type == 'education') { ?>
+										<div class="fb-like" data-href="<?php echo site_url('education/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+										<div class="fb-like" data-href="<?php echo site_url('education/'.$key->post_slug);?>" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+										<?php } ?>
+
+										
 									</div>
-									<?php $location =$location."['$key->post_title',$key->post_property_area_lat,$key->post_property_area_log,$i]," ?>
-									<?php $i++;} ?>
 								</div>
-								<?php if (strlen($pagination)): ?>
-								<div>
-									Pages: <?php echo $pagination; ?>
-								</div>
-								<?php endif; ?>
-							</div>
+							<?php } ?>
 						<?php }else{ ?>
 							<h1 class="error">No Listing Not Found</h1>
 						<?php } ?>
 					<?php } ?>
 				</div>
-			</div>
+				<?php if (strlen($pagination)): ?>
+				<div>
+					Pages: <?php echo $pagination; ?>
+				</div>
+				<?php endif; ?>
+			</div> 
 		</div>
 	</div>
 	<?php function ordinalize($num) {
@@ -368,61 +404,33 @@
         return "{$num}{$suff}";
     }
     ?>
-    <script type="text/javascript">
-    var locations = [<?php echo $location?>];
-    var marker_url   = "<?php echo base_url('images/map-marker-new.png');?>";
-    var marker_url_hover   = "<?php echo base_url('images/map-marker-new-hover.png');?>";
-    var marker_w     = 26;
-    var marker_h     = 33;
-    var icon_url = new google.maps.MarkerImage(marker_url, new google.maps.Size(marker_w,marker_h), new google.maps.Point(0,0) );
-    var icon_url_hover = new google.maps.MarkerImage(marker_url_hover, new google.maps.Size(marker_w,marker_h), new google.maps.Point(0,0) );
-    var map = new google.maps.Map(document.getElementById('map_canvas'), {
-	    zoom: 10,
-	    center: new google.maps.LatLng(<?php echo $key->post_property_area_lat?>,<?php echo $key->post_property_area_log?>),
-	    mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    panControl: false,
-	    zoomControl: false,
-	    mapTypeControl: false,
-	    scaleControl: false,
-	    streetViewControl: false,
-	    overviewMapControl: false
-    });
+    <?php
+    	function shortDescription($fullDescription) {
+			$shortDescription = "";
 
-    var infowindow = new google.maps.InfoWindow({
+			$fullDescription = trim(strip_tags($fullDescription));
 
-    });
-    
-    var i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map,
-        icon:icon_url
-      });
-
-      google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-          marker.setIcon(icon_url_hover);
-        }
-      })(marker, i));
-      google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
-        return function() {
-          marker.setIcon(icon_url);
-        }
-      })(marker, i));
-    }
-  </script>
-  <style type="text/css">
+			if ($fullDescription) {
+				$initialCount = 325;
+				if (strlen($fullDescription) > $initialCount) {
+					//$shortDescription = substr(strip_tags($fullDescription),0,$initialCount).”…”;
+					$shortDescription = substr($fullDescription,0,$initialCount)."…";
+				}
+				else {
+					return $fullDescription;
+				}
+			}
+			return $shortDescription;
+		}
+    ?>
+    <style type="text/css">
 #slider 
 {
     width: 80%;
     margin-left: 1em;
 }
 
-#slider-range a {
+#agent-slider-range a {
     text-decoration: none;
     outline: none;
 }
@@ -437,38 +445,38 @@
 }
 
     </style>
-  <script type="text/javascript">
+    <script type="text/javascript">
     	$(document).ready(function() {
-    		$("#slider-range").slider({
-			    range: true,
-			    min: <?php echo round($total_num_min) ?>,
-			    max: <?php echo round($total_num_max) ?>,
-			    step: 500,
-			    values: [<?php echo empty($query_array['input_min']) ? $num_min : $query_array['input_min'] ?>, <?php echo empty($query_array['input_max']) ? $num_max : $query_array['input_max'] ?>],
-			    animate: 'slow',
-			    create: function() {
-			        $('#min').appendTo($('#slider-range a').get(0));
-			        $('#input_min').appendTo($('#slider-range a').get(0));
-			        $('#max').appendTo($('#slider-range a').get(1));
-			        $('#input_max').appendTo($('#slider-range a').get(1));
-			    },
-			    slide: function(event, ui) { $(ui.handle).find('span').html('$' + ui.value); $(ui.handle).find('input').val(ui.value);}
-			});
+    		$("#agent-slider-range").slider({
+    range: true,
+    min: <?php echo round($total_num_min) ?>,
+    max: <?php echo round($total_num_max) ?>,
+    step: 500,
+    values: [<?php echo empty($query_array['input_min']) ? $num_min : $query_array['input_min'] ?>, <?php echo empty($query_array['input_max']) ? $num_max : $query_array['input_max'] ?>],
+    animate: 'slow',
+    create: function() {
+        $('#min').appendTo($('#agent-slider-range a').get(0));
+        $('#input_min').appendTo($('#agent-slider-range a').get(0));
+        $('#max').appendTo($('#agent-slider-range a').get(1));
+        $('#input_max').appendTo($('#agent-slider-range a').get(1));
+    },
+    slide: function(event, ui) { $(ui.handle).find('span').html('$' + ui.value); $(ui.handle).find('input').val(ui.value);}
+});
 
-			// only initially needed
-			$('#min').html('$' + $('#slider-range').slider('values', 0)).position({
-			    my: 'center top',
-			    at: 'center bottom',
-			    of: $('#slider-range a:eq(0)'),
-			    offset: "0, 10"
-			});
-			$('#input_min').val($('#slider-range').slider('values', 0));
-			$('#max').html('$' + $('#slider-range').slider('values', 1)).position({
-			    my: 'center top',
-			    at: 'center bottom',
-			    of: $('#slider-range a:eq(1)'),
-			    offset: "0, 10"
-			});
-			$('#input_max').val($('#slider-range').slider('values', 1));
+// only initially needed
+$('#min').html('$' + $('#agent-slider-range').slider('values', 0)).position({
+    my: 'center top',
+    at: 'center bottom',
+    of: $('#agent-slider-range a:eq(0)'),
+    offset: "0, 10"
+});
+$('#input_min').val($('#agent-slider-range').slider('values', 0));
+$('#max').html('$' + $('#agent-slider-range').slider('values', 1)).position({
+    my: 'center top',
+    at: 'center bottom',
+    of: $('#agent-slider-range a:eq(1)'),
+    offset: "0, 10"
+});
+$('#input_max').val($('#agent-slider-range').slider('values', 1));
     	});
     </script>
