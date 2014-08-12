@@ -16,6 +16,12 @@ class MY_Input extends CI_Input {
 		$CI =& get_instance();
 		
 		$rows = $CI->db->get_where('fsbo_query', array('id' => $query_id))->result();
+		for($i=0 ; $i<=sizeof($rows);$i++) {
+			if (isset($rows[$i])) {
+				parse_str($rows[$i]->query_string, $_GET);		
+			}
+		}
+		/*
 		if (isset($rows[0])) {
 			parse_str($rows[0]->query_string, $_GET);		
 		}
@@ -64,6 +70,18 @@ class MY_Input extends CI_Input {
 		if (isset($rows[15])) {
 			parse_str($rows[15]->query_string, $_GET);		
 		}
+		if (isset($rows[16])) {
+			parse_str($rows[16]->query_string, $_GET);		
+		}
+		if (isset($rows[17])) {
+			parse_str($rows[17]->query_string, $_GET);		
+		}
+		if (isset($rows[18])) {
+			parse_str($rows[18]->query_string, $_GET);		
+		}
+		if (isset($rows[19])) {
+			parse_str($rows[19]->query_string, $_GET);		
+		}*/
 	}
 	
 }

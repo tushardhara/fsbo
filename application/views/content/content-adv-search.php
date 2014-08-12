@@ -10,9 +10,18 @@
 		<div class="container">
 			<div class="property-listing-settings">
 				<div class="drop-down-setting clearfix">
-					<?php echo form_open("search_pro"); ?>
+					<?php echo form_open("adv_search_query"); ?>
 					<input class="big-search" type="text" name="title" value="<?php echo empty($query_array['title']) ? '' : $query_array['title'] ?>" placeholder="Search">
 					<div class="left">
+						<div class="setting-choose-big no-bottom">
+							<span>Type : <span class="text"><?php echo empty($query_array['type']) ? 'All' : $query_array['type'] ?></span><input type="hidden" name="type" value="<?php echo empty($query_array['type']) ? 'All' : $query_array['type'] ?>"></span><span class="arrow"></span>
+							<div class="drop-category">
+								<div class="drop-item" item-value="All">All</div>
+								<div class="drop-item" item-value="property">property</div>
+	                            <div class="drop-item" item-value="furniture">furniture</div>
+	                            <div class="drop-item" item-value="education">education</div>
+							</div>
+						</div>
 						<div class="setting-choose-big no-bottom">
 							<span>Property Category : <span class="text"><?php echo empty($query_array['property_category']) ? 'All' : $query_array['property_category'] ?></span><input type="hidden" name="property_category" value="<?php echo empty($query_array['property_category']) ? 'All' : $query_array['property_category'] ?>"></span><span class="arrow"></span>
 							<div class="drop-category">
@@ -23,7 +32,7 @@
 	                            <div class="drop-item" item-value="Commercial property for Rent">Commercial property for Rent</div>
 							</div>
 						</div>
-						<div class="setting-choose-big">
+						<div class="setting-choose-big no-bottom">
 							<span>Property Type: <span class="text"><?php echo empty($query_array['property_type']) ? 'All' : $query_array['property_type'] ?></span> <input type="hidden" name="property_type" value="<?php echo empty($query_array['property_type']) ? 'All' : $query_array['property_type'] ?>"></span><span class="arrow"></span>
 							<div class="drop-category">
 								<div class="drop-item" item-value="All">All</div>
@@ -39,6 +48,27 @@
 	                            <div class="drop-item" item-value="Office">Office</div>
 	                            <div class="drop-item" item-value="Warehouse">Warehouse</div>
 	                            <div class="drop-item" item-value="Whole Building">Whole Building</div>
+							</div>
+						</div>
+						<div class="setting-choose-big no-bottom">
+							<span>Furniture Type: <span class="text"><?php echo empty($query_array['furniture_type']) ? 'All' : $query_array['furniture_type'] ?></span> <input type="hidden" name="furniture_type" value="<?php echo empty($query_array['furniture_type']) ? 'All' : $query_array['furniture_type'] ?>"></span><span class="arrow"></span>
+							<div class="drop-category">
+								<div class="drop-item" item-value="All">All</div>
+	                            <div class="drop-item" item-value="Bedroom">Bedroom</div>
+	                            <div class="drop-item" item-value="Living room">Living room</div>
+	                            <div class="drop-item" item-value="Bathroom">Bathroom</div>
+	                            <div class="drop-item" item-value="Dining room">Dining room</div>
+	                            <div class="drop-item" item-value="Kitchen">Kitchen</div>
+	                            <div class="drop-item" item-value="Miscellaneous">Miscellaneous</div>
+							</div>
+						</div>
+						<div class="setting-choose-big">
+							<span>Education Type : <span class="text"><?php echo empty($query_array['education_type']) ? 'All' : $query_array['education_type'] ?></span><input type="hidden" name="education_type" value="<?php echo empty($query_array['education_type']) ? 'All' : $query_array['education_type'] ?>"></span><span class="arrow"></span>
+							<div class="drop-category">
+								<div class="drop-item" item-value="All">All</div>
+								<?php foreach ($education_type as $comm) { ?>
+									<div class="drop-item" item-value="<?php echo $comm->post_education_type?>"><?php echo $comm->post_education_type ?></div>
+								<?php } ?>
 							</div>
 						</div>
 						<div class="setting-choose-small no-top">
@@ -154,7 +184,24 @@
 								<?php } ?>
 							</div>
 						</div>
-						<div class="setting-choose-big">
+						<div class="setting-choose-big no-bottom">
+							<span>Education Community : <span class="text"><?php echo empty($query_array['education_community']) ? 'All' : $query_array['education_community'] ?></span><input type="hidden" name="education_community" value="<?php echo empty($query_array['education_community']) ? 'All' : $query_array['education_community'] ?>"></span><span class="arrow"></span>
+							<div class="drop-category">
+								<div class="drop-item" item-value="All">All</div>
+								<?php foreach ($education_community as $comm) { ?>
+									<div class="drop-item" item-value="<?php echo $comm->post_education_community?>"><?php echo $comm->post_education_community ?></div>
+								<?php } ?>
+							</div>
+						</div>
+						<div class="setting-choose-big no-bottom">
+							<span>Gender: <span class="text"><?php echo empty($query_array['education_gender']) ? 'All' : $query_array['education_gender'] ?></span> <input type="hidden" name="education_gender" value="<?php echo empty($query_array['education_gender']) ? 'All' : $query_array['education_gender'] ?>"></span><span class="arrow"></span>
+							<div class="drop-category">
+								<div class="drop-item" item-value="All">All</div>
+	                            <div class="drop-item" item-value="Male">Male</div>
+	                            <div class="drop-item" item-value="Female">Female</div>
+							</div>
+						</div>
+						<div class="setting-choose-big no-top">
 							<span>Broker Type: <span class="text"><?php echo empty($query_array['user_type']) ? 'All' : $query_array['user_type'] ?></span> <input type="hidden" name="user_type" value="<?php echo empty($query_array['user_type']) ? 'All' : $query_array['user_type'] ?>"></span><span class="arrow"></span>
 							<div class="drop-category">
 								<div class="drop-item" item-value="All">All</div>
@@ -221,48 +268,6 @@
 				</div>
 			</div>
 			<div class="agent-detail">
-				<?php foreach ($user_list as $key) { ?>
-				<?php $email= $key->user_email; ?>
-				<div class="rrssb-buttons top">
-					<?php if($key->user_type == 'user') {?>
-					<h1><?php echo $key->user_login?></h1>
-					<?php }else if($key->user_type == 'agent'){ ?>
-						<?php if(!empty($key->user_title)) { ?>
-							<h1><?php echo $key->user_title;?></h1>
-						<?php } else { ?>
-							<h1><?php echo $key->user_login?></h1>
-						<?php } ?>
-					<?php }else if($key->user_type == 'admin'){ ?>
-					<h1><?php echo $key->user_login?></h1>
-					<?php }else if($key->user_type == 'moderator'){ ?>
-					<h1><?php echo $key->user_login?></h1>
-					<?php } ?>
-					<?php if($this->session->userdata('logged_in')){ ?>
-					<a href="mailto:<?php echo $key->user_email;?>?subject=&amp;body=" class="popup contact" target="_blank">Contact Agent</a>
-					<?php } ?>
-				</div>
-				<div class="bottom">
-					<div class="left">
-						<div class="thumb">
-							<?php 
-								$attached_image = array(
-						          'src' => 'images/agent.png' ,
-						          'alt' => 'fsbo',
-						          'title' => 'fsbo',
-								);
-								echo img($attached_image);
-							?>
-						</div>
-					</div>
-					<div class="mid"><p><?php echo $key->user_detail?></p></div>
-					<div class="right">
-						<?php if($this->session->userdata('logged_in')){ ?>
-						<div class="detail">Phone: <span><?php echo $key->user_phone;?></span></div>
-						<div class="detail">Email: <span><?php echo $key->user_email;?></span></div>
-						<?php } ?>
-					</div>
-				</div>
-				<?php } ?>
 				<div class="agent-filter clearfix">
 					<div class="sort">
 						<span class="text">Sort</span>
@@ -279,12 +284,18 @@
 					</div>
 				</div>
 				<div class="agent-property-list">
-					<?php if(isset($user_mylist)){ ?>
-						<?php if(!empty($user_mylist)){ ?>
-							<?php foreach ($user_mylist as $key) { ?>
+					<?php if(isset($records)){ ?>
+						<?php if(!empty($records)){ ?>
+							<?php foreach ($records as $key) { ?>
 								<div class="item">
 									<div class="left-side">
-										<a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>">
+										<?php if($key->post_type == 'property') { ?>
+										<a href="<?php echo site_url('property/'.$key->post_slug);?>">
+										<?php } else if($key->post_type == 'furniture') {?>
+										<a href="<?php echo site_url('furniture/'.$key->post_slug);?>">
+										<?php } else if($key->post_type == 'education') { ?>
+										<a href="<?php echo site_url('education/'.$key->post_slug);?>">
+										<?php } ?>
 										<div class="thumb">
 											<?php if(!empty($image[$key->ID])) {
 													$image_url=$image[$key->ID]; 
@@ -430,7 +441,7 @@
     margin-left: 1em;
 }
 
-#agent-slider-range a {
+#slider-range a {
     text-decoration: none;
     outline: none;
 }
@@ -445,38 +456,38 @@
 }
 
     </style>
-    <script type="text/javascript">
+ <script type="text/javascript">
     	$(document).ready(function() {
-    		$("#agent-slider-range").slider({
-    range: true,
-    min: <?php echo round($total_num_min) ?>,
-    max: <?php echo round($total_num_max) ?>,
-    step: 500,
-    values: [<?php echo empty($query_array['input_min']) ? $num_min : $query_array['input_min'] ?>, <?php echo empty($query_array['input_max']) ? $num_max : $query_array['input_max'] ?>],
-    animate: 'slow',
-    create: function() {
-        $('#min').appendTo($('#agent-slider-range a').get(0));
-        $('#input_min').appendTo($('#agent-slider-range a').get(0));
-        $('#max').appendTo($('#agent-slider-range a').get(1));
-        $('#input_max').appendTo($('#agent-slider-range a').get(1));
-    },
-    slide: function(event, ui) { $(ui.handle).find('span').html('$' + ui.value); $(ui.handle).find('input').val(ui.value);}
-});
+    		$("#slider-range").slider({
+			    range: true,
+			    min: <?php echo round($total_num_min) ?>,
+			    max: <?php echo round($total_num_max) ?>,
+			    step: 500,
+			    values: [<?php echo empty($query_array['input_min']) ? $num_min : $query_array['input_min'] ?>, <?php echo empty($query_array['input_max']) ? $num_max : $query_array['input_max'] ?>],
+			    animate: 'slow',
+			    create: function() {
+			        $('#min').appendTo($('#slider-range a').get(0));
+			        $('#input_min').appendTo($('#slider-range a').get(0));
+			        $('#max').appendTo($('#slider-range a').get(1));
+			        $('#input_max').appendTo($('#slider-range a').get(1));
+			    },
+			    slide: function(event, ui) { $(ui.handle).find('span').html('$' + ui.value); $(ui.handle).find('input').val(ui.value);}
+			});
 
-// only initially needed
-$('#min').html('$' + $('#agent-slider-range').slider('values', 0)).position({
-    my: 'center top',
-    at: 'center bottom',
-    of: $('#agent-slider-range a:eq(0)'),
-    offset: "0, 10"
-});
-$('#input_min').val($('#agent-slider-range').slider('values', 0));
-$('#max').html('$' + $('#agent-slider-range').slider('values', 1)).position({
-    my: 'center top',
-    at: 'center bottom',
-    of: $('#agent-slider-range a:eq(1)'),
-    offset: "0, 10"
-});
-$('#input_max').val($('#agent-slider-range').slider('values', 1));
+			// only initially needed
+			$('#min').html('$' + $('#slider-range').slider('values', 0)).position({
+			    my: 'center top',
+			    at: 'center bottom',
+			    of: $('#slider-range a:eq(0)'),
+			    offset: "0, 10"
+			});
+			$('#input_min').val($('#slider-range').slider('values', 0));
+			$('#max').html('$' + $('#slider-range').slider('values', 1)).position({
+			    my: 'center top',
+			    at: 'center bottom',
+			    of: $('#slider-range a:eq(1)'),
+			    offset: "0, 10"
+			});
+			$('#input_max').val($('#slider-range').slider('values', 1));
     	});
     </script>

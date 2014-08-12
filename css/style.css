@@ -273,6 +273,7 @@ header .register-login li a:first-child{
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
 	cursor: pointer;
+	position: relative;
 }
 .home-page-slider .dragable-search-area .search-draggable .search-field-box .search-field-drop .text{
 	float: left;
@@ -5919,12 +5920,43 @@ top: -12px;
 	padding-bottom: 50px;
 	text-align: center;
 }
+.search-field-drop .search-drop{
+	width: 200px;
+	height: 200px;
+	overflow-y: scroll;
+	position: absolute;
+	right: -213px;
+	top: 0px;
+	background: #fff;
+	display: none;
+	border: 1px solid #c2c2c2;
+}
+.search-field-drop .search-drop.active{
+	display: block;
+}
+.search-field-drop .search-drop::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+.search-field-drop .search-drop::-webkit-scrollbar-track {
+    background: #cdcdcd;
+}
 
+.search-field-drop .search-drop::-webkit-scrollbar-thumb {
+    background: #1eb0a9;
+}
+.search-field-drop .search-drop .drop-item{
+	border-bottom: 1px solid #c2c2c2;
+	padding: 5px;
+}
+.search-field-drop .search-drop .drop-item:hover{
+	background: #ffa800;
+	color: #fff;
+}
 
-
-
-
-
+.search-field-drop .search-drop-area {
+	height: 30px;
+}
 
 
 

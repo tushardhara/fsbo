@@ -14,6 +14,26 @@ $(document).ready(function() {
   $('.drop').on('click',function(){
     $(this).parent().children('.drop-category').toggleClass('active').toggle();
   });
+  $('.search-drop-area').on('click',function(){
+    //console.log("asd");
+    $('.search-drop').removeClass('active');
+    $(this).parent().children('.search-drop').toggleClass('active');
+  });
+  $(document).mouseup(function (e)
+  {
+      var container = $(".search-drop-area");
+      if (!container.is(e.target) // if the target of the click isn't the container...
+          && container.has(e.target).length === 0 ) // ... nor a descendant of the container
+      {
+        //if($('.drop').has(e.target).length !=1 && $('.drop').css('display')=='block'){
+           $('.search-drop.active').toggleClass('active');
+       // }
+      }
+  });
+   $('.search-drop .drop-item').on('click',function(){
+    $(this).parent().parent().children('.search-drop-area').children('.text').children('span').html($(this).attr('item-value'));
+     $(this).parent().parent().children('.search-drop-area').children('.text').children('input').val($(this).attr('item-value'));
+  });
   $(document).mouseup(function (e)
   {
       var container = $(".drop");
