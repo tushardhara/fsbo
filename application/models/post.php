@@ -633,7 +633,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
         $city="'".$query_array['city']."'";
       }
        if($query_array['community'] == 'All' || $query_array['community'] == ''){
-        $community="post_education_community";
+        $community="post_property_area_community";
       }else{
         $community="'".$query_array['community']."'";
       }
@@ -703,7 +703,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_property_type IN ($property_type) AND
           post_property_catergory IN ($catergory) AND
           post_title LIKE $title AND
-          post_education_community = $community AND
+          post_property_area_community = $community AND
           post_property_area_city = $city AND 
           post_property_bedrooms >= $bedroom_min AND
           post_property_bedrooms <= $bedroom_max AND
@@ -732,7 +732,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_property_type IN ($property_type) AND
           post_property_catergory IN ($catergory) AND
           post_title LIKE $title AND
-          post_education_community = $community AND
+          post_property_area_community = $community AND
           post_property_area_city = $city AND 
           post_property_bedrooms >= $bedroom_min AND
           post_property_bedrooms <= $bedroom_max AND
@@ -759,7 +759,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_property_type IN ($property_type) AND
           post_property_catergory IN ($catergory) AND
           post_title LIKE $title AND
-          post_education_community = $community AND
+          post_property_area_community = $community AND
           post_property_area_city = $city AND 
           post_property_bedrooms >= $bedroom_min AND
           post_property_bedrooms <= $bedroom_max AND

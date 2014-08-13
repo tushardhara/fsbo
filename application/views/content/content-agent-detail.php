@@ -156,7 +156,7 @@
 					</div>
 					<div class="sort">
 						<span class="text">Sort</span>
-						<div class="drop">
+						<div class="drop actual">
 							<span class="text"><?php echo empty($query_array['sort']) ? 'Relevance' : $query_array['sort'] ?></span><span class="arrow"></span>
 							<input type="hidden" name="sort" value="<?php echo empty($query_array['sort']) ? 'Relevance' : $query_array['sort'] ?>">
 						</div>
@@ -253,7 +253,9 @@
 										<?php } else if($key->post_type == 'education') { ?>
 										<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="contact ex">View Details</a>
 										<?php } ?>
-										<div class="compare-area"><div class="compare"></div><span>Compare</span></div>
+										<?php if($key->post_type == 'property') {?>
+										<div class="compare-area"><div class="compare" data-id="<?php echo $key->ID?>"></div><span><a href="#" class="export" style="display:none">Compare</a></span></div>
+										<?php } ?>
 										<div class="clear"></div>
 										<?php if($key->post_type == 'property') { ?>
 										<div class="fb-like" data-href="<?php echo site_url('property/'.$key->post_slug);?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
@@ -271,13 +273,13 @@
 								</div>
 							<?php } ?>
 						<?php }else{ ?>
-							<h1 class="error">No Listing Not Found</h1>
+							<h1 class="error">No listings where found</h1>
 						<?php } ?>
 					<?php } ?>
 				</div>
 				<?php if (strlen($pagination)): ?>
-				<div>
-					Pages: <?php echo $pagination; ?>
+				<div class="pagination">
+					<ul><?php echo $pagination; ?></ul>
 				</div>
 				<?php endif; ?>
 			</div> 
@@ -372,3 +374,24 @@ $('#max').html('$' + $('#agent-slider-range').slider('values', 1)).position({
 $('#input_max').val($('#agent-slider-range').slider('values', 1));
     	});
     </script>
+     <script type="text/javascript">
+  		$(document).ready(function() {
+  			$('.compare').on('click',function(){
+  				$(this).toggleClass('active');
+  				var n = $( ".compare.active" ).length;
+  				
+  				if(n>=2){
+  					$('.export').show();
+  					var url = '';
+  					$( ".compare.active" ).each(function( i ) {
+  						url=url+"'"+$(this).attr('data-id')+"'"+",";
+  					});
+  					//console.log(url.slice(0,-1));
+  					$('.export').attr('href','<?php echo site_url()?>compare/ids?id='+url.slice(0,-1));
+  				}else{
+  					$('.export').hide();
+  				}
+  				
+  			});
+  		});
+  	</script>

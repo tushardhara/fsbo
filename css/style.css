@@ -302,6 +302,7 @@ header .register-login li a:first-child{
 	display: block;
 	text-align: center;
 	line-height: 30px;
+	cursor: pointer;
 }
 .home-page-slider .dragable-search-area .search-draggable .search-field-box .adv-search-button{
 	text-decoration: none;
@@ -751,6 +752,14 @@ header .register-login li a:first-child{
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+.home-main .left-main .listing .featured-project-area .featured-project-list .item .featured-listing-name input{
+	background: none;
+	border: none;
+	color:#1eb0a9;
+	cursor: pointer;
+	outline: none;
+}
+
 .home-main .left-main .listing .featured-project-area .featured-project-list .item .featured-listing-name a{
 	color:inherit;
 	text-decoration: none;
@@ -1229,14 +1238,18 @@ header .register-login li a:first-child{
 	border: 1px solid #1eb0a9;
 	outline: none;
 	position: relative;
-	top: -18px;
+	top: -10px;
 	left: 300px;
 	background: transparent;
 	font-size: 11px;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	cursor: pointer;
 	width: 200px;
-	height: 50px
+	height: 38px;
+}
+.register-area-left input[type="submit"]:hover,.register-area-right input[type="submit"]:hover{
+	background: #1eb0a9;
+	color: #fff;
 }
 /* SQUARED THREE */
 .squaredThree {
@@ -1452,7 +1465,12 @@ html[xmlns] .clearfix {
 .product-detail .left .big-image img{
 	height: 444px;
 	width: 100%;
+	display: none;
 }
+.product-detail .left .big-image img.active{
+	display: block;
+}
+
 .product-detail .right .featured-listing-name{
 	font-family: 'nexa_lightregular';
 	font-size: 43px;
@@ -2741,6 +2759,10 @@ height: 80px;
 	margin-right: 20px;
 	color: #000;
 }
+.property-listing-area .right .filter-settings .export:hover{
+	background: #ffa800;
+	color: #fff;
+}
 
 .property-listing-area .right .actual-list{
 	width: 100%;
@@ -2764,6 +2786,11 @@ height: 80px;
 	padding: 20px 0px;
 	border-bottom: 1px solid #c2c2c2;
 }
+.property-listing-area .right .actual-list .item.active{
+	transition: all 0.5s ease;
+  	background: #fff;
+}
+
 .property-listing-area .right .actual-list .item:last-child{
 	border-bottom: 0px solid #c2c2c2;
 }
@@ -3664,7 +3691,9 @@ font-size: 13px;
 .agent-detail .agent-filter .sort .drop.small{
 	width: 50px;
 }
-
+.agent-detail .agent-filter .sort .drop.actual{
+	width: 121px;
+}
 .agent-detail .agent-filter .sort .filter-drop{
 	width: 110px;
 	height: auto;
@@ -3736,7 +3765,7 @@ font-size: 13px;
 	left: -2px;
 }
 .agent-detail .agent-filter .price-range{
-	width: 270px;
+	width: 249px;
 	float: left;
 	font-family: 'nexa_lightregular';
 	font-size: 11px;
@@ -3748,7 +3777,7 @@ font-size: 13px;
 	margin-top: 20px;
 }
 .agent-detail .agent-filter .price-range #agent-slider-range{
-	width: 198px;
+	width: 177px;
 	height: 25px;
 	background: url(../images/slider-back.png) 0 0 repeat-x;
 	position: relative;
@@ -3779,6 +3808,11 @@ font-size: 13px;
 	text-decoration: none;
 	margin-top: 14px;
 	cursor: pointer;
+	background: none;
+}
+.agent-detail .agent-filter .contact:hover{
+	background: #ffa800;
+	color: #fff;
 }
 .agent-property-list{
 	width: 100%;
@@ -4025,6 +4059,11 @@ font-size: 13px;
 	margin-top: 14px;
 	margin-left: 10px;
 }
+.agent-property-list .item .right-side .compare-area span a{
+	color: #000;
+	text-decoration: none;
+}
+
 .agent-property-list .item .right-side .compare{
 	background: url(../images/check-box.png) -18px 0px no-repeat;
 	height: 18px;
@@ -4255,9 +4294,9 @@ top: -12px;
 .compare-list .right .compere-item-list .item .title{
 	font-family: 'nexa_lightregular';
 	color: #1eb0a9;
-	font-size: 18px;
+	font-size: 12px;
 	text-align: center;
-	padding: 22px 0px;
+	padding: 25px 0px;
 	border-top:1px solid #c2c2c2; 
 	border-bottom:1px solid #c2c2c2; 
 }
@@ -4270,7 +4309,10 @@ top: -12px;
 	margin-top: 20px;
 }
 .compare-list .right .compere-item-list .item .thumb img{
-	opacity: 0.6;
+	opacity: 1;
+	width: 200px;
+	height: 148px;
+	display: block;
 }
 .compare-list .right .compere-item-list .item .thumb:hover img{
 	opacity: 1;
@@ -4298,12 +4340,20 @@ top: -12px;
 	margin-top: 10px;
 	color: #000;
 }
+.compare-list .right .compere-item-list .item .view:hover{
+	background: #ffa800;
+	color: #fff;
+}
 .compare-list .right .compere-item-list .item p{
 	padding: 14px;
 	font-family: 'nexa_lightregular';
 	font-size: 13px;
 	color: #585858; 
 }
+.compare-list .right .compere-item-list .item p.fixed{
+	height: 117px;
+}
+
 .compare-list .right .compere-item-list .item .location{
 	width: 100%;
 	height: auto;
@@ -4450,7 +4500,10 @@ top: -12px;
 	text-decoration: none;
 	margin-left: 50px;
 }
-
+.compare-list .right .compere-item-list .item .contact .contact_agent:hover{
+	background: #ffa800;
+	color: #fff;
+}
 .contact-page-main{
 	width: 100%;
 	height: auto;
@@ -4667,6 +4720,7 @@ top: -12px;
 	padding: 0px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
+	text-indent: 100px;
 }
 .edit-area .left .filed textarea[readonly]{
 	width: 96%;
@@ -4679,6 +4733,7 @@ top: -12px;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
 	resize:none;
+
 }
 .edit-area .left .filed input[type="text"],.edit-area .left .filed input[type="password"]{
 	width: 96%;
@@ -4690,6 +4745,7 @@ top: -12px;
 	padding: 0px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
+	text-indent: 100px;
 }
 .edit-area .left .filed textarea{
 	
@@ -4704,7 +4760,14 @@ top: -12px;
 	font-size: 15px;
 	resize:none;
 }
-.edit-area .left .filed .edit-filed{
+
+.edit-area .left .filed span.info{
+	position: absolute;
+	left: 10px;
+	top: 18px;
+	cursor: pointer;
+}
+.edit-area .left .filed span.edit-filed{
 	position: absolute;
 	right: 10px;
 	top: 18px;
@@ -4743,6 +4806,7 @@ top: -12px;
 	padding: 0px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
+	text-indent: 100px;
 }
 .edit-area .right .filed input[type="text"],.edit-area .right .filed input[type="password"]{
 	
@@ -4755,14 +4819,20 @@ top: -12px;
 	padding: 0px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
+	text-indent: 100px;
 }
-.edit-area .right .filed .edit-filed{
+.edit-area .right .filed span.info{
+	position: absolute;
+	left: 10px;
+	top: 18px;
+	cursor: pointer;
+}
+.edit-area .right .filed span.edit-filed{
 	position: absolute;
 	right: 10px;
 	top: 18px;
 	cursor: pointer;
 }
-
 .my-property-list{
 	width: 100%;
 	height: auto;
@@ -5908,6 +5978,7 @@ top: -12px;
 	margin-top: 3px;
 	margin-bottom: 0px;
 	padding: 10px;
+	cursor: pointer;
 }
 
 .property-listing-settings .property_contact:hover{
@@ -5922,14 +5993,17 @@ top: -12px;
 }
 .search-field-drop .search-drop{
 	width: 200px;
-	height: 200px;
-	overflow-y: scroll;
+	height: auto;
 	position: absolute;
 	right: -213px;
 	top: 0px;
 	background: #fff;
 	display: none;
 	border: 1px solid #c2c2c2;
+}
+.search-field-drop .search-drop.scroll{
+	height: 200px;
+	overflow-y:auto;
 }
 .search-field-drop .search-drop.active{
 	display: block;
@@ -5958,10 +6032,23 @@ top: -12px;
 	height: 30px;
 }
 
+.search-field-drop .search-drop input{
+	display: inline;
+	width: 67px;
+	margin: 10px;
+}
 
-
-
-
+.pagination{
+	padding: 10px 0px;
+}
+.pagination a{
+	text-decoration: none;
+	color: #000;
+}
+.pagination a.current{
+	text-decoration: none;
+	color: #1eb0a9;
+}
 
 
 

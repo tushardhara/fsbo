@@ -20,43 +20,43 @@
 				<form method="post" action="<?php echo site_url('modify_check'); ?>">
 				<div class="left">
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_login;?>" name='user_login' placeholder="Username" readonly>
+						<span class="info">Username : </span><input	type="text" value="<?php echo $user_login;?>" name='user_login' placeholder="Username" readonly>
 					</div>
 					<div class="filed">
-						<input	type="password" value="" name='user_pass' readonly placeholder="password">
+						<span class="info">Password : </span><input	type="password" value="" name='user_pass' readonly placeholder="password">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_email; ?>" name='user_email' readonly placeholder="Email">
+						<span class="info">Email : </span><input	type="text" value="<?php echo $user_email; ?>" name='user_email' readonly placeholder="Email">
 						<?php if($user_provider == 'Twitter') { ?>
 							<span class="edit-filed">Edit</span>
 						<?php } ?>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_language; ?>" name='user_language' readonly placeholder="Language: English">
+						<span class="info">Language : </span><input	type="text" value="<?php echo $user_language; ?>" name='user_language' readonly placeholder="English">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<input type="submit" class="submit"></input>
 				</div>
 				<div class="right">
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_fname; ?>" name='user_fname' readonly placeholder="First Name">
+						<span class="info">First Name : </span><input	type="text" value="<?php echo $user_fname; ?>" name='user_fname' readonly placeholder="First Name">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_lname; ?>" name='user_lname' readonly placeholder="Last Name">
+						<span class="info">Last Name : </span><input	type="text" value="<?php echo $user_lname; ?>" name='user_lname' readonly placeholder="Last Name">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_phone; ?>" name='user_phone' readonly placeholder="Phone No.">
+						<span class="info">Phone : </span><input	type="text" value="<?php echo $user_phone; ?>" name='user_phone' readonly placeholder="Phone No.">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_city; ?>" name='user_city' readonly placeholder="City">
+						<span class="info">City : </span><input	type="text" value="<?php echo $user_city; ?>" name='user_city' readonly placeholder="City">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<div class="filed">
-						<input	type="text" value="<?php echo $user_country; ?>" name='user_country' readonly placeholder="Country">
+						<span class="info">Country : </span><input	type="text" value="<?php echo $user_country; ?>" name='user_country' readonly placeholder="Country">
 						<span class="edit-filed">Edit</span>
 					</div>
 					<input	type="hidden" name="user_title" value="">

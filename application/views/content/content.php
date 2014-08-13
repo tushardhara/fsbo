@@ -27,7 +27,7 @@
 			    		<div class="search-drop-area">
 			    			<span class="text">City : <span>All</span><input type="hidden" name="city" value="All"></span><span class="search-field-arrow"></span>
 			    		</div>
-			    		<div class="search-drop">
+			    		<div class="search-drop scroll">
 			    			<div class="drop-item" item-value="All">All</div>
 							<div class="drop-item" item-value="Doha">Doha</div>
                             <div class="drop-item" item-value="AL wakair">AL wakair</div>
@@ -92,7 +92,12 @@
 	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
-			    		<span class="text">Price</span><span class="search-field-arrow"></span>
+			    		<div class="search-drop-area">
+			    			<span class="text">Price</span><span class="search-field-arrow"></span>
+			    		</div>
+			    		<div class="search-drop">
+			    			<input type="number" name="input_min" min="<?php echo round($price[0]->min) ?>" value="<?php echo round($price[0]->min) ?>"> ~ <input type="number" name="input_max" max="<?php echo round($price[0]->max) ?>" value="<?php echo round($price[0]->max) ?>">
+	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
 			    		<div class="search-drop-area">
@@ -122,8 +127,6 @@
 			    	</div>
 			    	<input type="hidden" name="type" value="property">
 			    	<input type="hidden" name="property_category" value="Residential property for Sale">
-			    	<input type="hidden" name="input_min" value="400">
-			    	<input type="hidden" name="input_max" value="20000000">
 			    	<input type="hidden" name="bedroom_max" value="All">
 			    	<input type="hidden" name="bathroom_max" value="All">
 			    	<input type="hidden" name="user_type" value="All">
@@ -145,7 +148,7 @@
 			    		<div class="search-drop-area">
 			    			<span class="text">City : <span>All</span><input type="hidden" name="city" value="All"></span><span class="search-field-arrow"></span>
 			    		</div>
-			    		<div class="search-drop">
+			    		<div class="search-drop scroll">
 			    			<div class="drop-item" item-value="All">All</div>
 							<div class="drop-item" item-value="Doha">Doha</div>
                             <div class="drop-item" item-value="AL wakair">AL wakair</div>
@@ -210,7 +213,12 @@
 	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
-			    		<span class="text">Price</span><span class="search-field-arrow"></span>
+			    		<div class="search-drop-area">
+			    			<span class="text">Price</span><span class="search-field-arrow"></span>
+			    		</div>
+			    		<div class="search-drop">
+			    			<input type="number" name="input_min" min="<?php echo round($price[0]->min) ?>" value="<?php echo round($price[0]->min) ?>"> ~ <input type="number" name="input_max" max="<?php echo round($price[0]->max) ?>" value="<?php echo round($price[0]->max) ?>">
+	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
 			    		<div class="search-drop-area">
@@ -240,8 +248,6 @@
 			    	</div>
 			    	<input type="hidden" name="type" value="property">
 			    	<input type="hidden" name="property_category" value="Residential property for Rent">
-			    	<input type="hidden" name="input_min" value="400">
-			    	<input type="hidden" name="input_max" value="20000000">
 			    	<input type="hidden" name="bedroom_max" value="All">
 			    	<input type="hidden" name="bathroom_max" value="All">
 			    	<input type="hidden" name="user_type" value="All">
@@ -274,7 +280,12 @@
 						</div>
 			    	</div>
 			    	<div class="search-field-drop">
-			    		<span class="text">Price</span><span class="search-field-arrow"></span>
+			    		<div class="search-drop-area">
+			    			<span class="text">Price</span><span class="search-field-arrow"></span>
+			    		</div>
+			    		<div class="search-drop">
+			    			<input type="number" name="input_min" min="<?php echo round($price[0]->min) ?>" value="<?php echo round($price[0]->min) ?>"> ~ <input type="number" name="input_max" max="<?php echo round($price[0]->max) ?>" value="<?php echo round($price[0]->max) ?>">
+	                    </div>
 			    	</div>
 			    	<input type="hidden" name="type" value="furniture">
 			    	<input type="hidden" name="title" value="">
@@ -284,8 +295,6 @@
 			    	<input type="hidden" name="bedroom_max" value="All">
 			    	<input type="hidden" name="bathroom_min" value="All">
 			    	<input type="hidden" name="bathroom_max" value="All">
-			    	<input type="hidden" name="input_min" value="400">
-			    	<input type="hidden" name="input_max" value="20000000">
 			    	<input type="hidden" name="city" value="All">
 			    	<input type="hidden" name="community" value="All">
 			    	<input type="hidden" name="education_gender" value="All">
@@ -339,8 +348,8 @@
 			    	<input type="hidden" name="bedroom_max" value="All">
 			    	<input type="hidden" name="bathroom_min" value="All">
 			    	<input type="hidden" name="bathroom_max" value="All">
-			    	<input type="hidden" name="input_min" value="400">
-			    	<input type="hidden" name="input_max" value="20000000">
+			    	<input type="hidden" name="input_min" value="<?php echo round($price[0]->min) ?>">
+			    	<input type="hidden" name="input_max" value="<?php echo round($price[0]->max) ?>">
 			    	<input type="hidden" name="city" value="All">
 			    	<input type="hidden" name="community" value="All">
 			    	<input type="hidden" name="min_sq" value="All">
@@ -452,6 +461,7 @@
 						<div class="featured-project-list clearfix">
 							<?php foreach ($data_three_property_feature as $key) { ?>
 								<div class="item">
+									<?php echo form_open("search_pro"); ?>
 									<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 										<div class="thumb">
 											<?php if(!empty($image[$key->ID])) {
@@ -472,7 +482,23 @@
 											<?php if($key->post_featured == 1){ ?><div class="featured-listing-text">Featured Listing</div> <?php } ?>
 										</div>
 									</a>
-									<div class="featured-listing-name"><a href="<?php echo site_url('property/'.$key->post_slug);?>"><?php echo $key->post_title;?></a></div>
+									<input type="hidden" name="page" value="property">
+									<input type="hidden" name="title" value="">
+									<input type="hidden" name="property_category" value="All">
+									<input type="hidden" name="property_type" value="All">
+									<input type="hidden" name="user_type" value="All">
+									<input type="hidden" name="bedroom_min" value="All">
+									<input type="hidden" name="bedroom_max" value="All">
+									<input type="hidden" name="bathroom_min" value="All">
+									<input type="hidden" name="bathroom_max" value="All">
+									<input type="hidden" name="input_min" value="<?php echo round($price[0]->min) ?>">
+									<input type="hidden" name="input_max" value="<?php echo round($price[0]->max) ?>">
+									<input type="hidden" name="city" value="All">
+									<input type="hidden" name="community" value="<?php echo $key->post_property_area_community;?>">
+									<input type="hidden" name="min_sq" value="All">
+									<input type="hidden" name="max_sq" value="All">
+									<div class="featured-listing-name"><input type="submit" value="<?php echo $key->post_property_area_community;?>"></div>
+									<?php echo form_close(); ?>
 								</div>
 							<?php } ?>
 						</div>

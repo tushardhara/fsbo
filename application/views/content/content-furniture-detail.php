@@ -22,7 +22,7 @@
 					<div class="big-image">
 						<?php if(isset($user_image_detail)){ 
 								if(!empty($user_image_detail)){
-									foreach ($user_image_detail as $key1) {
+									$img_count=1;foreach ($user_image_detail as $key1) {
 										$user_image[$key1->post_image_id] = $key1->post_image_url;
 										if(!empty($user_image[$key->ID])) {
 												$image_url=$user_image[$key->ID]; 
@@ -32,18 +32,29 @@
 										}else{
 											$file_url = 'images/detail-page-image.png';
 										}
-										$attached_image = array(
-									          'src' => $file_url ,
-									          'alt' => 'fsbo',
-									          'title' => 'fsbo',
-										);
+										if($img_count==1){
+											$attached_image = array(
+										          'src' => $file_url ,
+										          'alt' => 'fsbo',
+										          'title' => $key->post_title,
+										          'class' => 'active',
+										          'id'	=> 'bigimage'.$img_count
+											);
+										}else{
+											$attached_image = array(
+										          'src' => $file_url ,
+										          'alt' => 'fsbo',
+										          'title' => $key->post_title,
+										          'id'	=> 'bigimage'.$img_count
+											);
+										}
 										echo img($attached_image);
-										break;
+										$img_count++;
 									}
 								}else{
 									$attached_image = array(
 								          'src' => 'images/detail-page-image.png' ,
-								          'alt' => 'fsbo',
+								           'title' => $key->post_title,
 								          'title' => 'fsbo',
 									);
 									echo img($attached_image);
@@ -54,8 +65,8 @@
 					<div id="product-slider" class="owl-carousel owl-theme"> 
 					  	<?php if(isset($user_image_detail)){ 
 								if(!empty($user_image_detail)){ 
-									foreach ($user_image_detail as $key1) { ?>
-									<div class="item">
+									$i=1;foreach ($user_image_detail as $key1) { ?>
+									<div class="item" id="<?php echo ("image".$i) ?>">
 									<?php	$user_image[$key1->post_image_id] = $key1->post_image_url;
 										if(!empty($user_image[$key->ID])) {
 												$image_url=$user_image[$key->ID]; 
@@ -73,7 +84,7 @@
 										echo img($attached_image);
 									?>
 									</div>
-									<?php }
+									<?php $i++;}
 								}
 							} 
 						?>

@@ -290,11 +290,19 @@
 										<?php } ?>
 									</div>
 									<a class="save" href="#">Save Search</a>
-									<!--a href="#" class="export">Print Results</a -->
+									<a href="#" class="export" style="display:none">Compare</a>
 								</div>
 								<div class="actual-list">
 									<?php $i=1;$location='';foreach ($records as $key) {?>
-									<div class="item clearfix">
+									<?php foreach ($this->post->get_user_data($key->ID) as $user_key) {
+										$email = $user_key->user_email;
+										$user_login = $user_key->user_login;
+										$user_title = $user_key->user_title;
+										$user_type = $user_key->user_type;
+										$user_slug = $user_key->user_slug;
+										}
+									?>
+									<div class="item clearfix" id="item<?php echo ($i-1)?>">
 										<div class="left-side">
 											<a href="<?php echo site_url('property/'.$key->post_slug);?>">
 												<div class="thumb">
@@ -332,23 +340,47 @@
 											<?php } ?>
 											<div class="location"><?php echo $key->post_property_area_reference.' , '.$key->post_property_area_city;?></div>
 											<div class="address"><?php echo $key->post_property_area_address;?></div>
-											<!--div class="listedby">
-												<div class="top clearfix"><div class="name"><p>Listed by <span>Adam Smith</span></p></div><div class="compare active"></div></div>
-												<div class="bottom"><a href="#">See all Adam Smith Listing</a></div>
-											</div-->
+											<?php if($user_type == 'user') {?>
+											<div class="listedby">
+												<div class="top clearfix"><div class="name"><p>Listed by <span><?php echo $user_login?></span></p></div><div class="compare" data-id="<?php echo $key->ID?>"></div></div>
+												<div class="bottom"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></div>
+											</div>
+											<?php }else if($user_type == 'agent'){ ?>
+												<?php if(!empty($user_title)) { ?>
+													<div class="listedby">
+														<div class="top clearfix"><div class="name"><p>Listed by <span><?php echo $user_title?></span></p></div><div class="compare" data-id="<?php echo $key->ID?>"></div></div>
+														<div class="bottom"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_title?> Listing</a></div>
+													</div>
+												<?php } else { ?>
+													<div class="listedby">
+														<div class="top clearfix"><div class="name"><p>Listed by <span><?php echo $user_login?></span></p></div><div class="compare" data-id="<?php echo $key->ID?>"></div></div>
+														<div class="bottom"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></div>
+													</div>
+												<?php } ?>
+											<?php }else if($user_type == 'admin'){ ?>
+											<div class="listedby">
+												<div class="top clearfix"><div class="name"><p>Listed by <span><?php echo $user_login?></span></p></div><div class="compare" data-id="<?php echo $key->ID?>"></div></div>
+												<div class="bottom"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></div>
+											</div>
+											<?php }else if($user_type == 'moderator'){ ?>
+											<div class="listedby">
+												<div class="top clearfix"><div class="name"><p>Listed by <span><?php echo $user_login?></span></p></div><div class="compare" data-id="<?php echo $key->ID?>"></div></div>
+												<div class="bottom"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></div>
+											</div>
+											<?php } ?>
 										</div>
 									</div>
 									<?php $location =$location."['$key->post_title',$key->post_property_area_lat,$key->post_property_area_log,$i]," ?>
 									<?php $i++;} ?>
 								</div>
 								<?php if (strlen($pagination)): ?>
-								<div>
-									Pages: <?php echo $pagination; ?>
+								<div class="pagination">
+									<ul><?php echo $pagination; ?></ul>
 								</div>
 								<?php endif; ?>
 							</div>
 						<?php }else{ ?>
-							<h1 class="error">No Listing Not Found</h1>
+							<h1 class="error">No listings where found</h1>
 						<?php } ?>
 					<?php } ?>
 				</div>
@@ -377,7 +409,7 @@
     var icon_url = new google.maps.MarkerImage(marker_url, new google.maps.Size(marker_w,marker_h), new google.maps.Point(0,0) );
     var icon_url_hover = new google.maps.MarkerImage(marker_url_hover, new google.maps.Size(marker_w,marker_h), new google.maps.Point(0,0) );
     var map = new google.maps.Map(document.getElementById('map_canvas'), {
-	    zoom: 10,
+	    zoom: 14,
 	    center: new google.maps.LatLng(<?php echo $key->post_property_area_lat?>,<?php echo $key->post_property_area_log?>),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP,
 	    panControl: false,
@@ -388,9 +420,7 @@
 	    overviewMapControl: false
     });
 
-    var infowindow = new google.maps.InfoWindow({
-
-    });
+    var infowindow = new google.maps.InfoWindow({});
     
     var i;
 
@@ -400,19 +430,26 @@
         map: map,
         icon:icon_url
       });
-
       google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
         return function() {
           infowindow.setContent(locations[i][0]);
           infowindow.open(map, marker);
-          marker.setIcon(icon_url_hover);
+          $('#item'+i).addClass('active');
         }
       })(marker, i));
       google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
         return function() {
-          marker.setIcon(icon_url);
+          $(".actual-list .item").removeClass('active');
         }
       })(marker, i));
+       google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	    return function() {
+	    	$(".actual-list .item").removeClass('active');
+	    	$(".actual-list").scrollTo( $('#item'+i), 800 );
+	    	$('#item'+i).addClass('active');
+	    	marker.setIcon(icon_url_hover);
+		}
+	  })(marker, i));
     }
   </script>
   <style type="text/css">
@@ -472,3 +509,25 @@
 			$('#input_max').val($('#slider-range').slider('values', 1));
     	});
     </script>
+
+    <script type="text/javascript">
+  		$(document).ready(function() {
+  			$('.compare').on('click',function(){
+  				$(this).toggleClass('active');
+  				var n = $( ".compare.active" ).length;
+  				
+  				if(n>=2){
+  					$('.export').show();
+  					var url = '';
+  					$( ".compare.active" ).each(function( i ) {
+  						url=url+"'"+$(this).attr('data-id')+"'"+",";
+  					});
+  					//console.log(url.slice(0,-1));
+  					$('.export').attr('href','<?php echo site_url()?>compare/ids?id='+url.slice(0,-1));
+  				}else{
+  					$('.export').hide();
+  				}
+  				
+  			});
+  		});
+  	</script>

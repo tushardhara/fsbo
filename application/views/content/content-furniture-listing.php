@@ -664,7 +664,11 @@
 						<?php } ?>
 					</div>
 				</div>
-				<?php echo $this->pagination->create_links();?>
+				<?php if (strlen($pagination)): ?>
+				<div class="pagination">
+					<ul><?php echo $pagination; ?></ul>
+				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

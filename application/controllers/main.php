@@ -31,6 +31,11 @@ class Main extends CI_Controller {
 		$option_data = $this->option->show_option_data();
 		$data_set['education_community'] = $this->db->query("SELECT post_education_community FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_community")->result();
 		$data_set['education_type'] = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_type")->result();
+		$data_set['price'] = $this->db->query(
+        "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
+          post_type IN('property','furniture','education') AND
+          post_status='0'"
+      )->result();
 		foreach ($option_data as $key) {
 			$post_option_data = $key->option_data;
 		}
@@ -47,8 +52,24 @@ class Main extends CI_Controller {
 		$data_set['data_three_education_feature_2'] = $this->post->show_three_feature($option[13],$option[14],$option[15]);
 		$data_set['data_three_education_feature_3'] = $this->post->show_three_feature($option[16],$option[17],$option[18]);
 		$data_set['user_image_mylist'] = $this->post->show_home_image($option[1],$option[2],$option[3],$option[4],$option[5],$option[6],$option[7],$option[8],$option[9],$option[10],$option[11],$option[12],$option[13],$option[14],$option[15],$option[16],$option[17],$option[18]);
-		$this->load->view('header');
+		$this->load->view('header',$data_set);
 		$this->load->view('content/content',$data_set);
+		$this->load->view('footer',$data_set);
+	}
+	public function compare($ids)
+	{
+		//print_r($ids);
+		$data_set='';
+		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
+		$get_ids=$this->input->get('id');
+		if($ids =='ids' && !empty($get_ids)){
+			$data_set['records']=$this->db->query("SELECT * FROM `fsbo_post` WHERE post_type = 'property' AND post_status='0' AND ID IN($get_ids)")->result();
+			$content = 'content/content-compare';
+		} else {
+			$content = 'content/content-404';
+		}
+		$this->load->view('header');
+		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
 	public function login()
@@ -87,7 +108,7 @@ class Main extends CI_Controller {
 				'sort' => $this->input->get('sort'),
 			);
 			$data_set['query_id'] = $query_id;
-			$limit = 10;
+			$limit = 5;
 			$offset = $this->uri->segment(4) == '' ? 0:$this->uri->segment(4);
 			$results = $this->post->show_user_slug_all($this->uri->segment(2),$offset,$limit,$query_array);
 			$data_set['user_mylist'] = $results['rows'];
@@ -100,7 +121,10 @@ class Main extends CI_Controller {
 			$config['base_url'] = site_url("agent/$slug/$query_id");
 			$config['total_rows'] = $data_set['num_results'];
 			$config['per_page'] = $limit;
-			$config['num_links'] = 20; 
+			$config['num_links'] = 20;
+			$config['uri_segment'] = 4;  
+			$config['cur_tag_open'] = ' <a href="'.base_url().$this->uri->uri_string().'" class="current">';
+			$config['cur_tag_close'] = '</a>'; 
 			$this->pagination->initialize($config);
 			$data_set['pagination'] = $this->pagination->create_links();
 			$data_set['query_array'] = $query_array;
@@ -267,6 +291,8 @@ class Main extends CI_Controller {
 			$config['per_page'] = $limit;
 			$config['num_links'] = 20; 
 			$config['uri_segment'] = 7;
+			$config['cur_tag_open'] = ' <a href="'.base_url().$this->uri->uri_string().'" class="current">';
+			$config['cur_tag_close'] = '</a>'; 
 			$this->pagination->initialize($config);
 			$data_set['pagination'] = $this->pagination->create_links();
 			$data_set['sort_by'] = $sort_by;
@@ -326,6 +352,8 @@ class Main extends CI_Controller {
 			$config['per_page'] = $limit;
 			$config['num_links'] = 20; 
 			$config['uri_segment'] = 6;
+			$config['cur_tag_open'] = ' <a href="'.base_url().$this->uri->uri_string().'" class="current">';
+			$config['cur_tag_close'] = '</a>'; 
 			$this->pagination->initialize($config);
 			$data_set['pagination'] = $this->pagination->create_links();
 			$data_set['query_array'] = $query_array;
@@ -371,6 +399,8 @@ class Main extends CI_Controller {
 			$config['per_page'] = $limit;
 			$config['num_links'] = 20; 
 			$config['uri_segment'] = 7;
+			$config['cur_tag_open'] = ' <a href="'.base_url().$this->uri->uri_string().'" class="current">';
+			$config['cur_tag_close'] = '</a>'; 
 			$this->pagination->initialize($config);
 			$data_set['pagination'] = $this->pagination->create_links();
 			$data_set['sort_by'] = $sort_by;
@@ -436,6 +466,8 @@ class Main extends CI_Controller {
 		$config['per_page'] = $limit;
 		$config['num_links'] = 20; 
 		$config['uri_segment'] = 6;
+		$config['cur_tag_open'] = ' <a href="'.base_url().$this->uri->uri_string().'" class="current">';
+		$config['cur_tag_close'] = '</a>'; 
 		$this->pagination->initialize($config);
 		$data_set['pagination'] = $this->pagination->create_links();
 		$data_set['query_array'] = $query_array;

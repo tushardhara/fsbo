@@ -81,6 +81,8 @@ $route["search_pro"] = "main/search_pro";
 $route["adv_search"] = "main/adv_search";
 $route["adv_search/(:any)"] = "main/adv_search/$1";
 $route["adv_search_query"] = "main/adv_search_query";
+$route["compare"] = "main/compare";
+$route["compare/(:any)"] = "main/compare/$1";
 $route["test"] = "test";
 $route['404_override'] = '';
 

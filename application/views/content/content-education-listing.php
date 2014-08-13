@@ -158,8 +158,8 @@
 					<?php } ?>
 				</div>
 				<?php if (strlen($pagination)): ?>
-				<div>
-					Pages: <?php echo $pagination; ?>
+				<div class="pagination">
+					<ul><?php echo $pagination; ?></ul>
 				</div>
 				<?php endif; ?>
 			</div>
