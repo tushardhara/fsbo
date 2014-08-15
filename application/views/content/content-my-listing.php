@@ -80,6 +80,13 @@
 								<?php } else if($key->post_type == 'education') { ?>
 									<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="contact">Preview</a>
 								<?php } ?>
+								<?php if($this->session->userdata('logged_in')['user_type']=='admin') { ?>
+									<?php if($key->approved=='1') { ?>
+										<a href="<?php echo site_url('approved/'.$key->ID);?>" class="contact pending" >Pending</a>
+									<?php } else { ?>
+										<a href="<?php echo site_url('pending/'.$key->ID);?>" class="contact">Approved</a>
+									<?php } ?>
+								<?php } ?>
 								<a href="<?php echo site_url('delete_post/'.$key->ID);?>" class="contact ex">Remove</a>
 								<?php if($key->post_type == 'property') {?>
 									<div class="compare-area"><div class="compare" data-id="<?php echo $key->ID?>"></div><span><a href="#" class="export" style="display:none">Compare</a></span></div>

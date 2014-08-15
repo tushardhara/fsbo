@@ -433,6 +433,40 @@ class Modify extends CI_Controller {
     		echo $e->getMessage();
     	}
     }
+    public function approved($ID){
+    	try {
+    		
+    		$this->post->approved($ID);
+    		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
+	     		redirect("profile/admin/mylist");
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
+	     		redirect("profile/agent/mylist");
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
+	     		redirect("profile/moderator/mylist");
+	     	}else{
+	     		redirect("profile/user/mylist");
+	     	}
+    	} catch (Exception $e) {
+    		echo $e->getMessage();
+    	}
+    }
+    public function pending($ID){
+    	try {
+    		
+    		$this->post->pending($ID);
+    		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
+	     		redirect("profile/admin/mylist");
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
+	     		redirect("profile/agent/mylist");
+	     	}else if($this->session->userdata('logged_in')['user_type'] == 'moderator') {
+	     		redirect("profile/moderator/mylist");
+	     	}else{
+	     		redirect("profile/user/mylist");
+	     	}
+    	} catch (Exception $e) {
+    		echo $e->getMessage();
+    	}
+    }
     public function delete_image(){
     	try {
     		$ID=$this->input->get('post_image_id');

@@ -102,6 +102,7 @@ Class Post extends CI_Model{
       'post_education_fax' => $post_education_fax,
       'post_education_email' => $post_education_email,
       'post_education_website' => $post_education_website,
+      'approved' => '1'
     );
     $check=$this->db->insert('fsbo_post', $data);
     if($check){
@@ -338,12 +339,28 @@ Class Post extends CI_Model{
     $this->db->where('ID', $ID);
     $this->db->update('fsbo_post', $data);
   }
-
+  function pending($ID){
+    $data = array(
+        'approved' => '1',
+        'post_modified' => date("Y-m-d H:i:s"),
+      );
+    $this->db->where('ID', $ID);
+    $this->db->update('fsbo_post', $data);
+  }
+  function approved($ID){
+    $data = array(
+        'approved' => '0',
+        'post_modified' => date("Y-m-d H:i:s"),
+      );
+    $this->db->where('ID', $ID);
+    $this->db->update('fsbo_post', $data);
+  }
   function show_property(){
      $this->db->select('*');
      $this->db->from('fsbo_post');
      $this->db->where_in('post_type', $names = array('property'));
      $this->db->where('post_status','0');
+     $this->db->where('approved','0');
      $this->db->order_by("ID", "desc");
      $query = $this->db->get();
      if($query->num_rows()){
@@ -357,6 +374,7 @@ Class Post extends CI_Model{
      $this->db->from('fsbo_post');
      $this->db->where_in('post_type', $names = array('education'));
      $this->db->where('post_status','0');
+     $this->db->where('approved','0');
      $this->db->order_by("ID", "desc");
      $query = $this->db->get();
      if($query->num_rows()){
@@ -370,6 +388,7 @@ Class Post extends CI_Model{
      $this->db->from('fsbo_post');
      $this->db->where_in('post_type', $names = array('furniture'));
      $this->db->where('post_status','0');
+     $this->db->where('approved','0');
      $this->db->order_by("ID", "desc");
      $query = $this->db->get();
      if($query->num_rows()){
@@ -381,7 +400,7 @@ Class Post extends CI_Model{
   function show_two_property_feature($ID_1,$ID_2){
      $query = $this->db->query("SELECT * FROM fsbo_post WHERE ID=$ID_1 AND post_status='0'
 UNION ALL
-SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0'");
+SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0' AND approved = '0'");
     if($query->num_rows()){
       return $query->result();
     }else{
@@ -393,6 +412,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0'");
     $this->db->from('fsbo_post');
     $this->db->where_in('ID', $ID = array($ID));
     $this->db->where('post_status','0');
+    $this->db->where('approved','0');
     $query = $this->db->get();
     if($query->num_rows()){
       return $query->result();
@@ -401,11 +421,11 @@ SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0'");
     }
   }
   function show_three_feature($ID_1,$ID_2,$ID_3){
-     $query = $this->db->query("SELECT * FROM fsbo_post WHERE ID=$ID_1 AND post_status='0'
+     $query = $this->db->query("SELECT * FROM fsbo_post WHERE ID=$ID_1 AND post_status='0' AND approved = '0'
 UNION ALL
-SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0'
+SELECT * FROM fsbo_post WHERE ID=$ID_2 AND post_status='0' AND approved = '0'
 UNION ALL
-SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
+SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0' AND approved = '0'");
     if($query->num_rows()){
       return $query->result();
     }else{
@@ -413,7 +433,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     }
   }
   function show_home_image($ID_1,$ID_2,$ID_3,$ID_4,$ID_5,$ID_6,$ID_7,$ID_8,$ID_9,$ID_10,$ID_11,$ID_12,$ID_13,$ID_14,$ID_15,$ID_16,$ID_17,$ID_18){
-     $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN($ID_1,$ID_2,$ID_3,$ID_4,$ID_5,$ID_6,$ID_7,$ID_8,$ID_9,$ID_10,$ID_11,$ID_12,$ID_13,$ID_14,$ID_15,$ID_16,$ID_17,$ID_18) AND post_status='0' GROUP BY post_image_id ORDER BY post_image_id DESC");
+     $query = $this->db->query("SELECT * FROM fsbo_post WHERE post_image_id IN($ID_1,$ID_2,$ID_3,$ID_4,$ID_5,$ID_6,$ID_7,$ID_8,$ID_9,$ID_10,$ID_11,$ID_12,$ID_13,$ID_14,$ID_15,$ID_16,$ID_17,$ID_18) AND post_status='0' AND approved = '0' GROUP BY post_image_id ORDER BY post_image_id DESC");
     if($query->num_rows()){
       return $query->result();
     }else{
@@ -549,7 +569,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
         post_property_area_city = $city AND 
         post_property_bedrooms = $bedroom AND 
         post_property_bathroom = $bathroom  AND 
-        post_status='0' AND 
+        post_status='0' AND
+        approved = '0' AND 
         post_price >= $min AND 
         post_price <= $max 
         ORDER BY $sort_type $sort_order 
@@ -571,6 +592,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
         post_property_bedrooms = $bedroom AND 
         post_property_bathroom = $bathroom  AND 
         post_status='0' AND 
+        approved = '0' AND 
         post_price >= $min AND 
         post_price <= $max 
         ORDER BY $sort_type $sort_order"
@@ -590,6 +612,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
         post_property_bedrooms = $bedroom AND 
         post_property_bathroom = $bathroom  AND 
         post_status='0' AND 
+        approved = '0' AND 
         post_price >= $min AND 
         post_price <= $max 
         ORDER BY $sort_type $sort_order"
@@ -604,7 +627,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
        $query = $this->db->query(
         "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
           post_user_id IN (SELECT ID FROM fsbo_users WHERE user_slug='$slug') AND 
-          post_type IN('property','furniture','education')  AND post_status='0' ORDER BY ID DESC"
+          post_type IN('property','furniture','education')  AND post_status='0' AND approved = '0' ORDER BY ID DESC"
       );
       if($query->num_rows()){
            $tmp=$query->result();
@@ -713,7 +736,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_property_size <= $max_sq AND
           post_price >= $min AND 
           post_price <= $max AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order 
           LIMIT $offset,$limit"
       );
@@ -742,7 +766,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_property_size <= $max_sq AND
           post_price >= $min AND 
           post_price <= $max AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order"
       );
       if($query->num_rows()){
@@ -769,7 +794,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_property_size <= $max_sq AND
           post_price >= $min AND 
           post_price <= $max AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order"
       );
       if($query->num_rows()){
@@ -782,7 +808,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
        $query = $this->db->query(
         "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
           post_type IN('property') AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order"
       );
       if($query->num_rows()){
@@ -845,6 +872,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     $q = $this->db->select('*')
       ->from('fsbo_post')
       ->where('post_status','0')
+      ->where('approved','0')
       ->limit($limit, $offset)
       ->order_by($sort_by, $sort_order); 
     if($post_furniture_type== 'bedroom'){   
@@ -880,7 +908,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     
     // count query
     $q = $this->db->select('COUNT(*) as count', FALSE)
-      ->from('fsbo_post')->where('post_status','0');
+      ->from('fsbo_post')->where('post_status','0')->where('approved','0');
      if($post_furniture_type== 'bedroom'){
       
       $q->where('post_furniture_type', 'Bedroom');
@@ -925,6 +953,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     $q = $this->db->select('*')
       ->from('fsbo_post')
       ->where('post_status','0')
+      ->where('approved','0')
       ->limit($limit, $offset)
       ->order_by($sort_by, $sort_order); 
     if (strlen($query_array['post_title'])) {
@@ -940,7 +969,7 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
     
     // count query
     $q = $this->db->select('COUNT(*) as count', FALSE)
-      ->from('fsbo_post')->where('post_status','0');
+      ->from('fsbo_post')->where('post_status','0')->where('approved','0');
     if (strlen($query_array['post_title'])) {
       $q->like('post_title', $query_array['post_title']);
     }
@@ -1082,7 +1111,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_price <= $max AND
           post_user_type IN($post_user_type) AND
           post_title LIKE $title AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order 
           LIMIT $offset,$limit"
       );
@@ -1119,7 +1149,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_price <= $max AND
           post_user_type IN($post_user_type) AND
           post_title LIKE $title AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order"
       );
       if($query->num_rows()){
@@ -1155,7 +1186,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0'");
           post_price <= $max AND
           post_user_type IN($post_user_type) AND
           post_title LIKE $title AND
-          post_status='0'
+          post_status='0' AND
+          approved = '0'
           ORDER BY $sort_by $sort_order"
       );
       if($query->num_rows()){

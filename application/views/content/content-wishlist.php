@@ -60,15 +60,6 @@
 								<?php } ?>
 							</div>
 							<div class="right-side">
-								<?php if($this->session->userdata('logged_in')['user_type'] == 'user'){ ?>
-						     		<a href="<?php echo site_url('profile/user/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
-						     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'agent'){ ?>
-						     		<a href="<?php echo site_url('profile/agent/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
-						     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'moderator') { ?>
-						     		<a href="<?php echo site_url('profile/moderator/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
-						     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'admin') { ?>
-						     		<a href="<?php echo site_url('profile/admin/edit/'.$key->ID);?>" class="contact">Edit Listing</a>
-						     	<?php } ?>
 								<?php if($key->post_type == 'property') { ?>
 									<a href="<?php echo site_url('property/'.$key->post_slug);?>" class="contact">Preview</a>
 								<?php } else if($key->post_type == 'furniture') {?>
@@ -76,7 +67,6 @@
 								<?php } else if($key->post_type == 'education') { ?>
 									<a href="<?php echo site_url('education/'.$key->post_slug);?>" class="contact">Preview</a>
 								<?php } ?>
-								<a href="<?php echo site_url('delete_post/'.$key->ID);?>" class="contact ex">Remove</a>
 								<?php if($key->post_type == 'property') {?>
 									<div class="compare-area"><div class="compare" data-id="<?php echo $key->ID?>"></div><span><a href="#" class="export" style="display:none">Compare</a></span></div>
 								<?php } ?>

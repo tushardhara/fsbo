@@ -63,7 +63,7 @@ class Main extends CI_Controller {
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		$get_ids=$this->input->get('id');
 		if($ids =='ids' && !empty($get_ids)){
-			$data_set['records']=$this->db->query("SELECT * FROM `fsbo_post` WHERE post_type = 'property' AND post_status='0' AND ID IN($get_ids)")->result();
+			$data_set['records']=$this->db->query("SELECT * FROM `fsbo_post` WHERE post_type = 'property' AND post_status='0' AND approved = '0' AND ID IN($get_ids)")->result();
 			$content = 'content/content-compare';
 		} else {
 			$content = 'content/content-404';
@@ -221,12 +221,30 @@ class Main extends CI_Controller {
 						}
 					}else if($type == 'settings'){
 						if($this->session->userdata('logged_in')['user_type'] == 'admin') {
+							if($view==""){
+								$data_set['property_category'] = $this->db->query("SELECT * FROM fsbo_property_category")->result();
+								$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
+								$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
+								$content = 'content/content-settings';
+							}
+							if($view=="furniture"){
+								$data_set['furniture_type'] = $this->db->query("SELECT * FROM fsbo_furniture_type")->result();
+								$content = 'content/content-settings-furniture';
+							}
+							if($view=="education"){
+								$data_set['education_type'] = $this->db->query("SELECT * FROM fsbo_education_type")->result();
+								$content = 'content/content-settings-education';
+							}
 							if($view=="home"){
 								$data_set['post_property'] = $this->post->show_property();
 								$data_set['post_furniture'] = $this->post->show_furniture();
 								$data_set['post_education'] = $this->post->show_education();
 								$data_set['option_data'] = $this->option->show_option_data();
-								$content = 'content/content-home-settings';
+								$content = 'content/content-settings-home';
+							}
+							if($view=="user"){
+								$data_set['user_all'] = $this->db->query("SELECT * FROM fsbo_users")->result();
+								$content = 'content/content-settings-user';
 							}
 						}else if($this->session->userdata('logged_in')['user_type'] == 'moderator'){
 							if($view=="home"){
@@ -323,7 +341,7 @@ class Main extends CI_Controller {
 		$data_set='';
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if(is_numeric($query_id) || $query_id==''){
-			$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' GROUP BY post_property_area_community")->result();
+			$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' AND approved = '0' GROUP BY post_property_area_community")->result();
 			$limit = 8;
 			$this->input->load_query($query_id);
 			$query_array = array(
@@ -430,9 +448,9 @@ class Main extends CI_Controller {
 	{
 		$data_set='';
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
-		$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' GROUP BY post_property_area_community")->result();
-		$data_set['education_community'] = $this->db->query("SELECT post_education_community FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_community")->result();
-		$data_set['education_type'] = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_type")->result();
+		$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' AND approved = '0' GROUP BY post_property_area_community")->result();
+		$data_set['education_community'] = $this->db->query("SELECT post_education_community FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' AND approved = '0' GROUP BY post_education_community")->result();
+		$data_set['education_type'] = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' AND approved = '0' GROUP BY post_education_type")->result();
 		$limit = 8;
 		$this->input->load_query($query_id);
 		$query_array = array(
@@ -560,6 +578,131 @@ class Main extends CI_Controller {
 		$query_id = $this->input->save_query($query_array);
 		//print_r($query_array);
 		redirect("adv_search/$query_id");
+	}
+
+	public function add_education_type(){
+		$data = array(
+			'name' => $this->input->post('name')
+		);
+		$this->db->insert('fsbo_education_type', $data);
+		redirect("profile/admin/settings/education");
+	}
+
+	public function delete_education_type($id){
+		$this->db->where('id', $id);
+		$this->db->delete('fsbo_education_type');
+		redirect("profile/admin/settings/education"); 
+	}
+	public function edit_education_type(){
+		$data = array(
+	        'name' => $this->input->post('name'),
+        );
+	    $this->db->where('id', $this->input->post('id'));
+	    $this->db->update('fsbo_education_type', $data);
+		redirect("profile/admin/settings/education"); 
+	}
+
+	public function add_furniture_type(){
+		$data = array(
+			'name' => $this->input->post('name')
+		);
+		$this->db->insert('fsbo_furniture_type', $data);
+		redirect("profile/admin/settings/furniture");
+	}
+
+	public function delete_furniture_type($id){
+		$this->db->where('id', $id);
+		$this->db->delete('fsbo_furniture_type');
+		redirect("profile/admin/settings/furniture"); 
+	}
+	public function edit_furniture_type(){
+		$data = array(
+	        'name' => $this->input->post('name'),
+        );
+	    $this->db->where('id', $this->input->post('id'));
+	    $this->db->update('fsbo_furniture_type', $data);
+		redirect("profile/admin/settings/furniture"); 
+	}
+
+	public function add_property_type(){
+		$data = array(
+			'name' => $this->input->post('name')
+		);
+		$this->db->insert('fsbo_property_type', $data);
+		redirect("profile/admin/settings");
+	}
+	public function delete_property_type($id){
+		$this->db->where('id', $id);
+		$this->db->delete('fsbo_property_type');
+		redirect("profile/admin/settings"); 
+	}
+	public function edit_property_type(){
+		$data = array(
+	        'name' => $this->input->post('name'),
+        );
+	    $this->db->where('id', $this->input->post('id'));
+	    $this->db->update('fsbo_property_type', $data);
+		redirect("profile/admin/settings"); 
+	}
+
+	public function add_property_category(){
+		$data = array(
+			'name' => $this->input->post('name')
+		);
+		$this->db->insert('fsbo_property_category', $data);
+		redirect("profile/admin/settings");
+	}
+	public function delete_property_category($id){
+		$this->db->where('id', $id);
+		$this->db->delete('fsbo_property_category');
+		redirect("profile/admin/settings"); 
+	}
+	public function edit_property_category(){
+		$data = array(
+	        'name' => $this->input->post('name'),
+        );
+	    $this->db->where('id', $this->input->post('id'));
+	    $this->db->update('fsbo_property_category', $data);
+		redirect("profile/admin/settings"); 
+	}
+
+	public function add_property_city(){
+		$data = array(
+			'name' => $this->input->post('name')
+		);
+		$this->db->insert('fsbo_city', $data);
+		redirect("profile/admin/settings");
+	}
+	public function delete_property_city($id){
+		$this->db->where('id', $id);
+		$this->db->delete('fsbo_city');
+		redirect("profile/admin/settings"); 
+	}
+	public function edit_property_city(){
+		$data = array(
+	        'name' => $this->input->post('name'),
+        );
+	    $this->db->where('id', $this->input->post('id'));
+	    $this->db->update('fsbo_city', $data);
+		redirect("profile/admin/settings"); 
+	}
+
+	public function user_active(){
+		$data = array(
+	        'user_status' => '1',
+        );
+	    $this->db->where('ID', $this->input->post('id'));
+	    $this->db->update('fsbo_users', $data);
+		redirect("profile/admin/settings/user"); 
+	}
+
+	public function user_ban(){
+		$data = array(
+	        'user_status' => '0',
+        );
+	    $this->db->where('ID', $this->input->post('id'));
+	    $this->db->update('fsbo_users', $data);
+		redirect("profile/admin/settings/user"); 
 	}
 }
 

@@ -51,7 +51,7 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
-				<form method="post" action="<?php echo site_url('modify_property/'.$ID); ?>" enctype="multipart/form-data">
+				<form id="target" method="post" action="<?php echo site_url('modify_property/'.$ID); ?>" enctype="multipart/form-data">
 				<div class="left">
 					<h1>Property</h1>
 					<div class="filed">
@@ -347,6 +347,7 @@
 						<input type="hidden" name="post_seo_description" value="<?php echo $post_seo_description; ?>">
 						<input type="hidden" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 					<?php } ?>
+					<input id="check" type="checkbox" name="check" value="1" style="margin-top:20px;">agree with <span><a href="<?php echo site_url();?>" style="color:#ffa800;text-decoration:none;">Terms & Conditions</a></span><br>
 					<input type="submit" class="submit" value="Submit">
 				</div>
 				</form>
@@ -359,6 +360,19 @@
 			height: 300px;
 		}
 	</style>
+
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	  	$("#target").submit(function(event){
+	  		if($("#check").is(':checked')){
+	  			return;
+	  		}else{
+	  			alert("Please select the Terms & Conditions checkbox");
+	  		}
+	  		event.preventDefault();
+	  	});
+	  });
+	</script>
 	<script type="text/javascript">
     var map = new google.maps.Map(document.getElementById('map_canvas'), {
 	    zoom: 12,
