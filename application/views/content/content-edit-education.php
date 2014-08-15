@@ -39,13 +39,13 @@
 				<div class="left">
 					<h1>Education</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Type"  name="post_education_type" value="<?php echo $post_education_type; ?>">
+						<span class="info">Type : </span><input	type="text" placeholder="Type"  name="post_education_type" value="<?php echo $post_education_type; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Admission Age" name="post_education_age" value="<?php echo $post_education_age; ?>">
+						<span class="info">Admission Age : </span><input	type="text" placeholder="Admission Age" name="post_education_age" value="<?php echo $post_education_age; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Gender" readonly class="drop" name="post_education_gender" value="<?php echo $post_education_gender; ?>">
+						<span class="info">Gender : </span><input	type="text" placeholder="Gender" readonly class="drop" name="post_education_gender" value="<?php echo $post_education_gender; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="Male">Male</div>
@@ -53,10 +53,10 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input type="text" placeholder="Registration Fees" name="post_price" value="<?php echo $post_price; ?>">
+						<span class="info">Registration Fees : </span><input type="text" placeholder="Registration Fees" name="post_price" value="<?php echo $post_price; ?>"> <span class="extra">QR</span>
 					</div>
 					<div class="filed">
-						<input type="text" placeholder="Community" name="post_education_community" value="<?php echo $post_education_community; ?>">
+						<span class="info">Community : </span><input type="text" placeholder="Community" name="post_education_community" value="<?php echo $post_education_community; ?>">
 					</div>
 					<div class="filed">
 						<input type="file" name="files[]" multiple />
@@ -79,31 +79,32 @@
 					?>
 					</div>
 					<div class="filed ex">
-						<input type="text" placeholder="Principle" name="post_education_principle" value="<?php echo $post_education_principle; ?>">
+						<span class="info">Principle : </span><input type="text" placeholder="Principle" name="post_education_principle" value="<?php echo $post_education_principle; ?>">
 					</div>
 				</div>
 				<div class="right">
+					<h1>&nbsp;</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Phone"  name="post_education_phone" value="<?php echo $post_education_phone; ?>">
+						<span class="info">Phone : </span><input	type="text" placeholder="Phone"  name="post_education_phone" value="<?php echo $post_education_phone; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Fax"  name="post_education_fax" value="<?php echo $post_education_fax; ?>">
+						<span class="info">Fax : </span><input	type="text" placeholder="Fax"  name="post_education_fax" value="<?php echo $post_education_fax; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Email"  name="post_education_email" value="<?php echo $post_education_email; ?>">
+						<span class="info">Email : </span><input	type="text" placeholder="Email"  name="post_education_email" value="<?php echo $post_education_email; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Website"  name="post_education_website" value="<?php echo $post_education_website; ?>">
+						<span class="info">Website : </span><input	type="text" placeholder="Website"  name="post_education_website" value="<?php echo $post_education_website; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Title"  name="post_title" value="<?php echo $post_title; ?>">
+						<span class="info">Name of Institution : </span><input	type="text" placeholder="Name of Institution"  name="post_title" value="<?php echo $post_title; ?>">
 					</div>
 					<div class="filed ex">
 						<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>
 					</div>
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 					<div class="filed ex">
-						<input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
+						<span class="info">Featured : </span><input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="no">no</div>
@@ -112,10 +113,10 @@
 					</div>
 					<h1>SEO</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Google Meta Title" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
+						<span class="info">Meta Title : </span><input	type="text" placeholder="Google Meta Title" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
+						<span class="info">Meta Keyword : </span><input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
 					</div>
 					<div class="filed ex">
 						<textarea placeholder="Google Meta Description" name="post_seo_description"><?php echo $post_seo_description; ?></textarea>
@@ -132,3 +133,5 @@
 			</div> 
 		</div>
 	</div>
+
+	

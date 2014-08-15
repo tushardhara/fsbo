@@ -245,15 +245,19 @@ class Main extends CI_Controller {
 				}else{
 					if($data == 'user'){
 						$data_set['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
+						$data_set['country_list'] = $this->db->query("SELECT * FROM fsbo_country")->result();
 						$content = 'content/content-'.$data.'-profile';
 					}else if($data == 'agent'){
 						$data_set['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
+						$data_set['country_list'] = $this->db->query("SELECT * FROM fsbo_country")->result();
 						$content = 'content/content-'.$data.'-profile';
 					}else if($data == 'admin'){
 						$data_set['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
+						$data_set['country_list'] = $this->db->query("SELECT * FROM fsbo_country")->result();
 						$content = 'content/content-user-profile';
 					}else if($data == 'moderator'){
 						$data_set['user_detail'] = $this->user->check_id($this->session->userdata('logged_in')['ID']);
+						$data_set['country_list'] = $this->db->query("SELECT * FROM fsbo_country")->result();
 						$content = 'content/content-user-profile';
 					}else{
 						$content = 'content/content-404';

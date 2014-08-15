@@ -28,7 +28,6 @@ class Modify extends CI_Controller {
     public function modify_check(){
     	
     	try {
-    		
     		$this->user->modify(
 	    		$this->input->post('user_pass'),
 	    		$this->input->post('user_email'),
@@ -42,6 +41,32 @@ class Modify extends CI_Controller {
 	    		$this->input->post('user_title'),
 	    		$this->input->post('user_detail')
     		);
+	        $config['upload_path'] = 'upload/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']	= '1024';
+			$config['max_width'] = '1024';
+			$config['max_height'] = '768';
+
+			$this->upload->initialize($config);
+    		$user_pic ='';
+	        if($this->upload->do_upload()){
+	        	$image_data = $this->upload->data();
+	        	$this->load->library('image_lib');
+	        	$config['image_library'] = 'gd2';
+	        	$config['quality'] = '100%';
+	        	$config['create_thumb'] = TRUE;
+	        	$config['maintain_ratio'] = TRUE;
+	        	$config['source_image'] = $image_data['full_path'];
+			    $config['thumb_marker'] ='_100';
+			    $config['width']     = 100;
+			    $config['height']   = 100;
+			    $this->image_lib->clear();
+			    $this->image_lib->initialize($config);
+			    $this->image_lib->resize();
+	            $this->user->add_image($image_data['file_name']);
+	        }else{
+	        	echo $this->upload->display_errors();
+	        }
     		if($this->session->userdata('logged_in')['user_type'] == 'admin'){
 	     		redirect('profile/admin');
 	     	}else if($this->session->userdata('logged_in')['user_type'] == 'agent'){
@@ -51,7 +76,6 @@ class Modify extends CI_Controller {
 	     	}else{
 	     		redirect('profile/user');
 	     	}
-	     	//echo $this->input->post('user_pass');
     	} catch (Exception $e) {
     		echo $e->getMessage();
     	}

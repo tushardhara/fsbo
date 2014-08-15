@@ -115,6 +115,13 @@ Class User extends CI_Model{
     $this->db->where('id', $this->session->userdata('logged_in')['ID']);
     $this->db->update('fsbo_users', $data);
   }
+  function add_image($user_pic){
+    $data = array(
+      'user_pic' => $user_pic
+    );
+    $this->db->where('id', $this->session->userdata('logged_in')['ID']);
+    $this->db->update('fsbo_users', $data);
+  }
   function find_slug($user_slug){
     $this->db->like('user_slug',$post_slug, 'after'); 
     $this->db->from('fsbo_users');

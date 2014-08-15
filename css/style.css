@@ -4609,6 +4609,7 @@ top: -12px;
 }
 .tab-area .tab.active{
 	background: #ffa800;
+	color: #fff;
 }
 .tab-area .tab .icon-tab.p{
 	background: url(../images/icon-profile.png) 0px 0px no-repeat;
@@ -4832,6 +4833,49 @@ top: -12px;
 	right: 10px;
 	top: 18px;
 	cursor: pointer;
+}
+.edit-area .left .filed .arrow,.edit-area .right .filed .arrow {
+width: 11px;
+height: 12px;
+background: url(../images/arrow-sellect.png) 0px -12px no-repeat;
+display: block;
+position: absolute;
+right: 10px;
+top: 20px;
+}
+.edit-area .left .filed .drop-category,.edit-area .right .filed .drop-category{
+	width: 100%;
+	height: auto;
+	background: #fff;
+	position: absolute;
+	top: 50px;
+	z-index: 1;
+	display: none;
+	max-height: 144px;
+	overflow-y: auto;
+}
+.edit-area .left .filed .drop-category::-webkit-scrollbar,.edit-area .right .filed .drop-category::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+.edit-area .left .filed .drop-category::-webkit-scrollbar-track,.edit-area .right .filed .drop-category::-webkit-scrollbar-track {
+    background: #cdcdcd;
+}
+ 
+.edit-area .left .filed .drop-category::-webkit-scrollbar-thumb,.edit-area .right .filed .drop-category::::-webkit-scrollbar-thumb {
+    background: #ffa800;
+}
+.edit-area .left .filed .drop-category .drop-item,.edit-area .right .filed .drop-category .drop-item {
+width: 98%;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 2%;
+cursor: pointer;
+color: #000;
+}
+.edit-area .left .filed .drop-category .drop-item:hover,.edit-area .right .filed .drop-category .drop-item{
+	background: #ffa800;
+	color: #fff;
 }
 .my-property-list{
 	width: 100%;
@@ -5654,9 +5698,9 @@ top: -12px;
 
 .upload_type{
 	text-align: justify;
-	width: 100%;
+	width: 80%;
 	height: 62px;
-	padding: 40px 0px 20px 0px;
+	padding: 40px 10% 20px 10%;
 	border-bottom: 1px solid #c2c2c2;
 }
 .upload_type:before{
@@ -5681,7 +5725,7 @@ top: -12px;
     background: #acacac;
     text-decoration: none;
     color: #fff;
-    margin: 0px 86px;
+    margin: 0px 49px;
 }
 .upload_type a.active{
 	background: #1eb0a9;
@@ -5740,6 +5784,7 @@ top: -12px;
 	padding: 0px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
+	text-indent: 150px;
 }
 .upload-area .left .filed textarea{
 	width: 96%;
@@ -5805,6 +5850,7 @@ top: -12px;
 	padding: 0px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
+	text-indent: 160px;
 }
 .upload-area .right .filed input[type="text"]:focus,.upload-area .right .filed input[type="password"]:focus{
 	background: rgba(30,176,169,0.16);
@@ -5822,7 +5868,7 @@ top: -12px;
 	border: none;
 	display: inline-block;
 	background: transparent;
-	padding: 0px 2%;
+	padding: 10px 2%;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 15px;
 	resize:none;
@@ -5852,7 +5898,7 @@ top: -12px;
 .upload-area .filed .drop-category{
 	width: 100%;
 	height: auto;
-	background: #1eb0a9;
+	background: #fff;
 	position: absolute;
 	top: 50px;
 	z-index: 1;
@@ -5869,7 +5915,7 @@ top: -12px;
 }
  
 .upload-area .filed .drop-category::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: #ffa800;
 }
 .upload-area .filed .drop-category .drop-item{
 	width: 98%;
@@ -5877,15 +5923,29 @@ top: -12px;
 	padding-bottom: 10px;
 	padding-left: 2%;
 	cursor: pointer;
-	color: #fff;
-}
-
-.upload-area .filed .drop-category .drop-item:hover{
-	background: #fff;
 	color: #000;
 }
 
+.upload-area .filed .drop-category .drop-item:hover{
+	background: #ffa800;
+	color: #fff;
+}
 
+.upload-area .left .filed span.info,
+.upload-area .right .filed span.info{
+	position: absolute;
+	left: 10px;
+	top: 18px;
+	cursor: pointer;
+}
+.upload-area .left .filed span.extra,.upload-area .right .filed span.extra{
+	position: absolute;
+	right: 10px;
+	top: 18px;
+	cursor: pointer;
+	color: #ffa800;
+	font-weight: bold;
+}
 .property-listing-settings .setting-choose-big .drop-category{
 	width: 100%;
 	height: auto;
@@ -6049,7 +6109,9 @@ top: -12px;
 	text-decoration: none;
 	color: #1eb0a9;
 }
-
+.border-bottom{
+	border-bottom: 1px solid #c2c2c2;
+}
 
 
 

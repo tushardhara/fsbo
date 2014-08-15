@@ -31,7 +31,7 @@
 				<div class="left">
 					<h1>Furniture</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Type" readonly class="drop" name="post_furniture_type" value="<?php echo $post_furniture_type; ?>">
+						<span class="info">Type : </span><input	type="text" placeholder="Type" readonly class="drop" name="post_furniture_type" value="<?php echo $post_furniture_type; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="Bedroom">Bedroom</div>
@@ -43,10 +43,10 @@
 						</div>
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Title" name="post_title" value="<?php echo $post_title; ?>">
+						<span class="info">Title : </span><input	type="text" placeholder="Title" name="post_title" value="<?php echo $post_title; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Price" name="post_price" value="<?php echo $post_price; ?>">
+						<span class="info">Price : </span><input	type="text" placeholder="Price" name="post_price" value="<?php echo $post_price; ?>"> <span class="extra">QR</span>
 					</div>
 					<div class="filed">
 						<input type="file" name="files[]" multiple />
@@ -77,7 +77,7 @@
 				<div class="right">
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 					<div class="filed ex">
-						<input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
+						<span class="info">Featured : </span><input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
 							<div class="drop-item" item-value="no">no</div>
@@ -86,10 +86,10 @@
 					</div>
 					<h1>SEO</h1>
 					<div class="filed">
-						<input	type="text" placeholder="Google Meta Title" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
+						<span class="info">Meta Title : </span><input	type="text" placeholder="Google Meta Title" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
 					</div>
 					<div class="filed">
-						<input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
+						<span class="info">Meta Keyword : </span><input	type="text" placeholder="Google Meta Keyword" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
 					</div>
 					<div class="filed ex">
 						<textarea placeholder="Google Meta Description" name="post_seo_description"><?php echo $post_seo_description; ?></textarea>
