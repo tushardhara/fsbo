@@ -30,7 +30,7 @@ class Main extends CI_Controller {
 	{	$data_set='';
 		$option_data = $this->option->show_option_data();
 		$data_set['education_community'] = $this->db->query("SELECT post_education_community FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_community")->result();
-		$data_set['education_type'] = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_type")->result();
+		//$data_set['education_type'] = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' GROUP BY post_education_type")->result();
 		$data_set['price'] = $this->db->query(
         "SELECT MIN(post_price) as min, MAX(post_price) as max FROM fsbo_post WHERE 
           post_type IN('property','furniture','education') AND
@@ -52,6 +52,10 @@ class Main extends CI_Controller {
 		$data_set['data_three_education_feature_2'] = $this->post->show_three_feature($option[13],$option[14],$option[15]);
 		$data_set['data_three_education_feature_3'] = $this->post->show_three_feature($option[16],$option[17],$option[18]);
 		$data_set['user_image_mylist'] = $this->post->show_home_image($option[1],$option[2],$option[3],$option[4],$option[5],$option[6],$option[7],$option[8],$option[9],$option[10],$option[11],$option[12],$option[13],$option[14],$option[15],$option[16],$option[17],$option[18]);
+		$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
+		$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
+		$data_set['furniture_type'] = $this->db->query("SELECT * FROM fsbo_furniture_type")->result();
+		$data_set['education_type'] = $this->db->query("SELECT * FROM fsbo_education_type")->result();
 		$this->load->view('header',$data_set);
 		$this->load->view('content/content',$data_set);
 		$this->load->view('footer',$data_set);
@@ -96,6 +100,7 @@ class Main extends CI_Controller {
 			$data_set['user_list'] = $this->db->get_where('fsbo_users' ,array('user_slug' => $this->uri->segment(2)))->result();
 			$data_set['slug'] = $this->uri->segment(2);
 			$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
+			$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
 			$this->input->load_query($this->uri->segment(3));
 			$query_array = array(
 				'slug' => $this->input->get('slug'),
@@ -135,13 +140,16 @@ class Main extends CI_Controller {
 		$this->load->view('footer');
 	}
 	public function register($data){
+		$data_set="";
+		$data_set['country_list'] = $this->db->query("SELECT * FROM fsbo_country")->result();
+		$data_set['language_list'] = $this->db->query("SELECT * FROM fsbo_language")->result();
 		if(!empty($data)){
 			$content = 'content/content-'.$data.'-register';
 		}else{
 			$content = 'content/content-404';
 		}
 		$this->load->view('header');
-		$this->load->view($content);
+		$this->load->view($content,$data_set);
 		$this->load->view('footer');
 	}
 	public function profile($data = '',$type = '',$view = ''){
@@ -186,10 +194,15 @@ class Main extends CI_Controller {
 							$content = 'content/content-404';
 						}	
 					}else if($type == 'property'){
+						$data_set['property_category'] = $this->db->query("SELECT * FROM fsbo_property_category")->result();
+						$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
+						$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
 						$content = 'content/content-upload-property';
 					}else if($type == 'furniture'){
+						$data_set['furniture_type'] = $this->db->query("SELECT * FROM fsbo_furniture_type")->result();
 						$content = 'content/content-upload-furniture';
 					}else if($type == 'education'){
+						$data_set['education_type'] = $this->db->query("SELECT * FROM fsbo_education_type")->result();
 						$content = 'content/content-upload-education';
 					}else if($type == 'edit'){
 						if(!empty($view)){
@@ -201,14 +214,19 @@ class Main extends CI_Controller {
 								if($post_type == 'property'){
 								 	$data_set['post_detail'] = $this->post->show_post_by_ID($view);
 								 	$data_set['image_list'] = $this->post->show_post_images($view);
+								 	$data_set['property_category'] = $this->db->query("SELECT * FROM fsbo_property_category")->result();
+									$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
+									$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
 									$content = 'content/content-edit-property';
 								}else if($post_type == 'furniture') {
 									$data_set['post_detail'] = $this->post->show_post_by_ID($view);
 									$data_set['image_list'] = $this->post->show_post_images($view);
+									$data_set['furniture_type'] = $this->db->query("SELECT * FROM fsbo_furniture_type")->result();
 									$content = 'content/content-edit-furniture';
 								}else if($post_type == 'education') {
 									$data_set['post_detail'] = $this->post->show_post_by_ID($view);
 									$data_set['image_list'] = $this->post->show_post_images($view);
+									$data_set['education_type'] = $this->db->query("SELECT * FROM fsbo_education_type")->result();
 									$content = 'content/content-edit-education';
 								}else{
 									$content = 'content/content-404';
@@ -342,6 +360,9 @@ class Main extends CI_Controller {
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		if(is_numeric($query_id) || $query_id==''){
 			$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' AND approved = '0' GROUP BY post_property_area_community")->result();
+			$data_set['property_category'] = $this->db->query("SELECT * FROM fsbo_property_category")->result();
+			$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
+			$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
 			$limit = 8;
 			$this->input->load_query($query_id);
 			$query_array = array(
@@ -450,7 +471,11 @@ class Main extends CI_Controller {
 		$data_set['user_image_mylist'] = $this->post->show_admin_all_image();
 		$data_set['community'] = $this->db->query("SELECT post_property_area_community FROM fsbo_post WHERE post_type IN ('property') AND post_status='0' AND approved = '0' GROUP BY post_property_area_community")->result();
 		$data_set['education_community'] = $this->db->query("SELECT post_education_community FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' AND approved = '0' GROUP BY post_education_community")->result();
-		$data_set['education_type'] = $this->db->query("SELECT post_education_type FROM fsbo_post WHERE post_type IN ('education') AND post_status='0' AND approved = '0' GROUP BY post_education_type")->result();
+		$data_set['property_category'] = $this->db->query("SELECT * FROM fsbo_property_category")->result();
+		$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
+		$data_set['property_city'] = $this->db->query("SELECT * FROM fsbo_city")->result();
+		$data_set['furniture_type'] = $this->db->query("SELECT * FROM fsbo_furniture_type")->result();
+		$data_set['education_type'] = $this->db->query("SELECT * FROM fsbo_education_type")->result();
 		$limit = 8;
 		$this->input->load_query($query_id);
 		$query_array = array(
@@ -703,6 +728,32 @@ class Main extends CI_Controller {
 	    $this->db->where('ID', $this->input->post('id'));
 	    $this->db->update('fsbo_users', $data);
 		redirect("profile/admin/settings/user"); 
+	}
+
+	public function check_ajax_username(){
+		 $this->db->select('*');
+	     $this->db->from('fsbo_users');
+	     $this->db->where('user_login', $this->input->post('user_login'));
+	     $this->db->limit(1);
+	     $query = $this->db->get();
+	     if($query->num_rows() == 1){
+	        echo "Username Already exists";
+	     }else{
+	       echo "new";
+	     }
+	}
+
+	public function check_ajax_email(){
+		 $this->db->select('*');
+	     $this->db->from('fsbo_users');
+	     $this->db->where('user_email', $this->input->post('user_email'));
+	     $this->db->limit(1);
+	     $query = $this->db->get();
+	     if($query->num_rows() == 1){
+	        echo "Email Already exists";
+	     }else{
+	       echo "new";
+	     }
 	}
 }
 

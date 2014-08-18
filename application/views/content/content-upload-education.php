@@ -34,7 +34,17 @@
 				<div class="left">
 					<h1>Education</h1>
 					<div class="filed">
-						<span class="info">Type : </span><input	type="text" placeholder="Type"  name="post_education_type">
+						<span class="info">Type : </span><input	type="text" placeholder="Type" readonly  name="post_education_type" class="drop">
+						<span class="arrow"></span>
+						<div class="drop-category">
+							<?php if(isset($education_type)) { ?>
+								<?php if(!empty($education_type)) { ?>
+									<?php foreach ($education_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
+						</div>
 					</div>
 					<div class="filed">
 						<span class="info">Admission Age : </span><input	type="text" placeholder="Admission Age" name="post_education_age">
@@ -45,6 +55,7 @@
 						<div class="drop-category">
 							<div class="drop-item" item-value="Male">Male</div>
                             <div class="drop-item" item-value="Female">Female</div>
+                            <div class="drop-item" item-value="Other">Other</div>
 						</div>
 					</div>
 					<div class="filed">
@@ -54,14 +65,17 @@
 						<span class="info">Community : </span><input type="text" placeholder="Community" name="post_education_community">
 					</div>
 					<div class="filed">
-						<input type="file" name="files[]" multiple />
+						<div class="fileUpload btn btn-primary">
+						    <input type="file" name="files[]" class="upload" multiple/>
+						</div>
 					</div>
-					<div class="filed ex">
-						<span class="info">Principle : </span><input type="text" placeholder="Principle" name="post_education_principle">
-					</div>
+					
 				</div>
 				<div class="right">
 					<h1>&nbsp;</h1>
+					<div class="filed">
+						<span class="info">Principle : </span><input type="text" placeholder="Principle" name="post_education_principle">
+					</div>
 					<div class="filed">
 						<span class="info">Phone : </span><input	type="text" placeholder="Phone"  name="post_education_phone">
 					</div>

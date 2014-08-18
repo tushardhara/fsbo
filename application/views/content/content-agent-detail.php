@@ -32,14 +32,23 @@
 				<div class="bottom">
 					<div class="left">
 						<div class="thumb">
-							<?php 
+							<?php if(!empty($key->user_pic)) {
+									$image_url=$key->user_pic; 
+									$info = pathinfo($image_url);
+									$file_name =  basename($image_url,'.'.$info['extension']);
+									$file_url = 'upload/'.$file_name."_100.".$info['extension'];
+								}else{
+									$file_url = 'images/agent.png';
+								}
+								$temp_url=$file_url;
+								$temp_login=$key->user_login;
 								$attached_image = array(
-						          'src' => 'images/agent.png' ,
-						          'alt' => 'fsbo',
-						          'title' => 'fsbo',
+							          'src' => $temp_url ,
+							          'alt' => 'fsbo',
+							          'title' => $key->user_login,
 								);
-								echo img($attached_image);
 							?>
+							<?php echo img($attached_image);?>
 						</div>
 					</div>
 					<div class="mid"><p><?php echo $key->user_detail?></p></div>
@@ -61,46 +70,13 @@
 						</div>
 						<div class="filter-drop city change">
 							<div class="items" item-value="All"><a>All</a></div>
-							<div class="items" item-value="Doha"><a>Doha</a></div>
-                            <div class="items" item-value="AL wakair"><a>AL wakair</a></div>
-                            <div class="items" item-value="Abu az Zuluf"><a>Abu az Zuluf</a></div>
-                            <div class="items" item-value="Abu Thaylah"><a>Abu Thaylah</a></div>
-                            <div class="items" item-value="Ad Dawhah al Jadidah"><a>Ad Dawhah al Jadidah</a></div>
-                            <div class="items" item-value="Al `Arish"><a>Al `Arish</a></div>
-                            <div class="items" item-value="Al Bida` ash Sharqiyah"><a>Al Bida` ash Sharqiyah</a></div>
-                            <div class="items" item-value="Al Ghanim"><a>Al Ghanim</a></div>
-                            <div class="items" item-value="Al Ghuwariyah"><a>Al Ghuwariyah</a></div>
-                            <div class="items" item-value="Al Hilal al Gharbiyah"><a>Al Hilal al Gharbiyah</a></div>
-                            <div class="items" item-value="Al Hilal ash Sharqiyah"><a>Al Hilal ash Sharqiyah</a></div>
-                            <div class="items" item-value="Al Hitmi"><a>Al Hitmi</a></div>
-                            <div class="items" item-value="Al Jasrah"><a>Al Jasrah</a></div>
-                            <div class="items" item-value="Al Jumaliyah"><a>Al Jumaliyah</a></div>
-                            <div class="items" item-value="Al Ka`biyah"><a>Al Ka`biyah</a></div>
-                            <div class="items" item-value="Al Khalifat"><a>Al Khalifat</a></div>
-                            <div class="items" item-value="Al Khor"><a>Al Khor</a></div>
-                            <div class="items" item-value="Al Khuwayr"><a>Al Khuwayr</a></div>
-                            <div class="items" item-value="Al Luqta"><a>Al Luqta</a></div>
-                            <div class="items" item-value="Al Mafjar"><a>Al Mafjar</a></div>
-                            <div class="items" item-value="Al Qa`abiyah"><a>Al Qa`abiyah</a></div>
-                            <div class="items" item-value="Al Wakrah"><a>Al Wakrah</a></div>
-                            <div class="items" item-value="Al `Adhbah"><a>Al `Adhbah</a></div>
-                            <div class="items" item-value="An Najmah"><a>An Najmah</a></div>
-                            <div class="items" item-value="Ar Rakiyat"><a>Ar Rakiyat</a></div>
-                            <div class="items" item-value="Al Rayyan"><a>Al Rayyan</a></div>
-                            <div class="items" item-value="Ar Ru'ays"><a>Ar Ru'ays</a></div>
-                            <div class="items" item-value="As Salatah"><a>As Salatah</a></div>
-                            <div class="items" item-value="As Salatah al Jadidah"><a>As Salatah al Jadidah</a></div>
-                            <div class="items" item-value="As Sani`"><a>As Sani`</a></div>
-                            <div class="items" item-value="As Sawq"><a>As Sawq</a></div>
-                            <div class="items" item-value="Ath Thaqab"><a>Ath Thaqab</a></div>
-                            <div class="items" item-value="Dukhan"><a>Dukhan</a></div>
-                            <div class="items" item-value="Lusail"><a>Lusail</a></div>
-                            <div class="items" item-value="Ras Laffan Industrial City"><a>Ras Laffan Industrial City</a></div>
-                            <div class="items" item-value="Smaismah"><a>Smaismah</a></div>
-                            <div class="items" item-value="Umm Bab"><a>Umm Bab</a></div>
-                            <div class="items" item-value="Umm Sa'id"><a>Umm Sa'id</a></div>
-                            <div class="items" item-value="Umm Salal Ali"><a>Umm Salal Ali</a></div>
-                            <div class="items" item-value="Umm Salal Mohammed"><a>Umm Salal Mohammed</a></div>
+							<?php if(isset($property_city)) { ?>
+								<?php if(!empty($property_city)) { ?>
+									<?php foreach ($property_city as $key) { ?>
+										<div class="items" item-value="<?php echo $key->name?>"><a><?php echo $key->name?></a></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="sort">
@@ -129,6 +105,10 @@
 							<div class="items" item-value="3"><a>3</a></div>
 							<div class="items" item-value="4"><a>4</a></div>
 							<div class="items" item-value="5"><a>5</a></div>
+							<div class="items" item-value="6"><a>6</a></div>
+							<div class="items" item-value="7"><a>7</a></div>
+							<div class="items" item-value="8"><a>8</a></div>
+							<div class="items" item-value="9"><a>9</a></div>
 						</div>
 					</div>
 					<div class="sort">
@@ -144,6 +124,10 @@
 							<div class="items" item-value="3"><a>3</a></div>
 							<div class="items" item-value="4"><a>4</a></div>
 							<div class="items" item-value="5"><a>5</a></div>
+							<div class="items" item-value="6"><a>6</a></div>
+							<div class="items" item-value="7"><a>7</a></div>
+							<div class="items" item-value="8"><a>8</a></div>
+							<div class="items" item-value="9"><a>9</a></div>
 						</div>
 					</div>
 					<div class="price-range">
@@ -235,12 +219,12 @@
 											<div class="thumb">
 												<?php 
 													$attached_image = array(
-											          'src' => 'images/agent.png' ,
-											          'alt' => 'fsbo',
-											          'title' => 'fsbo',
+												          'src' => $temp_url ,
+												          'alt' => 'fsbo',
+												          'title' => $temp_login,
 													);
-													echo img($attached_image);
 												?>
+												<?php echo img($attached_image);?>
 											</div>
 										</div>
 										<?php if($this->session->userdata('logged_in')){ ?>

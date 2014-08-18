@@ -37,12 +37,13 @@
 						<span class="info">Type : </span><input	type="text" placeholder="Type" readonly class="drop" name="post_furniture_type">
 						<span class="arrow"></span>
 						<div class="drop-category">
-							<div class="drop-item" item-value="Bedroom">Bedroom</div>
-                            <div class="drop-item" item-value="Living room">Living room</div>
-                            <div class="drop-item" item-value="Bathroom">Bathroom</div>
-                            <div class="drop-item" item-value="Dining room">Dining room</div>
-                            <div class="drop-item" item-value="Kitchen">Kitchen</div>
-                            <div class="drop-item" item-value="Miscellaneous">Miscellaneous</div>
+							<?php if(isset($furniture_type)) { ?>
+								<?php if(!empty($furniture_type)) { ?>
+									<?php foreach ($furniture_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="filed">
@@ -52,15 +53,17 @@
 						<span class="info">Price : </span><input	type="text" placeholder="Price" name="post_price"> <span class="extra">QR</span>
 					</div>
 					<div class="filed">
-						<input type="file" name="files[]" multiple />
+						<div class="fileUpload btn btn-primary">
+						    <input type="file" name="files[]" class="upload" multiple/>
+						</div>
 					</div>
-					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
+					
+				</div>
+				<div class="right">
+					<h1>&nbsp;</h1>
 					<div class="filed ex">
 						<textarea placeholder="Description" name="post_description"></textarea>
 					</div>
-					<?php } ?>
-				</div>
-				<div class="right">
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 					<div class="filed ex">
 						<span class="info">Featured : </span><input	type="text" placeholder="Featured" readonly class="drop" name="post_featured">

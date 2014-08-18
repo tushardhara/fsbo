@@ -82,7 +82,9 @@
 							<span class="edit-filed">Edit</span>
 						</div>
 						<div class="filed border-bottom">
-							<input type="file" name="userfile"/>
+							<div class="fileUpload btn btn-primary">
+							    <input type="file" name="userfile" class="upload"/>
+							</div>
 						</div>
 						<?php if(!empty($user_pic)) {
 								$image_url=$user_pic; 

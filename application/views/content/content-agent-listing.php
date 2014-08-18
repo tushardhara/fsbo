@@ -55,14 +55,23 @@
 							<?php }else if($key->user_type == 'moderator'){ ?>
 							<?php $title=$key->user_login?>
 							<?php } ?>
-							<?php 
+							<?php if(!empty($key->user_pic)) {
+									$image_url=$key->user_pic; 
+									$info = pathinfo($image_url);
+									$file_name =  basename($image_url,'.'.$info['extension']);
+									$file_url = 'upload/'.$file_name."_100.".$info['extension'];
+								}else{
+									$file_url = 'images/agent.png';
+								}
+								$temp_url=$file_url;
+								$temp_login=$key->user_login;
 								$attached_image = array(
-						          'src' => 'images/agent.png' ,
-						          'alt' => $title,
-						          'title' => $title,
+							          'src' => $temp_url ,
+							          'alt' => 'fsbo',
+							          'title' => $key->user_login,
 								);
-								echo img($attached_image);
 							?>
+							<?php echo img($attached_image);?>
 						</div>
 					</div>
 					<div class="mid">

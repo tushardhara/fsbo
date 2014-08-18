@@ -895,8 +895,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0' AND approved = '0'");
       $q->where('post_furniture_type', 'Kitchen');
     }
     if($post_furniture_type== 'miscellaneous'){
-     
-      $q->where('post_furniture_type', 'Miscellaneous');
+      $names = array('Bedroom', 'Living room', 'Bathroom','Dining room','Kitchen');
+      $q->where_not_in('post_furniture_type', $names);
     }
     if (strlen($query_array['post_title'])) {
       $q->like('post_title', $query_array['post_title']);
@@ -931,7 +931,8 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0' AND approved = '0'");
     }
     if($post_furniture_type== 'miscellaneous'){
      
-      $q->where('post_furniture_type', 'Miscellaneous');
+      $names = array('Bedroom', 'Living room', 'Bathroom','Dining room','Kitchen');
+      $q->where_not_in('post_furniture_type', $names);
     }
     if (strlen($query_array['post_title'])) {
       $q->like('post_title', $query_array['post_title']);

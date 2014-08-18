@@ -292,15 +292,55 @@
 				
 				<?php if($this->session->userdata('logged_in')){ ?>
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'user'){ ?>
-	     				<li><a href="<?php echo site_url('profile/user');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+	     				<li class="username"><a href="<?php echo site_url('profile/user');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+	     				<li class="upload"><a href="<?php echo site_url('profile/user/property');?>"></a></li>
+	     				<li class="setting">
+			     			<a href="#" class="drop"></a>
+			     			<div class="drop-category">
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/user');?>">Profile</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/user/mylist');?>">My Listing</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/user/wishlist');?>">Wishlist</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('logout');?>">Logout</a></div>
+	     					</div>
+			     		</li>
 			     	<?php } else if($this->session->userdata('logged_in')['user_type'] == 'agent'){ ?>
-			     		<li><a href="<?php echo site_url('profile/agent');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     		<li class="username"><a href="<?php echo site_url('profile/agent');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     		<li class="upload"><a href="<?php echo site_url('profile/agent/property');?>"></a></li>
+			     		<li class="setting">
+			     			<a href="#" class="drop"></a>
+			     			<div class="drop-category">
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/agent');?>">Profile</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/agent/mylist');?>">My Listing</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/agent/wishlist');?>">Wishlist</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('logout');?>">Logout</a></div>
+	     					</div>
+			     		</li>
 			     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'moderator') { ?>
-			     		<li><a href="<?php echo site_url('profile/moderator');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     		<li class="username"><a href="<?php echo site_url('profile/moderator');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     		<li class="upload"><a href="<?php echo site_url('profile/moderator/property');?>"></a></li>
+			     		<li class="setting">
+			     			<a href="#" class="drop"></a>
+			     			<div class="drop-category">
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/moderator');?>">Profile</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/moderator/mylist');?>">My Listing</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/moderator/wishlist');?>">Wishlist</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('logout');?>">Logout</a></div>
+	     					</div>
+			     		</li>
 			     	<?php }else if($this->session->userdata('logged_in')['user_type'] == 'admin') { ?>
-			     		<li><a href="<?php echo site_url('profile/admin');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     		<li class="username"><a href="<?php echo site_url('profile/admin');?>"><?php echo $this->session->userdata('logged_in')['user_login'] ?></a></li>
+			     		<li class="upload"><a href="<?php echo site_url('profile/admin/property');?>"></a></li>
+			     		<li class="setting">
+			     			<a href="#" class="drop"></a>
+			     			<div class="drop-category">
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/admin');?>">Profile</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/admin/mylist');?>">My Listing</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('profile/admin/settings');?>">Settings</a></div>
+	     						<div class="drop-item"><a href="<?php echo site_url('logout');?>">Logout</a></div>
+	     					</div>
+			     		</li>
 			     	<?php } ?>
-					<li><a href="<?php echo site_url('logout');?>">Logout</a></li>
+					<!--li><a href="<?php echo site_url('logout');?>">Logout</a></li-->
 				<?php }else{ ?>
 					<li><a href="<?php echo site_url('register/user');?>">Register</a></li>
 					<li><a href="<?php echo site_url('login');?>">Login</a></li>

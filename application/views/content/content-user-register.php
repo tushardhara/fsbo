@@ -9,27 +9,67 @@
 					</div>
 				</div>
 			</div>
-			<form method="post" action="<?php echo site_url('register_check'); ?>">
+			<form id="target" method="post" action="<?php echo site_url('register_check'); ?>">
 			<div class="register-area-left">
-				<input type="text" name="user_login" placeholder="User Name">
-				<input type="password" name="user_pass" placeholder="Password">
-				<input type="password" name="user_passc" placeholder="Retype Password">
-				<input type="text" name="user_email" placeholder="Email Address">
-				<input type="text" name="user_language" placeholder="Language">
+				<div class="filed">
+					<input type="text" id="username" name="user_login" placeholder="User Name"><span class="man">*</span>
+				</div>
+				<div class="filed">
+					<input type="password" id="pass" name="user_pass" placeholder="Password"><span class="man">*</span>
+				</div>
+				<div class="filed">
+					<input type="password" id="re_pass" name="user_passc" placeholder="Retype Password"><span class="man">*</span>
+				</div>
+				<div class="filed">
+					<input type="text" id="email" name="user_email" placeholder="Email Address"><span class="man">*</span>
+				</div>
+				<div class="filed">
+					<input type="text" id="re_email" name="user_re_email" placeholder="Retype Email Address"><span class="man">*</span>
+				</div>
+				<div class="filed ex">
+					<input type="text" name="user_language" placeholder="Language" readonly class="drop">
+					<span class="arrow"></span>
+					<div class="drop-category">
+					<?php 
+						if(isset($language_list)){
+							foreach ($language_list as $key) {
+					?>
+							<div class="drop-item" item-value="<?php echo $key->name;?>"><?php echo $key->name;?></div>
+					<?php } }
+					?>
+					</div>
+				</div>
 			</div>
 			<div class="register-area-right">
-				<input type="text" name="user_fname" placeholder="First Name">
-				<input type="text" name="user_lname" placeholder="Last Name">
-				<input type="text" name="user_phone" placeholder="Phone">
-				<input type="text" name="user_country" placeholder="Country">
-				<input type="text" name="user_city" placeholder="City">
+				<div class="filed">
+					<input type="text" id="fname" name="user_fname" placeholder="First Name"><span class="man">*</span>
+				</div>
+				<div class="filed">
+					<input type="text" name="user_lname" placeholder="Last Name">
+				</div>
+				<div class="filed">
+					<input type="text" id="phone" name="user_phone" placeholder="Phone"><span class="man">*</span>
+				</div>
+				<div class="filed">
+					<input type="text" name="user_country" placeholder="Country" readonly class="drop">
+					<span class="arrow"></span>
+					<div class="drop-category">
+					<?php 
+						if(isset($country_list)){
+							foreach ($country_list as $key) {
+					?>
+							<div class="drop-item" item-value="<?php echo $key->name;?>"><?php echo $key->name;?></div>
+					<?php } }
+					?>
+					</div>
+				</div>
+				<div class="filed ex">
+					<input type="text" name="user_city" placeholder="City">
+				</div>
 				<input type="hidden" name="user_type" value="1">
 				<input type="hidden" name="user_provider" value="Fsbo">
 				<input type="hidden" name="user_title" value="">	
-				<div class="squaredThree first">
-					<input type="checkbox" value="None" id="squaredThree" name="check" />agree with <a href="#">Terms & Conditions</a>
-					<label for="squaredThree"></label>
-				</div>
+				<input id="check" type="checkbox" value="1" name="check" />agree with <a href="#" style="color:#ffa800;text-decoration:none;">Terms & Conditions</a>
 				<input type="submit" value="Register">		
 			</div>
 			</form>
@@ -52,3 +92,72 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">	
+	  $(document).ready(function(){
+	  	$("#target").submit(function(event){
+	  		if($("#check").is(':checked')){
+	  			var username=$("#username").val();
+	  			var pass=$("#pass").val();
+	  			var re_pass=$("#re_pass").val();
+	  			var email=$("#email").val();
+	  			var re_email=$("#re_email").val();
+	  			var fname= $("#fname").val();
+	  			var phone=$("#phone").val();
+	  			var check_username;
+	  			var check_email;
+	  			if(username != '' && pass !='' && re_pass !='' && email !='' && re_email !='' && fname !='' && phone !='' ){
+	  				var usernameRegex = /^[a-zA-Z0-9]+$/;
+	  				var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    				var phoneRegex = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/;
+    				var validUsername = username.match(usernameRegex);
+    				var validEmail = email.match(emailRegex);
+    				var validPhone = phone.match(phoneRegex);
+				    if(validUsername == null){
+				        alert("Your username is not valid. Only characters A-Z, a-z and '0-9' are  acceptable.");
+				    }
+				    else if(validEmail == null){
+				        alert("Your Email is not valid.");
+				    }
+				    else if(validPhone == null){
+				        alert("Your Phone No. is not valid.Write phone no. like this +xx-xxxxxxxxxx or +xx xxx-xxx-xxxx");
+				    }
+	  				else if(pass != re_pass){
+	  					alert("Password not matched");
+	  				}
+	  				else if(email != re_email){
+	  					alert("Email not matched");
+	  				}else{
+	  					$.ajax({
+						  url: "<?php echo site_url('main/check_ajax_username')?>",
+						  type: "POST",
+						  data: { user_login: username },
+						  async: false
+						}).done(function( data) {
+						    check_username=data;
+						});
+						$.ajax({
+						  url: "<?php echo site_url('main/check_ajax_email')?>",
+						  type: "POST",
+						  data: { user_email: email },
+						  async: false
+						}).done(function( data ) {
+						   check_email=data;
+						});
+						if(check_username != 'new'){
+							alert("Username Already exists");
+						}else if(check_email !='new'){
+							alert("Email Already exists");
+						}else if (check_email == 'new' && check_username =='new'){
+							return;
+						}
+	  				}	
+	  			}else{
+	  				alert("Please enter the Mandatory fields");
+	  			}
+	  		}else{
+	  			alert("Please select the Terms & Conditions checkbox");
+	  		}
+	  		event.preventDefault();
+	  	});
+	  });
+	</script>

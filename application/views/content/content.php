@@ -29,46 +29,13 @@
 			    		</div>
 			    		<div class="search-drop scroll">
 			    			<div class="drop-item" item-value="All">All</div>
-							<div class="drop-item" item-value="Doha">Doha</div>
-                            <div class="drop-item" item-value="AL wakair">AL wakair</div>
-                            <div class="drop-item" item-value="Abu az Zuluf">Abu az Zuluf</div>
-                            <div class="drop-item" item-value="Abu Thaylah">Abu Thaylah</div>
-                            <div class="drop-item" item-value="Ad Dawhah al Jadidah">Ad Dawhah al Jadidah</div>
-                            <div class="drop-item" item-value="Al `Arish">Al `Arish</div>
-                            <div class="drop-item" item-value="Al Bida` ash Sharqiyah">Al Bida` ash Sharqiyah</div>
-                            <div class="drop-item" item-value="Al Ghanim">Al Ghanim</div>
-                            <div class="drop-item" item-value="Al Ghuwariyah">Al Ghuwariyah</div>
-                            <div class="drop-item" item-value="Al Hilal al Gharbiyah">Al Hilal al Gharbiyah</div>
-                            <div class="drop-item" item-value="Al Hilal ash Sharqiyah">Al Hilal ash Sharqiyah</div>
-                            <div class="drop-item" item-value="Al Hitmi">Al Hitmi</div>
-                            <div class="drop-item" item-value="Al Jasrah">Al Jasrah</div>
-                            <div class="drop-item" item-value="Al Jumaliyah">Al Jumaliyah</div>
-                            <div class="drop-item" item-value="Al Ka`biyah">Al Ka`biyah</div>
-                            <div class="drop-item" item-value="Al Khalifat">Al Khalifat</div>
-                            <div class="drop-item" item-value="Al Khor">Al Khor</div>
-                            <div class="drop-item" item-value="Al Khuwayr">Al Khuwayr</div>
-                            <div class="drop-item" item-value="Al Luqta">Al Luqta</div>
-                            <div class="drop-item" item-value="Al Mafjar">Al Mafjar</div>
-                            <div class="drop-item" item-value="Al Qa`abiyah">Al Qa`abiyah</div>
-                            <div class="drop-item" item-value="Al Wakrah">Al Wakrah</div>
-                            <div class="drop-item" item-value="Al `Adhbah">Al `Adhbah</div>
-                            <div class="drop-item" item-value="An Najmah">An Najmah</div>
-                            <div class="drop-item" item-value="Ar Rakiyat">Ar Rakiyat</div>
-                            <div class="drop-item" item-value="Al Rayyan">Al Rayyan</div>
-                            <div class="drop-item" item-value="Ar Ru'ays">Ar Ru'ays</div>
-                            <div class="drop-item" item-value="As Salatah">As Salatah</div>
-                            <div class="drop-item" item-value="As Salatah al Jadidah">As Salatah al Jadidah</div>
-                            <div class="drop-item" item-value="As Sani`">As Sani`</div>
-                            <div class="drop-item" item-value="As Sawq">As Sawq</div>
-                            <div class="drop-item" item-value="Ath Thaqab">Ath Thaqab</div>
-                            <div class="drop-item" item-value="Dukhan">Dukhan</div>
-                            <div class="drop-item" item-value="Lusail">Lusail</div>
-                            <div class="drop-item" item-value="Ras Laffan Industrial City">Ras Laffan Industrial City</div>
-                            <div class="drop-item" item-value="Smaismah">Smaismah</div>
-                            <div class="drop-item" item-value="Umm Bab">Umm Bab</div>
-                            <div class="drop-item" item-value="Umm Sa'id">Umm Sa'id</div>
-                            <div class="drop-item" item-value="Umm Salal Ali">Umm Salal Ali</div>
-                            <div class="drop-item" item-value="Umm Salal Mohammed">Umm Salal Mohammed</div>
+							<?php if(isset($property_city)) { ?>
+								<?php if(!empty($property_city)) { ?>
+									<?php foreach ($property_city as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 			    		</div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -77,18 +44,13 @@
 			    		</div>
 			    		<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Apartment">Apartment</div>
-                            <div class="drop-item" item-value="Villa">Villa</div>
-                            <div class="drop-item" item-value="Townhouse">Townhouse</div>
-                            <div class="drop-item" item-value="Bungalow">Bungalow</div>
-                            <div class="drop-item" item-value="Duplex">Duplex</div>
-                            <div class="drop-item" item-value="Chalet">Chalet</div>
-                            <div class="drop-item" item-value="Compound">Compound</div>
-                            <div class="drop-item" item-value="Penthouse">Penthouse</div>
-                            <div class="drop-item" item-value="Land">Land</div>
-                            <div class="drop-item" item-value="Office">Office</div>
-                            <div class="drop-item" item-value="Warehouse">Warehouse</div>
-                            <div class="drop-item" item-value="Whole Building">Whole Building</div>
+                            <?php if(isset($property_type)) { ?>
+								<?php if(!empty($property_type)) { ?>
+									<?php foreach ($property_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -105,11 +67,15 @@
 			    		</div>
 			    		<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Apartment">1</div>
-                            <div class="drop-item" item-value="Villa">2</div>
-                            <div class="drop-item" item-value="Townhouse">3</div>
-                            <div class="drop-item" item-value="Bungalow">4</div>
-                            <div class="drop-item" item-value="Duplex">5</div>
+                            <div class="drop-item" item-value="1">1</div>
+                            <div class="drop-item" item-value="2">2</div>
+                            <div class="drop-item" item-value="3">3</div>
+                            <div class="drop-item" item-value="4">4</div>
+                            <div class="drop-item" item-value="5">5</div>
+                            <div class="drop-item" item-value="6">6</div>
+                            <div class="drop-item" item-value="7">7</div>
+                            <div class="drop-item" item-value="8">8</div>
+                            <div class="drop-item" item-value="9">9</div>
 	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -118,11 +84,15 @@
 			    		</div>
 			    		<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Apartment">1</div>
-                            <div class="drop-item" item-value="Villa">2</div>
-                            <div class="drop-item" item-value="Townhouse">3</div>
-                            <div class="drop-item" item-value="Bungalow">4</div>
-                            <div class="drop-item" item-value="Duplex">5</div>
+                            <div class="drop-item" item-value="1">1</div>
+                            <div class="drop-item" item-value="2">2</div>
+                            <div class="drop-item" item-value="3">3</div>
+                            <div class="drop-item" item-value="4">4</div>
+                            <div class="drop-item" item-value="5">5</div>
+                            <div class="drop-item" item-value="6">6</div>
+                            <div class="drop-item" item-value="7">7</div>
+                            <div class="drop-item" item-value="8">8</div>
+                            <div class="drop-item" item-value="9">9</div>
 	                    </div>
 			    	</div>
 			    	<input type="hidden" name="type" value="property">
@@ -149,47 +119,14 @@
 			    			<span class="text">City : <span>All</span><input type="hidden" name="city" value="All"></span><span class="search-field-arrow"></span>
 			    		</div>
 			    		<div class="search-drop scroll">
-			    			<div class="drop-item" item-value="All">All</div>
-							<div class="drop-item" item-value="Doha">Doha</div>
-                            <div class="drop-item" item-value="AL wakair">AL wakair</div>
-                            <div class="drop-item" item-value="Abu az Zuluf">Abu az Zuluf</div>
-                            <div class="drop-item" item-value="Abu Thaylah">Abu Thaylah</div>
-                            <div class="drop-item" item-value="Ad Dawhah al Jadidah">Ad Dawhah al Jadidah</div>
-                            <div class="drop-item" item-value="Al `Arish">Al `Arish</div>
-                            <div class="drop-item" item-value="Al Bida` ash Sharqiyah">Al Bida` ash Sharqiyah</div>
-                            <div class="drop-item" item-value="Al Ghanim">Al Ghanim</div>
-                            <div class="drop-item" item-value="Al Ghuwariyah">Al Ghuwariyah</div>
-                            <div class="drop-item" item-value="Al Hilal al Gharbiyah">Al Hilal al Gharbiyah</div>
-                            <div class="drop-item" item-value="Al Hilal ash Sharqiyah">Al Hilal ash Sharqiyah</div>
-                            <div class="drop-item" item-value="Al Hitmi">Al Hitmi</div>
-                            <div class="drop-item" item-value="Al Jasrah">Al Jasrah</div>
-                            <div class="drop-item" item-value="Al Jumaliyah">Al Jumaliyah</div>
-                            <div class="drop-item" item-value="Al Ka`biyah">Al Ka`biyah</div>
-                            <div class="drop-item" item-value="Al Khalifat">Al Khalifat</div>
-                            <div class="drop-item" item-value="Al Khor">Al Khor</div>
-                            <div class="drop-item" item-value="Al Khuwayr">Al Khuwayr</div>
-                            <div class="drop-item" item-value="Al Luqta">Al Luqta</div>
-                            <div class="drop-item" item-value="Al Mafjar">Al Mafjar</div>
-                            <div class="drop-item" item-value="Al Qa`abiyah">Al Qa`abiyah</div>
-                            <div class="drop-item" item-value="Al Wakrah">Al Wakrah</div>
-                            <div class="drop-item" item-value="Al `Adhbah">Al `Adhbah</div>
-                            <div class="drop-item" item-value="An Najmah">An Najmah</div>
-                            <div class="drop-item" item-value="Ar Rakiyat">Ar Rakiyat</div>
-                            <div class="drop-item" item-value="Al Rayyan">Al Rayyan</div>
-                            <div class="drop-item" item-value="Ar Ru'ays">Ar Ru'ays</div>
-                            <div class="drop-item" item-value="As Salatah">As Salatah</div>
-                            <div class="drop-item" item-value="As Salatah al Jadidah">As Salatah al Jadidah</div>
-                            <div class="drop-item" item-value="As Sani`">As Sani`</div>
-                            <div class="drop-item" item-value="As Sawq">As Sawq</div>
-                            <div class="drop-item" item-value="Ath Thaqab">Ath Thaqab</div>
-                            <div class="drop-item" item-value="Dukhan">Dukhan</div>
-                            <div class="drop-item" item-value="Lusail">Lusail</div>
-                            <div class="drop-item" item-value="Ras Laffan Industrial City">Ras Laffan Industrial City</div>
-                            <div class="drop-item" item-value="Smaismah">Smaismah</div>
-                            <div class="drop-item" item-value="Umm Bab">Umm Bab</div>
-                            <div class="drop-item" item-value="Umm Sa'id">Umm Sa'id</div>
-                            <div class="drop-item" item-value="Umm Salal Ali">Umm Salal Ali</div>
-                            <div class="drop-item" item-value="Umm Salal Mohammed">Umm Salal Mohammed</div>
+							<div class="drop-item" item-value="All">All</div>
+							<?php if(isset($property_city)) { ?>
+								<?php if(!empty($property_city)) { ?>
+									<?php foreach ($property_city as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 			    		</div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -198,18 +135,13 @@
 			    		</div>
 			    		<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Apartment">Apartment</div>
-                            <div class="drop-item" item-value="Villa">Villa</div>
-                            <div class="drop-item" item-value="Townhouse">Townhouse</div>
-                            <div class="drop-item" item-value="Bungalow">Bungalow</div>
-                            <div class="drop-item" item-value="Duplex">Duplex</div>
-                            <div class="drop-item" item-value="Chalet">Chalet</div>
-                            <div class="drop-item" item-value="Compound">Compound</div>
-                            <div class="drop-item" item-value="Penthouse">Penthouse</div>
-                            <div class="drop-item" item-value="Land">Land</div>
-                            <div class="drop-item" item-value="Office">Office</div>
-                            <div class="drop-item" item-value="Warehouse">Warehouse</div>
-                            <div class="drop-item" item-value="Whole Building">Whole Building</div>
+                            <?php if(isset($property_type)) { ?>
+								<?php if(!empty($property_type)) { ?>
+									<?php foreach ($property_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -226,11 +158,15 @@
 			    		</div>
 			    		<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Apartment">1</div>
-                            <div class="drop-item" item-value="Villa">2</div>
-                            <div class="drop-item" item-value="Townhouse">3</div>
-                            <div class="drop-item" item-value="Bungalow">4</div>
-                            <div class="drop-item" item-value="Duplex">5</div>
+                            <div class="drop-item" item-value="1">1</div>
+                            <div class="drop-item" item-value="2">2</div>
+                            <div class="drop-item" item-value="3">3</div>
+                            <div class="drop-item" item-value="4">4</div>
+                            <div class="drop-item" item-value="5">5</div>
+                            <div class="drop-item" item-value="6">6</div>
+                            <div class="drop-item" item-value="7">7</div>
+                            <div class="drop-item" item-value="8">8</div>
+                            <div class="drop-item" item-value="9">9</div>
 	                    </div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -239,11 +175,15 @@
 			    		</div>
 			    		<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Apartment">1</div>
-                            <div class="drop-item" item-value="Villa">2</div>
-                            <div class="drop-item" item-value="Townhouse">3</div>
-                            <div class="drop-item" item-value="Bungalow">4</div>
-                            <div class="drop-item" item-value="Duplex">5</div>
+                            <div class="drop-item" item-value="1">1</div>
+                            <div class="drop-item" item-value="2">2</div>
+                            <div class="drop-item" item-value="3">3</div>
+                            <div class="drop-item" item-value="4">4</div>
+                            <div class="drop-item" item-value="5">5</div>
+                            <div class="drop-item" item-value="6">6</div>
+                            <div class="drop-item" item-value="7">7</div>
+                            <div class="drop-item" item-value="8">8</div>
+                            <div class="drop-item" item-value="9">9</div>
 	                    </div>
 			    	</div>
 			    	<input type="hidden" name="type" value="property">
@@ -270,13 +210,14 @@
 			    			<span class="text">Type : <span>All</span><input type="hidden" name="furniture_type" value="All"></span><span class="search-field-arrow"></span>
 			    		</div>
 			    		<div class="search-drop">
-							<div class="drop-item" item-value="All">All</div>
-                            <div class="drop-item" item-value="Bedroom">Bedroom</div>
-                            <div class="drop-item" item-value="Living room">Living room</div>
-                            <div class="drop-item" item-value="Bathroom">Bathroom</div>
-                            <div class="drop-item" item-value="Dining room">Dining room</div>
-                            <div class="drop-item" item-value="Kitchen">Kitchen</div>
-                            <div class="drop-item" item-value="Miscellaneous">Miscellaneous</div>
+                            <div class="drop-item" item-value="All">All</div>
+                            <?php if(isset($furniture_type)) { ?>
+								<?php if(!empty($furniture_type)) { ?>
+									<?php foreach ($furniture_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 						</div>
 			    	</div>
 			    	<div class="search-field-drop">
@@ -314,8 +255,12 @@
 		    			</div>
 		    			<div class="search-drop">
 			    			<div class="drop-item" item-value="All">All</div>
-							<?php foreach ($education_type as $comm) { ?>
-								<div class="drop-item" item-value="<?php echo $comm->post_education_type?>"><?php echo $comm->post_education_type ?></div>
+                            <?php if(isset($education_type)) { ?>
+								<?php if(!empty($education_type)) { ?>
+									<?php foreach ($education_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
 							<?php } ?>
 						</div>
 			    	</div>
@@ -338,6 +283,7 @@
 							<div class="drop-item" item-value="All">All</div>
                             <div class="drop-item" item-value="Male">Male</div>
                             <div class="drop-item" item-value="Female">Female</div>
+                            <div class="drop-item" item-value="Other">Other</div>
 						</div>
 			    	</div>
 			    	<input type="hidden" name="type" value="education">

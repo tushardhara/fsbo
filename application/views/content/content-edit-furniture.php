@@ -34,12 +34,13 @@
 						<span class="info">Type : </span><input	type="text" placeholder="Type" readonly class="drop" name="post_furniture_type" value="<?php echo $post_furniture_type; ?>">
 						<span class="arrow"></span>
 						<div class="drop-category">
-							<div class="drop-item" item-value="Bedroom">Bedroom</div>
-                            <div class="drop-item" item-value="Living room">Living room</div>
-                            <div class="drop-item" item-value="Bathroom">Bathroom</div>
-                            <div class="drop-item" item-value="Dining room">Dining room</div>
-                            <div class="drop-item" item-value="Kitchen">Kitchen</div>
-                            <div class="drop-item" item-value="Miscellaneous">Miscellaneous</div>
+							<?php if(isset($furniture_type)) { ?>
+								<?php if(!empty($furniture_type)) { ?>
+									<?php foreach ($furniture_type as $key) { ?>
+										<div class="drop-item" item-value="<?php echo $key->name?>"><?php echo $key->name?></div>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="filed">
@@ -49,7 +50,9 @@
 						<span class="info">Price : </span><input	type="text" placeholder="Price" name="post_price" value="<?php echo $post_price; ?>"> <span class="extra">QR</span>
 					</div>
 					<div class="filed">
-						<input type="file" name="files[]" multiple />
+						<div class="fileUpload btn btn-primary">
+						    <input type="file" name="files[]" class="upload" multiple/>
+						</div>
 					</div>
 					<div class="filed clearfix">
 					<?php if(isset($image_list)){ 	
@@ -68,13 +71,12 @@
 						}	
 					?>
 					</div>
-					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
-					<div class="filed ex">
-						<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>
-					</div>
-					<?php } ?>
 				</div>
 				<div class="right">
+					<h1>&nbsp;</h1>
+					<div class="filed">
+						<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>
+					</div>
 					<?php if($this->session->userdata('logged_in')['user_type'] == 'admin' || $this->session->userdata('logged_in')['user_type'] == 'moderator') {?>
 					<div class="filed ex">
 						<span class="info">Featured : </span><input	type="text" placeholder="Featured" readonly class="drop" name="post_featured" value="<?php echo $post_featured == '0' ? 'no':'yes'; ?>">
@@ -95,9 +97,6 @@
 						<textarea placeholder="Google Meta Description" name="post_seo_description"><?php echo $post_seo_description; ?></textarea>
 					</div>
 					<?php } else{ ?>
-						<div class="filed ex">
-							<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>
-						</div>
 						<input	type="hidden" name="post_seo_title" value="<?php echo $post_seo_title; ?>">
 						<input	type="hidden" name="post_seo_keywords" value="<?php echo $post_seo_keywords; ?>">
 						<input type="hidden" name="post_seo_description" value="<?php echo $post_seo_description; ?>">
