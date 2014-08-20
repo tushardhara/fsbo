@@ -20,209 +20,170 @@
 			</div>
 			<div class="upload-area clearfix">
 				<form method="post" action="<?php echo site_url('modify_option'); ?>">
-				<div class="left">
-					<h1>Home Left First Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Home Left First Property" name='option_1' readonly class="drop" value="<?php echo $option['option_1'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_property as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Home Left Second Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Home Left Second Property" name='option_2' readonly class="drop" value="<?php echo $option['option_2'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_property as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Home Center Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Home Center Property" name='option_3' readonly class="drop" value="<?php echo $option['option_3'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_property as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Popular Spots First Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Popular Spots First Property" name='option_4' readonly class="drop" value="<?php echo $option['option_4'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_property as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Popular Spots Second Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Popular Spots Second Property" name='option_5' readonly class="drop" value="<?php echo $option['option_5'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_property as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Popular Spots Third Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Popular Spots Property" name='option_6' readonly class="drop" value="<?php echo $option['option_6'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_property as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Furniture First Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Furniture First Property" name='option_7' readonly class="drop" value="<?php echo $option['option_7'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_furniture as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Furniture Second Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Furniture Second Property" name='option_8' readonly class="drop" value="<?php echo $option['option_8'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_furniture as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Furniture Third Property</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Furniture Third Property" name='option_9' readonly class="drop" value="<?php echo $option['option_9'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_furniture as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
+				<div style="display:inline-block; float:left; margin-right:10px;">
+					<h1>Home Page Options</h1>
+					<label>Home Left First Property :</label><br/>
+					<select name='option_1'>
+						<?php foreach ($post_property as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_1']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Home Left Second Property :</label><br/>
+					<select name='option_2'>
+						<?php foreach ($post_property as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_2']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Home Center Property :</label><br/>
+					<select name='option_3'>
+						<?php foreach ($post_property as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_3']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Popular Spots First Property :</label><br/>
+					<select name='option_4'>
+						<?php foreach ($post_property as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_4']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Popular Spots Second Property :</label><br/>
+					<select name='option_5'>
+						<?php foreach ($post_property as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_5']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Popular Spots Third Property :</label><br/>
+					<select name='option_6'>
+						<?php foreach ($post_property as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_6']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Furniture First Property :</label><br/>
+					<select name='option_7'>
+						<?php foreach ($post_furniture as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_7']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Furniture Second Property :</label><br/>
+					<select name='option_8'>
+						<?php foreach ($post_furniture as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_8']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Furniture Third Property :</label><br/>
+					<select name='option_9'>
+						<?php foreach ($post_furniture as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_9']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 1 :</label><br/>
+					<select name='option_10'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_10']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 2 :</label><br/>
+					<select name='option_11'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_11']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 3 :</label><br/>
+					<select name='option_12'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_12']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 4 :</label><br/>
+					<select name='option_13'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_13']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 5 :</label><br/>
+					<select name='option_14'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_14']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 6 :</label><br/>
+					<select name='option_15'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_15']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 7 :</label><br/>
+					<select name='option_16'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_16']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 8 :</label><br/>
+					<select name='option_17'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_17']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
+					<br/><br/>
+					<label>Education 9 :</label><br/>
+					<select name='option_18'>
+						<?php foreach ($post_education as $key) { ?>
+						  <option value="<?php echo $key->ID ?>" <?php if($option['option_18']==$key->ID){echo "selected";} ?> ><?php echo $key->post_title ?></option>
+						<?php } ?>
+					</select>
 				</div>
-				<div class="right">
-					<h1>Education 1</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 1" name='option_10' readonly class="drop" value="<?php echo $option['option_10'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 2</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 2" name='option_11' readonly class="drop" value="<?php echo $option['option_11'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 3</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 3" name='option_12' readonly class="drop" value="<?php echo $option['option_12'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 4</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 4" name='option_13' readonly class="drop" value="<?php echo $option['option_13'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 5</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 5" name='option_14' readonly class="drop" value="<?php echo $option['option_14'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 6</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 6" name='option_15' readonly class="drop" value="<?php echo $option['option_15'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 7</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 7" name='option_16' readonly class="drop" value="<?php echo $option['option_16'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 8</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 8" name='option_17' readonly class="drop" value="<?php echo $option['option_17'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Education 9</h1>
-					<div class="filed ex">
-						<span class="info">ID : </span><input	type="text" placeholder="Education 9" name='option_18' readonly class="drop" value="<?php echo $option['option_18'];?>">
-						<span class="arrow"></span>
-						<div class="drop-category">
-							<?php foreach ($post_education as $key) { ?>
-								<div class="drop-item" item-value="<?php echo $key->ID ?>"><?php echo $key->ID ?></div>
-							<?php } ?>
-						</div>
-					</div>
-					<h1>Header javascript</h1>
-					<div class="filed ex">
-						<textarea placeholder="Header javascript" name="option_19"><?php echo $option['option_19'];?></textarea>
-					</div>
-					<h1>First left SEO Body text</h1>
-					<div class="filed ex">
-						<textarea placeholder="First left SEO Body text" name="option_20"><?php echo $option['option_20'];?></textarea>
-					</div>
-					<h1>Second left SEO Body text</h1>
-					<div class="filed ex">
-						<textarea placeholder="Second left SEO Body text" name="option_21"><?php echo $option['option_21'];?></textarea>
-					</div>
-					<h1>First right SEO Body text</h1>
-					<div class="filed ex">
-						<textarea placeholder="First right SEO Body text" name="option_22"><?php echo $option['option_22'];?></textarea>
-					</div>
-					<h1>Second right SEO Body text</h1>
-					<div class="filed ex">
-						<textarea placeholder="Second right SEO Body text" name="option_23"><?php echo $option['option_23'];?></textarea>
-					</div>
+				<div style="display:inline-block; float:left; margin-right:10px;">
+					<h1>Home Page Ads</h1>
+					<label>Header javascript</label><br/>
+					<textarea placeholder="Header javascript" name="option_19" rows="10" cols="30"><?php echo $option['option_19'];?></textarea>
+					<br/><br/>
+					<label>First left Ads Body text</label><br/>
+					<textarea placeholder="First left Ads Body text" name="option_20" rows="8" cols="30"><?php echo $option['option_20'];?></textarea>
+					<br/><br/>
+					<label>Second left Ads Body text</label><br/>
+					<textarea placeholder="Second left Ads Body text" name="option_21" rows="8" cols="30"><?php echo $option['option_21'];?></textarea>
+					<br/><br/>
+					<label>First right Ads Body text</label><br/>
+					<textarea placeholder="First right Ads Body text" name="option_22" rows="8" cols="30"><?php echo $option['option_22'];?></textarea>
+					<br/><br/>
+					<label>Second right Ads Body text</label><br/>
+					<textarea placeholder="Second right Ads Body text" name="option_23" rows="8" cols="30"><?php echo $option['option_23'];?></textarea>
+					
+				</div>
+				<div style="display:inline-block; float:left; margin-right:10px;">
+					<h1>Property Page Ads</h1>
+					<label>Header javascript</label><br/>
+					<textarea placeholder="Header javascript" name="option_24" rows="10" cols="30"><?php echo $option['option_24'];?></textarea>
+					<br/><br/>
+					<label>First  Ads Body text</label><br/>
+					<textarea placeholder="First left Ads Body text" name="option_25" rows="8" cols="30"><?php echo $option['option_25'];?></textarea>
+					<br/><br/>
+					<label>Second Ads Body text</label><br/>
+					<textarea placeholder="Second left Ads Body text" name="option_26" rows="8" cols="30"><?php echo $option['option_26'];?></textarea>
+				</div>
+				<div style="display:inline-block; float:left; margin-right:10px;">
+					<h1>Furniture Page Ads</h1>
+					<label>Header javascript</label><br/>
+					<textarea placeholder="Header javascript" name="option_27" rows="10" cols="30"><?php echo $option['option_27'];?></textarea>
+					<br/><br/>
+					<label>Ads Body text</label><br/>
+					<textarea placeholder="First left Ads Body text" name="option_28" rows="8" cols="30"><?php echo $option['option_28'];?></textarea>			
 					<input type="submit" class="submit" value="Submit">
 				</div>
 				</form>

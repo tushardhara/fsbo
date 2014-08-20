@@ -12,6 +12,26 @@
 				<?php } ?>
 			</div>
 			<div class="upload-area clearfix">
+				<h1>Create User</h1>
+				<form method="post" action="<?php echo site_url('login/ajax_register'); ?>">
+					<label>Username :</label><br/>
+					<input type="text" name='user_login' placeholder="Username"><br/>
+					<label>Password :</label><br/>
+					<input type="text" name='user_pass' placeholder="Password"><br/>
+					<label>Email :</label><br/>
+					<input type="text" name='user_email' placeholder="Email"><br/>
+					<label>Fisrt Name :</label><br/>
+					<input type="text" name='user_fname' placeholder="First Name"><br/>
+					<label>Last Name :</label><br/>
+					<input type="text" name='user_lname' placeholder="Last Name"><br/>
+					<label>User Type:</label><br/>
+					<select name="user_type">
+						  <option value="user">User</option>
+						  <option value="agent">Agent</option>
+						  <option value="admin">Admin</option>
+					</select>
+					<input type="submit" value="Submit">
+				</form>
 				<h1>Users</h1>
 				<div id="user" class="fsbotable" >
 	                <table >
@@ -83,5 +103,6 @@
 					});
 			    }
 			});
+			
 		});
 	</script>

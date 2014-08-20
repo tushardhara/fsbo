@@ -509,7 +509,12 @@ class Modify extends CI_Controller {
     			'option_20' => $this->input->post('option_20'), 
     			'option_21' => $this->input->post('option_21'), 
     			'option_22' => $this->input->post('option_22'), 
-    			'option_23' => $this->input->post('option_23'), 
+    			'option_23' => $this->input->post('option_23'),
+    			'option_24' => $this->input->post('option_24'),
+    			'option_25' => $this->input->post('option_25'),
+    			'option_26' => $this->input->post('option_26'),
+    			'option_27' => $this->input->post('option_27'),
+    			'option_28' => $this->input->post('option_28'), 
     		);
     		$this->option->modify_option(json_encode($option_data));
     		if($this->session->userdata('logged_in')['user_type'] == 'admin'){

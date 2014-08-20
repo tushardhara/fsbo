@@ -49,6 +49,34 @@ Class User extends CI_Model{
       return false;
     }
   }
+  function ajax_register($user_login,$user_pass,$user_email,$user_fname = '',$user_lname = '',$user_phone = '',$user_country = '',$user_city = '',$user_language = '',$user_url = '',$user_slug = '',$user_title = '',$user_detail ='',$user_type,$user_provider){
+    
+    $data = array(
+     'user_login' => $user_login,
+     'user_pass' => $this->encrypt->sha1($this->salt.$user_pass),
+     'user_email' => $user_email,
+     'user_fname' => $user_fname,
+     'user_lname' => $user_lname,
+     'user_phone' => $user_phone,
+     'user_country' => $user_country,
+     'user_city' => $user_city,
+     'user_language' => $user_language,
+     'user_url' => $user_url,
+     'user_slug' => $user_slug,
+     'user_title' => $user_title,
+     'user_detail' => $user_detail,
+     'user_type' => $user_type,
+     'user_status' => '0',
+     'user_provider' => $user_provider,
+     'user_registered' => date("Y-m-d H:i:s"),
+    );
+    $check=$this->db->insert('fsbo_users', $data);
+    if($check){
+      return $this->db->insert_id();
+    }else{
+      return false;
+    }
+  }
   function check_email($user_email){
      $this->db->select('*');
      $this->db->from('fsbo_users');
