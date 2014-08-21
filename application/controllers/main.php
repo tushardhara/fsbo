@@ -56,6 +56,7 @@ class Main extends CI_Controller {
 		$data_set['property_type'] = $this->db->query("SELECT * FROM fsbo_property_type")->result();
 		$data_set['furniture_type'] = $this->db->query("SELECT * FROM fsbo_furniture_type")->result();
 		$data_set['education_type'] = $this->db->query("SELECT * FROM fsbo_education_type")->result();
+		$data_set['slider'] = $this->db->query("SELECT * FROM fsbo_slider ORDER BY order_id ASC")->result();
 		$this->load->view('header',$data_set);
 		$this->load->view('content/content',$data_set);
 		$this->load->view('footer',$data_set);
@@ -260,9 +261,21 @@ class Main extends CI_Controller {
 								$data_set['option_data'] = $this->option->show_option_data();
 								$content = 'content/content-settings-home';
 							}
+							if($view=="slider"){
+								$data_set['slider'] = $this->db->query("SELECT * FROM fsbo_slider ORDER BY order_id ASC")->result();
+								$content = 'content/content-settings-slider';
+							}
 							if($view=="user"){
-								$data_set['user_all'] = $this->db->query("SELECT * FROM fsbo_users")->result();
-								$content = 'content/content-settings-user';
+								if($this->uri->segment(5)==''){
+									$data_set['user_all'] = $this->db->query("SELECT * FROM fsbo_users")->result();
+									$content = 'content/content-settings-user';
+								}else if($this->uri->segment(5)=='edit'){
+									$ID=$this->uri->segment(6);
+									$data_set['user_data'] = $this->db->query("SELECT * FROM fsbo_users WHERE ID=$ID")->result();
+									$content = 'content/content-settings-user-edit';
+								}else{
+									$content = 'content/content-404';
+								}
 							}
 						}else if($this->session->userdata('logged_in')['user_type'] == 'moderator'){
 							if($view=="home"){
@@ -729,7 +742,51 @@ class Main extends CI_Controller {
 	    $this->db->update('fsbo_users', $data);
 		redirect("profile/admin/settings/user"); 
 	}
+	public function delete_slider(){
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->delete('fsbo_slider'); 
+		redirect("profile/admin/settings/slider"); 
+	}
+	public function up_slider(){
+		$order_id=$this->input->post('order_id');
+		
+		$temp_order_id=$order_id;
+		$temp_order_id=$temp_order_id+1;
+		$new_order_id=$order_id-1;
+		$data = array(
+	        'order_id' => $temp_order_id,
+        );
+	    $this->db->where('order_id', $new_order_id);
+	    $this->db->update('fsbo_slider', $data);
+		
+		$order_id=$order_id-1;
+		$data = array(
+	        'order_id' => $order_id,
+        );
+	    $this->db->where('ID', $this->input->post('id'));
+	    $this->db->update('fsbo_slider', $data);
+		redirect("profile/admin/settings/slider"); 
+	}
+	public function down_slider(){
+		$order_id=$this->input->post('order_id');
 
+		$temp_order_id=$order_id;
+		$temp_order_id=$temp_order_id-1;
+		$new_order_id=$order_id+1;
+		$data = array(
+	        'order_id' => $temp_order_id,
+        );
+	    $this->db->where('order_id', $new_order_id);
+	    $this->db->update('fsbo_slider', $data);
+
+		$order_id=$order_id+1;
+		$data = array(
+	        'order_id' => $order_id,
+        );
+	    $this->db->where('ID', $this->input->post('id'));
+	    $this->db->update('fsbo_slider', $data);
+		redirect("profile/admin/settings/slider"); 
+	}
 	public function check_ajax_username(){
 		 $this->db->select('*');
 	     $this->db->from('fsbo_users');

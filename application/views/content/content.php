@@ -8,9 +8,30 @@
 	?>
 	<div class="home-page-slider">
 		<div id="home-slider" class="owl-carousel owl-theme"> 
-		  	<div class="item"><img src="images/fullimage1.jpg" alt="The Last of us"></div>
-			<div class="item"><img src="images/fullimage2.jpg" alt="GTA V"></div>
-			<div class="item"><img src="images/fullimage3.jpg" alt="Mirror Edge"></div>
+			<?php if(isset($slider)) { ?>
+				<?php if(!empty($slider)) { ?>
+					<?php foreach ($slider as $key) { ?>
+		  				<div class="item">
+		  					<?php 
+                        		if(!empty($key->sider_pic)) {
+									$image_url=$key->sider_pic; 
+									$info = pathinfo($image_url);
+									$file_name =  basename($image_url,'.'.$info['extension']);
+									$file_url = 'upload/'.$file_name.".".$info['extension'];
+								}else{
+									$file_url = 'images/fullimage1.jpg';
+								}
+								$attached_image = array(
+							          'src' => $file_url,
+							          'alt' => 'fsbo',
+							          'title' => 'fsbo',
+								);
+							?>
+							<?php echo img($attached_image);?>
+		  				</div>
+					<?php } ?>
+				<?php } ?>
+			<?php } ?>
 		</div>
 		<div class="dragable-search-area" id="dragable-search-area">
 			<div id="search-draggable" class="search-draggable">
@@ -408,7 +429,7 @@
 							<?php foreach ($data_three_property_feature as $key) { ?>
 								<div class="item">
 									<?php echo form_open("search_pro"); ?>
-									<a href="<?php echo site_url('property/'.$key->post_slug);?>">
+									<a href="">
 										<div class="thumb">
 											<?php if(!empty($image[$key->ID])) {
 													$image_url=$image[$key->ID]; 

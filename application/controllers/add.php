@@ -439,6 +439,39 @@ class Add extends CI_Controller {
     	}
     	
     }
+    public function add_slider(){
+    	$max=$this->db->query("SELECT MAX(order_id) as max FROM fsbo_slider")->result();
+    	$max_order=$max[0]->max;
+    	$this->upload->initialize(array(
+            "upload_path"   => "upload/",
+            "allowed_types" => "gif|jpg|png",
+            "max_size" => "10240"
+        ));
+        if($this->upload->do_multi_upload("files")){
+        	$this->load->library('image_lib');
+        	$config['image_library'] = 'gd2';
+        	$config['quality'] = '100%';
+        	$config['create_thumb'] = TRUE;
+        	$config['maintain_ratio'] = TRUE;
+        	$image_data=array();
+        	$max_order++;
+        	foreach ($this->upload->get_multi_upload_data() as $key) {
+        		$config['source_image'] = $key['full_path'];
+			    $this->image_lib->clear();
+			    $this->image_lib->initialize($config);
+			    $this->image_lib->resize();
+
+			    $temp_image_data['sider_pic'] = $key['file_name'];
+			    $temp_image_data['order_id'] = $max_order;
+			    $max_order++;
+			    array_push($image_data,$temp_image_data);
+			}
+			$this->post->add_slider($image_data);
+		}else{
+        	echo $this->upload->display_errors();
+        }
+		redirect('profile/admin/settings/slider');
+    }
     public function add_wishlist(){
     	if($this->session->userdata('logged_in')){
     		try {

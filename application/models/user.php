@@ -143,6 +143,28 @@ Class User extends CI_Model{
     $this->db->where('id', $this->session->userdata('logged_in')['ID']);
     $this->db->update('fsbo_users', $data);
   }
+  function new_modify($ID,$user_login='',$user_pass = '',$user_email = '',$user_fname = '',$user_lname = '',$user_type = ''){
+    if($user_pass == ''){
+      $data = array(
+         'user_login' => $user_login,
+         'user_email' => $user_email,
+         'user_fname' => $user_fname,
+         'user_lname' => $user_lname,
+         'user_type'  => $user_type
+      );
+    }else{
+       $data = array(
+         'user_login' => $user_login,
+         'user_pass' => $this->encrypt->sha1($this->salt.$user_pass),
+         'user_email' => $user_email,
+         'user_fname' => $user_fname,
+         'user_lname' => $user_lname,
+         'user_type'  => $user_type
+      );
+    }
+    $this->db->where('ID', $ID);
+    $this->db->update('fsbo_users', $data);
+  }
   function add_image($user_pic){
     $data = array(
       'user_pic' => $user_pic

@@ -488,6 +488,9 @@ SELECT * FROM fsbo_post WHERE ID=$ID_3 AND post_status='0' AND approved = '0'");
   function add_batch_image($data){
     $this->db->insert_batch('fsbo_post', $data); 
   }
+  function add_slider($data){
+    $this->db->insert_batch('fsbo_slider', $data); 
+  }
   function show_post_images($ID){
      $this->db->select('*');
      $this->db->from('fsbo_post');

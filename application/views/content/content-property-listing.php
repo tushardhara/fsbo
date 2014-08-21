@@ -254,8 +254,12 @@
 											</div>
 										<?php } ?>
 									</div>
-									<a class="save" href="#">Save Search</a>
 									<a href="#" class="export" style="display:none">Compare</a>
+									<?php if (strlen($pagination)): ?>
+									<div class="pagination" style="padding: 17px 0px;float: right;">
+										<ul><?php echo $pagination; ?></ul>
+									</div>
+									<?php endif; ?>
 								</div>
 								<div class="actual-list">
 									<?php $i=1;$location='';foreach ($records as $key) {?>
@@ -338,11 +342,6 @@
 									<?php $location =$location."['$key->post_title',$key->post_property_area_lat,$key->post_property_area_log,$i]," ?>
 									<?php $i++;} ?>
 								</div>
-								<?php if (strlen($pagination)): ?>
-								<div class="pagination">
-									<ul><?php echo $pagination; ?></ul>
-								</div>
-								<?php endif; ?>
 							</div>
 						<?php }else{ ?>
 							<h1 class="error">No listings where found</h1>

@@ -161,6 +161,23 @@ class Login extends CI_Controller {
    		);
 	   	redirect('profile/admin/settings/user');	
 	}
+	public function modify_user(){
+    	
+    	try {
+    		$this->user->new_modify(
+    			$this->input->post("ID"),
+    			$this->input->post('user_login'),
+	    		$this->input->post('user_pass'),
+	    		$this->input->post('user_email'),
+	    		$this->input->post('user_fname'),
+	    		$this->input->post('user_lname'),
+	    		$this->input->post('user_type')
+    		);
+    	} catch (Exception $e) {
+    		echo $e->getMessage();
+    	}
+    	redirect('profile/admin/settings/user');	
+    }
 	public function logout()
 	{
 	   $this->session->unset_userdata('logged_in');
