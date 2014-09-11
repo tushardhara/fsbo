@@ -229,28 +229,7 @@
 					<div class="filed">
 						<span class="info">Longitude : </span><input	type="text" id="long" placeholder="Longitude" name='post_property_area_log' value="<?php echo $post_property_area_log; ?>">
 					</div>
-					<div class="filed">
-						<div class="fileUpload btn btn-primary">
-						    <input type="file" name="files[]" class="upload" multiple/>
-						</div>
-					</div>
-					<div class="filed clearfix">
-					<?php if(isset($image_list)){ 	
-							if(!empty($image_list)) {
-								foreach ($image_list as $key ) {	
-									$image_url=$key->post_image_url; 
-									$info = pathinfo($image_url);
-									$file_name =  basename($image_url,'.'.$info['extension']);
-					?>
-						<div class="image_thumb">
-							<img src="<?php echo site_url('upload/'.$file_name."_100.".$info['extension'])?>">
-							<a href="<?php echo site_url('delete_image?ID='.$key->ID."&post_image_id=".$ID)?>"><div class="delete-image"></div></a>
-						</div>
-					<?php 		} 
-							} 
-						}	
-					?>
-					</div>
+					
 				</div>
 				<div class="right">
 					<h1>Building</h1>
@@ -322,6 +301,28 @@
 					<h1>General</h1>
 					<div class="filed">
 						<span class="info">Title : </span><input	type="text" placeholder="Title" name="post_title" value="<?php echo $post_title; ?>">
+					</div>
+					<div class="filed">
+						<div class="fileUpload btn btn-primary">
+						    <input type="file" name="files[]" class="upload" multiple/>
+						</div>
+					</div>
+					<div class="filed clearfix">
+					<?php if(isset($image_list)){ 	
+							if(!empty($image_list)) {
+								foreach ($image_list as $key ) {	
+									$image_url=$key->post_image_url; 
+									$info = pathinfo($image_url);
+									$file_name =  basename($image_url,'.'.$info['extension']);
+					?>
+						<div class="image_thumb">
+							<img src="<?php echo site_url('upload/'.$file_name."_100.".$info['extension'])?>">
+							<a href="<?php echo site_url('delete_image?ID='.$key->ID."&post_image_id=".$ID)?>"><div class="delete-image"></div></a>
+						</div>
+					<?php 		} 
+							} 
+						}	
+					?>
 					</div>
 					<div class="filed ex">
 						<textarea placeholder="Description" name="post_description"><?php echo $post_description; ?></textarea>

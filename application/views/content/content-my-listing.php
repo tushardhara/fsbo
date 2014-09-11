@@ -95,7 +95,7 @@
 						</div>
 						<?php } ?>
 					<?php }else{  ?>
-						<h1 class="error">No listings where found</h1>
+						<h1 class="error">No Listings Were Found</h1>
 					<?php } ?>
 				<?php } ?>
 			</div>

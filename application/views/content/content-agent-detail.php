@@ -257,7 +257,7 @@
 								</div>
 							<?php } ?>
 						<?php }else{ ?>
-							<h1 class="error">No listings where found</h1>
+							<h1 class="error">No Listings Were Found</h1>
 						<?php } ?>
 					<?php } ?>
 				</div>
@@ -338,18 +338,18 @@
         $('#max').appendTo($('#agent-slider-range a').get(1));
         $('#input_max').appendTo($('#agent-slider-range a').get(1));
     },
-    slide: function(event, ui) { $(ui.handle).find('span').html('$' + ui.value); $(ui.handle).find('input').val(ui.value);}
+    slide: function(event, ui) { $(ui.handle).find('span').html('QR' + ui.value); $(ui.handle).find('input').val(ui.value);}
 });
 
 // only initially needed
-$('#min').html('$' + $('#agent-slider-range').slider('values', 0)).position({
+$('#min').html('QR' + $('#agent-slider-range').slider('values', 0)).position({
     my: 'center top',
     at: 'center bottom',
     of: $('#agent-slider-range a:eq(0)'),
     offset: "0, 10"
 });
 $('#input_min').val($('#agent-slider-range').slider('values', 0));
-$('#max').html('$' + $('#agent-slider-range').slider('values', 1)).position({
+$('#max').html('QR' + $('#agent-slider-range').slider('values', 1)).position({
     my: 'center top',
     at: 'center bottom',
     of: $('#agent-slider-range a:eq(1)'),

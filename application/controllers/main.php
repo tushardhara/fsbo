@@ -164,10 +164,16 @@ class Main extends CI_Controller {
 								$content = 'content/content-view-message';
 							}else if($view == 'compose'){
 								$content = 'content/content-compose';
+							}else if($view == 'sent'){
+								$ID=$this->session->userdata('logged_in')['ID'];
+								$data_set['message'] = $this->db->query("SELECT m.ID,m.title,m.message,m.message_date,m.status,u.user_login FROM fsbo_message as m,fsbo_users as u WHERE m.reciver_id=u.ID and m.sender_id=$ID")->result();
+								$content = 'content/content-message';
 							}else{
 								$content = 'content/content-404';
 							}	
 						}else{
+							$ID=$this->session->userdata('logged_in')['ID'];
+							$data_set['message'] = $this->db->query("SELECT m.ID,m.title,m.message,m.message_date,m.status,u.user_login FROM fsbo_message as m,fsbo_users as u WHERE m.reciver_id=u.ID and m.reciver_id=$ID")->result();
 							$content = 'content/content-message';
 						}	
 					}else if($type == 'wishlist'){
@@ -811,6 +817,49 @@ class Main extends CI_Controller {
 	     }else{
 	       echo "new";
 	     }
+	}
+
+	public function list_email(){
+		$this->db->select('user_login');
+		$this->db->like('user_login', $this->input->post('q'), 'after'); 
+		$this->db->from('fsbo_users');
+		$query = $this->db->get();
+		$data="";
+		$result = $query->result();
+		foreach ($result as $key) {
+			$data .='"'.$key->user_login.'"'.',';
+		}
+		$data=rtrim($data,',');
+		$data="[".$data."]";
+		echo $data;
+	}
+	public function send_message(){
+		$this->db->select('ID');
+		$this->db->where('user_login', $this->input->post('email')); 
+		$this->db->from('fsbo_users');
+		$query = $this->db->get();
+		$result = $query->result();
+		$ID='';
+		foreach ($result as $key) {
+			$ID = $key->ID;
+		}
+		//print_r($ID);
+		
+		 $data = array(
+	     'sender_id' => $this->session->userdata('logged_in')['ID'],
+	     'reciver_id' => $ID,
+	     'title' => $this->input->post('subject'),
+	     'message' => $this->input->post('message'),
+	     'message_date' => date("Y-m-d H:i:s"),
+	     'status' => '0',
+	    );
+	    $check=$this->db->insert('fsbo_message', $data);
+	    if($check){
+	      redirect("profile/admin/message/");
+	    }else{
+	      redirect("profile/admin/message/");
+	    }
+	    
 	}
 }
 

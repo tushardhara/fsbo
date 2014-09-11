@@ -77,7 +77,7 @@
 						<div class="wishlist"><a href="<?php echo site_url('add_wishlist?ID='.$key->ID)?>" target="_blank">Wish List</a></div>
 						<div class="print"><a href="javascript:window.print()">Print</a></div>
 						<?php if($this->session->userdata('logged_in')){ ?>
-						<div class="contact"><a href="mailto:<?php echo $email;?>?subject=&amp;body=" class="popup contact" target="_blank">Contact Agents</a></div>
+						<div class="contact"><a href="mailto:<?php echo $email;?>?subject=&amp;body=" class="popup contact" target="_blank">Contact</a></div>
 						<?php } ?>
 					</div>
 				</div>

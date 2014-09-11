@@ -10,7 +10,7 @@
 		<div class="container">
 			<div class="education-listing-settings">
 				<div class="education-drop-down-settings clearfix">
-					<div class='title'>Education Guid</div>
+					<div class='title'>Education Guide</div>
 					<div class='settings-edu'>
 						<?php echo form_open('search'); ?>
 						<div class="search-edu"><?php echo form_input('post_title', set_value('post_title'), 'Placeholder="Search"'); ?><input type="hidden" name="post_type" value="education"><input type="submit" style="position: absolute; left: -9999px"/><div class="search-icon"></div></div>

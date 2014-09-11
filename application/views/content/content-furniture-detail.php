@@ -99,17 +99,17 @@
 					</div>
 					<div class="group clearfix">
 						<?php if($user_type == 'user') {?>
-						<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></p></div>
+						<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">View all listings by <?php echo $user_login?> </a></p></div>
 						<?php }else if($user_type == 'agent'){ ?>
 							<?php if(!empty($user_title)) { ?>
-								<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_title?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_title?> Listing</a></p></div>
+								<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_title?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">View all listings by <?php echo $user_title?> </a></p></div>
 							<?php } else { ?>
-								<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></p></div>
+								<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">View all listings by <?php echo $user_login?> </a></p></div>
 							<?php } ?>
 						<?php }else if($user_type == 'admin'){ ?>
-						<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></p></div>
+						<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">View all listings by <?php echo $user_login?> </a></p></div>
 						<?php }else if($user_type == 'moderator'){ ?>
-						<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">See all <?php echo $user_login?> Listing</a></p></div>
+						<div class="item clearfix"><p class="by">Listed by <span class="yellow"><?php echo $user_login?></p><p class="view"><a href="<?php echo site_url('agent/'.$user_slug)?>">View all listings by <?php echo $user_login?> </a></p></div>
 						<?php } ?>
 						<div class="item clearfix">
 							<p class="market">Days on Market</p><p class="day"><?php echo time_elapsed_string($key->post_date); ?> on FSBO</p>

@@ -515,7 +515,7 @@
 			</div>
 			<div class="right-main">
 				<div class="title">
-					<h6><a href="<?php echo site_url('education') ?>">Education Guid</a></h6>
+					<h6><a href="<?php echo site_url('education') ?>">Education Guide</a></h6>
 				</div>
 				<div class="side-container">
 					<div class="education-list">
@@ -541,7 +541,7 @@
 										<?php echo img($attached_image);?>
 									</div>
 									<div class="text-area">
-										<div class="institute">Name Of Institute</div>
+										<div class="institute">Name Of institute</div>
 										<div class="name-institute"><?php echo $key->post_title; ?></div>
 										<div class="distict">Type:</div>
 										<div class="name-distict"><?php echo $key->post_education_type;?></div>
@@ -578,7 +578,7 @@
 										<?php echo img($attached_image);?>
 									</div>
 									<div class="text-area">
-										<div class="institute">Name Of Institute</div>
+										<div class="institute">Name Of institute</div>
 										<div class="name-institute"><?php echo $key->post_title; ?></div>
 										<div class="distict">Type:</div>
 										<div class="name-distict"><?php echo $key->post_education_type;?></div>
@@ -615,7 +615,7 @@
 										<?php echo img($attached_image);?>
 									</div>
 									<div class="text-area">
-										<div class="institute">Name Of Institute</div>
+										<div class="institute">Name Of institute</div>
 										<div class="name-institute"><?php echo $key->post_title; ?></div>
 										<div class="distict">Type:</div>
 										<div class="name-distict"><?php echo $key->post_education_type;?></div>

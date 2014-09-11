@@ -44,7 +44,9 @@
 	<script type="text/javascript" src="<?php echo base_url('js/owl.carousel.min.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('js/jquery.mixitup.js');?>"></script>
 	<script src="<?php echo base_url('js/rrssb.js');?>"></script>
+	<script src="http://cdn.ckeditor.com/4.4.2/basic/ckeditor.js"></script>
 	<script type="text/javascript" src="<?php echo base_url('js/main.js');?>"></script>
+
 	<!--Start of Zopim Live Chat Script-->
 	<script type="text/javascript">
 	window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=

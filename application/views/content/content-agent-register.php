@@ -71,19 +71,19 @@
 				<div class="filed">
 				<input type="text" name='user_url' placeholder="Website">
 				</div>
-				<textarea name='user_detail' placeholder="Type a paragraph about Agency"></textarea>
+				<textarea name='user_detail' placeholder="Type a paragraph about your Agency"></textarea>
 				<input type="hidden" name="user_type" value="2">
 				<input type="hidden" name="user_provider" value="Fsbo">
 				<input type="hidden" name="user_lname" value="">					
 			</div>
 			</form>
 			<div class="register-box">
-				<h1>Benefits of a my fsbo account</h1>
+				<h1>Benefits of a FSBO account</h1>
 				<p>Signup today and get exclusive access to thousands of properties for sale and rent, listed by local agents and private owners.</p>
 				<p>As the leading real estate marketing website of Qatar, we offer you a comprehensive array of property resources, designed to help you make "quick" and "informed" decisions.</p>
 				<p>Signup and enjoy the benefits that include:</p>
-				<p><span>Free Listings:</span> Post your properties and furiture free of charge...no catch</p>
-				<p><span>Find/Sale Furniture:</span> A comprahensive database of furniture to suite your decor</p>
+				<p><span>Free Listings:</span> Post your properties and furniture free of charge...no catch</p>
+				<p><span>Find/Sell Furniture:</span> A comprehensive database of furniture to suit your decor</p>
 				<p><span>Saved Searches:</span> A bespoke tool that lets you save search queries online, right here on our website</p>
 				<p><span>Saved Properties:</span> Save and shortlist real estate for your convenience</p>
 				<p><span>Compare Properties:</span> compare prospects to find whats right for you</p>

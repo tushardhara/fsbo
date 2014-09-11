@@ -33,6 +33,7 @@ $(document).ready(function() {
    $('.search-drop .drop-item').on('click',function(){
     $(this).parent().parent().children('.search-drop-area').children('.text').children('span').html($(this).attr('item-value'));
      $(this).parent().parent().children('.search-drop-area').children('.text').children('input').val($(this).attr('item-value'));
+    $('.search-drop').removeClass('active');
   });
   $(document).mouseup(function (e)
   {

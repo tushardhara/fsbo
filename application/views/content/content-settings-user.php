@@ -21,7 +21,7 @@
 					<input type="password" name='user_pass' placeholder="Password"><br/>
 					<label>Email :</label><br/>
 					<input type="text" name='user_email' placeholder="Email"><br/>
-					<label>Fisrt Name :</label><br/>
+					<label>First Name :</label><br/>
 					<input type="text" name='user_fname' placeholder="First Name"><br/>
 					<label>Last Name :</label><br/>
 					<input type="text" name='user_lname' placeholder="Last Name"><br/>

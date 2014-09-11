@@ -212,11 +212,7 @@
 					<div class="filed">
 						<span class="info">Longitude : </span><input	type="text" placeholder="Longitude" id="long" name='post_property_area_log'>
 					</div>
-					<div class="filed">
-						<div class="fileUpload btn btn-primary">
-						    <input type="file" name="files[]" class="upload" multiple/>
-						</div>
-					</div>
+					
 				</div>
 				<div class="right">
 					<h1>Building</h1>
@@ -288,6 +284,11 @@
 					<h1>General</h1>
 					<div class="filed">
 						<span class="info">Title : </span><input	type="text" placeholder="Title" name="post_title">
+					</div>
+					<div class="filed">
+						<div class="fileUpload btn btn-primary">
+						    <input type="file" name="files[]" class="upload" multiple/>
+						</div>
 					</div>
 					<div class="filed ex">
 						<textarea placeholder="Description" name="post_description"></textarea>
